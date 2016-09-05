@@ -1,7 +1,17 @@
 from graphics import *
-from operator import itemgetter
 import random
 import math
+import os
+import time
+
+def init_rand(seed=None):
+    if seed is None:
+        try:
+            seed = os.urandom(8)
+        except NotImplementedError:
+            seed = time.time()
+    print('seed: %s' % seed)
+    random.seed(seed)
 
 class graph_edge():
     def __init__(self, ln, distance, if_checked):
@@ -26,6 +36,9 @@ def does_cross(line1, line2):
         p3_x = line2.getP2().getX()
         p3_y = line2.getP2().getY()
 
+        if(p0_x == p2_x and p0_y == p2_y and p1_x == p3_x and p1_y == p3_y):
+            return True
+
         s1_x = p1_x - p0_x
         s1_y = p1_y - p0_y
         s2_x = p3_x - p2_x
@@ -37,20 +50,17 @@ def does_cross(line1, line2):
         i_x = p0_x + (t * s1_x)
         i_y = p0_y + (t * s1_y)
 
-        print(s,t)
+
         if (s >= 0 and s <= 1 and t >= 0 and t <= 1):
-            if (i_x != p0_x and i_x != p1_x and i_x != p2_x and i_x != p3_x):
-                if (i_y != p0_y and i_y != p1_y and i_y != p2_y and i_y != p3_y):
-                    return True
-                else:
-                    return False
-            else:
+            if ((i_x == p0_x and i_y == p0_y) or (i_x == p1_x and i_y == p1_y) or (i_x == p2_x and i_y == p2_y) or (i_x == p3_x and i_y == p3_y)):
                 return False
+            else:
+                return True
         else:
             return False
 
-    except ZeroDivisionError:
-        return True
+    except ZeroDivisionError:   #If the two lines are the same, we say that they do not cross
+        return False
 
 # Compute the Euclidian distance of a line segment
 def distance(line1):
@@ -64,12 +74,12 @@ def distance(line1):
 def main():
 
     # Open graphics window
-    win_sz = 720
+    win_sz = 1000
     win = GraphWin('Graph Coloring', win_sz, win_sz)
     win.setBackground('black')
 
 
-    N = 10      # Number of points provided by command line (not yet)
+    N = 100     # Number of points provided by command line (not yet)
     vertices = []    # List of vertices of the graph
     fullcon_graph = {}      # Dictionary of vertices and all possible edges
     graph = {}
@@ -77,9 +87,9 @@ def main():
 
     # Fill the list of points
     for i in range(0,N):
-        x_pt = random.random()
-        y_pt = random.random()
-        next_pt = Point(x_pt * win_sz, y_pt * win_sz)
+        x_pt = random.randint(0,win_sz-1)
+        y_pt = random.randint(0,win_sz-1)
+        next_pt = Point(x_pt, y_pt)
         next_pt.setFill('white')
         next_pt.setOutline('white')
         next_pt.draw(win)
@@ -112,8 +122,11 @@ def main():
             test_edge = edges[j]
 
 
+
             if test_edge.checked == False:  # Proceed only if we haven't checked this edge
                 test_edge.checked = True  # Make sure to inform the program we checked the edge
+
+                # test_edge.ln.draw(win)
 
                 # Check that the test edge does not cross any current edges
                 if len(all_edges) == 0:
@@ -125,8 +138,15 @@ def main():
                 else:
                     crosses = False
                     for edge in all_edges:
+
+                        # edge.ln.setFill('yellow')
+                        # edge.ln.draw(win)
+
                         if does_cross(test_edge.ln, edge.ln):
                             crosses = True
+
+                        # edge.ln.setFill('green')
+                        # edge.ln.draw(win)
 
                     if crosses == False:
                         graph[vertices[i]] = test_edge
@@ -134,7 +154,8 @@ def main():
                         test_edge.ln.draw(win)
                         all_edges.append(test_edge)
                         break
-
+                    # else:
+                    #     test_edge.ln.undraw()
 
 
             # Escape based on full trips through all FOR loops
@@ -147,6 +168,6 @@ def main():
     win.wait_window()
 
 
-
+init_rand(b'\xcd\r\x0e\x95x\x9ab\xa6')
 main()
 
