@@ -28,6 +28,7 @@ class graph_point():
     def __init__(self, pt, color=None, poly=None):
         self.pt = pt
         self.edges = []
+        self.all_edges = []
         self.color = color
         self.poly=poly
 
@@ -80,14 +81,14 @@ def distance(line1):
     return math.sqrt(x_dist * x_dist + y_dist * y_dist)
 
 
-def elim_crossings(N, win, fullcon_graph, graph, all_edges):
+def elim_crossings(N, win, graph, all_edges):
 
     # Implement graph constructing algorithm defined in problem statement
     escape = True
     vertex_escape = [False] * N  # All elements must be true to escape loop
     while (escape):
         i = random.randint(0, N - 1)  # Select random point
-        edges = fullcon_graph[i].edges  # Select all edges from random point
+        edges = graph[i].all_edges  # Select all edges from random point
         num_edges = len(edges)
 
         # Find next closest point
@@ -105,7 +106,7 @@ def elim_crossings(N, win, fullcon_graph, graph, all_edges):
                     graph[i].edges.append(test_edge)
                     all_edges.append(test_edge)
                     # test_edge.ln.setFill('green')
-                    test_edge.ln.draw(win)
+                    # test_edge.ln.draw(win)
                     break
                 else:
                     crosses = False
@@ -116,18 +117,19 @@ def elim_crossings(N, win, fullcon_graph, graph, all_edges):
 
                         if does_cross(test_edge.ln, edge.ln):
                             crosses = True
+                            break
 
-                            # edge.ln.setFill('green')
-                            # edge.ln.draw(win)
+                        # edge.ln.setFill('green')
+                        # edge.ln.draw(win)
 
                     if crosses == False:
                         graph[i].edges.append(test_edge)
                         all_edges.append(test_edge)
-                        #test_edge.ln.setFill('green')
-                        test_edge.ln.draw(win)
+                        # test_edge.ln.setFill('green')
+                        # test_edge.ln.draw(win)
                         break
-                        # else:
-                        #     test_edge.ln.undraw()
+                    # else:
+                    #     test_edge.ln.undraw()
 
             # Escape based on full trips through all FOR loops
             if j == num_edges - 1:
@@ -159,6 +161,22 @@ def draw_graph(graph, win):
         for edge in pt.edges:
             edge.ln.draw(win)
 
+def centroid(pts):
+
+    X = 0
+    Y = 0
+    for pt in pts:
+        X = X + pt.pt.getX()
+        Y = Y + pt.pt.getY()
+
+    X = math.floor(X / len(pts))
+    Y = math.floor(Y / len(pts))
+    center_pt = Point(X,Y)
+    center_pt.setFill('red')
+    # center_pt.draw(win)
+
+    return graph_point(center_pt)
+
 def main():
 
     set_point(0,0)
@@ -168,8 +186,8 @@ def main():
 
     # Fill the list of points
     for i in range(0,N-4):
-        x_pt = random.randint(0,win_sz-1)
-        y_pt = random.randint(0,win_sz-1)
+        x_pt = random.randint(10,win_sz-10)
+        y_pt = random.randint(10,win_sz-10)
         set_point(x_pt, y_pt)
 
     # Create list of all edges between vertices and store in list
@@ -177,87 +195,117 @@ def main():
         edges = []  # Save all edges from each vertex for storage in list
         for j in range(0, N):
             if j != i:
-                ln = Line(fullcon_graph[i].pt, fullcon_graph[j].pt)
+                ln = Line(graph[i].pt, graph[j].pt)
                 ln.setFill('black')
-                ln.setWidth(3)
-                edge = graph_edge(ln, fullcon_graph[i], fullcon_graph[j], distance(ln))
+                ln.setWidth(1)
+                edge = graph_edge(ln, graph[i], graph[j], distance(ln))
                 edges.append(edge)
 
         edges.sort(key=lambda x: x.distance)
-        fullcon_graph[i].edges = edges
+        graph[i].all_edges = edges
 
     # Eliminate all crossings in main graph
-    elim_crossings(N, win, fullcon_graph, graph, all_edges)
+    elim_crossings(N, win, graph, all_edges)
 
     # Now to construct a possible polygon structure that represents this graph
-    # Start by finding the midpoint of all edges
-    for edge in all_edges:
-        mid_pt = edge.ln.getCenter()
-        mid_pt.setFill('red')
-        mid_pt.draw(win)
 
-        mid_pt_obj = graph_point(mid_pt)
-        mid_pts.append(mid_pt_obj)
 
-    # Now connect all original points to every possible midpoint
+    # Group triangles into list
+    triangles = []
+    centers = []
+    for pt1 in graph:
+
+        for edge1 in pt1.edges:
+
+            pt2 = edge1.end_point
+            if pt2 == pt1:
+                break
+
+            for edge2 in pt2.edges:
+                pt3 = edge2.end_point
+                if pt3 == pt2:
+                    break
+
+                for edge3 in pt3.edges:
+                    if edge3.end_point == pt1:
+                        triangles.append([pt1, pt2, pt3])
+
+    # Find the center of each triangle
+    for triangle in triangles:
+        new_center = centroid(triangle)
+        new_center.pt.draw(win)
+        if all( ((center.pt.getX() != new_center.pt.getX()) or (center.pt.getY() != new_center.pt.getY())) for center in centers):
+            centers.append(new_center)
+            # new_center.pt.setFill("black")
+            # new_center.pt.draw(win)
+
+    # Draw line from each point to centers of triangle
     for i in range(0,N):
         edges = []
-
-        if i >= 0 and i <= 3:
-            ln = Line(fullcon_polygraph[i].pt, fullcon_polygraph[i].pt)
+        pt1 = polygraph[i]
+        for pt2 in centers:
+            ln = Line(pt1.pt, pt2.pt)
             ln.setFill('red')
-            edge = graph_edge(ln, fullcon_polygraph[i], fullcon_polygraph[i], distance(ln))
-            edges.append(edge)
-        for j in range(0,len(mid_pts)):
-            ln = Line(fullcon_polygraph[i].pt, mid_pts[j].pt)
-            ln.setFill('red')
-            edge = graph_edge(ln, fullcon_polygraph[i], mid_pts[j], distance(ln))
+            # ln.draw(win)
+            edge = graph_edge(ln, pt1, pt2, distance(ln))
             edges.append(edge)
 
         edges.sort(key=lambda x: x.distance)
-        fullcon_polygraph[i].edges=edges
+        polygraph[i].all_edges = edges
 
-    # As before, eliminate all crossings with polygraph
-    elim_crossings(N, win, fullcon_polygraph, polygraph, all_edges)
+    elim_crossings(N, win, polygraph, all_edges)
+
+
+
+    # Now connect all midpoints to polygraph
+    for i in range(0,N):
+        pt = graph[i]
+
+        # If we're in a corner, we need to point to ourself
+        if i >= 0 and i <= 3:
+            ln = Line(pt.pt, pt.pt)
+            new_edge = graph_edge(ln, pt, pt, distance(ln))
+            polygraph[i].edges.insert(0,new_edge)
+
+        for edge in pt.edges:
+            mid_pt = edge.ln.getCenter()
+            mid_pt_obj = graph_point(mid_pt)
+            ln = Line(pt.pt, mid_pt)
+            new_edge = graph_edge(ln, pt, mid_pt_obj, distance(ln))
+            polygraph[i].edges.append(new_edge)
 
     # Plug results into graph object
+    for i in range(0,N):
+        poly_verts = []
 
-    # for i in range(0,N):
-    #     poly_verts = []
-    #
-    #     colors=['red','blue','green','purple', 'yellow', 'orange']
-    #
-    #     # Sort edges by angle
-    #     for j in range(0, len(polygraph[i].edges)):
-    #         dx = polygraph[i].edges[j].end_point.pt.getX() - polygraph[i].edges[j].start_point.pt.getX()
-    #         dy = polygraph[i].edges[j].end_point.pt.getY() - polygraph[i].edges[j].start_point.pt.getY()
-    #         polygraph[i].edges[j].theta = math.atan2(dy,dx)
-    #         if(i==1 and j==0):
-    #             polygraph[i].edges[j].theta = 2 * math.pi
-    #         print(polygraph[i].edges[j].theta)
-    #     polygraph[i].edges.sort(key=lambda x: x.theta)
+        colors=['red','blue','green','purple', 'yellow', 'orange']
+
+        # Sort edges by angle
+        for j in range(0, len(polygraph[i].edges)):
+            dx = polygraph[i].edges[j].end_point.pt.getX() - polygraph[i].edges[j].start_point.pt.getX()
+            dy = polygraph[i].edges[j].end_point.pt.getY() - polygraph[i].edges[j].start_point.pt.getY()
+            polygraph[i].edges[j].theta = math.atan2(dy,dx)
+            if(i==1 and j==0):      # 4th quadrant needs special treatment
+                polygraph[i].edges[j].theta = 2 * math.pi
+        polygraph[i].edges.sort(key=lambda x: x.theta)
 
         # Calculate polygons
-        # for j in range(0, len(polygraph[i].edges)):
-        #     next_vert = polygraph[i].edges[j].end_point.pt
-        #     poly_verts.append(next_vert)
-        #
-        #
-        # next_poly = Polygon(poly_verts)
-        # next_poly.setOutline('white')
-        # next_poly.setWidth(2)
-        # next_poly.setFill(colors[random.randint(0, len(colors) - 1)])
-        # graph[i].poly = next_poly
-        # next_poly.draw(win)
+        for j in range(0, len(polygraph[i].edges)):
+            next_vert = polygraph[i].edges[j].end_point.pt
+            poly_verts.append(next_vert)
 
-        # draw_graph(graph,win)
-        # draw_graph(graph, win2)
 
+        next_poly = Polygon(poly_verts)
+        next_poly.setOutline('white')
+        next_poly.setWidth(1)
+        next_poly.setFill(colors[random.randint(0, len(colors) - 1)])
+        graph[i].poly = next_poly
+        next_poly.draw(win)
+
+    draw_graph(graph,win)
 
     win.postscript(file="/home/byrdie/School/CSCI446_Artifical_Intelligence/CSCI446_Artificial_Intelligence_Project_1/src/test.eps", colormode='color')
     win.wait_window()
-    win2.wait_window()
-
 
 # Open graphics window
 win_sz = 1000
@@ -267,16 +315,16 @@ win.setBackground('white')
 # win2 = GraphWin('Graph Coloring Poly', win_sz, win_sz)
 # win2.setBackground('white')
 
-N = 10  # Number of points provided by command line (not yet)
+N = 20  # Number of points provided by command line (not yet)
 fullcon_graph = []  # List of vertices of the graph
 graph = []
 all_edges = []
 
 fullcon_polygraph = []
 polygraph = []
+full_mid_pts=[]
 mid_pts = []
 all_poly_edges = []
 
 init_rand()
 main()
-
