@@ -326,5 +326,5 @@ full_mid_pts=[]
 mid_pts = []
 all_poly_edges = []
 
-init_rand()
+init_rand(b'q6\xea\xb0\xb7\x8dm\r')
 main()
