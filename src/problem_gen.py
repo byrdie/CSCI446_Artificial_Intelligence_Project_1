@@ -3,6 +3,7 @@ import random
 import math
 import os
 import time
+from delaunay import compute_poly
 
 def init_rand(seed=None):
     if seed is None:
@@ -207,37 +208,63 @@ def main():
     # Eliminate all crossings in main graph
     elim_crossings(N, win, graph, all_edges)
 
+    # Sort edges by angle
+    for i in range(0,N):
+        for j in range(0, len(graph[i].edges)):
+            dx = graph[i].edges[j].end_point.pt.getX() - graph[i].edges[j].start_point.pt.getX()
+            dy = graph[i].edges[j].end_point.pt.getY() - graph[i].edges[j].start_point.pt.getY()
+            graph[i].edges[j].theta = math.atan2(dy, dx)
+            if (i == 1 and j == 0):  # 4th quadrant needs special treatment
+                graph[i].edges[j].theta = 2 * math.pi
+        graph[i].edges.sort(key=lambda x: x.theta)
+    #
+    # # Compute polygon representation
+    # compute_poly(graph, win)
+    # draw_graph(graph, win)
     # Now to construct a possible polygon structure that represents this graph
 
 
     # Group triangles into list
     triangles = []
     centers = []
-    for pt1 in graph:
+    for j in range(4, len(graph)):
 
-        for edge1 in pt1.edges:
+        pt1 = graph[j]
+        num_e = len(pt1.edges)
+        for i in range(num_e):
+            edge2 = pt1.edges[i]
+            edge3 = pt1.edges[(i+1) % num_e]
 
-            pt2 = edge1.end_point
-            if pt2 == pt1:
-                break
-
-            for edge2 in pt2.edges:
-                pt3 = edge2.end_point
-                if pt3 == pt2:
-                    break
-
-                for edge3 in pt3.edges:
-                    if edge3.end_point == pt1:
-                        triangles.append([pt1, pt2, pt3])
+            pt2 = edge2.end_point
+            pt3 = edge3.end_point
+            triangles.append([pt1, pt2, pt3])
 
     # Find the center of each triangle
     for triangle in triangles:
+        circ1 = Circle(triangle[0].pt,4)
+        circ1.setFill("blue")
+        circ1.draw(win)
+        circ2 = Circle(triangle[1].pt,4)
+        circ2.setFill("blue")
+        circ2.draw(win)
+        circ3 = Circle(triangle[2].pt,4)
+        circ3.setFill("blue")
+        circ3.draw(win)
         new_center = centroid(triangle)
+        circ4 = Circle(new_center.pt,4)
+        circ4.setFill("blue")
+        circ4.draw(win)
         new_center.pt.draw(win)
         if all( ((center.pt.getX() != new_center.pt.getX()) or (center.pt.getY() != new_center.pt.getY())) for center in centers):
             centers.append(new_center)
+        else:
+            print("rejected triangle")
             # new_center.pt.setFill("black")
             # new_center.pt.draw(win)
+        circ1.undraw()
+        circ2.undraw()
+        circ3.undraw()
+        circ4.undraw()
 
     # Draw line from each point to centers of triangle
     for i in range(0,N):
@@ -302,7 +329,8 @@ def main():
         graph[i].poly = next_poly
         next_poly.draw(win)
 
-    draw_graph(graph,win)
+    draw_graph(graph, win)
+
 
     win.postscript(file="/home/byrdie/School/CSCI446_Artifical_Intelligence/CSCI446_Artificial_Intelligence_Project_1/src/test.eps", colormode='color')
     win.wait_window()
@@ -315,7 +343,7 @@ win.setBackground('white')
 # win2 = GraphWin('Graph Coloring Poly', win_sz, win_sz)
 # win2.setBackground('white')
 
-N = 20  # Number of points provided by command line (not yet)
+N = 10  # Number of points provided by command line (not yet)
 fullcon_graph = []  # List of vertices of the graph
 graph = []
 all_edges = []
@@ -326,5 +354,5 @@ full_mid_pts=[]
 mid_pts = []
 all_poly_edges = []
 
-init_rand(b'q6\xea\xb0\xb7\x8dm\r')
+init_rand()
 main()
