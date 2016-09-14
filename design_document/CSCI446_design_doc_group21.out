@@ -1,9 +1,10 @@
 \BOOKMARK [1][-]{section.1}{Introduction}{}% 1
 \BOOKMARK [1][-]{section.2}{Problem Generation}{}% 2
 \BOOKMARK [1][-]{section.3}{Experiment Design}{}% 3
-\BOOKMARK [1][-]{section.4}{Graph Coloring Algorithms}{}% 4
-\BOOKMARK [2][-]{subsection.4.1}{Minimum Conflicts}{section.4}% 5
-\BOOKMARK [2][-]{subsection.4.2}{Simple Backtracking}{section.4}% 6
-\BOOKMARK [2][-]{subsection.4.3}{Backtracking with Forward Checking}{section.4}% 7
-\BOOKMARK [2][-]{subsection.4.4}{Backtracking with Constraint Propagation}{section.4}% 8
-\BOOKMARK [2][-]{subsection.4.5}{Local Search Using a Genetic Algorithm}{section.4}% 9
+\BOOKMARK [1][-]{section.4}{Solution Overview}{}% 4
+\BOOKMARK [1][-]{section.5}{Graph Coloring Algorithms}{}% 5
+\BOOKMARK [2][-]{subsection.5.1}{Minimum Conflicts}{section.5}% 6
+\BOOKMARK [2][-]{subsection.5.2}{Simple Backtracking}{section.5}% 7
+\BOOKMARK [2][-]{subsection.5.3}{Backtracking with Forward Checking}{section.5}% 8
+\BOOKMARK [2][-]{subsection.5.4}{Backtracking with Constraint Propagation}{section.5}% 9
+\BOOKMARK [2][-]{subsection.5.5}{Local Search using a Genetic Algorithm}{section.5}% 10

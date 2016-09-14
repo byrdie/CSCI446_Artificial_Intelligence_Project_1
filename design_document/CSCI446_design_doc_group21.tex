@@ -67,13 +67,13 @@
 %	TITLE SECTION
 %----------------------------------------------------------------------------------------
 
-\title{\vspace{-15mm}\fontsize{24pt}{10pt}\selectfont\textbf{CSCI 446 Artificial Intelligence \\ Project 1 Design Report}} % Article title
-
-\author{
+\title{\vspace{-15mm}\fontsize{24pt}{10pt}\selectfont\textbf{CSCI 446 Artificial Intelligence \\ Project 1 Design Report} \\[4mm] \Large Montana State University} % Article title
+\date{}
+\author{ 
 \large
 \textsc{Roy Smart} \and \textsc{Nevin Leh} \and \textsc{Brian Marsh} \\[2mm] % Your name
 }
-\date{\normalsize Montana State University}
+
 
 %----------------------------------------------------------------------------------------
 
@@ -94,17 +94,27 @@
 \begin{multicols}{2} % Two-column layout throughout the main article text
 
 \section{Introduction}
-
+The \textit{Graph Coloring Problem} (GCP) is the problem of attempting to color a set of bordering regions such that no region has the same color as its neighbors using three or four colors. For example consider the problem of coloring a map of the USA (Figure \ref{usa}), using only four colors and ensuring that no neighboring states share the same color. This is the motivation of the graph coloring problem. 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth]{../images/usa}
+	\caption{Map of the United States of America satisfying the graph coloring problem.}
+	\label{usa}
+\end{figure}
+It can be shown that the map coloring problem reduces to the graph coloring problem if we represent the states as the vertices of the graph, and the borders between states as the edges of the graph. This configuration produces a \textit{maximally planar} graph, a graph with no edge intersections and adding any edge would result in an edge intersection.
+We are tasked with solving this problem five different ways: Minimum Conflicts, Simple Backtracking, Backtracking with Forward Checking, Backtracking with Constraint Propagation (MAC), and Local Search using a Genetic Algorithm. To test these algorithms, we will first need to build a problem generating program that can produce a random set of \textit{maximally planar} graphs. Using the problem generator, we will calculate a set of graphs between the sizes {10,20,30,...,100} and then use the five graph coloring algorithms to solve the GCP. We will measure GCP algorithm performance by how many vertex colorings it requires to find a solution.
 \section{Problem Generation}
-
+The graph coloring problem
 \section{Experiment Design}
+
+\section{Solution Overview}
 
 \section{Graph Coloring Algorithms}
 \subsection{Minimum Conflicts}
 \subsection{Simple Backtracking}
 \subsection{Backtracking with Forward Checking}
 \subsection{Backtracking with Constraint Propagation}
-\subsection{Local Search Using a Genetic Algorithm}
+\subsection{Local Search using a Genetic Algorithm}
 
 
 \end{multicols}
