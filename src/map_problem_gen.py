@@ -118,10 +118,11 @@ def problem_gen(num_vert, win_sz):
             poly_verts.append(next_vert)
 
         # Insert polygons into our graph object
+        colors = ["blue","green", "yellow", "orange", "red", "purple"]
         next_poly = Polygon(poly_verts)
         next_poly.setOutline('grey')
         next_poly.setWidth(2)
-        graph[i].color = "blue"
+        graph[i].color = colors[random.randint(0, len(colors) -1)]
         graph[i].poly = next_poly
 
     corners = graph[:4]

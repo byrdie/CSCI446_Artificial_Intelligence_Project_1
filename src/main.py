@@ -11,11 +11,11 @@ if __name__ == '__main__':
     win = open_win(win_sz)
 
     # Control initialization of PRNG for repeatibilty
-    init_rand()
+    init_rand(b'\x16\x1b\xef\x9bo\xfa7\x16')
 
-    graph = problem_gen(30, win_sz)
+    graph = problem_gen(10, win_sz)
 
-    draw_poly(graph, win)
+    # draw_poly(graph, win)
     draw_graph(graph, win)
 
     write_win_to_eps(win, "test.eps")
