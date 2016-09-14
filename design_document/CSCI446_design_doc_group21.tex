@@ -27,7 +27,7 @@
 
 \usepackage{graphicx}
 \usepackage{lipsum} % Package to generate dummy text throughout this template
-\usepackage[sc]{mathpazo} % Use the Palatino font
+%\usepackage[sc]{mathpazo} % Use the Palatino font
 \usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
 \linespread{1.05} % Line spacing - Palatino needs more space between lines
 \usepackage{microtype} % Slightly tweak font spacing for aesthetics
@@ -59,19 +59,20 @@
 \pagestyle{fancy} % All pages have headers and footers
 \fancyhead{} % Blank out the default header
 \fancyfoot{} % Blank out the default footer
-\fancyhead[C]{CSCI 466 Artificial Intelligence \quad $\bullet$ \quad \today} % Custom header text
+\fancyhead[C]{Montana State University \quad $\bullet$ \quad CSCI 466 Artificial Intelligence \quad $\bullet$ \quad Group 21} % Custom header text
 \fancyfoot[RO,LE]{\thepage} % Custom footer text
 
+\newcommand{\ve}[1]{\boldsymbol{\mathbf{#1}}}
 
 %----------------------------------------------------------------------------------------
 %	TITLE SECTION
 %----------------------------------------------------------------------------------------
 
-\title{\vspace{-15mm}\fontsize{24pt}{10pt}\selectfont\textbf{CSCI 446 Artificial Intelligence \\ Project 1 Design Report} \\[4mm] \Large Montana State University} % Article title
-\date{}
-\author{ 
+\title{\vspace{-15mm}\fontsize{24pt}{10pt}\selectfont\textbf{CSCI 446 Artificial Intelligence \\ Project 1 Design Report} \\[-4mm]} % Article title
+\date{\today}
+\author{
 \large
-\textsc{Roy Smart} \and \textsc{Nevin Leh} \and \textsc{Brian Marsh} \\[2mm] % Your name
+\textsc{Roy Smart} \and \textsc{Nevin Leh} \and \textsc{Brian Marsh}\\[2mm] % Your name
 }
 
 
@@ -101,10 +102,29 @@ The \textit{Graph Coloring Problem} (GCP) is the problem of attempting to color 
 	\caption{Map of the United States of America satisfying the graph coloring problem.}
 	\label{usa}
 \end{figure}
-It can be shown that the map coloring problem reduces to the graph coloring problem if we represent the states as the vertices of the graph, and the borders between states as the edges of the graph. This configuration produces a \textit{maximally planar} graph, a graph with no edge intersections and adding any edge would result in an edge intersection.
-We are tasked with solving this problem five different ways: Minimum Conflicts, Simple Backtracking, Backtracking with Forward Checking, Backtracking with Constraint Propagation (MAC), and Local Search using a Genetic Algorithm. To test these algorithms, we will first need to build a problem generating program that can produce a random set of \textit{maximally planar} graphs. Using the problem generator, we will calculate a set of graphs between the sizes {10,20,30,...,100} and then use the five graph coloring algorithms to solve the GCP. We will measure GCP algorithm performance by how many vertex colorings it requires to find a solution.
+It can be shown that the map coloring problem reduces to the graph coloring problem if we represent the states as the vertices of the graph, and the borders between states as the edges of the graph. This configuration produces a \textit{ planar} graph , a graph with no edge intersections. For this project, we will concentrate on solving the graph coloring problem for \textit{maximally planar} graphs (Figure \ref{simple}), planar graphs for which adding any addition edge would make the graph non-planar.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.3\linewidth]{../images/simple_graph}
+	\caption{Simple example of a maximally planar graph.}
+	\label{simple}
+\end{figure}
+We are tasked with solving this problem five different ways: Minimum Conflicts, Simple Backtracking, Backtracking with Forward Checking, Backtracking with Constraint Propagation (MAC), and Local Search using a Genetic Algorithm. To test these algorithms, we will first need to build a problem generating program that can produce a random set of maximally planar graphs. Using the problem generator, we will calculate a set of graphs between the sizes \{10, 20, 30,...,100\} and then use the five graph coloring algorithms to solve the GCP. We will measure GCP algorithm performance by how many vertex colorings it requires to find a solution.  \par The solution to this project will be implemented in Python 3.4 using the graphics library to visualize the graphs.
 \section{Problem Generation}
-The graph coloring problem
+For this project, we will need to create maximally planar graphs (MPGs) from a set of randomly scattered points. For an arbitrary set of points, there is no unique MPG that can be constructed. To solve this issue, the problem statement has provided a prescription for calculating an MPG. 
+\begin{quote}
+Select some point $X$ at random and connect $X$ by a straight line
+to the nearest point $Y$ such that $X$ is not already connected to $Y$ and line crosses no other line. Repeat the
+previous step until no more connections are possible.
+\end{quote}
+To implement this algorithm we will first create a complete graph (graph where each point is connected to every other). Each vertex will have a list of associated edges, sorted by length. As instructed, we will then select a point at random and inspect the first unchecked edge $E$. If any edge crosses $E$ it is eliminated from the graph. We then repeat this process until every edge has been checked. \par
+An algorithm to determine if two edges (or line segments) cross has been outlined by LaMothe \cite{tricks} and described in detail here. Let's start by defining two line segments 
+\begin{align*}
+	A = \{ \ve{a},\; \ve{a'} \} \\
+	B = \{\ve{b}, \;\ve{b'}\}
+\end{align*}
+where $\ve{a}, \; \ve{a'}, \; \ve{b}, \text{ and } \ve{b'}$ are points on the ends of the line segments.
+
 \section{Experiment Design}
 
 \section{Solution Overview}
@@ -120,6 +140,6 @@ The graph coloring problem
 \end{multicols}
 
 	%\bibliographystyle{apj}
-%	\bibliographystyle{unsrt}
-%	\bibliography{sources}
+	\bibliographystyle{unsrt}
+	\bibliography{sources}
 \end{document}
