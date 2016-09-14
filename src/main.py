@@ -3,6 +3,7 @@ from map_graphics import *
 from map_data_types import *
 
 
+# program entry point
 if __name__ == '__main__':
 
     # Open graphics window
@@ -12,7 +13,7 @@ if __name__ == '__main__':
     # Control initialization of PRNG for repeatibilty
     init_rand()
 
-    graph = problem_gen(10, win_sz)
+    graph = problem_gen(100, win_sz)
 
     draw_poly(graph, win)
     draw_graph(graph, win)
