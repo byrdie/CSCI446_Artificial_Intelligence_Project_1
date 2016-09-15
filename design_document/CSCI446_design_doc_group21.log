@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.6.13)  14 SEP 2016 19:04
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.6.13)  14 SEP 2016 23:01
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -637,7 +637,7 @@ Package pdftex.def Info: images/poly_example-eps-converted-to.pdf used on input
 (pdftex.def)             Requested size: 202.38837pt x 202.65236pt.
  [2 <./images/graph_example-eps-converted-to.pdf> <./images/poly_example-eps-co
 nverted-to.pdf>]
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 187.
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 188.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
@@ -648,49 +648,49 @@ Package microtype Info: Loading generic settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 Package epstopdf Info: Source file: <images/AI_UML_Project_1.eps>
-(epstopdf)                    date: 2016-09-14 18:18:04
-(epstopdf)                    size: 341014 bytes
+(epstopdf)                    date: 2016-09-14 22:47:08
+(epstopdf)                    size: 336276 bytes
 (epstopdf)             Output file: <images/AI_UML_Project_1-eps-converted-to.p
 df>
-(epstopdf)                    date: 2016-09-14 18:18:29
-(epstopdf)                    size: 142370 bytes
+(epstopdf)                    date: 2016-09-14 22:47:18
+(epstopdf)                    size: 140611 bytes
 (epstopdf)             Command: <epstopdf --outfile=images/AI_UML_Project_1-eps
 -converted-to.pdf images/AI_UML_Project_1.eps>
-(epstopdf)             \includegraphics on input line 190.
+(epstopdf)             \includegraphics on input line 193.
 Package epstopdf Info: Output file is already uptodate.
 
-<images/AI_UML_Project_1-eps-converted-to.pdf, id=121, 1141.26375pt x 728.7225p
-t>
+<images/AI_UML_Project_1-eps-converted-to.pdf, id=123, 1141.26375pt x 707.64375
+pt>
 File: images/AI_UML_Project_1-eps-converted-to.pdf Graphic file (type pdf)
  <use images/AI_UML_Project_1-eps-converted-to.pdf>
 Package pdftex.def Info: images/AI_UML_Project_1-eps-converted-to.pdf used on i
-nput line 190.
-(pdftex.def)             Requested size: 224.8775pt x 143.58475pt.
+nput line 193.
+(pdftex.def)             Requested size: 224.8775pt x 139.43147pt.
  [3 <./images/AI_UML_Project_1-eps-converted-to.pdf>] (./CSCI446_design_doc_gro
 up21.bbl)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 211.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 215.
  [4]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 211.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 215.
 
 (./CSCI446_design_doc_group21.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 211.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 211.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 215.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 215.
 Package rerunfilecheck Info: File `CSCI446_design_doc_group21.out' has not chan
 ged.
-(rerunfilecheck)             Checksum: F90CC9EB4096AB9BFF81F5E768C64393;947.
+(rerunfilecheck)             Checksum: 0E46F7729EF7A7141BEBA6A0772E8712;979.
 
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.88pt have occurred.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 211.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 215.
  ) 
 Here is how much of TeX's memory you used:
- 10074 strings out of 493304
- 153691 string characters out of 6139871
- 382761 words of memory out of 5000000
- 13232 multiletter control sequences out of 15000+600000
- 25604 words of font info for 110 fonts, out of 8000000 for 9000
+ 10081 strings out of 493304
+ 153769 string characters out of 6139871
+ 382798 words of memory out of 5000000
+ 13233 multiletter control sequences out of 15000+600000
+ 25778 words of font info for 113 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  38i,19n,43p,841b,554s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texliv
@@ -712,10 +712,10 @@ xmf/fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texmf/fonts/type1/publ
 ic/cm-super/sfrm1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti0900
 .pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1000.pfb></usr/share/tex
 mf/fonts/type1/public/cm-super/sftt1000.pfb>
-Output written on CSCI446_design_doc_group21.pdf (4 pages, 797761 bytes).
+Output written on CSCI446_design_doc_group21.pdf (4 pages, 803279 bytes).
 PDF statistics:
- 212 PDF objects out of 1000 (max. 8388607)
- 176 compressed objects within 2 object streams
+ 214 PDF objects out of 1000 (max. 8388607)
+ 178 compressed objects within 2 object streams
  32 named destinations out of 1000 (max. 500000)
  28304 words of extra memory for PDF output out of 29859 (max. 10000000)
 

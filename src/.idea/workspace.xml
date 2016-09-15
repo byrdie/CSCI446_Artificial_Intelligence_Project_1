@@ -2,8 +2,33 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8b52633e-377a-4af4-b7d7-ef89c441894f" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/setup.py" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tkinter/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tkinter/__main__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tkinter/_fix.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tkinter/colorchooser.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tkinter/commondialog.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tkinter/constants.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tkinter/dialog.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tkinter/dnd.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tkinter/filedialog.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tkinter/font.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tkinter/messagebox.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tkinter/scrolledtext.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tkinter/simpledialog.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tkinter/tix.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tkinter/ttk.py" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../design_document/CSCI446_design_doc_group21.pdf" afterPath="$PROJECT_DIR$/../design_document/CSCI446_design_doc_group21.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../design_document/CSCI446_design_doc_group21.synctex.gz" afterPath="$PROJECT_DIR$/../design_document/CSCI446_design_doc_group21.synctex.gz" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../design_document/images/AI_UML_Project_1-eps-converted-to.pdf" afterPath="$PROJECT_DIR$/../design_document/images/AI_UML_Project_1-eps-converted-to.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../design_document/images/AI_UML_Project_1.dia" afterPath="$PROJECT_DIR$/../design_document/images/AI_UML_Project_1.dia" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../design_document/CSCI446_design_doc_group21.aux" afterPath="$PROJECT_DIR$/../design_document/CSCI446_design_doc_group21.aux" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../design_document/CSCI446_design_doc_group21.log" afterPath="$PROJECT_DIR$/../design_document/CSCI446_design_doc_group21.log" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../design_document/CSCI446_design_doc_group21.out" afterPath="$PROJECT_DIR$/../design_document/CSCI446_design_doc_group21.out" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../design_document/CSCI446_design_doc_group21.tex" afterPath="$PROJECT_DIR$/../design_document/CSCI446_design_doc_group21.tex" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../design_document/images/AI_UML_Project_1.eps" afterPath="$PROJECT_DIR$/../design_document/images/AI_UML_Project_1.eps" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.py" afterPath="$PROJECT_DIR$/main.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/map_problem_gen.py" afterPath="$PROJECT_DIR$/map_problem_gen.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test.eps" afterPath="$PROJECT_DIR$/test.eps" />
     </list>
     <ignored path="src.iws" />
@@ -24,13 +49,25 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="main.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="21" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
+            <state relative-caret-position="390">
+              <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
               <folding>
                 <element signature="e#0#50#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="setup.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/setup.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="7" column="57" selection-start-line="7" selection-start-column="49" selection-end-line="7" selection-end-column="57" />
+              <folding>
+                <element signature="e#0#10#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -95,6 +132,7 @@
         <option value="$PROJECT_DIR$/graphics.py" />
         <option value="$PROJECT_DIR$/map_problem_gen.py" />
         <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/setup.py" />
       </list>
     </option>
   </component>
@@ -589,10 +627,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="21" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
+        <state relative-caret-position="390">
+          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
           <folding>
             <element signature="e#0#50#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/setup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="57" selection-start-line="7" selection-start-column="49" selection-end-line="7" selection-end-column="57" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
           </folding>
         </state>
       </provider>
