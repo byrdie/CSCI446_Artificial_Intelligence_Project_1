@@ -1,10 +1,14 @@
 \BOOKMARK [1][-]{section.1}{Introduction}{}% 1
 \BOOKMARK [1][-]{section.2}{Problem Generation}{}% 2
-\BOOKMARK [1][-]{section.3}{Experiment Design}{}% 3
-\BOOKMARK [1][-]{section.4}{Solution Overview}{}% 4
-\BOOKMARK [1][-]{section.5}{GCP Algorithms}{}% 5
-\BOOKMARK [2][-]{subsection.5.1}{Minimum Conflicts}{section.5}% 6
-\BOOKMARK [2][-]{subsection.5.2}{Simple Backtracking}{section.5}% 7
-\BOOKMARK [2][-]{subsection.5.3}{Backtracking with Forward Checking}{section.5}% 8
-\BOOKMARK [2][-]{subsection.5.4}{Backtracking with Constraint Propagation}{section.5}% 9
-\BOOKMARK [2][-]{subsection.5.5}{Local Search using a Genetic Algorithm}{section.5}% 10
+\BOOKMARK [2][-]{subsection.2.1}{Computing a Maximally Planar Graph}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{Computing Vertex Polygons}{section.2}% 4
+\BOOKMARK [1][-]{section.3}{Experiment Design}{}% 5
+\BOOKMARK [2][-]{subsection.3.1}{Invariant Metrics}{section.3}% 6
+\BOOKMARK [2][-]{subsection.3.2}{Algorithm-Specific Metrics}{section.3}% 7
+\BOOKMARK [1][-]{section.4}{Software Design}{}% 8
+\BOOKMARK [1][-]{section.5}{GCP Algorithms}{}% 9
+\BOOKMARK [2][-]{subsection.5.1}{Minimum Conflicts}{section.5}% 10
+\BOOKMARK [2][-]{subsection.5.2}{Simple Backtracking}{section.5}% 11
+\BOOKMARK [2][-]{subsection.5.3}{Backtracking with Forward Checking}{section.5}% 12
+\BOOKMARK [2][-]{subsection.5.4}{Backtracking with Constraint Propagation}{section.5}% 13
+\BOOKMARK [2][-]{subsection.5.5}{Local Search using a Genetic Algorithm}{section.5}% 14

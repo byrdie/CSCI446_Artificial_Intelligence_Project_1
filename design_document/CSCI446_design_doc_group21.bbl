@@ -1,5 +1,10 @@
 \begin{thebibliography}{1}
 
+\bibitem{ai}
+Stuart Russel and Peter Norvig.
+\newblock {\em Artificial Intelligence: A Modern Approach}.
+\newblock Pearson Education, 3rd edition, 2010.
+
 \bibitem{tricks}
 Andr\'e LaMothe.
 \newblock {\em Tricks of the 3D Game Programming Gurus}.

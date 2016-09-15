@@ -18,7 +18,7 @@
 %	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
 %----------------------------------------------------------------------------------------
 
-\documentclass[twoside]{article}
+\documentclass{article}
 
 %\documentclass{aastex}  % version 5.0 or prior
 %\usepackage{natbib}
@@ -102,7 +102,7 @@ The \textit{Graph Coloring Problem} (GCP) is the problem of attempting to color 
 	\caption{Map of the United States of America satisfying the graph coloring problem.}
 	\label{usa}
 \end{figure}
-It can be shown that the map coloring problem reduces to the graph coloring problem if we represent the states as the vertices of the graph, and the borders between states as the edges of the graph. This configuration produces a \textit{planar} graph , a graph with no edge intersections. 
+It can be shown that the map coloring problem reduces to the graph coloring problem if we represent the states as the vertices of the graph, and the borders between states as the edges of the graph\cite{ai}. This configuration produces a \textit{planar} graph, a graph with no edge intersections. 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.4\linewidth]{images/simple_graph}
@@ -111,15 +111,16 @@ It can be shown that the map coloring problem reduces to the graph coloring prob
 \end{figure}
 For this project, we will concentrate on solving the graph coloring problem for \textit{maximally planar} graphs (Figure \ref{simple}), planar graphs for which adding any addition edge would make the graph non-planar.
 
-We are tasked with solving the GCP five different ways: Minimum Conflicts, Simple Backtracking, Backtracking with Forward Checking, Backtracking with Constraint Propagation (MAC), and Local Search using a Genetic Algorithm. To test these algorithms, we will first need to build a problem generating program that can produce a random set of maximally planar graphs. Using the problem generator, we will calculate a set of graphs between the sizes \{10, 20, 30,...,100\} and then use the five graph coloring algorithms to solve the GCP. We will measure GCP algorithm performance by how many vertex colorings it requires to find a solution.  \par The solution to this project will be implemented in Python 3.4 using the graphics library to visualize the graphs.
+We are tasked with solving the GCP five different ways: Minimum Conflicts, Simple Backtracking, Backtracking with Forward Checking, Backtracking with Constraint Propagation (MAC), and Local Search using a Genetic Algorithm. To test these algorithms, we will first need to build a problem generating program that can produce a random set of maximally planar graphs. Using the problem generator, we will calculate a set of graphs between the sizes \{10, 20, 30,...,100\} and then use the five graph coloring algorithms to solve the GCP. We will measure GCP algorithm performance by how many vertex read/write operations it requires to find a solution.  \par The solution to this project will be implemented in Python 3.4 using the graphics library to visualize the graphs.
 \section{Problem Generation}
+\subsection{Computing a Maximally Planar Graph}
 For this project, we will need to create maximally planar graphs (MPGs) from a set of randomly scattered points. For an arbitrary set of points, there is no unique MPG that can be constructed. To solve this issue, the problem statement has provided a prescription for calculating an MPG. 
 \begin{quote}
 Select some point $X$ at random and connect $X$ by a straight line
 to the nearest point $Y$ such that $X$ is not already connected to $Y$ and line crosses no other line. Repeat the
 previous step until no more connections are possible.
 \end{quote}
-To implement this algorithm we will first create a complete graph (graph where each point is connected to every other). Each vertex will have a list of associated edges, sorted by length. As instructed, we will then select a point at random and inspect the first unchecked edge $E$. If $E$ doesn't cross any of the accepted edges, it is added to the list of accepted edges and marked as checked. We then repeat this process until every edge has been checked. \par
+To implement this algorithm we will first create a complete graph (where each vertex is connected to every other vertex). Each vertex will have a list of associated edges, sorted by length. As instructed, we will then select a point at random and inspect the first unchecked edge $E$. If $E$ doesn't cross any of the accepted edges, it is added to the list of accepted edges and marked as checked. We then repeat this process until every edge has been checked. \par
 An algorithm to determine if two edges (or line segments) cross has been outlined by LaMothe \cite{tricks} and described in detail here. Let's start by defining two line segments 
 \begin{align}
 	\begin{split}
@@ -164,20 +165,26 @@ Utilizing the algorithms described above we have implemented problem generation 
 \begin{figure}[H]
 	\centering
 	\includegraphics[trim={0 4cm 0 0.5cm},clip,width=0.9\linewidth]{images/graph_example}
-	\caption{Example of the MPG produced by our problem generator code using with the number of vertices, $N=10$.}
+	\caption{Example of the MPG produced by our problem generator code with the number of vertices, $N=10$.}
 	\label{graph_ex}
 \end{figure}
-We also have implemented a way to produce a map of the regions that result in the graphs created by the problem generator, shown in Figure \ref{poly_ex}. Since the graph coloring problem does not uniquely define the map coloring problem, we had to invent a metric that produces appropriate graphs.
+\subsection{Computing Vertex Polygons}
+We have also implemented a way to produce a map of regions that is analogous to the graphs created by the problem generator, shown in Figure \ref{poly_ex}.  
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\linewidth]{images/poly_example}
 	\caption{The example of Figure \ref{graph_ex}, overlaid with the regions corresponding to each vertex. Each vertex has been randomly colored in this example.}
 	\label{poly_ex}
 \end{figure}
+Since the graph coloring problem does not uniquely define the map coloring problem, we had to invent a metric that produces appropriate graphs. To define our metric, consider that if a polygon $G_i$ corresponding to each point $P_i$ were constructed out of the midpoints $M_{i,m}$ of the associated edges $E_{i,m}$ of $P_i$, then an adjacent polygon $G_j$ would only touch at the corners, that is, our map would be full of gaps. Therefore, to fix the problem we also define the centroid $C_{i,n}$ of each triangle $T_{i,n}$ formed by the two adjacent edges $E_{i,m}$ and $E_{i,m+1}$. We then define the final polygon for $P_i$ using the points $M_{i,m}$ and $C_{i,n}$. This procedure is unnecessary in terms of the assignment, but is helpful for debugging and for aesthetic pleasure.
+
 \section{Experiment Design}
-Our goal with this project is to solve the graph coloring problem using five different algorithms and to compare the relative performance of each algorithm. Since CPU time and wall-clock time are not reliable measurements of computation, we will have to define a metric that allows us to compare different algorithms.\par  We propose to solve this problem using the notion of vertex color read/write counting. The idea is to count how many times each algorithm has to peek into a node to determine its color and also how many times the algorithm must poke a vertex to update its color. This metric has the advantage of being algorithm independent, since all of our algorithms need the ability to set vertex colors and check the colors of adjacent vertices.\par
-To acquire good performance statistics we will run ten experiments on each of the ten possible values for $N$ (10, 20, 30, 40, 50, 60, 70, 80, 90, 100) using each of the five GCP algorithms for a total of 500 experiments. We will then plot the average number of total vertex reads/writes vs $N$. These graphs will allow us determine relative algorithm performance and also the time complexity, $\mathcal{O}$, of each GCP algorithm.
-\section{Solution Overview}
+\subsection{Invariant Metrics}
+Our goal with this project is to solve the graph coloring problem using five different algorithms while comparing the relative performance of each algorithm. Since CPU time and wall-clock time are not reliable measurements of computation, we will have to define a metric that allows us to compare different algorithms.\par  We propose to solve this problem using the concept of counting vertex read/write operations. The procedure will be to tally how many times each algorithm peeks into a vertex to determine its color and also how many times the algorithm must poke a vertex to update its color. This metric has the advantage of being algorithm independent, since all of our algorithms need the ability to set vertex colors and check the colors of adjacent vertices.\par
+To acquire good performance statistics we will run ten experiments on each of the ten possible values for $N$ (10, 20, 30, 40, 50, 60, 70, 80, 90, 100) using each of the five GCP algorithms for a total of 500 experiments. We will then plot the average number of total vertex reads/writes vs $N$ for each algorithm. These graphs will allow us determine relative algorithm performance and also the time complexity, $\mathcal{O}$, of each GCP algorithm.
+\subsection{Algorithm-Specific Metrics}
+\section{Software Design}
+We will use Python 3.4 for this project as it has simple graphics support for program testing, object-oriented paradigms, and convenient ways of parsing and storing data structures. The program entry point is the \texttt{Main} function. This function will be responsible for generating the datasets, managing the experiments, collecting results, and displaying the output.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth]{images/AI_UML_Project_1}
@@ -186,8 +193,8 @@ To acquire good performance statistics we will run ten experiments on each of th
 \end{figure}
 \section{GCP Algorithms}
 \subsection{Minimum Conflicts}
-Minimum conflicts is a local search algorithm that can be used to solve the graph coloring problem. The approach is to randomly color the graph and assign each node a conflict score determined by how many of its neighbors have a color in common with that node. The algorithm then randomly chooses a conflicting node and change it to a color that results in the least conflicts. The algorithm continues to choose conflicting nodes and changing them until there are no more conflicts or an until a predefined limit on how long the program runs is reached. \par
-There are several design decisions that have been made to facilitate the use of this algorithm. One decision is to include a conflict score variable with each point. In addition, some functions will have to be implemented such as a node selector that ignores nodes with zero conflicts and a function that selects a color that causes the least amount of conflicts. The experimental design will consist of a counter that is incremented each time a new node is chosen. This should be sufficient as all other operations should be of constant or $\mathcal{O}(N)$ complexity at worst.
+Minimum conflicts is a local search algorithm that can be used to solve the graph coloring problem. The approach is to randomly color the graph and assign each node a conflict score determined by how many of its neighbors have a color in common with that node. The algorithm then randomly chooses a conflicting node and changes it to a color that results in the least conflicts. The algorithm continues to choose conflicting nodes and changing them until there are no more conflicts or an until a predefined limit on how long the program runs is reached \cite{ai}. \par
+There are several design decisions that have been made to facilitate the use of this algorithm. One decision is to include a conflict score variable with each point. In addition, some functions will have to be implemented such as a node selector that ignores nodes with zero conflicts and a function that selects a color that causes the least amount of conflicts.
 \subsection{Simple Backtracking}
 Backtracking is a variant of the depth-first search. For the graph coloring problem the approach is to choose a node and assign it a valid color. The algorithm continues to do this until a solution is found or a node is reached that cannot be assigned a valid color. If the node cannot be assigned a valid color the algorithm back tracks to the previous node and tries a different color.  \par
 This algorithm will have several design features that are required to make the algorithm work. The foremost feature is that the algorithm will be recursive as it is a convenient way of keeping track of old states. Each instance of the recursive function will have a list of previously used colors so it can know when to backtrack. The experimental design will consist of a counter that is incremented each time a node is colored. 

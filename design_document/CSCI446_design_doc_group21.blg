@@ -3,44 +3,50 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: CSCI446_design_doc_group21.aux
 The style file: unsrt.bst
 Database file #1: sources.bib
-You've used 1 entry,
+Unbalanced braces---line 16 of file sources.bib
+ : 
+ : }
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You've used 2 entries,
             1791 wiz_defined-function locations,
-            451 strings with 3686 characters,
-and the built_in function-call counts, 170 in all, are:
-= -- 13
-> -- 4
+            457 strings with 3786 characters,
+and the built_in function-call counts, 342 in all, are:
+= -- 28
+> -- 12
 < -- 0
-+ -- 2
-- -- 1
-* -- 6
-:= -- 33
-add.period$ -- 3
-call.type$ -- 1
-change.case$ -- 0
++ -- 5
+- -- 3
+* -- 13
+:= -- 60
+add.period$ -- 6
+call.type$ -- 2
+change.case$ -- 1
 chr.to.int$ -- 0
-cite$ -- 1
-duplicate$ -- 10
-empty$ -- 20
-format.name$ -- 1
-if$ -- 37
+cite$ -- 2
+duplicate$ -- 20
+empty$ -- 39
+format.name$ -- 3
+if$ -- 78
 int.to.chr$ -- 0
-int.to.str$ -- 1
-missing$ -- 2
-newline$ -- 8
-num.names$ -- 1
-pop$ -- 6
+int.to.str$ -- 2
+missing$ -- 4
+newline$ -- 13
+num.names$ -- 2
+pop$ -- 12
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 2
+skip$ -- 5
 stack$ -- 0
 substring$ -- 0
-swap$ -- 1
+swap$ -- 2
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 1
-width$ -- 2
-write$ -- 13
+while$ -- 2
+width$ -- 3
+write$ -- 24
+(There was 1 error message)
