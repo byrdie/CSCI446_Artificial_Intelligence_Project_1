@@ -196,19 +196,39 @@ Once the dataset is constructed, \texttt{Main()} will run each of the five GCP a
 \end{figure}
 \section{GCP Algorithms}
 \label{algorithms}
-\subsection{Minimum Conflicts}
-Minimum conflicts is a local search algorithm that can be used to solve the graph coloring problem. The approach is to randomly color the graph and assign each node a conflict score determined by how many of its neighbors have a color in common with that node. The algorithm then randomly chooses a conflicting node and changes it to a color that results in the least conflicts. The algorithm continues to choose conflicting nodes and changing them until there are no more conflicts or an until a predefined limit on how long the program runs is reached \cite{ai}. \par
-There are several design decisions that have been made to facilitate the use of this algorithm. One decision is to include a conflict score variable with each point. In addition, some functions will have to be implemented such as a node selector that ignores nodes with zero conflicts and a function that selects a color that causes the least amount of conflicts.
-\subsection{Simple Backtracking}
-Backtracking is a variant of the depth-first search. For the graph coloring problem the approach is to choose a node and assign it a valid color. The algorithm continues to do this until a solution is found or a node is reached that cannot be assigned a valid color. If the node cannot be assigned a valid color the algorithm back tracks to the previous node and tries a different color.  \par
-This algorithm will have several design features that are required to make the algorithm work. The foremost feature is that the algorithm will be recursive as it is a convenient way of keeping track of old states. Each instance of the recursive function will have a list of previously used colors so it can know when to backtrack. The experimental design will consist of a counter that is incremented each time a node is colored. 
-\subsection{Backtracking with Forward Checking}
-Backtracking with forward checking improves upon simple backtracking by looking forward for possible conflicting values in unassigned nodes when the current node is assigned a color.  The algorithm deletes the conflicting colors from the domains of the unassigned nodes, and it backtracks if any of these domains becomes empty. \par
-\subsection{Backtracking with Constraint Propagation}
-Backtracking with constraint propagation takes the idea of forward checking a bit further by deleting values from domains of nodes beyond just the immediately neighboring nodes.  If a color is removed from a domain during the process of forward checking, constraint propagation looks further ahead to check if any colors of the neighboring nodes must be removed from their domains due to their dependency on the deleted value. \par
-\subsection{Local Search using a Genetic Algorithm}
-Local search using a genetic algorithm involves a process similar to biological evolution to produce an individual that maximizes a fitness function.  The fitness function for the GCP is the performance of the individual.  The genetic algorithm begins with an individual with a unique string of genes that define its characteristics.  A selection process chooses which individuals to use for reproduction, which are weighted by their score on the fitness function.  The individuals are recombined by cross-over and the resulting individuals may be mutated from a small probability on each gene. \par
 
+\subsection{Minimum Conflicts}
+\subsubsection{Design Implications}
+Minimum conflicts is a local search algorithm that can be used to solve the graph coloring problem. The approach is to randomly color the graph and assign each node a conflict score determined by how many of its neighbors have a color in common with that node. The algorithm then randomly chooses a conflicting node and changes it to a color that results in the least conflicts. The algorithm continues to choose conflicting nodes and changing them until there are no more conflicts or an until a predefined limit on how long the program runs is reached \cite{ai}. 
+There are several design decisions that have been made to facilitate the use of this algorithm. One decision is to include a conflict score variable with each point. In addition, some functions will have to be implemented such as a node selector that ignores nodes with zero conflicts and a function that selects a color that causes the least amount of conflicts.
+\subsubsection{Experimental Design}
+The experimental design for Minimum conflicts is fairly simple. The intention is to increment a counter every time a node is selected to be minimized. This will give an accurate value that defines how many steps it took to find an answer.
+
+\subsection{Simple Backtracking}
+\subsubsection{Design Implications}
+Backtracking is a variant of the depth-first search. For the graph coloring problem the approach is to choose a node and assign it a valid color. The algorithm continues to do this until a solution is found or a node is reached that cannot be assigned a valid color. If the node cannot be assigned a valid color the algorithm back tracks to the previous node and tries a different color.  
+This algorithm will have several design features that are required to make the algorithm work. The foremost feature is that the algorithm will be recursive as it is a convenient way of keeping track of old states. Each instance of the recursive function will have a list of previously used colors so it can know when to backtrack. 
+\subsubsection{Experimental Design}
+The experimental design for backtracking is to increment a counter each time the \texttt{backtrack} method is called. This will give an accurate value that will define how many steps it took to find a solution. 
+
+\subsection{Backtracking with Forward Checking}
+\subsubsection{Design Implications}
+Backtracking with forward checking improves upon simple backtracking by looking forward for possible conflicting values in unassigned nodes when the current node is assigned a color.  The algorithm deletes the conflicting colors from the domains of the unassigned nodes, and it backtracks if any of these domains becomes empty. 
+One design implication is that each node will have a way to save its domain which specifies what colors that node can still be assigned.
+
+\subsubsection{Experimental Design}
+The experimental design will be the same as simple backtracking. A counter could be added to see how many times the \texttt{forward\_checking}  method is called, but this method will just be called the same number of times as the \texttt{backtrack} method so the other counter can be used for both purposes.
+
+\subsection{Backtracking with Constraint Propagation}
+\subsubsection{Design Implications}
+Backtracking with constraint propagation takes the idea of forward checking a bit further by deleting values from domains of nodes beyond just the immediately neighboring nodes.  If a color is removed from a domain during the process of forward checking, constraint propagation looks further ahead to check if any colors of the neighboring nodes must be removed from their domains due to their dependency on the deleted value. 
+\subsubsection{Experimental Design}
+Again, the experimental design will be identical backtracking. Counting each time the \texttt{backtrack} function is called will give an accurate number of steps it took to solve the problem.
+
+\subsection{Local Search using a Genetic Algorithm}
+\subsubsection{Design Implications}
+Local search using a genetic algorithm involves a process similar to biological evolution to produce an individual that maximizes a fitness function.  The fitness function for the GCP is the performance of the individual.  The genetic algorithm begins with an individual with a unique string of genes that define its characteristics.  A selection process chooses which individuals to use for reproduction, which are weighted by their score on the fitness function.  The individuals are recombined by cross-over and the resulting individuals may be mutated from a small probability on each gene. For this project 
+\subsubsection{Experimental Design}
 
 \end{multicols}
 
