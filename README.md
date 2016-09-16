@@ -4,3 +4,5 @@ We will be attempting to graph coloring using the following algorithms: Min-conf
 This program is made using Python 3.4 and Latex
 
 To run this program, you need to install the dependency 'Tkinter'. On Ubuntu this can be done by 'sudo apt-get install python3-tk'
+
+To run the standalone compilation code you need 'sudo apt-get install python3-dev', 'sudo apt-get install libssl-dev' and cx_freeze.

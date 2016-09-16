@@ -8,7 +8,17 @@
 \BOOKMARK [1][-]{section.4}{Software Design}{}% 8
 \BOOKMARK [1][-]{section.5}{GCP Algorithms}{}% 9
 \BOOKMARK [2][-]{subsection.5.1}{Minimum Conflicts}{section.5}% 10
-\BOOKMARK [2][-]{subsection.5.2}{Simple Backtracking}{section.5}% 11
-\BOOKMARK [2][-]{subsection.5.3}{Backtracking with Forward Checking}{section.5}% 12
-\BOOKMARK [2][-]{subsection.5.4}{Backtracking with Constraint Propagation}{section.5}% 13
-\BOOKMARK [2][-]{subsection.5.5}{Local Search using a Genetic Algorithm}{section.5}% 14
+\BOOKMARK [3][-]{subsubsection.5.1.1}{Design Implications}{subsection.5.1}% 11
+\BOOKMARK [3][-]{subsubsection.5.1.2}{Experimental Design}{subsection.5.1}% 12
+\BOOKMARK [2][-]{subsection.5.2}{Simple Backtracking}{section.5}% 13
+\BOOKMARK [3][-]{subsubsection.5.2.1}{Design Implications}{subsection.5.2}% 14
+\BOOKMARK [3][-]{subsubsection.5.2.2}{Experimental Design}{subsection.5.2}% 15
+\BOOKMARK [2][-]{subsection.5.3}{Backtracking with Forward Checking}{section.5}% 16
+\BOOKMARK [3][-]{subsubsection.5.3.1}{Design Implications}{subsection.5.3}% 17
+\BOOKMARK [3][-]{subsubsection.5.3.2}{Experimental Design}{subsection.5.3}% 18
+\BOOKMARK [2][-]{subsection.5.4}{Backtracking with Constraint Propagation}{section.5}% 19
+\BOOKMARK [3][-]{subsubsection.5.4.1}{Design Implications}{subsection.5.4}% 20
+\BOOKMARK [3][-]{subsubsection.5.4.2}{Experimental Design}{subsection.5.4}% 21
+\BOOKMARK [2][-]{subsection.5.5}{Local Search using a Genetic Algorithm}{section.5}% 22
+\BOOKMARK [3][-]{subsubsection.5.5.1}{Design Implications}{subsection.5.5}% 23
+\BOOKMARK [3][-]{subsubsection.5.5.2}{Experimental Design}{subsection.5.5}% 24
