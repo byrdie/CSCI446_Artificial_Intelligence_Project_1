@@ -95,7 +95,7 @@
 \begin{multicols}{2} % Two-column layout throughout the main article text
 \normalsize
 \section{Introduction}
-The \textit{Graph Coloring Problem} (GCP) is the problem of attempting to color a set of interconnected regions such that no region has the same color as its neighbors using three or four colors. For example consider the problem of coloring a map of the USA (Figure \ref{usa}), using only four colors and ensuring that no neighboring states share the same color. This is the motivation of the graph coloring problem. 
+The \textit{Graph Coloring Problem} (GCP) is the problem of attempting to color a set of interconnected regions such that no region has the same color as its neighbors using three or four colors. For example, consider the problem of coloring a map of the USA (Figure \ref{usa}), using only four colors and ensuring that no neighboring states share the same color. This is the motivation of the graph coloring problem. 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth]{images/usa}
@@ -207,6 +207,7 @@ The experimental design for Minimum conflicts is fairly simple. The intention is
 \subsection{Simple Backtracking}
 \subsubsection{Design Implications}
 Backtracking is a variant of the depth-first search. For the graph coloring problem the approach is to choose a node and assign it a valid color. The algorithm continues to do this until a solution is found or a node is reached that cannot be assigned a valid color. If the node cannot be assigned a valid color the algorithm back tracks to the previous node and tries a different color.  
+
 This algorithm will have several design features that are required to make the algorithm work. The foremost feature is that the algorithm will be recursive as it is a convenient way of keeping track of old states. Each instance of the recursive function will have a list of previously used colors so it can know when to backtrack. 
 \subsubsection{Experimental Design}
 The experimental design for backtracking is to increment a counter each time the \texttt{backtrack} method is called. This will give an accurate value that will define how many steps it took to find a solution. 
