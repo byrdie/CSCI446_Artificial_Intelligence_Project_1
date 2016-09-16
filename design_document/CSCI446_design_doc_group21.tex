@@ -213,23 +213,23 @@ The experimental design for backtracking is to increment a counter each time the
 
 \subsection{Backtracking with Forward Checking}
 \subsubsection{Design Implications}
-Backtracking with forward checking improves upon simple backtracking by looking forward for possible conflicting values in unassigned nodes when the current node is assigned a color.  The algorithm deletes the conflicting colors from the domains of the unassigned nodes, and it backtracks if any of these domains becomes empty. 
-One design implication is that each node will have a way to save its domain which specifies what colors that node can still be assigned.
-
+Backtracking with forward checking improves upon simple backtracking by looking forward for possible conflicting values in unassigned nodes when the current node is assigned a color.  The algorithm deletes the conflicting colors from the domains of the unassigned nodes, and it backtracks if any of these domains becomes empty. \par
+The design of the algorithm will be recursive in order to effectively backtrack.  Forward checking can be achieved by a simple looping procedure that checks each of the neighboring nodes. Another design implication is that each node will have a way to save its domain which specifies what colors that node can still be assigned.\par
 \subsubsection{Experimental Design}
 The experimental design will be the same as simple backtracking. A counter could be added to see how many times the \texttt{forward\_checking}  method is called, but this method will just be called the same number of times as the \texttt{backtrack} method so the other counter can be used for both purposes.
 
 \subsection{Backtracking with Constraint Propagation}
 \subsubsection{Design Implications}
-Backtracking with constraint propagation takes the idea of forward checking a bit further by deleting values from domains of nodes beyond just the immediately neighboring nodes.  If a color is removed from a domain during the process of forward checking, constraint propagation looks further ahead to check if any colors of the neighboring nodes must be removed from their domains due to their dependency on the deleted value. 
+Backtracking with constraint propagation takes the idea of forward checking a bit further by deleting values from domains of nodes beyond just the immediately neighboring nodes.  If a color is removed from a domain during the process of forward checking, constraint propagation looks further ahead to check if any colors of the neighboring nodes must be removed from their domains due to their dependency on the deleted value. \par
+The design of this algorithm will remain fairly similar to backtracking with forward checking.  However, the more extensive nature of constraint propagation requires an equally more extensive loop.  The algorithm will use a nested loop in order to look ahead beyond simply the neighboring nodes and into the neighbors of neighbors, and so on. \par
 \subsubsection{Experimental Design}
 Again, the experimental design will be identical backtracking. Counting each time the \texttt{backtrack} function is called will give an accurate number of steps it took to solve the problem.
 
 \subsection{Local Search using a Genetic Algorithm}
 \subsubsection{Design Implications}
-Local search using a genetic algorithm involves a process similar to biological evolution to produce an individual that maximizes a fitness function.  The fitness function for the GCP is the performance of the individual.  The genetic algorithm begins with an individual with a unique string of genes that define its characteristics.  A selection process chooses which individuals to use for reproduction, which are weighted by their score on the fitness function.  The individuals are recombined by cross-over and the resulting individuals may be mutated from a small probability on each gene. For this project 
+Local search using a genetic algorithm involves a process similar to biological evolution to produce an individual that maximizes a fitness function.  The fitness function for the GCP is the performance of the individual.  The genetic algorithm begins with an individual with a unique string of genes that define its characteristics.  A selection process chooses which individuals to use for reproduction, which are weighted by their score on the fitness function.  The individuals are recombined by cross-over and the resulting individuals may be mutated from a small probability on each gene.For this project tournament select will be used to select individuals for crossover. The design implications of this that we will need a \texttt{crossover} method to deal with reproduction.
 \subsubsection{Experimental Design}
-
+The experimental design for the genetic algorithm is slightly more complicated. The first metric that will be used is the number of generations it takes to find a solution. This metric is not perfect because a very large population size may result in very few generations, but the overhead of processing such a large population would slow down the algorithm considerable. This is where the node \texttt{reads} and \texttt{writes} variables can be used to further assess the performance of the algorithm.
 \end{multicols}
 
 	%\bibliographystyle{apj}
