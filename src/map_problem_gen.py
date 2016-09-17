@@ -136,7 +136,12 @@ def problem_gen(num_vert, win_sz):
             if any((end_pt.pt.getX() == corner.pt.getX()) and (end_pt.pt.getY() == corner.pt.getY()) for corner in corners):
                 pt.edges.remove(edge)
 
-    return final_graph
+    # Prepare Map object
+    map = Map(final_graph)
+    for pt in final_graph:
+        pt.map = map
+
+    return map
 
 def elim_crossings(N, graph, all_edges):
 
