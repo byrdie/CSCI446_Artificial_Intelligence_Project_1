@@ -1,5 +1,6 @@
 from map_problem_gen import problem_gen, init_rand
 from map_graphics import *
+from backtrack import *
 from map_data_types import *
 
 
@@ -13,10 +14,16 @@ if __name__ == '__main__':
     # Control initialization of PRNG for repeatibilty
     init_rand()
 
-    graph = problem_gen(50, win_sz)
+    colors = ["red","green","blue", "purple"]
 
-    draw_poly(graph, win)
-    draw_graph(graph, win)
+    map = problem_gen(70, win_sz)
+
+    map.clean_map()
+
+    print(backtrack(map, colors, 0))
+
+    draw_poly(map.graph, win)
+    draw_graph(map.graph, win)
 
     write_win_to_eps(win, "test.eps")
     win.wait_window()
