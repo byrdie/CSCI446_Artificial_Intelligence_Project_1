@@ -16,7 +16,7 @@ if __name__ == '__main__':
 
     colors = ["red","green","blue", "purple"]
 
-    map = problem_gen(40, win_sz)
+    map = problem_gen(20, win_sz)
 
     map.clean_map()
 
