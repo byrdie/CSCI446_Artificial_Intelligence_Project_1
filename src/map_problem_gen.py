@@ -1,6 +1,5 @@
 from graphics import *
 from map_data_types import *
-from map_graphics import *
 import random
 import math
 import os
