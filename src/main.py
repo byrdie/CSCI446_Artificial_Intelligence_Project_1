@@ -1,6 +1,7 @@
 from map_problem_gen import problem_gen, init_rand
 from backtrack import *
 from map_data_types import *
+from genetic import *
 
 
 # program entry point
@@ -20,8 +21,9 @@ if __name__ == '__main__':
 
     map.clean_map()
 
-    print(backtrack(map, colors, 0))
-
+    #print(backtrack(map, colors, 0))
+    genetic = GeneticAlgorithm(map, colors,4)
+    genetic.run()
     map.draw_poly(win)
     map.draw_graph(win)
 

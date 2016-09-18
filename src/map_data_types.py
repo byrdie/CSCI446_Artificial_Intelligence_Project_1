@@ -31,6 +31,12 @@ class Map():
             poly.setFill(pt.color)
             poly.draw(win)
 
+    def num_conflicts(self):
+        num_conflicts = 0
+        for points in self.graph:
+            num_conflicts += points.num_conflicting_neighbors()
+        return num_conflicts/2
+
 
 class graph_edge():
     def __init__(self, ln, start_point, end_point, distance, if_checked=False):
@@ -84,4 +90,12 @@ class graph_point():
             return False
 
 
+    def num_conflicting_neighbors(self):
+        num_conflicts = 0
+
+        for points in self.edges:
+            if points.end_point.color == self.color:
+                num_conflicts += 1
+
+        return num_conflicts
 
