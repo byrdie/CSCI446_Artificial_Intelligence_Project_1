@@ -1,5 +1,4 @@
 from map_problem_gen import problem_gen, init_rand
-from map_graphics import *
 from backtrack import *
 from map_data_types import *
 
@@ -9,26 +8,26 @@ if __name__ == '__main__':
 
     # Open graphics window
     win_sz = 1000
-    win = open_win(win_sz)
+    win = GraphWin('Graph Coloring', win_sz, win_sz)
+    win.setBackground('white')
 
     # Control initialization of PRNG for repeatibilty
     init_rand()
 
     colors = ["red","green","blue", "purple"]
 
-    map = problem_gen(20, win_sz)
+    map = problem_gen(40, win_sz)
 
     map.clean_map()
-    draw_graph(map.graph, win)
 
-    print(backtrack(map, colors, 0,win))
+    print(backtrack(map, colors, 0))
 
-    draw_poly(map.graph, win)
+    map.draw_poly(win)
+    map.draw_graph(win)
 
-
-    write_win_to_eps(win, "test.eps")
+    win.postscript(file="test.eps", colormode='color')
     win.wait_window()
 
 
 
-
+# Test branching

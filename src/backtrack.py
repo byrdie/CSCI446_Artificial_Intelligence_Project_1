@@ -6,7 +6,7 @@ def backtrack(map, colors, index, win):
     graph = map.graph
     N = len(graph)
 
-    print(index)
+    # print(index)
 
     # Check if we've assigned all nodes
     if index == N:

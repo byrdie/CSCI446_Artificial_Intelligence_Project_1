@@ -1,3 +1,5 @@
+from graphics import *
+
 class Map():
     def __init__(self, graph):
         self.graph = graph
@@ -12,6 +14,22 @@ class Map():
             pt.conflicts = 0
             pt.color_reads = 0
             pt.color_writes = 0
+
+    def draw_graph(self, win):
+        graph = self.graph
+        for pt in graph:
+            circ = Circle(pt.pt, 4)
+            circ.setFill("black")
+            circ.draw(win)
+            for edge in pt.edges:
+                edge.ln.draw(win)
+
+    def draw_poly(self, win):
+        graph = self.graph
+        for pt in graph:
+            poly = pt.poly
+            poly.setFill(pt.color)
+            poly.draw(win)
 
 
 class graph_edge():
