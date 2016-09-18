@@ -16,11 +16,11 @@ if __name__ == '__main__':
 
     colors = ["red","green","blue", "purple"]
 
-    map = problem_gen(20, win_sz)
+    map = problem_gen(10, win_sz)
 
     map.clean_map()
 
-    print(backtrack(map, colors, 0))
+    print(backtrack(map, 4, 0))
 
     map.draw_poly(win)
     map.draw_graph(win)
