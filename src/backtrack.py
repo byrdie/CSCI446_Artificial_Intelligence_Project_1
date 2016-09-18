@@ -5,9 +5,8 @@ def backtrack(map, colors, index):
 
     graph = map.graph
     N = len(graph)
-    k = len(colors)
 
-    print(index)
+    # print(index)
 
     if index == N:
         return True

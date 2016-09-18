@@ -16,7 +16,7 @@ if __name__ == '__main__':
 
     colors = ["red","green","blue", "purple"]
 
-    map = problem_gen(70, win_sz)
+    map = problem_gen(30, win_sz)
 
     map.clean_map()
 
@@ -30,4 +30,4 @@ if __name__ == '__main__':
 
 
 
-
+# Test branching
