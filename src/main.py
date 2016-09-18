@@ -8,7 +8,7 @@ from map_data_types import *
 if __name__ == '__main__':
 
     # Open graphics window
-    win_sz = 1500
+    win_sz = 1000
     win = open_win(win_sz)
 
     # Control initialization of PRNG for repeatibilty
@@ -16,7 +16,7 @@ if __name__ == '__main__':
 
     colors = ["red","green","blue", "purple"]
 
-    map = problem_gen(70, win_sz)
+    map = problem_gen(20, win_sz)
 
     map.clean_map()
     draw_graph(map.graph, win)
