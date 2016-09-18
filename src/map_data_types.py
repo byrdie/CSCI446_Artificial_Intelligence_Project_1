@@ -1,4 +1,24 @@
 from graphics import *
+from enum import Enum
+
+class Color(Enum):
+    no_color = 0
+    red = 1
+    green = 2
+    blue = 3
+    purple = 4
+
+    def color_to_string(self):
+        if self is Color.no_color:
+            return "gray"
+        if self is Color.red:
+            return "red"
+        if self is Color.green:
+            return "green"
+        if self is Color.blue:
+            return "blue"
+        if self is Color.purple:
+            return "purple"
 
 class Map():
     def __init__(self, graph):
@@ -18,7 +38,7 @@ class Map():
     def draw_graph(self, win):
         graph = self.graph
         for pt in graph:
-            circ = Circle(pt.pt, 4)
+            circ = Circle(pt.pt, 6)
             circ.setFill("black")
             circ.draw(win)
             for edge in pt.edges:
@@ -28,7 +48,7 @@ class Map():
         graph = self.graph
         for pt in graph:
             poly = pt.poly
-            poly.setFill(pt.color)
+            poly.setFill(pt.color.color_to_string())
             poly.draw(win)
 
     def num_conflicts(self):
@@ -84,7 +104,7 @@ class graph_point():
 
         my_color = self.color
 
-        if any(edge.end_point.color == my_color for edge in self.edges):
+        if any(edge.end_point.color is my_color for edge in self.edges):
             return True
         else:
             return False
