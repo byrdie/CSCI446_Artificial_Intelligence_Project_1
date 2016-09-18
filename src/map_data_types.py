@@ -47,6 +47,7 @@ class graph_point():
         def color(self, value):
             self.color_writes = self.color_writes + 1
 
+            # Update the map with number of colored nodes
             if value == None:
                 self.map.num_colored = self.map.num_colored - 1
             else:
