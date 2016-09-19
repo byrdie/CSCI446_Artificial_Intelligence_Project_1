@@ -4,13 +4,14 @@ from map_data_types import *
 
 class GeneticAlgorithm():
     def __init__(self, map, k):
-        self.pop_size = 400
+        self.pop_size = 100
         self.pop = []
         self.map = map
-        self.mutation_rate = 20
+        self.mutation_rate = 40
         self.k = k
         self.solved = False
         self.generations = 0
+        self.total = 0
 
     def run(self):
         gen = 0
@@ -32,17 +33,27 @@ class GeneticAlgorithm():
                 if self.calc_fitness(temp[0]) == 0:
                     self.solved = True
                     print (self.generations)
+                    print (self.total)
                     return self.map
 
                 elif self.calc_fitness(temp[1]) == 0:
                     self.solved = True
                     print(self.generations)
+                    print(self.total)
                     return self.map
 
                 pop_copy.append(temp[0])
                 pop_copy.append(temp[1])
             self.pop = copy.deepcopy(pop_copy)
             self.generations += 1
+            self.total += 1
+
+
+            if (self.generations>125):
+                self.generations = 0
+                for i in range(0, int(len(self.pop)/2)):
+                    for j in range(0, len(self.map.graph)):
+                        self.pop[i][j] = Color(random.randint(1, self.k))
 
 
     def init_pop(self):

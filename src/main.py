@@ -13,17 +13,18 @@ if __name__ == '__main__':
     win.setBackground('white')
 
     # Control initialization of PRNG for repeatibilty
+    #init_rand(b'\xa3\xf3\x11"\xab\xf3\xf4\xf1')
     init_rand()
-
     colors = ["red","green","blue", "purple"]
 
-    map = problem_gen(20, win_sz)
+    map = problem_gen(70, win_sz)
 
     map.clean_map()
 
     #print(backtrack(map, colors, 0))
-    genetic = GeneticAlgorithm(map, colors,4)
-    genetic.run()
+    genetic = GeneticAlgorithm(map, 4)
+
+    map = genetic.run()
     map.draw_poly(win)
     map.draw_graph(win)
 
