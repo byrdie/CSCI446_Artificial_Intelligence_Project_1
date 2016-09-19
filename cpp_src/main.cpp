@@ -25,9 +25,12 @@ using namespace std;
  * 
  */
 int main(int argc, char** argv) {
+    
+    init_rand();
+    
     Cairo * cairo = new Cairo();
     
-    problem_gen(10, WIDTH, cairo);
+    problem_gen(100, WIDTH, cairo);
             
     cairo->finish();
     

@@ -3,17 +3,18 @@
 //
 
 #include "map_data_types.h"
-Map::Map(Point * g){
+
+Map::Map(Graph_point * g) {
     graph = g;
 }
 
-Point::Point(float X, float Y){
+Point::Point(float X, float Y) {
     x = X;
     y = Y;
 }
 
-Graph_point::Graph_point(){
-    map = NULL;
+Graph_point::Graph_point() {
+    //    map = NULL;
     pt = NULL;
     edges = NULL;
 
@@ -25,4 +26,13 @@ Graph_edge::Graph_edge() {
     distance = 0;
     checked = false;
     theta = 0;
+}
+
+void Graph_edge::find_length() {
+    float x1 = start_point->pt->x;
+    float y1 = start_point->pt->y;
+    float x0 = end_point->pt->x;
+    float y0 = end_point->pt->y;
+    
+    distance = sqrt((x1 - x0)*(x1 - x0) + (y1 - y0)*(y1 - y0));
 }

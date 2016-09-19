@@ -6,8 +6,9 @@
 #define CPP_SRC_MAP_DATA_TYPES_H
 
 #include <iostream>
+#include <cmath>
 
-
+class Graph_point;
 
 class Point {
 public:
@@ -16,25 +17,22 @@ public:
     Point(float X, float Y);
 };
 
-class Map {
-public:
-    Point * graph;
-    Map(Point * g);
-};
+
 
 class Graph_edge{
 public:
-    Point * start_point;
-    Point * end_point;
+    Graph_point * start_point;
+    Graph_point * end_point;
     float distance;
     bool checked;
     float theta;
     Graph_edge();
+    void find_length();
 };
 
 class Graph_point {
 public:
-    Map * map;
+//    Map * map;
     Point * pt;
     Graph_edge * edges;
     int conflicts;
@@ -44,6 +42,12 @@ public:
 
 private:
     int color;
+};
+
+class Map {
+public:
+    Graph_point * graph;
+    Map(Graph_point * g);
 };
 
 #endif //CPP_SRC_MAP_DATA_TYPES_H

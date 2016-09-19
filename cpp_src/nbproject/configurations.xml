@@ -42,6 +42,9 @@
         <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
       <compileType>
+        <ccTool>
+          <standard>8</standard>
+        </ccTool>
         <linkerTool>
           <linkerLibItems>
             <linkerOptionItem>`pkg-config --libs cairo`</linkerOptionItem>

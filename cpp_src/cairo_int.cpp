@@ -41,10 +41,10 @@ void Cairo::draw_point(Point * pt){
 
 void Cairo::draw_line(Graph_edge * edge){
     
-    float x0 = edge->start_point->x;
-    float y0 = edge->start_point->y;
-    float x1 = edge->end_point->x;
-    float y1 = edge->end_point->y;
+    float x0 = edge->start_point->pt->x;
+    float y0 = edge->start_point->pt->y;
+    float x1 = edge->end_point->pt->x;
+    float y1 = edge->end_point->pt->y;
     
     cairo_set_line_width(cr, 3);
     cairo_move_to(cr, x0, y0);
