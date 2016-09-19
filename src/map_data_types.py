@@ -30,7 +30,7 @@ class Map():
         self.num_colored = 0
 
         for pt in self.graph:
-            pt.color = None
+            pt.color = 0
             pt.conflicts = 0
             pt.color_reads = 0
             pt.color_writes = 0
@@ -48,8 +48,18 @@ class Map():
         graph = self.graph
         for pt in graph:
             poly = pt.poly
-            poly.setFill(pt.color.color_to_string())
+            col_enum = Color(pt.color)
+            poly.setFill(col_enum.color_to_string())
             poly.draw(win)
+
+    def count_reads_writes(self):
+        reads = 0
+        writes = 0
+        for pt in self.graph:
+            reads = reads + pt.color_reads
+            writes = writes + pt.color_writes
+
+        return [reads, writes]
 
 
 class graph_edge():
@@ -61,10 +71,11 @@ class graph_edge():
         self.checked = if_checked
         self.theta = 0
 
-class graph_point():
+class graph_point(object):
     def __init__(self, pt, color=None, poly=None):
         self.map = None
         self.pt = pt
+        self.neighbors = []
         self.edges = []
         self.color = color
         self.conflicts = 0
@@ -76,31 +87,23 @@ class graph_point():
         self.all_edges = []
         self.triangles=None
 
-        @property
-        def color(self):
-            self.color_reads = self.color_reads + 1
-            return self.color
-
-        @color.setter
-        def color(self, value):
-            self.color_writes = self.color_writes + 1
-
-            if value == None:
-                self.map.num_colored = self.map.num_colored - 1
-            else:
-                self.map.num_colored = self.map.num_colored + 1
-
-            self.color = value
+    # @property
+    # def color(self):
+    #     self.color_reads = self.color_reads + 1
+    #
+    #     return self._color
+    #
+    # @color.setter
+    # def color(self, value):
+    #     self.color_writes = self.color_writes + 1
+    #
+    #     self._color = value
 
     # Returns true if any neighbors have conflicting colors
     def has_conflicting_neighbors(self):
 
-        my_color = self.color
+        return any(pt.color == self.color for pt in self.neighbors)
 
-        if any(edge.end_point.color is my_color for edge in self.edges):
-            return True
-        else:
-            return False
 
 
 

@@ -1,7 +1,7 @@
 from map_problem_gen import problem_gen, init_rand
 from backtrack import *
 from map_data_types import *
-
+import cProfile
 
 # program entry point
 if __name__ == '__main__':
@@ -16,17 +16,29 @@ if __name__ == '__main__':
 
     colors = ["red","green","blue", "purple"]
 
-    map = problem_gen(10, win_sz)
+    map = problem_gen(80, win_sz)
+    print("generated map")
 
     map.clean_map()
 
-    print(backtrack(map, 4, 0))
+    pr = cProfile.Profile()
+    pr.enable()
+    backtrack(map, 4, 0)
+    pr.disable()
+
+    [reads, writes] = map.count_reads_writes()
+    print("Reads: ", reads)
+    print("Writes: ", writes)
+
 
     map.draw_poly(win)
     map.draw_graph(win)
 
+    pr.print_stats(sort="calls")
+
     win.postscript(file="test.eps", colormode='color')
     win.wait_window()
+
 
 
 

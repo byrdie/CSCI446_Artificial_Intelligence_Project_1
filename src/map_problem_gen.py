@@ -135,6 +135,14 @@ def problem_gen(num_vert, win_sz):
             if any((end_pt.pt.getX() == corner.pt.getX()) and (end_pt.pt.getY() == corner.pt.getY()) for corner in corners):
                 pt.edges.remove(edge)
 
+    # Sort edges by number of connections
+    final_graph.sort(key=lambda x: len(x.edges), reverse=True)
+
+    # Precalculate all neighbors
+    for pt in final_graph:
+        for edge in pt.edges:
+            pt.neighbors.append(edge.end_point)
+
     # Prepare Map object
     map = Map(final_graph)
     for pt in final_graph:
