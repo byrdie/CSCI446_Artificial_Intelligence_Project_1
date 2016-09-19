@@ -18,8 +18,8 @@ public:
 
 class Map {
 public:
-    Point * graph;
-    Map(Point * g);
+    Graph_point * graph;
+    Map(Graph_point * g);
 };
 
 class Graph_edge{

@@ -2,6 +2,7 @@
 // Created by byrdie on 9/18/16.
 //
 
+#include <bits/valarray_before.h>
 #include "map_problem_gen.h"
 #include "map_data_types.h"
 
@@ -36,6 +37,7 @@ bool does_cross(Graph_edge * line1, Graph_edge * line2)
     float i_y = p0_y + (t * s1_y);
 
     if (s >= 0 && s <= 1 && t >= 0 && t <= 1) {
+
         if ((i_x == p0_x && i_y == p0_y) || (i_x == p1_x && i_y == p1_y) || (i_x == p2_x && i_y == p2_y) ||
             (i_x == p3_x && i_y == p3_y)) {
             return false;
@@ -43,6 +45,7 @@ bool does_cross(Graph_edge * line1, Graph_edge * line2)
         else {
             return true;
         }
+
     }
     else {
         return false;
@@ -57,4 +60,20 @@ void init_rand(){
     unsigned int seed = time(NULL);
     srand(seed);
     printf("Seed: %u", seed);
+}
+
+void sort_edges_by_angle(int N, Graph_point * graph){
+    int i, j;
+    float dx, dy;
+    for (i = 0; i < N; i++ ){
+        for (j = 0; j < sizeof(graph[i].edges)/sizeof(Graph_edge); j++){
+            dx = graph[i].edges[j].end_point->x;
+            dy = graph[i].edges[j].end_point->y;
+            graph[i].edges[j].theta = atan2f(dy, dx);
+        }
+
+        std :: sort (graph[i].edges, graph[i].edges + sizeof(graph[i].edges)/sizeof(Graph_edge),
+                     [](Graph_edge const & a, Graph_edge const & b) -> float
+                     { return a.theta < b.theta; } );
+    }
 }

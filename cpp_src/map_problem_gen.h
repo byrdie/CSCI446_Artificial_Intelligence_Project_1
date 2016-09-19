@@ -9,8 +9,11 @@
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
+#include <cmath>
+#include <algorithm>
 #include "map_data_types.h"
 
 bool does_cross(Graph_edge * line1, Graph_edge * line2);
 void init_rand_seed(int seed);
 void init_rand();
+void sort_edges_by_angle(int N, Graph_point * graph);

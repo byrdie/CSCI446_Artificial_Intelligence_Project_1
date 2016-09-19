@@ -3,7 +3,7 @@
 //
 
 #include "map_data_types.h"
-Map::Map(Point * g){
+Map::Map(Graph_point * g){
     graph = g;
 }
 
