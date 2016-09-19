@@ -9,6 +9,7 @@
 #include <cmath>
 
 class Graph_point;
+class Map;
 
 class Point {
 public:
@@ -32,13 +33,16 @@ public:
 
 class Graph_point {
 public:
-//    Map * map;
+    Map * map;
     Point * pt;
-    Graph_edge * edges;
+    Graph_edge ** edges;
+    int num_edges;
+    Graph_edge ** all_edges;
     int conflicts;
     int color_reads;
     int color_writes;
     Graph_point();
+    void add_edge(Graph_edge * edge);
 
 private:
     int color;

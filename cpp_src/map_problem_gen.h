@@ -23,7 +23,8 @@ bool does_cross(Graph_edge * line1, Graph_edge * line2);
 void init_rand_seed(int seed);
 void init_rand();
 void sort_edges_by_angle(int N, Graph_point * graph);
-
+void sort_edges_by_length();
+void elim_crossing(int N, Graph_point ** graph, int num_edges, Graph_edge * all_edges);
 
 #endif //CPP_SRC_MAP_PROBLEM_GEN_H
 

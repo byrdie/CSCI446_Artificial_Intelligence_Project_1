@@ -10,7 +10,7 @@ using namespace std;
 Map problem_gen(int num_vert, int win_sz, Cairo * cairo) {
 
     cout << win_sz << "\n";
-    
+
     int N = num_vert + 4;
     int margin = 50;
 
@@ -45,8 +45,42 @@ Map problem_gen(int num_vert, int win_sz, Cairo * cairo) {
             edge->find_length();
         }
     }
+    
 
 
+}
+
+void elim_crossing(int N, Graph_point ** graph, int num_total_edges, Graph_edge * all_edges) {
+    bool escape = true;
+    bool vertex_escape[N];
+    fill_n(vertex_escape, N, false);
+
+    while (escape) {
+        int i = rand() % N;
+        Graph_edge ** edges = (*graph)->all_edges;
+
+        for (int j = 0; j < N - 1; j++) {
+            Graph_edge * test_edge = edges[j];
+
+            if (!test_edge->checked) { // proceed only if we haven't check this edge
+                test_edge->checked = true;
+
+                // Check that the test edge does not cross any current edges
+                if (num_total_edges == 0) {
+                    
+                } else {
+                    bool crosses = false;
+
+                    for (int k = 0; k < num_total_edges; k++) {
+
+                    }
+                }
+
+
+            }
+        }
+
+    }
 }
 
 bool does_cross(Graph_edge * line1, Graph_edge * line2) {
@@ -102,24 +136,23 @@ void init_rand() {
     printf("Seed: %u", seed);
 }
 
-
-void sort_edges_by_angle(int N, Graph_point * graph) {
+void sort_edges_by_angle(int N, Graph_point ** graph) {
     int i, j;
     float dx, dy;
     for (i = 0; i < N; i++) {
-        for (j = 0; j < sizeof (graph[i].edges) / sizeof (Graph_edge); j++) {
-            dx = graph[i].edges[j].end_point->pt->x;
-            dy = graph[i].edges[j].end_point->pt->y;
-            graph[i].edges[j].theta = atan2f(dy, dx);
+        for (j = 0; j < sizeof (graph[i]->edges) / sizeof (Graph_edge); j++) {
+            dx = graph[i]->edges[j]->end_point->pt->x;
+            dy = graph[i]->edges[j]->end_point->pt->y;
+            graph[i]->edges[j]->theta = atan2f(dy, dx);
         }
 
-        std::sort(graph[i].edges, graph[i].edges + sizeof (graph[i].edges) / sizeof (Graph_edge),
-                [](Graph_edge const & a, Graph_edge const & b) -> float {
-                    return a.theta < b.theta; });
+        std::sort(graph[i]->edges, graph[i]->edges + graph[i]->num_edges,
+                [](Graph_edge * a, Graph_edge * b) -> float {
+                    return a->theta < b->theta; });
     }
 }
 
-void sort_edges_by_length(){
-    
+void sort_edges_by_length() {
+
 }
 
