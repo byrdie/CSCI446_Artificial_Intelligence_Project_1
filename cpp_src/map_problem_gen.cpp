@@ -152,7 +152,12 @@ void sort_edges_by_angle(int N, Graph_point ** graph) {
     }
 }
 
-void sort_edges_by_length() {
-
+void sort_edges_by_length(int N, Graph_point ** graph){
+    int i;
+    for (i = 0; i < N; i++) {
+        std::sort(graph[i]->edges, graph[i]->edges + graph[i]->num_edges,
+                [](Graph_edge * a, Graph_edge * b) -> float {
+                    return a->distance < b->distance; });
+    }
 }
 
