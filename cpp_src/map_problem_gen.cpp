@@ -119,3 +119,7 @@ void sort_edges_by_angle(int N, Graph_point * graph) {
     }
 }
 
+void sort_edges_by_length(){
+    
+}
+
