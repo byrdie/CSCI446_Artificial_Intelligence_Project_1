@@ -4,5 +4,13 @@
 
 #ifndef CPP_SRC_MAP_PROBLEM_GEN_H
 #define CPP_SRC_MAP_PROBLEM_GEN_H
-
 #endif //CPP_SRC_MAP_PROBLEM_GEN_H
+
+#include <cstdlib>
+#include <ctime>
+#include <iostream>
+#include "map_data_types.h"
+
+bool does_cross(Graph_edge * line1, Graph_edge * line2);
+void init_rand_seed(int seed);
+void init_rand();
