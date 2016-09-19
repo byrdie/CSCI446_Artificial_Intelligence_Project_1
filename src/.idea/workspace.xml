@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8b52633e-377a-4af4-b7d7-ef89c441894f" name="Default" comment="Added color enum" />
+    <list default="true" id="8b52633e-377a-4af4-b7d7-ef89c441894f" name="Default" comment="Added color enum">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../cpp_src/gnuplot_i.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../cpp_src/graphics.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../cpp_src/.idea/misc.xml" afterPath="$PROJECT_DIR$/../cpp_src/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../cpp_src/map_data_types.cpp" afterPath="$PROJECT_DIR$/../cpp_src/map_data_types.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../cpp_src/map_data_types.h" afterPath="$PROJECT_DIR$/../cpp_src/map_data_types.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../cpp_src/map_problem_gen.cpp" afterPath="$PROJECT_DIR$/../cpp_src/map_problem_gen.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../cpp_src/map_problem_gen.h" afterPath="$PROJECT_DIR$/../cpp_src/map_problem_gen.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="src.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,7 +29,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="main.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="519">
@@ -44,11 +53,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="map_problem_gen.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="map_problem_gen.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/map_problem_gen.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1581">
-              <caret line="97" column="33" selection-start-line="97" selection-start-column="33" selection-end-line="97" selection-end-column="33" />
+            <state relative-caret-position="570">
+              <caret line="38" column="43" selection-start-line="38" selection-start-column="43" selection-end-line="38" selection-end-column="43" />
               <folding>
                 <element signature="e#0#22#0" expanded="true" />
               </folding>
@@ -419,7 +428,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1920" y="0" width="1920" height="1055" extended-state="0" />
+    <frame x="1920" y="0" width="1920" height="1055" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12773722" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -880,16 +889,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="519">
-          <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#50#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/map_data_types.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="549">
@@ -902,10 +901,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/map_problem_gen.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1581">
-          <caret line="97" column="33" selection-start-line="97" selection-start-column="33" selection-end-line="97" selection-end-column="33" />
+        <state relative-caret-position="570">
+          <caret line="38" column="43" selection-start-line="38" selection-start-column="43" selection-end-line="38" selection-end-column="43" />
           <folding>
             <element signature="e#0#22#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="519">
+          <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#50#0" expanded="true" />
           </folding>
         </state>
       </provider>
