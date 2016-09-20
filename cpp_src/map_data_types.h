@@ -28,7 +28,7 @@ public:
     bool checked;
     float theta;
     Graph_edge(Graph_point * st_pt, Graph_point * end_pt);
-    void find_length();
+    float find_length();
 };
 
 class Graph_point {

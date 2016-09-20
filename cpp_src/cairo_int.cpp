@@ -32,10 +32,8 @@ void Cairo::draw_point(Point * pt){
     float x = pt->x;
     float y = pt->y;
     
-    cout << x;
-    
     cairo_set_line_width(cr, 5);
-    cairo_arc(cr, x,y, 5, 0,2 * M_PI);
+    cairo_arc(cr, x,y, 1, 0,2 * M_PI);
     cairo_fill(cr);
 }
 
@@ -46,10 +44,10 @@ void Cairo::draw_line(Graph_edge * edge){
     float x1 = edge->end_point->pt->x;
     float y1 = edge->end_point->pt->y;
     
-    cairo_set_line_width(cr, 5);
+    cairo_set_line_width(cr, 0.5);
     cairo_move_to(cr, x0, y0);
     cairo_line_to(cr, x1, y1);
-    cairo_fill(cr);
+    cairo_stroke(cr);
     
 }
 
