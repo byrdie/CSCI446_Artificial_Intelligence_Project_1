@@ -30,13 +30,13 @@ Map problem_gen(int num_vert, int win_sz, Cairo * cairo) {
         graph[i] = new Graph_point(N, next_pt);
         polygraph[i] = new Graph_point(N, next_pt);
 
-        cairo->draw_point(next_pt);
+        cairo->draw_point(next_pt, black);
     }
 
     // Create complete graph
     for (int i = 4; i < N; ++i) {
         Graph_point * this_point = graph[i];
-        Graph_edge ** edges = new Graph_edge*[N - 5];
+        Graph_edge ** edges = new Graph_edge*[N];
         int k = 0;
         for (int j = 4; j < N; ++j) {
             if (j != i) { // Don't connect vertex to itself
@@ -51,12 +51,97 @@ Map problem_gen(int num_vert, int win_sz, Cairo * cairo) {
     // Eliminate crossings
     int num_total_edges = elim_crossings(4, N, graph, 0, all_edges);
 
-    cout << num_total_edges << endl;
+
+
+    // Initialize corners for polygon tracing
+    graph[0] = new Graph_point(N, new Point(10, 10));
+    graph[1] = new Graph_point(N, new Point(10, win_sz - 10));
+    graph[2] = new Graph_point(N, new Point(win_sz - 10, 10));
+    graph[3] = new Graph_point(N, new Point(win_sz - 10, win_sz - 10));
+    polygraph[0] = new Graph_point(N, new Point(10, 10));
+    polygraph[1] = new Graph_point(N, new Point(10, win_sz - 10));
+    polygraph[2] = new Graph_point(N, new Point(win_sz - 10, 10));
+    polygraph[3] = new Graph_point(N, new Point(win_sz - 10, win_sz - 10));
+
+    // create list of all edges between corner nodes and graph
+    for (int i = 0; i < 4; i++) {
+        Graph_point * this_point = graph[i];
+        Graph_edge ** edges = new Graph_edge*[N - 1];
+        int k = 0;
+        for (int j = 0; j < N; j++) {
+            if (j != i) { // Don't connect vertex to itself
+                edges[k] = new Graph_edge(this_point, graph[j]);
+                k++;
+            }
+        }
+        sort_edges_by_length(N - 1, edges);
+        this_point->all_edges = edges;
+    }
+
+    // Create list of all edges between graph and corner nodes
+    for (int i = 4; i < N; ++i) {
+        Graph_point * this_point = graph[i];
+        Graph_edge ** edges = new Graph_edge*[4];
+        for (int j = 0; j < 4; ++j) {
+            edges[j] = new Graph_edge(this_point, graph[j]);
+        }
+        sort_edges_by_length(4, edges);
+        this_point->all_edges[N - 5] = edges[0];
+        this_point->all_edges[N - 4] = edges[1];
+        this_point->all_edges[N - 3] = edges[2];
+        this_point->all_edges[N - 2] = edges[3];
+    }
+
+    // Eliminate crossings with the corners
+    num_total_edges = elim_crossings(0, N, graph, num_total_edges, all_edges);
+
+    // Sort the edges by angle for polygon generator
+    sort_edges_by_angle(N, graph);
+
+
+
+    // Construct polygon structure to represent graph
+    for (int i = 4; i < N; i++) {
+        Graph_point * pt1 = graph[i];
+        int num_e = pt1->num_edges;
+
+        for (int j = 0; j < num_e; j++) {
+
+            // Grab two adjacent edges
+            Graph_edge * edge2 = pt1->edges[j];
+            Graph_edge * edge3 = pt1->edges[(j + 1) % num_e];
+            Graph_point * pt2 = edge2->end_point;
+            Graph_point * pt3 = edge3->end_point;
+
+            // Construct line to midpoint of each edge
+            Graph_point * mid_pt = new Graph_point(N, new Point(((pt1->pt->x + pt2->pt->x) / 2.0), ((pt1->pt->y + pt2->pt->y) / 2.0)));
+            Graph_edge * new_edge = new Graph_edge(pt1, mid_pt);
+            polygraph[i]->add_edge(new_edge);
+            
+            // Find centroid and add edge
+            Point * next_center = centroid(pt1->pt, pt2->pt, pt3->pt);
+            Graph_edge * next_edge = new Graph_edge(pt1, new Graph_point(N, next_center));
+            polygraph[i]->add_edge(next_edge);
+        }
+
+        // Create list of vertices for polygons
+        int num_pvert = polygraph[i]->num_edges;
+        Point ** poly_verts = new Point * [num_pvert];
+        for (int j = 0; j < num_pvert; j++) {
+            poly_verts[j] = polygraph[i]->edges[j]->end_point->pt;
+        }
+        graph[i]->poly = poly_verts;
+        graph[i]->num_poly_vert = num_pvert;
+
+
+    }
 
     for (int i = 4; i < N; i++) {
-        cout << i << endl;
+        //        cout << i << endl;
+        cairo->draw_poly(graph[i]->poly, graph[i]->num_poly_vert, blue);
         for (int j = 0; j < graph[i]->num_edges; j++) {
-            cout << graph[i]->edges[j]->distance << endl;
+            //            cout << graph[i]->edges[j]->theta << endl;
+            
             cairo->draw_line(graph[i]->edges[j]);
         }
     }
@@ -72,13 +157,14 @@ int elim_crossings(const int start, const int N, Graph_point * graph[], int num_
     bool escape = true;
     bool vertex_escape[N];
     fill_n(vertex_escape, N, false);
-    
-    int num_edges = N - start - 1;
+
+
 
     // Loop until all possible edges are connected
     while (escape) {
-        int i = (rand() % (N-start)) + start;
+        int i = (rand() % (N - start)) + start;
         Graph_edge ** edges = graph[i]->all_edges;
+        int num_edges = N - start - 1;
 
         for (int j = 0; j < num_edges; j++) {
             Graph_edge * test_edge = edges[j];
@@ -162,7 +248,7 @@ bool does_cross(Graph_edge * line1, Graph_edge * line2) {
 
     if (s > 0.0 and s < 1.0 and t > 0.0 and t < 1.0) {
 
-//        return true;
+        //        return true;
         if ((i_x == p0_x and i_y == p0_y) or (i_x == p1_x and i_y == p1_y) or (i_x == p2_x and i_y == p2_y) or (i_x == p3_x and i_y == p3_y)) {
             return false;
         } else {
@@ -189,8 +275,8 @@ void sort_edges_by_angle(int N, Graph_point * graph[]) {
     float dx, dy;
     for (i = 0; i < N; i++) {
         for (j = 0; j < graph[i]->num_edges; j++) {
-            dx = graph[i]->edges[j]->end_point->pt->x;
-            dy = graph[i]->edges[j]->end_point->pt->y;
+            dx = graph[i]->edges[j]->end_point->pt->x - graph[i]->edges[j]->start_point->pt->x;
+            dy = graph[i]->edges[j]->end_point->pt->y - graph[i]->edges[j]->start_point->pt->y;
             graph[i]->edges[j]->theta = atan2f(dy, dx);
         }
 
@@ -207,3 +293,12 @@ void sort_edges_by_length(int N, Graph_edge * edges[]) {
                 return a->distance < b->distance; });
 }
 
+Point * centroid(Point * p1, Point * p2, Point * p3) {
+    float X = 0;
+    float Y = 0;
+
+    X = (p1->x + p2->x + p3->x) / 3.0;
+    Y = (p1->y + p2->y + p3->y) / 3.0;
+
+    return new Point(X, Y);
+}

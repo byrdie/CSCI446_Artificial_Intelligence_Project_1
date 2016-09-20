@@ -30,9 +30,10 @@ public:
     cairo_surface_t * surface;
     cairo_t * cr;
     Cairo();
-    void draw_point(Point * pt);
+    void draw_point(Point * pt, Color color);
     void draw_line(Graph_edge * edge);
     void finish();
+    void draw_poly(Point * poly[], int N, Color color);
 };
 
 

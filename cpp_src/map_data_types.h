@@ -7,6 +7,13 @@
 
 #include <iostream>
 #include <cmath>
+enum Color{
+    red,
+    green,
+    blue,
+    purple,
+    black,
+}; 
 
 class Graph_point;
 class Map;
@@ -38,6 +45,8 @@ public:
     Graph_edge ** edges;
     int num_edges;
     Graph_edge ** all_edges;
+    Point ** poly;
+    int num_poly_vert;
     int conflicts;
     int color_reads;
     int color_writes;

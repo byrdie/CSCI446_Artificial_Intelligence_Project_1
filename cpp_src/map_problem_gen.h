@@ -27,6 +27,8 @@ void init_rand();
 void sort_edges_by_angle(int N, Graph_point * graph[]);
 void sort_edges_by_length(int N, Graph_edge * edges[]);
 int elim_crossings(const int start, int N, Graph_point * graph[], int num_edges, Graph_edge * all_edges[]);
+Point * centroid(Point * p1, Point * p2, Point * p3);
+
 
 #endif //CPP_SRC_MAP_PROBLEM_GEN_H
 

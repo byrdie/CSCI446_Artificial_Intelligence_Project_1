@@ -26,12 +26,20 @@ using namespace std;
  */
 int main(int argc, char** argv) {
     
-    init_rand(1474349549);
+    init_rand();
     
     Cairo * cairo = new Cairo();
     
-    problem_gen(40, WIDTH, cairo);
+    problem_gen(100, WIDTH, cairo);
             
+//    Color mycolor = purple;
+//    int N = 10;
+//    Point ** graph;
+//    graph = new Point* [N];
+//    for (int i = 0; i<N; i++){
+//        graph[i] = new Point(float(rand()%100), float(rand()%100) );
+//    }
+//    cairo->draw_poly(graph, N, mycolor);
     cairo->finish();
     
     return 0;
