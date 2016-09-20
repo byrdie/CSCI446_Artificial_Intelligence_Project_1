@@ -31,11 +31,14 @@ int main(int argc, char** argv) {
     
     Cairo * cairo = new Cairo();
     
-    Map * map = problem_gen(60, WIDTH, cairo);
+    Map * map = problem_gen(70, WIDTH, cairo);
     
     map->clean_map();
     
     backtrack(map,4, 0);
+    
+    cout << "Number of reads: " << map->num_reads << endl;
+    cout << "Numbe of writes : " << map->num_writes << endl;
     
     map->draw_map(cairo);
             
