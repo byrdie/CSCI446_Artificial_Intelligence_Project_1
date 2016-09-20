@@ -20,7 +20,7 @@ Map problem_gen(int num_vert, int win_sz, Cairo * cairo) {
 
 
     // Fill the list of points with random location
-    for (int i = 4; i < N; ++i) {
+    for (int i = 0; i < num_vert; ++i) {
         int x_pt = rand() % (win_sz - 2 * margin) + margin;
         int y_pt = rand() % (win_sz - 2 * margin) + margin;
 
@@ -34,37 +34,37 @@ Map problem_gen(int num_vert, int win_sz, Cairo * cairo) {
     }
 
     // Create complete graph
-    for (int i = 4; i < N; ++i) {
+    for (int i = 0; i < num_vert; ++i) {
         Graph_point * this_point = graph[i];
         Graph_edge ** edges = new Graph_edge*[N];
         int k = 0;
-        for (int j = 4; j < N; ++j) {
+        for (int j = 0; j < num_vert; ++j) {
             if (j != i) { // Don't connect vertex to itself
                 edges[k] = new Graph_edge(this_point, graph[j]);
                 k++;
             }
         }
-        sort_edges_by_length(N - 4 - 1, edges);
+        sort_edges_by_length(num_vert - 1, edges);
         this_point->all_edges = edges;
     }
 
     // Eliminate crossings
-    int num_total_edges = elim_crossings(4, N, graph, 0, all_edges);
+    int num_total_edges = elim_crossings(num_vert, graph, 0, all_edges);
 
 
 
     // Initialize corners for polygon tracing
-    graph[0] = new Graph_point(N, new Point(10, 10));
-    graph[1] = new Graph_point(N, new Point(10, win_sz - 10));
-    graph[2] = new Graph_point(N, new Point(win_sz - 10, 10));
-    graph[3] = new Graph_point(N, new Point(win_sz - 10, win_sz - 10));
+    graph[num_vert] = new Graph_point(N, new Point(10, 10));
+    graph[num_vert + 1] = new Graph_point(N, new Point(10, win_sz - 10));
+    graph[num_vert + 2] = new Graph_point(N, new Point(win_sz - 10, 10));
+    graph[num_vert + 3] = new Graph_point(N, new Point(win_sz - 10, win_sz - 10));
     polygraph[0] = new Graph_point(N, new Point(10, 10));
     polygraph[1] = new Graph_point(N, new Point(10, win_sz - 10));
     polygraph[2] = new Graph_point(N, new Point(win_sz - 10, 10));
     polygraph[3] = new Graph_point(N, new Point(win_sz - 10, win_sz - 10));
 
     // create list of all edges between corner nodes and graph
-    for (int i = 0; i < 4; i++) {
+    for (int i = num_vert; i < N; i++) {
         Graph_point * this_point = graph[i];
         Graph_edge ** edges = new Graph_edge*[N - 1];
         int k = 0;
@@ -79,11 +79,13 @@ Map problem_gen(int num_vert, int win_sz, Cairo * cairo) {
     }
 
     // Create list of all edges between graph and corner nodes
-    for (int i = 4; i < N; ++i) {
+    for (int i = 0; i < num_vert; ++i) {
         Graph_point * this_point = graph[i];
         Graph_edge ** edges = new Graph_edge*[4];
-        for (int j = 0; j < 4; ++j) {
-            edges[j] = new Graph_edge(this_point, graph[j]);
+        int k=0;
+        for (int j = num_vert; j < N; ++j) {
+            edges[k] = new Graph_edge(this_point, graph[j]);
+            k++;
         }
         sort_edges_by_length(4, edges);
         this_point->all_edges[N - 5] = edges[0];
@@ -93,7 +95,7 @@ Map problem_gen(int num_vert, int win_sz, Cairo * cairo) {
     }
 
     // Eliminate crossings with the corners
-    num_total_edges = elim_crossings(0, N, graph, num_total_edges, all_edges);
+    num_total_edges = elim_crossings(N, graph, num_total_edges, all_edges);
 
     // Sort the edges by angle for polygon generator
     sort_edges_by_angle(N, graph);
@@ -101,7 +103,7 @@ Map problem_gen(int num_vert, int win_sz, Cairo * cairo) {
 
 
     // Construct polygon structure to represent graph
-    for (int i = 4; i < N; i++) {
+    for (int i = 0; i < num_vert; i++) {
         Graph_point * pt1 = graph[i];
         int num_e = pt1->num_edges;
 
@@ -136,11 +138,14 @@ Map problem_gen(int num_vert, int win_sz, Cairo * cairo) {
 
     }
 
-    for (int i = 4; i < N; i++) {
-        //        cout << i << endl;
+    for (int i = 0; i < num_vert; i++) {
+                cout << i << endl;
         cairo->draw_poly(graph[i]->poly, graph[i]->num_poly_vert, blue);
         for (int j = 0; j < graph[i]->num_edges; j++) {
-            //            cout << graph[i]->edges[j]->theta << endl;
+            if(graph[i]->num_edges == 3){
+               cout << graph[i]->edges[j]->theta << endl; 
+            }
+                        
             
             cairo->draw_line(graph[i]->edges[j]);
         }
@@ -151,7 +156,7 @@ Map problem_gen(int num_vert, int win_sz, Cairo * cairo) {
 
 }
 
-int elim_crossings(const int start, const int N, Graph_point * graph[], int num_total_edges, Graph_edge * all_edges[]) {
+int elim_crossings(const int N, Graph_point * graph[], int num_total_edges, Graph_edge * all_edges[]) {
 
     // Variables to track whether it's time to exit the loop
     bool escape = true;
@@ -162,9 +167,9 @@ int elim_crossings(const int start, const int N, Graph_point * graph[], int num_
 
     // Loop until all possible edges are connected
     while (escape) {
-        int i = (rand() % (N - start)) + start;
+        int i = rand() % N;
         Graph_edge ** edges = graph[i]->all_edges;
-        int num_edges = N - start - 1;
+        int num_edges = N - 1;
 
         for (int j = 0; j < num_edges; j++) {
             Graph_edge * test_edge = edges[j];
@@ -203,12 +208,12 @@ int elim_crossings(const int start, const int N, Graph_point * graph[], int num_
             }
         }
         int num_vert_escape = 0;
-        for (int j = start; j < N; j++) {
+        for (int j = 0; j < N; j++) {
             if (vertex_escape[j]) {
                 num_vert_escape++;
             }
         }
-        if (num_vert_escape == N - start) {
+        if (num_vert_escape == N) {
             escape = false;
         }
     }
@@ -277,7 +282,7 @@ void sort_edges_by_angle(int N, Graph_point * graph[]) {
         for (j = 0; j < graph[i]->num_edges; j++) {
             dx = graph[i]->edges[j]->end_point->pt->x - graph[i]->edges[j]->start_point->pt->x;
             dy = graph[i]->edges[j]->end_point->pt->y - graph[i]->edges[j]->start_point->pt->y;
-            graph[i]->edges[j]->theta = atan2f(dy, dx);
+            graph[i]->edges[j]->theta = atan2f(dy, dx) + M_PI;
         }
 
         std::sort(graph[i]->edges, graph[i]->edges + graph[i]->num_edges,
