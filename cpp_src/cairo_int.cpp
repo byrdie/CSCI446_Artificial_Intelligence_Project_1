@@ -93,7 +93,7 @@ void Cairo::draw_poly(Point * poly[], int N, Color color) {
     int i;
     float x0, y0, x1, y1;
 
-    cairo_set_source_rgb(cr, 0.25, 0.25, 0.25);
+    cairo_set_source_rgb(cr, 1, 1, 1);
     cairo_move_to(cr, poly[0]->x, poly[0]->y);
     cairo_set_line_width(cr, 1);
 
@@ -109,6 +109,9 @@ void Cairo::draw_poly(Point * poly[], int N, Color color) {
     cairo_stroke_preserve(cr);
 
     switch (color) {
+        case nocolor:
+            cairo_set_source_rgb(cr, 0.2, 0.2, 0.2);
+            break;
         case red:
             cairo_set_source_rgb(cr, 1, 0, 0);
             break;

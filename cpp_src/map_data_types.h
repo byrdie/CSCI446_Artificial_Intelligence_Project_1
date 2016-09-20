@@ -5,9 +5,8 @@
 #ifndef CPP_SRC_MAP_DATA_TYPES_H
 #define CPP_SRC_MAP_DATA_TYPES_H
 
-#include <iostream>
-#include <cmath>
 enum Color{
+    nocolor,
     red,
     green,
     blue,
@@ -15,8 +14,18 @@ enum Color{
     black,
 }; 
 
+#include <iostream>
+#include <cmath>
+#include "cairo_int.h"
+
+
+
 class Graph_point;
 class Map;
+class Graph_edge;
+class Point;
+class Cairo;
+
 
 class Point {
 public:
@@ -44,23 +53,29 @@ public:
     Point * pt;
     Graph_edge ** edges;
     int num_edges;
+    int index;  // Index of the point in the graph
     Graph_edge ** all_edges;
     Point ** poly;
     int num_poly_vert;
     int conflicts;
     int color_reads;
     int color_writes;
-    Graph_point(int N, Point * point);
+    Graph_point(int N, int i, Point * point);
     void add_edge(Graph_edge * edge);
+    void set_color(Color col);
+    Color get_color();
 
 private:
-    int color;
+    Color color;
 };
 
 class Map {
 public:
-    Graph_point * graph;
-    Map(Graph_point * g);
+    Graph_point ** graph;
+    int N;
+    Map(int num_vert, Graph_point ** g);
+    void draw_map(Cairo * cairo);
+    void clean_map();
 };
 
 #endif //CPP_SRC_MAP_DATA_TYPES_H

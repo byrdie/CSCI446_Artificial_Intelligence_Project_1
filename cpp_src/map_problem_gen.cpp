@@ -7,7 +7,7 @@
 
 using namespace std;
 
-Map problem_gen(int num_vert, int win_sz, Cairo * cairo) {
+Map * problem_gen(int num_vert, int win_sz, Cairo * cairo) {
 
 
     int N = num_vert + 4;
@@ -41,8 +41,8 @@ Map problem_gen(int num_vert, int win_sz, Cairo * cairo) {
         }
 
         Point * next_pt = new Point(x_pt, y_pt);
-        graph[i] = new Graph_point(N, next_pt);
-        polygraph[i] = new Graph_point(N, next_pt);
+        graph[i] = new Graph_point(N, i, next_pt);
+        polygraph[i] = new Graph_point(N, i, next_pt);
 
     }
 
@@ -67,14 +67,14 @@ Map problem_gen(int num_vert, int win_sz, Cairo * cairo) {
 
 
     // Initialize corners for polygon tracing
-    graph[num_vert] = new Graph_point(N, new Point(10, 10));
-    graph[num_vert + 1] = new Graph_point(N, new Point(10, win_sz - 10));
-    graph[num_vert + 2] = new Graph_point(N, new Point(win_sz - 10, 10));
-    graph[num_vert + 3] = new Graph_point(N, new Point(win_sz - 10, win_sz - 10));
-    polygraph[0] = new Graph_point(N, new Point(10, 10));
-    polygraph[1] = new Graph_point(N, new Point(10, win_sz - 10));
-    polygraph[2] = new Graph_point(N, new Point(win_sz - 10, 10));
-    polygraph[3] = new Graph_point(N, new Point(win_sz - 10, win_sz - 10));
+    graph[num_vert] = new Graph_point(N, num_vert, new Point(10, 10));
+    graph[num_vert + 1] = new Graph_point(N, num_vert + 1, new Point(10, win_sz - 10));
+    graph[num_vert + 2] = new Graph_point(N, num_vert + 2, new Point(win_sz - 10, 10));
+    graph[num_vert + 3] = new Graph_point(N, num_vert + 3, new Point(win_sz - 10, win_sz - 10));
+    polygraph[num_vert] = new Graph_point(N, num_vert, new Point(10, 10));
+    polygraph[num_vert + 1] = new Graph_point(N, num_vert + 1, new Point(10, win_sz - 10));
+    polygraph[num_vert + 2] = new Graph_point(N, num_vert + 2, new Point(win_sz - 10, 10));
+    polygraph[num_vert + 3] = new Graph_point(N, num_vert + 3, new Point(win_sz - 10, win_sz - 10));
 
     // create list of all edges between corner nodes and graph
     for (int i = num_vert; i < N; i++) {
@@ -129,15 +129,15 @@ Map problem_gen(int num_vert, int win_sz, Cairo * cairo) {
             Graph_point * pt3 = edge3->end_point;
 
             // Construct line to midpoint of each edge
-            Graph_point * mid_pt = new Graph_point(N, new Point(((pt1->pt->x + pt2->pt->x) / 2.0), ((pt1->pt->y + pt2->pt->y) / 2.0)));
+            Graph_point * mid_pt = new Graph_point(N, num_e * 2, new Point(((pt1->pt->x + pt2->pt->x) / 2.0), ((pt1->pt->y + pt2->pt->y) / 2.0)));
             Graph_edge * new_edge = new Graph_edge(pt1, mid_pt);
             polygraph[i]->add_edge(new_edge);
 
             // Find centroid and add edge
             Point * next_center = centroid(pt1->pt, pt2->pt, pt3->pt);
-            Graph_edge * next_edge = new Graph_edge(pt1, new Graph_point(N, next_center));
+            Graph_edge * next_edge = new Graph_edge(pt1, new Graph_point(N, 2 * num_e + 1, next_center));
             polygraph[i]->add_edge(next_edge);
-//            cairo->draw_point(next_center, red);
+            //            cairo->draw_point(next_center, red);
         }
 
         // Create list of vertices for polygons
@@ -152,19 +152,33 @@ Map problem_gen(int num_vert, int win_sz, Cairo * cairo) {
 
     }
 
+    sort_edges_by_index(N, graph);
+    
+    // Trim off corners and edges connecting them
     for (int i = 0; i < num_vert; i++) {
-        //                cout << i << endl;
-        cairo->draw_poly(graph[i]->poly, graph[i]->num_poly_vert, blue);
-        cairo->draw_point(graph[i]->pt, black);
-
-
-        for (int j = 0; j < graph[i]->num_edges; j++) {
-
-            cairo->draw_line(graph[i]->edges[j], black);
+        int num = graph[i]->num_edges;
+        for (int j = 0; j < num; j++) {
+            Point * end_pt = graph[i]->edges[j]->end_point->pt;
+            int x = end_pt->x;
+            if (x == 10 or x == win_sz - 10) {
+                graph[i]->num_edges--;
+            }
         }
     }
 
+    return new Map(num_vert, graph);
 
+    // Create a matrix of relationships for quick checking
+//    bool ** matrix = new bool * [num_vert];
+//    for(int i = 0; i < num_vert; i++){
+//        matrix[i] = new bool[num_vert];
+//        for(int j = 0; j < num_vert; j++){
+//            matrix[i][j] = false;
+//        }
+//        for(int j = 0; j < graph[i]->num_edges; j++){
+//            matrix[i][graph[i]->edges[j]->end_point->index] = true;
+//        }
+//    }
 
 
 }
@@ -309,6 +323,17 @@ void sort_edges_by_length(int N, Graph_edge * edges[]) {
     std::sort(edges, edges + N,
             [](Graph_edge * a, Graph_edge * b) -> float {
                 return a->distance < b->distance; });
+}
+
+void sort_edges_by_index(int N, Graph_point * graph[]) {
+    int i, j;
+    float dx, dy;
+    for (i = 0; i < N; i++) {
+
+        std::sort(graph[i]->edges, graph[i]->edges + graph[i]->num_edges,
+                [](Graph_edge * a, Graph_edge * b) -> float {
+                    return a->end_point->index < b->end_point->index; });
+    }
 }
 
 Point * centroid(Point * p1, Point * p2, Point * p3) {

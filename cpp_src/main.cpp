@@ -30,7 +30,11 @@ int main(int argc, char** argv) {
     
     Cairo * cairo = new Cairo();
     
-    problem_gen(100, WIDTH, cairo);
+    Map * map = problem_gen(100, WIDTH, cairo);
+    
+    map->clean_map();
+    
+    map->draw_map(cairo);
             
 //    Color mycolor = purple;
 //    int N = 10;

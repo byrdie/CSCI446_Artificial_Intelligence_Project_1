@@ -25,6 +25,11 @@
 #define WIDTH 1000
 #define HEIGHT 1000
 
+class Graph_point;
+class Map;
+class Graph_edge;
+class Point;
+
 class Cairo{
 public:
     cairo_surface_t * surface;
