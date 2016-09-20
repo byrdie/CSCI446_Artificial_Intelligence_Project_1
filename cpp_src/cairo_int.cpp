@@ -52,4 +52,40 @@ void Cairo::draw_line(Graph_edge * edge){
     
 }
 
+void Cairo::draw_poly(Point * poly[], int N, Color color ){
+    int i;
+    float x0, y0, x1, y1;
+    
+    cairo_move_to(cr, poly[0]->x, poly[0]->y);
+    cairo_set_line_width(cr, 3);
+    
+    for(i = 0; i < N-1 ; i++){   
+        x0 = poly[i]->x;
+        y0 = poly[i]->y;
+        x1 = poly[i+1]->x;
+        y1 = poly[i+1]->y;
+        cairo_line_to(cr, x1, y1);
+    }
+    
+    cairo_close_path(cr);
+    cairo_stroke_preserve(cr);
+    
+     switch(color){
+        case red:
+            cairo_set_source_rgb(cr, 1, 0, 0);
+            break;
+        case blue:
+            cairo_set_source_rgb(cr, 0, 0, 1);
+            break;
+        case green:
+            cairo_set_source_rgb(cr, 0, 1, 0);
+            break;
+        case purple:
+            cairo_set_source_rgb(cr, 1, 0, 1);
+            break;  
+    }
+    cairo_fill(cr);
+  
+}
+
 

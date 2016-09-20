@@ -99,7 +99,7 @@ void init_rand_seed(unsigned int seed) {
 void init_rand() {
     unsigned int seed = time(NULL);
     srand(seed);
-    printf("Seed: %u", seed);
+    printf("Seed: %u\n", seed);
 }
 
 

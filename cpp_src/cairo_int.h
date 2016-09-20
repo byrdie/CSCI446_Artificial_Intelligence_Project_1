@@ -33,6 +33,7 @@ public:
     void draw_point(Point * pt);
     void draw_line(Graph_edge * edge);
     void finish();
+    void draw_poly(Point * poly[], int N, Color color);
 };
 
 

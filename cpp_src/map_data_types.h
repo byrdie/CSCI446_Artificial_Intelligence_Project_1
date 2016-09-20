@@ -7,6 +7,12 @@
 
 #include <iostream>
 #include <cmath>
+enum Color{
+    red,
+    green,
+    blue,
+    purple
+}; 
 
 class Graph_point;
 
