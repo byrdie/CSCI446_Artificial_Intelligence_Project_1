@@ -27,7 +27,7 @@ public:
     float distance;
     bool checked;
     float theta;
-    Graph_edge();
+    Graph_edge(Graph_point * st_pt, Graph_point * end_pt);
     void find_length();
 };
 
@@ -41,7 +41,7 @@ public:
     int conflicts;
     int color_reads;
     int color_writes;
-    Graph_point();
+    Graph_point(int N, Point * point);
     void add_edge(Graph_edge * edge);
 
 private:

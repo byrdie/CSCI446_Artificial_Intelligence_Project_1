@@ -13,18 +13,18 @@ Point::Point(float X, float Y) {
     y = Y;
 }
 
-Graph_point::Graph_point() {
-    map = NULL;
-    pt = NULL;
-    edges = NULL;
+Graph_point::Graph_point(int N, Point * point) {
+//    map = new Map;
+    pt = point;
+    edges = new Graph_edge * [N];
+    all_edges = new Graph_edge * [N];
     num_edges = 0;
-    all_edges = NULL;
 
 }
 
-Graph_edge::Graph_edge() {
-    start_point = NULL;
-    end_point = NULL;
+Graph_edge::Graph_edge(Graph_point * st_pt, Graph_point * end_pt) {
+    start_point = st_pt;
+    end_point = end_pt;
     distance = 0;
     checked = false;
     theta = 0;
@@ -32,6 +32,7 @@ Graph_edge::Graph_edge() {
 
 void Graph_point::add_edge(Graph_edge * edge){
     edges[num_edges] = edge;
+    num_edges = num_edges + 1;
 }
 
 void Graph_edge::find_length() {

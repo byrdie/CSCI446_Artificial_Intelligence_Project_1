@@ -14,9 +14,9 @@ Map problem_gen(int num_vert, int win_sz, Cairo * cairo) {
     int N = num_vert + 4;
     int margin = 50;
 
-    Graph_point * graph = new Graph_point[N];
-    Graph_point polygraph[N];
-    Graph_edge all_edges[N * N];
+    Graph_point ** graph = new Graph_point * [N];
+    Graph_point ** polygraph = new Graph_point * [N];
+    Graph_edge ** all_edges = new Graph_edge * [N * N];
 
 
 
@@ -28,36 +28,41 @@ Map problem_gen(int num_vert, int win_sz, Cairo * cairo) {
 
 
         Point * next_pt = new Point(x_pt, y_pt);
-        graph[i].pt = next_pt;
-        polygraph[i].pt = next_pt;
+        graph[i] = new Graph_point(N, next_pt);
+        polygraph[i] = new Graph_point(N, next_pt);
 
         cairo->draw_point(next_pt);
     }
 
     // Create complete graph
     for (int i = 4; i < N; ++i) {
-        Graph_point this_point = graph[i];
-        Graph_edge * edges = new Graph_edge[N];
+        Graph_point * this_point = graph[i];
         for (int j = 4; j < N; ++j) {
-            Graph_edge * edge = new Graph_edge();
-            edge->start_point = &this_point;
-            edge->end_point = &graph[j];
-            edge->find_length();
-        }
+            if (j != i) {   // Don't connect vertex to itself
+                Graph_edge * edge = new Graph_edge(this_point, graph[j]);
+                this_point->all_edges[this_point->num_edges] = edge;
+                cairo->draw_line(edge);
+            }
+        }        
     }
-    
+    // Sort edges by length so we elimaninate crossings in the correct order
+//    sort_edges_by_length(N, graph);
+
 
 
 }
 
-void elim_crossing(int N, Graph_point ** graph, int num_total_edges, Graph_edge * all_edges) {
+void elim_crossing(const int N, Graph_point * graph[], int num_total_edges, Graph_edge * all_edges[]) {
+
+    // Variables to track whether it's time to exit the loop
     bool escape = true;
     bool vertex_escape[N];
     fill_n(vertex_escape, N, false);
 
+    // Loop until all possible edges are connected
     while (escape) {
         int i = rand() % N;
-        Graph_edge ** edges = (*graph)->all_edges;
+        Graph_edge ** edges = graph[i]->all_edges;
 
         for (int j = 0; j < N - 1; j++) {
             Graph_edge * test_edge = edges[j];
@@ -67,19 +72,36 @@ void elim_crossing(int N, Graph_point ** graph, int num_total_edges, Graph_edge 
 
                 // Check that the test edge does not cross any current edges
                 if (num_total_edges == 0) {
-                    
+                    graph[i]->add_edge(test_edge);
+                    all_edges[0] = test_edge;
+                    num_total_edges += 1;
+                    break;
                 } else {
                     bool crosses = false;
 
                     for (int k = 0; k < num_total_edges; k++) {
+                        if (does_cross(test_edge, all_edges[k])) {
+                            crosses = true;
+                            break;
+                        }
+                    }
 
+                    if (!crosses) {
+                        graph[i]->add_edge(test_edge);
+                        all_edges[0] = test_edge;
+                        num_total_edges += 1;
+                        break;
                     }
                 }
-
-
+            }
+            // set variable if we've made a full trip through the for loop
+            if (j == (N - 1)){
+                vertex_escape[i] = true;
             }
         }
-
+        for(int j = 0; j < N; j++){
+            escape = escape & vertex_escape[i];
+        }
     }
 }
 
@@ -136,11 +158,11 @@ void init_rand() {
     printf("Seed: %u", seed);
 }
 
-void sort_edges_by_angle(int N, Graph_point ** graph) {
+void sort_edges_by_angle(int N, Graph_point * graph[]) {
     int i, j;
     float dx, dy;
     for (i = 0; i < N; i++) {
-        for (j = 0; j < sizeof (graph[i]->edges) / sizeof (Graph_edge); j++) {
+        for (j = 0; j < graph[i]->num_edges; j++) {
             dx = graph[i]->edges[j]->end_point->pt->x;
             dy = graph[i]->edges[j]->end_point->pt->y;
             graph[i]->edges[j]->theta = atan2f(dy, dx);
@@ -152,9 +174,10 @@ void sort_edges_by_angle(int N, Graph_point ** graph) {
     }
 }
 
-void sort_edges_by_length(int N, Graph_point ** graph){
+void sort_edges_by_length(int N, Graph_point * graph[]) {
     int i;
     for (i = 0; i < N; i++) {
+        cout << graph[i]->num_edges << endl;
         std::sort(graph[i]->edges, graph[i]->edges + graph[i]->num_edges,
                 [](Graph_edge * a, Graph_edge * b) -> float {
                     return a->distance < b->distance; });
