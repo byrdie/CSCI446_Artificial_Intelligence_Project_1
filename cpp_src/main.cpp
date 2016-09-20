@@ -26,7 +26,7 @@ using namespace std;
  */
 int main(int argc, char** argv) {
     
-    init_rand(1474388194);
+    init_rand();
     
     Cairo * cairo = new Cairo();
     
