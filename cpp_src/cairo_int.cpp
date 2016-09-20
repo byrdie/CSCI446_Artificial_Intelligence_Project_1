@@ -33,7 +33,7 @@ void Cairo::draw_point(Point * pt, Color color) {
     float y = pt->y;
 
     cairo_set_line_width(cr, 5);
-    cairo_arc(cr, x, y, 4, 0, 2 * M_PI);
+    cairo_arc(cr, x, y, 2, 0, 2 * M_PI);
 
     switch (color) {
         case red:
@@ -56,15 +56,33 @@ void Cairo::draw_point(Point * pt, Color color) {
     cairo_fill(cr);
 }
 
-void Cairo::draw_line(Graph_edge * edge) {
+void Cairo::draw_line(Graph_edge * edge, Color color) {
 
     float x0 = edge->start_point->pt->x;
     float y0 = edge->start_point->pt->y;
     float x1 = edge->end_point->pt->x;
     float y1 = edge->end_point->pt->y;
 
+    switch (color) {
+        case red:
+            cairo_set_source_rgb(cr, 1, 0, 0);
+            break;
+        case blue:
+            cairo_set_source_rgb(cr, 0, 0, 1);
+            break;
+        case green:
+            cairo_set_source_rgb(cr, 0, 1, 0);
+            break;
+        case purple:
+            cairo_set_source_rgb(cr, 1, 0, 1);
+            break;
+        case black:
+            cairo_set_source_rgb(cr, 0, 0, 0);
+            break;
+    }
+
     cairo_set_source_rgb(cr, 0, 0, 0);
-    cairo_set_line_width(cr, 0.5);
+    cairo_set_line_width(cr, 0.1);
     cairo_move_to(cr, x0, y0);
     cairo_line_to(cr, x1, y1);
     cairo_stroke(cr);

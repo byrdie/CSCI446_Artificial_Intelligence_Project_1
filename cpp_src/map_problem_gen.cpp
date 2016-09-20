@@ -114,6 +114,11 @@ Map problem_gen(int num_vert, int win_sz, Cairo * cairo) {
             Graph_edge * edge3 = pt1->edges[(j + 1) % num_e];
             Graph_point * pt2 = edge2->end_point;
             Graph_point * pt3 = edge3->end_point;
+            
+            if(pt3->pt->x == pt2->pt->x and pt3->pt->y == pt2->pt->y){
+                cout << i << endl;
+                cout << "here" << endl;
+            }
 
             // Construct line to midpoint of each edge
             Graph_point * mid_pt = new Graph_point(N, new Point(((pt1->pt->x + pt2->pt->x) / 2.0), ((pt1->pt->y + pt2->pt->y) / 2.0)));
@@ -124,6 +129,7 @@ Map problem_gen(int num_vert, int win_sz, Cairo * cairo) {
             Point * next_center = centroid(pt1->pt, pt2->pt, pt3->pt);
             Graph_edge * next_edge = new Graph_edge(pt1, new Graph_point(N, next_center));
             polygraph[i]->add_edge(next_edge);
+            cairo->draw_point(next_center, red);
         }
 
         // Create list of vertices for polygons
@@ -139,15 +145,17 @@ Map problem_gen(int num_vert, int win_sz, Cairo * cairo) {
     }
 
     for (int i = 0; i < num_vert; i++) {
-                cout << i << endl;
-        cairo->draw_poly(graph[i]->poly, graph[i]->num_poly_vert, blue);
+//                cout << i << endl;
+//        cairo->draw_poly(graph[i]->poly, graph[i]->num_poly_vert, blue);
         for (int j = 0; j < graph[i]->num_edges; j++) {
-            if(graph[i]->num_edges == 3){
-               cout << graph[i]->edges[j]->theta << endl; 
+            if(j == 16){
+               cairo->draw_line(graph[i]->edges[j], red);
+            } else {
+               cairo->draw_line(graph[i]->edges[j], red); 
             }
                         
             
-            cairo->draw_line(graph[i]->edges[j]);
+            cairo->draw_line(graph[i]->edges[j], black);
         }
     }
 
