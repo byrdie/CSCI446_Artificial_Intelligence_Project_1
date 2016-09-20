@@ -166,21 +166,27 @@ Map * problem_gen(int num_vert, int win_sz, Cairo * cairo) {
         }
     }
 
-    return new Map(num_vert, graph);
+    
 
     // Create a matrix of relationships for quick checking
-//    bool ** matrix = new bool * [num_vert];
-//    for(int i = 0; i < num_vert; i++){
-//        matrix[i] = new bool[num_vert];
-//        for(int j = 0; j < num_vert; j++){
-//            matrix[i][j] = false;
-//        }
-//        for(int j = 0; j < graph[i]->num_edges; j++){
-//            matrix[i][graph[i]->edges[j]->end_point->index] = true;
-//        }
-//    }
+    bool ** matrix = new bool * [num_vert];
+    for(int i = 0; i < num_vert; i++){
+        matrix[i] = new bool[num_vert];
+        for(int j = 0; j < num_vert; j++){
+            matrix[i][j] = false;
+        }
+        for(int j = 0; j < graph[i]->num_edges; j++){
+            matrix[i][graph[i]->edges[j]->end_point->index] = true;
+        }
+    }
+    
+    Color * colors = new Color[num_vert];
+    for(int i = 0; i < num_vert; i++){
+        colors[i] = nocolor;
+    }
 
-
+    return new Map(num_vert, graph, matrix, colors);
+    
 }
 
 int elim_crossings(const int N, Graph_point * graph[], int num_total_edges, Graph_edge * all_edges[]) {

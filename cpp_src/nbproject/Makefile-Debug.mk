@@ -35,6 +35,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/backtracking.o \
 	${OBJECTDIR}/cairo_int.o \
 	${OBJECTDIR}/main.o \
 	${OBJECTDIR}/map_data_types.o \
@@ -65,6 +66,11 @@ LDLIBSOPTIONS=`pkg-config --libs cairo` `pkg-config --libs cairo-fc` `pkg-config
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/cpp_src: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/cpp_src ${OBJECTFILES} ${LDLIBSOPTIONS}
+
+${OBJECTDIR}/backtracking.o: backtracking.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g `pkg-config --cflags cairo` `pkg-config --cflags cairo-fc` `pkg-config --cflags cairo-ft` `pkg-config --cflags cairo-gobject` `pkg-config --cflags cairo-pdf` `pkg-config --cflags cairo-png` `pkg-config --cflags cairo-ps` `pkg-config --cflags cairo-script` `pkg-config --cflags cairo-svg` `pkg-config --cflags cairo-tee` `pkg-config --cflags cairo-xcb` `pkg-config --cflags cairo-xcb-shm` `pkg-config --cflags cairo-xlib` `pkg-config --cflags cairo-xlib-xrender` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/backtracking.o backtracking.cpp
 
 ${OBJECTDIR}/cairo_int.o: cairo_int.cpp 
 	${MKDIR} -p ${OBJECTDIR}

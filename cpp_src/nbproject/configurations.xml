@@ -4,6 +4,7 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <itemPath>backtracking.h</itemPath>
       <itemPath>cairo_int.h</itemPath>
       <itemPath>map_data_types.h</itemPath>
       <itemPath>map_problem_gen.h</itemPath>
@@ -15,6 +16,7 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <itemPath>backtracking.cpp</itemPath>
       <itemPath>cairo_int.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
       <itemPath>map_data_types.cpp</itemPath>
@@ -64,6 +66,10 @@
           </linkerLibItems>
         </linkerTool>
       </compileType>
+      <item path="backtracking.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="backtracking.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="cairo_int.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="cairo_int.h" ex="false" tool="3" flavor2="0">
@@ -89,10 +95,11 @@
       </toolsSet>
       <compileType>
         <cTool>
-          <developmentMode>5</developmentMode>
+          <developmentMode>6</developmentMode>
         </cTool>
         <ccTool>
           <developmentMode>5</developmentMode>
+          <standard>8</standard>
         </ccTool>
         <fortranCompilerTool>
           <developmentMode>5</developmentMode>
@@ -100,7 +107,17 @@
         <asmTool>
           <developmentMode>5</developmentMode>
         </asmTool>
+        <linkerTool>
+          <linkerLibItems>
+            <linkerOptionItem>`pkg-config --libs cairo`</linkerOptionItem>
+            <linkerOptionItem>`pkg-config --libs cairo-pdf`</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
       </compileType>
+      <item path="backtracking.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="backtracking.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="cairo_int.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="cairo_int.h" ex="false" tool="3" flavor2="0">

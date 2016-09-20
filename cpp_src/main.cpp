@@ -16,6 +16,7 @@
 
 #include "cairo_int.h"
 #include "map_problem_gen.h"
+#include "backtracking.h"
 
 
 
@@ -30,9 +31,11 @@ int main(int argc, char** argv) {
     
     Cairo * cairo = new Cairo();
     
-    Map * map = problem_gen(100, WIDTH, cairo);
+    Map * map = problem_gen(60, WIDTH, cairo);
     
     map->clean_map();
+    
+    backtrack(map,4, 0);
     
     map->draw_map(cairo);
             

@@ -64,6 +64,7 @@ public:
     void add_edge(Graph_edge * edge);
     void set_color(Color col);
     Color get_color();
+    bool has_conflicting_neighbors();
 
 private:
     Color color;
@@ -72,8 +73,10 @@ private:
 class Map {
 public:
     Graph_point ** graph;
+    bool ** matrix;
+    Color * colors;
     int N;
-    Map(int num_vert, Graph_point ** g);
+    Map(int num_vert, Graph_point ** g, bool ** mat, Color * cols);
     void draw_map(Cairo * cairo);
     void clean_map();
 };

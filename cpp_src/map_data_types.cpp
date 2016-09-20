@@ -4,13 +4,15 @@
 
 #include "map_data_types.h"
 
-Map::Map(int num_vert, Graph_point ** g) {
+Map::Map(int num_vert, Graph_point ** g, bool ** mat, Color * cols) {
     N = num_vert;
     graph = g;
+    matrix = mat;
+    colors = cols;
 }
 
-void Map::clean_map(){
-    for(int i = 0; i < N; i++){
+void Map::clean_map() {
+    for (int i = 0; i < N; i++) {
         Graph_point * pt = graph[i];
         pt->set_color(nocolor);
         pt->color_reads = 0;
@@ -48,14 +50,23 @@ Graph_point::Graph_point(int N, int i, Point * point) {
 
 }
 
-void Graph_point::set_color(Color col){
+void Graph_point::set_color(Color col) {
     color = col;
     color_writes++;
 }
 
-Color Graph_point::get_color(){
+Color Graph_point::get_color() {
     color_reads++;
     return color;
+}
+
+bool Graph_point::has_conflicting_neighbors() {
+    for (int i = 0; i < num_edges; i++) {
+        if (edges[i]->end_point->get_color() == color) {
+            return true;
+        }
+    }
+    return false;
 }
 
 Graph_edge::Graph_edge(Graph_point * st_pt, Graph_point * end_pt) {
