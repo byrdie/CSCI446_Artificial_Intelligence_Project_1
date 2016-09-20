@@ -31,7 +31,7 @@ int main(int argc, char** argv) {
     
     Cairo * cairo = new Cairo();
     
-    Map * map = problem_gen(60, WIDTH, cairo);
+    Map * map = problem_gen(50, WIDTH, cairo);
     
     map->clean_map();
     
