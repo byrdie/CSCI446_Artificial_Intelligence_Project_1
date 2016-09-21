@@ -1,7 +1,8 @@
 from map_problem_gen import problem_gen, init_rand
 from backtrack import *
 from map_data_types import *
-
+import time
+import cProfile
 
 # program entry point
 if __name__ == '__main__':
@@ -16,17 +17,32 @@ if __name__ == '__main__':
 
     colors = ["red","green","blue", "purple"]
 
-    map = problem_gen(10, win_sz)
+    # pr = cProfile.Profile()
+    # pr.enable()
+    map = problem_gen(50, win_sz)
+    # pr.disable()
+    print("generated map")
 
     map.clean_map()
 
-    print(backtrack(map, 4, 0))
+    start_time = time.time()
+    backtrack(map, 4, 0)
+    end_time = time.time()
+
+    [reads, writes] = map.count_reads_writes()
+    print("Reads: ", reads)
+    print("Reads/s" ,  reads / (end_time - start_time))
+    print("Writes: ", writes)
+    print("Writes/s" ,  writes / (end_time - start_time))
 
     map.draw_poly(win)
     map.draw_graph(win)
 
+    # pr.print_stats(sort="calls")
+
     win.postscript(file="test.eps", colormode='color')
     win.wait_window()
+
 
 
 
