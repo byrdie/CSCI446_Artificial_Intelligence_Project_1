@@ -14,7 +14,7 @@
 #ifndef BACKTRACKING_H
 #define BACKTRACKING_H
 
-bool backtrack(Map * map, int k, int index);
+bool backtrack(Map * map, const unsigned int k, const unsigned int index);
 
 #endif /* BACKTRACKING_H */
 

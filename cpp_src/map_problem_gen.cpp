@@ -153,7 +153,7 @@ Map * problem_gen(int num_vert, int win_sz, Cairo * cairo) {
     }
 
     sort_edges_by_index(N, graph);
-    
+
     // Trim off corners and edges connecting them
     for (int i = 0; i < num_vert; i++) {
         int num = graph[i]->num_edges;
@@ -166,27 +166,28 @@ Map * problem_gen(int num_vert, int win_sz, Cairo * cairo) {
         }
     }
 
-    
+    sort_points_by_num_edges(num_vert, graph);
+    for(int i = 0; i < num_vert; i++){
+        cout << graph[i]->num_edges << endl;
+        graph[i]->index = i;
+    }
 
     // Create a matrix of relationships for quick checking
-    bool ** matrix = new bool * [num_vert];
-    for(int i = 0; i < num_vert; i++){
-        matrix[i] = new bool[num_vert];
-        for(int j = 0; j < num_vert; j++){
-            matrix[i][j] = false;
-        }
-        for(int j = 0; j < graph[i]->num_edges; j++){
-            matrix[i][graph[i]->edges[j]->end_point->index] = true;
+    int ** matrix = new int * [num_vert];
+    for (int i = 0; i < num_vert; i++) {
+        matrix[i] = new int[graph[i]->num_edges];
+        for (int j = 0; j < graph[i]->num_edges; j++) {
+            matrix[i][j] = graph[i]->edges[j]->end_point->index;
         }
     }
-    
-    Color * colors = new Color[num_vert];
-    for(int i = 0; i < num_vert; i++){
-        colors[i] = nocolor;
+
+    unsigned int * colors = new unsigned int[num_vert];
+    for (int i = 0; i < num_vert; i++) {
+        colors[i] = 0;
     }
 
     return new Map(num_vert, graph, matrix, colors);
-    
+
 }
 
 int elim_crossings(const int N, Graph_point * graph[], int num_total_edges, Graph_edge * all_edges[]) {
@@ -333,13 +334,23 @@ void sort_edges_by_length(int N, Graph_edge * edges[]) {
 
 void sort_edges_by_index(int N, Graph_point * graph[]) {
     int i, j;
-    float dx, dy;
     for (i = 0; i < N; i++) {
 
         std::sort(graph[i]->edges, graph[i]->edges + graph[i]->num_edges,
                 [](Graph_edge * a, Graph_edge * b) -> float {
                     return a->end_point->index < b->end_point->index; });
     }
+}
+
+void sort_points_by_num_edges(int N, Graph_point * graph[]) {
+
+    std::sort(graph, graph + N,
+            [](Graph_point * a, Graph_point * b) -> int {
+                return a->num_edges > b->num_edges; });
+
+
+
+
 }
 
 Point * centroid(Point * p1, Point * p2, Point * p3) {

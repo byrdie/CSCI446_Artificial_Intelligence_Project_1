@@ -4,11 +4,13 @@
 
 #include "map_data_types.h"
 
-Map::Map(int num_vert, Graph_point ** g, bool ** mat, Color * cols) {
+Map::Map(const unsigned int num_vert, Graph_point ** g, int ** mat, unsigned int * cols) {
     N = num_vert;
     graph = g;
     matrix = mat;
     colors = cols;
+    num_reads = 0;
+    num_writes = 0;
 }
 
 void Map::clean_map() {
@@ -24,7 +26,7 @@ void Map::clean_map() {
 void Map::draw_map(Cairo * cairo) {
     for (int i = 0; i < N; i++) {
         //                cout << i << endl;
-        cairo->draw_poly(graph[i]->poly, graph[i]->num_poly_vert, graph[i]->get_color());
+        cairo->draw_poly(graph[i]->poly, graph[i]->num_poly_vert, static_cast<Color> (colors[i]));
         cairo->draw_point(graph[i]->pt, black);
 
 
@@ -33,6 +35,26 @@ void Map::draw_map(Cairo * cairo) {
             cairo->draw_line(graph[i]->edges[j], black);
         }
     }
+}
+
+bool Map::has_conflicting_neighbors(int i) {
+    for (int j = 0; j < graph[i]->num_edges; j++) {
+        if (colors[i] == colors[matrix[i][j]]) {
+            return true;
+        }
+        num_reads++;
+    }
+    return false;
+}
+
+void Map::set_color(int index, int col) {
+    colors[index] = col;
+    num_writes++;
+}
+
+int Map::get_color(int index) {
+    num_reads++;
+    return colors[index];
 }
 
 Point::Point(float X, float Y) {

@@ -73,12 +73,17 @@ private:
 class Map {
 public:
     Graph_point ** graph;
-    bool ** matrix;
-    Color * colors;
-    int N;
-    Map(int num_vert, Graph_point ** g, bool ** mat, Color * cols);
+    int ** matrix;
+    unsigned int * colors;
+    unsigned int N;
+    long int num_reads;
+    long int num_writes;
+    Map(const unsigned int num_vert, Graph_point ** g, int ** mat, unsigned int * cols);
     void draw_map(Cairo * cairo);
     void clean_map();
+    bool has_conflicting_neighbors(int i);
+    void set_color(int index ,int col);
+    int get_color(int index);
 };
 
 #endif //CPP_SRC_MAP_DATA_TYPES_H

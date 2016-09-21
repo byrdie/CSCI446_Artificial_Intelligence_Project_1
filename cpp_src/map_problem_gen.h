@@ -26,6 +26,7 @@ void init_rand();
 void sort_edges_by_angle(int N, Graph_point * graph[]);
 void sort_edges_by_length(int N, Graph_edge * edges[]);
 void sort_edges_by_index(int N, Graph_point * graph[]);
+void sort_points_by_num_edges(int N, Graph_point * graph[]);
 int elim_crossings(int N, Graph_point * graph[], int num_edges, Graph_edge * all_edges[]);
 Point * centroid(Point * p1, Point * p2, Point * p3);
 
