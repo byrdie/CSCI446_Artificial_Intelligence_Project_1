@@ -168,7 +168,6 @@ Map * problem_gen(int num_vert, int win_sz, Cairo * cairo) {
 
     sort_points_by_num_edges(num_vert, graph);
     for(int i = 0; i < num_vert; i++){
-        cout << graph[i]->num_edges << endl;
         graph[i]->index = i;
     }
 
