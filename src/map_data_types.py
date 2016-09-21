@@ -77,7 +77,7 @@ class graph_point(object):
         self.pt = pt
         self.neighbors = []
         self.edges = []
-        self.color = color
+        self._color = color
         self.conflicts = 0
 
         self.color_reads = 0
@@ -87,17 +87,17 @@ class graph_point(object):
         self.all_edges = []
         self.triangles=None
 
-    # @property
-    # def color(self):
-    #     self.color_reads = self.color_reads + 1
-    #
-    #     return self._color
-    #
-    # @color.setter
-    # def color(self, value):
-    #     self.color_writes = self.color_writes + 1
-    #
-    #     self._color = value
+    @property
+    def color(self):
+        self.color_reads = self.color_reads + 1
+
+        return self._color
+
+    @color.setter
+    def color(self, value):
+        self.color_writes = self.color_writes + 1
+
+        self._color = value
 
     # Returns true if any neighbors have conflicting colors
     def has_conflicting_neighbors(self):
