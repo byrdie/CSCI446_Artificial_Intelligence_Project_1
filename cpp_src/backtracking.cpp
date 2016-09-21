@@ -135,14 +135,15 @@ bool backtrack_mac(Map * map, uint index) {
         old_colors[j] = map->get_color(j);
     }
 
-    Graph_edge ** queue = new Graph_edge * [map->N * map->N];
+    Graph_edge * queue[map->N * map->N];
     uint q_len = 0;
-    for(int  j = 0; j < map->graph[index]->num_edges; j++){
-        if(map->get_color(map->matrix[index][j]) == NOCOLOR){
+    for (int j = 0; j < map->graph[index]->num_edges; j++) {
+//        if (map->get_color(map->matrix[index][j]) == NOCOLOR) {
             queue[q_len] = map->graph[index]->edges[j];
-        }
+            q_len++;
+//        }
     }
-    
+
     uint current_color = map->get_color(index);
 
     if (current_color & RED) {
@@ -175,8 +176,8 @@ bool backtrack_mac(Map * map, uint index) {
         }
         undo_ac3(map, old_colors);
     }
-    if (current_color & BLUE) {
-        uint new_color = BLUE;
+    if (current_color & PURPLE) {
+        uint new_color = PURPLE;
         map->set_color(index, new_color);
         if (ac3(map, index, queue, q_len)) {
             if (backtrack_mac(map, index + 1)) {
@@ -204,11 +205,9 @@ bool ac3(Map * map, uint index, Graph_edge * queue[], uint qlen) {
             if (map->get_color(i) == 0) {
                 return false;
             }
-            for (int n = 0; n < map->graph[i]->num_edges; n++) {
-                int k = map->matrix[i][n];
-                if (k != i) {
-                    queue[q_i] = map->graph[i]->edges[j];
-                }
+            for (int k = 0; k < map->graph[i]->num_edges; k++) {
+                queue[qlen] = map->graph[i]->edges[k];
+                qlen++;
             }
         }
     }
@@ -229,26 +228,31 @@ bool revise(Map * map, int i, int j) {
     bool revised = false;
 
 
-    uint current_color_i = map->get_color(i);
+    uint current_colors_i = map->get_color(i);
     uint test_color_i = 0xF0000000;
 
     while (test_color_i != 0) {
-        if (current_color_i & test_color_i) { // test color is in the domain
-            uint current_color_j = map->get_color(j);
+        if (current_colors_i & test_color_i) { // test color is in the domain
+            uint current_colors_j = map->get_color(j);
             uint test_color_j = 0xF0000000;
-            bool value = true;
+            bool no_value = true;
             while (test_color_j != 0) {
-                if (current_color_j & test_color_j) {
-                    value = value and (test_color_i == test_color_j);
+                if (current_colors_j & test_color_j) {
+                    if (test_color_i != test_color_j) {
+                        no_value = false;
+                        break;
+                    }
                 }
+                test_color_j = test_color_j >> 8; // Move to the next color
             }
-            if (!value) {
-                uint new_color_set = ~((~current_color_i) | (test_color_i));
+            if (no_value) { // If no value
+                uint new_color_set = ~((~current_colors_i) | (test_color_i));
+//                cout << hex << new_color_set << endl;
                 map->set_color(i, new_color_set);
                 revised = true;
             }
         }
-        test_color_i >> 2;
+        test_color_i = test_color_i >> 8; // Move to the next color
     }
     return revised;
 

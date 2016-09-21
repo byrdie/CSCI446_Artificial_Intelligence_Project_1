@@ -34,13 +34,13 @@ int main(int argc, char** argv) {
 
     Cairo * cairo = new Cairo();
 
-    Map * map = problem_gen(20, WIDTH, cairo);
+    Map * map = problem_gen(100, WIDTH, cairo);
 
     map->clean_map();
 
     auto t1 = chrono::high_resolution_clock::now();
     //    backtrack(map, 4, 0, false);
-    cout << backtrack_forward(map, 0) << endl;
+    cout << backtrack_mac(map, 0) << endl;
     auto t2 = std::chrono::high_resolution_clock::now();
 
     cout << "Number of reads: " << (float) map->num_reads << endl;
