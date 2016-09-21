@@ -70,27 +70,27 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/cpp_src: ${OBJECTFILES}
 ${OBJECTDIR}/backtracking.o: backtracking.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 `pkg-config --cflags cairo` `pkg-config --cflags cairo-pdf` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/backtracking.o backtracking.cpp
+	$(COMPILE.cc) -O3 `pkg-config --cflags cairo` `pkg-config --cflags cairo-pdf` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/backtracking.o backtracking.cpp
 
 ${OBJECTDIR}/cairo_int.o: cairo_int.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 `pkg-config --cflags cairo` `pkg-config --cflags cairo-pdf` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/cairo_int.o cairo_int.cpp
+	$(COMPILE.cc) -O3 `pkg-config --cflags cairo` `pkg-config --cflags cairo-pdf` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/cairo_int.o cairo_int.cpp
 
 ${OBJECTDIR}/main.o: main.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 `pkg-config --cflags cairo` `pkg-config --cflags cairo-pdf` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
+	$(COMPILE.cc) -O3 `pkg-config --cflags cairo` `pkg-config --cflags cairo-pdf` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
 
 ${OBJECTDIR}/map_data_types.o: map_data_types.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 `pkg-config --cflags cairo` `pkg-config --cflags cairo-pdf` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/map_data_types.o map_data_types.cpp
+	$(COMPILE.cc) -O3 `pkg-config --cflags cairo` `pkg-config --cflags cairo-pdf` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/map_data_types.o map_data_types.cpp
 
 ${OBJECTDIR}/map_problem_gen.o: map_problem_gen.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 `pkg-config --cflags cairo` `pkg-config --cflags cairo-pdf` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/map_problem_gen.o map_problem_gen.cpp
+	$(COMPILE.cc) -O3 `pkg-config --cflags cairo` `pkg-config --cflags cairo-pdf` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/map_problem_gen.o map_problem_gen.cpp
 
 ${OBJECTDIR}/newfile.o: newfile.c 
 	${MKDIR} -p ${OBJECTDIR}

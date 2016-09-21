@@ -37,6 +37,21 @@ void Map::draw_map(Cairo * cairo) {
     }
 }
 
+void Map::draw_map_bitwise(Cairo * cairo) {
+    for (int i = 0; i < N; i++) {
+        
+        
+        cairo->draw_poly(graph[i]->poly, graph[i]->num_poly_vert, colors[i]);
+        cairo->draw_point(graph[i]->pt, black);
+
+
+        for (int j = 0; j < graph[i]->num_edges; j++) {
+
+            cairo->draw_line(graph[i]->edges[j], black);
+        }
+    }
+}
+
 bool Map::has_conflicting_neighbors(int i) {
     for (int j = 0; j < graph[i]->num_edges; j++) {
         if (colors[i] == colors[matrix[i][j]]) {

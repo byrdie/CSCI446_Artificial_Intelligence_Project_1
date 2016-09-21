@@ -14,6 +14,12 @@ enum Color{
     black,
 }; 
 
+#define NOCOLOR 0xF0F0F0F0
+#define RED     0xF0000000
+#define GREEN   0x00F00000
+#define BLUE    0x0000F000
+#define PURPLE  0x000000F0
+
 #include <iostream>
 #include <cmath>
 #include "cairo_int.h"
@@ -80,6 +86,7 @@ public:
     long int num_writes;
     Map(const unsigned int num_vert, Graph_point ** g, int ** mat, unsigned int * cols);
     void draw_map(Cairo * cairo);
+    void draw_map_bitwise(Cairo * cairo);
     void clean_map();
     bool has_conflicting_neighbors(int i);
     void set_color(int index ,int col);

@@ -129,4 +129,47 @@ void Cairo::draw_poly(Point * poly[], int N, Color color) {
 
 }
 
+void Cairo::draw_poly(Point * poly[], int N, int color) {
+    int i;
+    float x0, y0, x1, y1;
 
+    cairo_set_source_rgb(cr, 1, 1, 1);
+    cairo_move_to(cr, poly[0]->x, poly[0]->y);
+    cairo_set_line_width(cr, 1);
+
+    for (i = 0; i < N - 1; i++) {
+        x0 = poly[i]->x;
+        y0 = poly[i]->y;
+        x1 = poly[i + 1]->x;
+        y1 = poly[i + 1]->y;
+        cairo_line_to(cr, x1, y1);
+    }
+
+    cairo_close_path(cr);
+    cairo_stroke_preserve(cr);
+
+    switch (color) {
+        case NOCOLOR:
+            cairo_set_source_rgb(cr, 0.2, 0.2, 0.2);
+            break;
+        case RED:
+            cairo_set_source_rgb(cr, 1, 0, 0);
+            break;
+        case BLUE:
+            cairo_set_source_rgb(cr, 0, 0, 1);
+            break;
+        case GREEN:
+            cairo_set_source_rgb(cr, 0, 1, 0);
+            break;
+        case PURPLE:
+            cairo_set_source_rgb(cr, 1, 0, 1);
+            break;
+        default:
+            cout << "here" << endl;
+            cout << color << endl;
+            cairo_set_source_rgb(cr, 0, 0, 0);
+            
+    }
+    cairo_fill(cr);
+
+}

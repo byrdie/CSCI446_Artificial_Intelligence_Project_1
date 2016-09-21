@@ -39,6 +39,7 @@ public:
     void draw_line(Graph_edge * edge, Color color);
     void finish();
     void draw_poly(Point * poly[], int N, Color color);
+    void draw_poly(Point * poly[], int N, int color);
 };
 
 

@@ -182,7 +182,7 @@ Map * problem_gen(int num_vert, int win_sz, Cairo * cairo) {
 
     unsigned int * colors = new unsigned int[num_vert];
     for (int i = 0; i < num_vert; i++) {
-        colors[i] = 0;
+        colors[i] = 0xF0F0F0F0;
     }
 
     return new Map(num_vert, graph, matrix, colors);

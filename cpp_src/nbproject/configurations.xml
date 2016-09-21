@@ -98,7 +98,7 @@
           <developmentMode>6</developmentMode>
         </cTool>
         <ccTool>
-          <developmentMode>5</developmentMode>
+          <developmentMode>6</developmentMode>
           <standard>8</standard>
         </ccTool>
         <fortranCompilerTool>
