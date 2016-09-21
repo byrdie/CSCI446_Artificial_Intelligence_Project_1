@@ -19,6 +19,7 @@
 #include "cairo_int.h"
 #include "map_problem_gen.h"
 #include "backtracking.h"
+#include "genetic.h"
 
 
 
@@ -28,19 +29,24 @@ using namespace std;
  * 
  */
 int main(int argc, char** argv) {
-
+   //ga options
+    const int pop_size = 10;
+    const int mut_rate = 20;
+    const int N = 10;
     init_rand();
 
     Cairo * cairo = new Cairo();
 
-    Map * map = problem_gen(80, WIDTH, cairo);
+    Map * map = problem_gen(N, WIDTH, cairo);
 
     map->clean_map();
 
     auto t1 = chrono::high_resolution_clock::now();
     backtrack(map, 4, 0);
     auto t2 = std::chrono::high_resolution_clock::now();
-
+    
+    GeneticAlgorithm * ga = new GeneticAlgorithm(map, pop_size, mut_rate, N, 4);
+            
     cout << "Number of reads: " << (float) map->num_reads << endl;
     cout << "Reads/s: " << (float) map->num_reads / chrono::duration_cast<chrono::microseconds>(t2-t1).count() * 1e6 << endl;
     cout << "Number of writes: " << (float) map->num_writes << endl;

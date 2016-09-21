@@ -37,6 +37,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 OBJECTFILES= \
 	${OBJECTDIR}/backtracking.o \
 	${OBJECTDIR}/cairo_int.o \
+	${OBJECTDIR}/genetic.o \
 	${OBJECTDIR}/main.o \
 	${OBJECTDIR}/map_data_types.o \
 	${OBJECTDIR}/map_problem_gen.o \
@@ -76,6 +77,11 @@ ${OBJECTDIR}/cairo_int.o: cairo_int.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g `pkg-config --cflags cairo` `pkg-config --cflags cairo-fc` `pkg-config --cflags cairo-ft` `pkg-config --cflags cairo-gobject` `pkg-config --cflags cairo-pdf` `pkg-config --cflags cairo-png` `pkg-config --cflags cairo-ps` `pkg-config --cflags cairo-script` `pkg-config --cflags cairo-svg` `pkg-config --cflags cairo-tee` `pkg-config --cflags cairo-xcb` `pkg-config --cflags cairo-xcb-shm` `pkg-config --cflags cairo-xlib` `pkg-config --cflags cairo-xlib-xrender` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/cairo_int.o cairo_int.cpp
+
+${OBJECTDIR}/genetic.o: genetic.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g `pkg-config --cflags cairo` `pkg-config --cflags cairo-fc` `pkg-config --cflags cairo-ft` `pkg-config --cflags cairo-gobject` `pkg-config --cflags cairo-pdf` `pkg-config --cflags cairo-png` `pkg-config --cflags cairo-ps` `pkg-config --cflags cairo-script` `pkg-config --cflags cairo-svg` `pkg-config --cflags cairo-tee` `pkg-config --cflags cairo-xcb` `pkg-config --cflags cairo-xcb-shm` `pkg-config --cflags cairo-xlib` `pkg-config --cflags cairo-xlib-xrender` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/genetic.o genetic.cpp
 
 ${OBJECTDIR}/main.o: main.cpp 
 	${MKDIR} -p ${OBJECTDIR}
