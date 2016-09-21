@@ -17,7 +17,7 @@ enum Color{
 #include <iostream>
 #include <cmath>
 #include "cairo_int.h"
-
+#include <string.h>
 
 
 class Graph_point;
@@ -84,6 +84,9 @@ public:
     bool has_conflicting_neighbors(int i);
     void set_color(int index ,int col);
     int get_color(int index);
+    int num_conflicting_neighbors(int i);
+    void set_all_colors(unsigned int n_colors[]);
+    int num_conflicts();
 };
 
 #endif //CPP_SRC_MAP_DATA_TYPES_H

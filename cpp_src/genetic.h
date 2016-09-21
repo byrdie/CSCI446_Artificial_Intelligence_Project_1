@@ -19,7 +19,7 @@ class GeneticAlgorithm{
 public:
     Map * map;
     int pop_size;
-    int ** pop;
+   unsigned int ** pop;
     int mut_rate;
     int N;
     bool solved = false;
@@ -30,6 +30,8 @@ public:
     void run();
     void init_pop();
     int calc_fitness(int indiv);
+    int tournament_select();
+    int** crossover(unsigned int x, unsigned int y);
 };
 
 #endif /* GENETIC_H */
