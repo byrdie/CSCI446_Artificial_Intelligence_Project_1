@@ -4,6 +4,7 @@
 
 #include "map_data_types.h"
 
+
 Map::Map(const unsigned int num_vert, Graph_point ** g, int ** mat, unsigned int * cols) {
     N = num_vert;
     graph = g;
