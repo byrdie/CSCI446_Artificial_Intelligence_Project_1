@@ -31,7 +31,8 @@ public:
     void init_pop();
     int calc_fitness(int indiv);
     int tournament_select();
-    int** crossover(unsigned int x, unsigned int y);
+    void crossover(unsigned int* x, unsigned int* y);
+    void mutate(unsigned int* x);
 };
 
 #endif /* GENETIC_H */
