@@ -8,4 +8,7 @@ To run this program, you need to install the dependency 'Tkinter'. On Ubuntu thi
 To run the standalone compilation code you need 'sudo apt-get install python3-dev', 'sudo apt-get install libssl-dev' and cx_freeze.
 ##Dependencies
 sudo apt-get install libcairo2
+
 sudo apt-get install gunuplot
+
+sudo apt-get install libboost-all-dev
