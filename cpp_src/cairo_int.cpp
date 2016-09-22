@@ -57,12 +57,11 @@ void Cairo::draw_point(Point * pt, Color color) {
 }
 
 void Cairo::draw_line(Graph_edge * edge, Color color) {
-
     float x0 = edge->start_point->pt->x;
     float y0 = edge->start_point->pt->y;
     float x1 = edge->end_point->pt->x;
     float y1 = edge->end_point->pt->y;
-    printf("%f-%f-%f-%f\n", x0, y0, x1, y1);
+    
 
     switch (color) {
         case red:
