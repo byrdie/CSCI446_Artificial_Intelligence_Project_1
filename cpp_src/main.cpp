@@ -29,7 +29,7 @@ int main(int argc, char** argv) {
 
     int num_steps = 10;
     int num_exp_per_step = 10;
-    int num_vert_per_step = 5;
+    int num_vert_per_step = 10;
 
     for (int i = 0; i < num_steps; i++) {
         vector<Map *> next_row;
