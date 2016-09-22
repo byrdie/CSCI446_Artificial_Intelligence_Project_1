@@ -4,7 +4,7 @@ We will be attempting to graph coloring using the following algorithms: Min-conf
 This program is made using c++ and latex.
 
 ##Dependencies
-sudo apt-get install libcairo2
+sudo apt-get install libcairo2-dev
 
 sudo apt-get install gunuplot
 
