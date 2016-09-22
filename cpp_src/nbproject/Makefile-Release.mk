@@ -57,7 +57,7 @@ FFLAGS=
 ASFLAGS=
 
 # Link Libraries and Options
-LDLIBSOPTIONS=`pkg-config --libs cairo` `pkg-config --libs cairo-pdf`  
+LDLIBSOPTIONS=`pkg-config --libs cairo` `pkg-config --libs cairo-pdf` -lboost_iostreams -lboost_system  
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}

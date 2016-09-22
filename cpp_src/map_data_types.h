@@ -88,6 +88,7 @@ public:
     void draw_map(Cairo * cairo);
     void draw_map_bitwise(Cairo * cairo);
     void clean_map();
+    void clean_map_bitwise();
     bool has_conflicting_neighbors(int i);
     void set_color(int index ,int col);
     int get_color(int index);

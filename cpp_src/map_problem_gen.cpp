@@ -7,7 +7,7 @@
 
 using namespace std;
 
-Map * problem_gen(int num_vert, int win_sz, Cairo * cairo) {
+Map * problem_gen(int num_vert, int win_sz) {
 
 
     int N = num_vert + 4;

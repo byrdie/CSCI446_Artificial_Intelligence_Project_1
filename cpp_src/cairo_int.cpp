@@ -16,8 +16,8 @@
 
 using namespace std;
 
-Cairo::Cairo() {
-    surface = cairo_pdf_surface_create("test.pdf", WIDTH, HEIGHT);
+Cairo::Cairo(char * filename) {
+    surface = cairo_pdf_surface_create(filename, WIDTH, HEIGHT);
     cr = cairo_create(surface);
 }
 
@@ -113,7 +113,7 @@ void Cairo::draw_poly(Point * poly[], int N, Color color) {
             cairo_set_source_rgb(cr, 0.2, 0.2, 0.2);
             break;
         case red:
-            cairo_set_source_rgb(cr, 1, 0, 0);
+            cairo_set_source_rgb(cr, 0x20, 0xBF, 0x55);
             break;
         case blue:
             cairo_set_source_rgb(cr, 0, 0, 1);
@@ -153,16 +153,16 @@ void Cairo::draw_poly(Point * poly[], int N, int color) {
             cairo_set_source_rgb(cr, 0.2, 0.2, 0.2);
             break;
         case RED:
-            cairo_set_source_rgb(cr, 1, 0, 0);
+            cairo_set_source_rgb(cr, hf(0x20), hf(0xBF), hf(0x55));
             break;
         case BLUE:
-            cairo_set_source_rgb(cr, 0, 0, 1);
+            cairo_set_source_rgb(cr, hf(0x0B), hf(0x4F), hf(0x6C));
             break;
         case GREEN:
-            cairo_set_source_rgb(cr, 0, 1, 0);
+            cairo_set_source_rgb(cr, hf(0x01), hf(0xBA), hf(0xEF));
             break;
         case PURPLE:
-            cairo_set_source_rgb(cr, 1, 0, 1);
+            cairo_set_source_rgb(cr, hf(0x75), hf(0x75), hf(0x75));
             break;
         default:
             cout << "here" << endl;
@@ -172,4 +172,8 @@ void Cairo::draw_poly(Point * poly[], int N, int color) {
     }
     cairo_fill(cr);
 
+}
+
+float hf(int hex){
+    return (float) hex/0xFF;
 }

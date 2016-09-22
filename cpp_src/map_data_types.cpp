@@ -15,8 +15,22 @@ Map::Map(const unsigned int num_vert, Graph_point ** g, int ** mat, unsigned int
 }
 
 void Map::clean_map() {
+    
     for (int i = 0; i < N; i++) {
         Graph_point * pt = graph[i];
+        set_color(i, 0);
+        pt->set_color(nocolor);
+        pt->color_reads = 0;
+        pt->color_writes = 0;
+        pt->conflicts = 0;
+    }
+}
+
+void Map::clean_map_bitwise() {
+    
+    for (int i = 0; i < N; i++) {
+        Graph_point * pt = graph[i];
+        set_color(i, NOCOLOR);
         pt->set_color(nocolor);
         pt->color_reads = 0;
         pt->color_writes = 0;

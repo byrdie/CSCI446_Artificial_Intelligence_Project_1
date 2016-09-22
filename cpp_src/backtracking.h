@@ -18,7 +18,7 @@
 
 
 
-bool backtrack(Map * map, const unsigned int k, const unsigned int index, bool forward_check);
+bool backtrack(Map * map, const unsigned int k, const unsigned int index);
 bool backtrack_forward(Map * map, uint index);
 bool forward_check(Map * map, uint index, uint color);
 bool undo_forward_check(Map * map, uint index, uint old_colors[]);

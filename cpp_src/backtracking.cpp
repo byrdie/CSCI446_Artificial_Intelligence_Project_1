@@ -3,7 +3,7 @@
 
 using namespace std;
 
-bool backtrack(Map * map, const unsigned int k, const unsigned int index, bool forward_check) {
+bool backtrack(Map * map, const unsigned int k, const unsigned int index) {
 
 
     if (index == map->N) {
@@ -19,7 +19,7 @@ bool backtrack(Map * map, const unsigned int k, const unsigned int index, bool f
         if (map->has_conflicting_neighbors(index)) {
             continue;
         } else {
-            if (backtrack(map, k, index + 1, forward_check)) {
+            if (backtrack(map, k, index + 1)) {
                 return true;
             } else {
                 continue;

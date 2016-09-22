@@ -21,6 +21,7 @@
 #include <cairo/cairo-ps.h>
 #include <math.h>
 #include "map_data_types.h"
+#include <string>
 
 #define WIDTH 1000
 #define HEIGHT 1000
@@ -34,14 +35,15 @@ class Cairo{
 public:
     cairo_surface_t * surface;
     cairo_t * cr;
-    Cairo();
+    Cairo(char * filename);
     void draw_point(Point * pt, Color color);
     void draw_line(Graph_edge * edge, Color color);
     void finish();
     void draw_poly(Point * poly[], int N, Color color);
     void draw_poly(Point * poly[], int N, int color);
+    
 };
-
+float hf(int hex);
 
 #endif /* CAIRO_INT_H */
 

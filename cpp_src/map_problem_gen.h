@@ -19,7 +19,7 @@
 #include "map_data_types.h"
 
 
-Map * problem_gen(int num_vert, int win_sz, Cairo * cairo);
+Map * problem_gen(int num_vert, int win_sz);
 bool does_cross(Graph_edge * line1, Graph_edge * line2);
 void init_rand(unsigned long int seed);
 void init_rand();
