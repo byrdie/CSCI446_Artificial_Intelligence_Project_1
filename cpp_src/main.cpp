@@ -24,7 +24,7 @@ int main(int argc, char** argv) {
 
     int num_steps = 10;
     int num_exp_per_step = 20;
-    int num_vert_per_step = 2;
+    int num_vert_per_step = 4;
 
     for (int i = 0; i < num_steps; i++) {
         vector<Map *> next_row;
@@ -451,7 +451,7 @@ void genetic_experiment(vector<vector<Map *>> dataset, vector<vector<float>> &re
             map->clean_map();
             const int pop_size = (int) N;
             const int mut_rate = 100;
-            GeneticAlgorithm * ga = new GeneticAlgorithm(map, pop_size, mut_rate, N, 4, max_generations);
+            GeneticAlgorithm * ga = new GeneticAlgorithm(map, pop_size, mut_rate, N, 3, max_generations);
             auto t1 = chrono::high_resolution_clock::now();
             int gens = ga->run();
             auto t2 = std::chrono::high_resolution_clock::now();
@@ -471,6 +471,7 @@ void genetic_experiment(vector<vector<Map *>> dataset, vector<vector<float>> &re
             cout << "Reads/s: " << (float) map->num_reads / chrono::duration_cast<chrono::microseconds>(t2 - t1).count() * 1.0e6 << endl;
             cout << "Number of writes: " << (float) map->num_writes << endl;
             cout << "Writes/s: " << (float) map->num_writes / chrono::duration_cast<chrono::microseconds>(t2 - t1).count() * 1.0e6 << endl;
+            cout << "Generations: " << gens << endl;
             cout << endl;
             reads_for_N.push_back(map->num_reads);
             writes_for_N.push_back(map->num_writes);
