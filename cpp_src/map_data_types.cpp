@@ -80,9 +80,39 @@ bool Map::has_conflicting_neighbors(int i) {
     return false;
 }
 
+int Map :: num_conflicting_neighbors(int i){ 
+    int conflicts = 0;
+    for (int j = 0; j < graph[i]->num_edges; j++) {
+        if (colors[i] == colors[matrix[i][j]]) {
+            conflicts++;
+        }
+        
+    }
+    return conflicts;
+}
+
+int Map :: num_conflicts(){
+    
+    int conflicts = 0;
+    for (int i = 0; i < N; i++){
+        for (int j = 0; j , j < graph[i]->num_edges; j++ ){
+            num_reads++;
+            if (colors[i] == colors[matrix[i][j]]) {
+                conflicts++;
+            }
+        }
+    }
+    return conflicts;
+}
 void Map::set_color(int index, int col) {
     colors[index] = col;
     num_writes++;
+}
+void Map :: set_all_colors(unsigned int  n_colors[]){
+    
+    memcpy(colors, n_colors, N*sizeof(unsigned int));
+    num_writes+=N;
+     
 }
 
 int Map::get_color(int index) {

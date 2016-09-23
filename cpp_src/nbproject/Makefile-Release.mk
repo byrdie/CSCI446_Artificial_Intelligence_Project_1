@@ -37,6 +37,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 OBJECTFILES= \
 	${OBJECTDIR}/backtracking.o \
 	${OBJECTDIR}/cairo_int.o \
+	${OBJECTDIR}/genetic.o \
 	${OBJECTDIR}/main.o \
 	${OBJECTDIR}/map_data_types.o \
 	${OBJECTDIR}/map_problem_gen.o \
@@ -76,6 +77,11 @@ ${OBJECTDIR}/cairo_int.o: cairo_int.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O3 `pkg-config --cflags cairo` `pkg-config --cflags cairo-pdf` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/cairo_int.o cairo_int.cpp
+
+${OBJECTDIR}/genetic.o: genetic.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O3 `pkg-config --cflags cairo` `pkg-config --cflags cairo-pdf` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/genetic.o genetic.cpp
 
 ${OBJECTDIR}/main.o: main.cpp 
 	${MKDIR} -p ${OBJECTDIR}

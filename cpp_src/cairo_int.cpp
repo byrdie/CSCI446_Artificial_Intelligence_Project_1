@@ -57,11 +57,11 @@ void Cairo::draw_point(Point * pt, Color color) {
 }
 
 void Cairo::draw_line(Graph_edge * edge, Color color) {
-
     float x0 = edge->start_point->pt->x;
     float y0 = edge->start_point->pt->y;
     float x1 = edge->end_point->pt->x;
     float y1 = edge->end_point->pt->y;
+    
 
     switch (color) {
         case red:
@@ -113,7 +113,7 @@ void Cairo::draw_poly(Point * poly[], int N, Color color) {
             cairo_set_source_rgb(cr, 0.2, 0.2, 0.2);
             break;
         case red:
-            cairo_set_source_rgb(cr, 0x20, 0xBF, 0x55);
+            cairo_set_source_rgb(cr, 1, 0, 0);
             break;
         case blue:
             cairo_set_source_rgb(cr, 0, 0, 1);
