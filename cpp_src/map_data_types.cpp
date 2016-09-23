@@ -38,6 +38,17 @@ void Map::clean_map_bitwise() {
     }
 }
 
+void Map :: three_clean_map_bitwise(){
+    for (int i = 0; i < N; i++) {
+        Graph_point * pt = graph[i];
+        set_color(i, THREECOLOR);
+        pt->set_color(nocolor);
+        pt->color_reads = 0;
+        pt->color_writes = 0;
+        pt->conflicts = 0;
+    }
+}
+
 void Map::draw_map(Cairo * cairo) {
     for (int i = 0; i < N; i++) {
         //                cout << i << endl;
