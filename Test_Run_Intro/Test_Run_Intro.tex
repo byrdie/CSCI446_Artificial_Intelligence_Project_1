@@ -1,0 +1,161 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Journal Article
+% LaTeX Template
+% Version 1.3 (9/9/13)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Frits Wenneker (http://www.howtotex.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{article}
+
+%\documentclass{aastex}  % version 5.0 or prior
+%\usepackage{natbib}
+
+
+
+\usepackage{graphicx}
+\usepackage{lipsum} % Package to generate dummy text throughout this template
+%\usepackage[sc]{mathpazo} % Use the Palatino font
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\linespread{1.05} % Line spacing - Palatino needs more space between lines
+\usepackage{microtype} % Slightly tweak font spacing for aesthetics
+
+\usepackage[margin=1in,columnsep=20pt]{geometry} % Document margins
+\usepackage{multicol} % Used for the two-column layout of the document
+\usepackage[hang, small,labelfont=bf,up,textfont=it,up]{caption} % Custom captions under/above floats in tables or figures
+\usepackage{booktabs} % Horizontal rules in tables
+\usepackage{float} % Required for tables and figures in the multi-column environment - they need to be placed in specific locations with the [H] (e.g. \begin{table}[H])
+\usepackage{hyperref} % For hyperlinks in the PDF
+\usepackage{subcaption}
+
+\usepackage{lettrine} % The lettrine is the first enlarged letter at the beginning of the text
+\usepackage{paralist} % Used for the compactitem environment which makes bullet points with less space between them
+\usepackage{amsmath}
+\usepackage{abstract} % Allows abstract customization
+\renewcommand{\abstractnamefont}{\normalfont\bfseries} % Set the "Abstract" text to bold
+\renewcommand{\abstracttextfont}{\normalfont\small\itshape} % Set the abstract itself to small italic text
+
+\usepackage{titlesec} % Allows customization of titles
+%\renewcommand\thesection{\Roman{section}} % Roman numerals for the sections
+%\renewcommand\thesubsection{\Roman{subsection}} % Roman numerals for subsections
+%\renewcommand\thesubsubsection{\Alph{subsubsection}} % Roman numerals for subsections
+\titleformat{\section}[block]{\Large\scshape}{\thesection}{1em}{} % Change the look of the section titles
+\titleformat{\subsection}[block]{\large}{\thesubsection}{1em}{} % Change the look of the section titles
+\titleformat{\subsubsection}[block]{}{\thesubsubsection}{1em}{} % Change the look of the section titles
+
+\usepackage{fancyhdr} % Headers and footers
+\pagestyle{fancy} % All pages have headers and footers
+\fancyhead{} % Blank out the default header
+\fancyfoot{} % Blank out the default footer
+\fancyhead[C]{Montana State University \quad $\bullet$ \quad CSCI 466 Artificial Intelligence \quad $\bullet$ \quad Group 21} % Custom header text
+\fancyfoot[RO,LE]{\thepage} % Custom footer text
+
+\newcommand{\ve}[1]{\boldsymbol{\mathbf{#1}}}
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\title{\vspace{-15mm}\fontsize{24pt}{10pt}\selectfont\textbf{CSCI 446 Artificial Intelligence \\ Test Run Intro} \\[-2mm]} % Article title
+\date{\today}
+\author{
+\large
+\textsc{Roy Smart} \and \textsc{Nevin Leh} \and \textsc{Brian Marsh}\\[2mm] % Your name
+}
+
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle % Insert title
+
+\thispagestyle{fancy} % All pages have headers and footers
+
+%\begin{abstract}
+%We present a novel way of performing MOSES data inversions using a
+%\end{abstract}
+
+%----------------------------------------------------------------------------------------
+%	ARTICLE CONTENTS
+%----------------------------------------------------------------------------------------
+
+\begin{multicols}{2} % Two-column layout throughout the main article text
+\normalsize
+\section{Introduction}
+The following graphs are the results from test runs performed on five map coloring algorithms: Minimum Conflicts, Simple Backtracking, Backtracking with Forward Checking, Backtracking with Constraint propagation, and
+Genetic. Each algorithm was run on the same data set consisting of maps with sizes ranging from 10 to 100 vertices in 10 vertice increments. To gather better data, 10 maps of each size were generated and the average result was plotted. In addition error bars representing the maximum and minimum values encountered are added.
+
+For each algorithm three values are plotted: vertex read, vertex write, and an algorithm specific metric. The vertex read and write graphs indicate how many times a vertex was read from or written to. The algorithm specific metric is slightly different for each algorithm, but it is generally the number of recursive calls or the the number of times through the main control loop for the algorithm. 
+
+\section{Minimum Conflicts}
+For Minimum conflicts the algorithm specific metric is designated as the number of times a vertex is selected to be minimized.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth]{../results/min_conflicts/min_conflicts_performance}
+	\caption{Results of a test run on Simple Backtracking }
+\end{figure}
+
+\section{Simple Backtracking}
+For Simple Backtracking the algorithm specific metric is designated as the number of times the Backtracking algorithm is called.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth]{../results/backtracking_simple/bt_simple_performance}
+	\caption{Results of a test run on Simple Backtracking }
+\end{figure}
+
+
+\section{Backtracking with Forward Checking}
+For Backtracking with Forward Checking the algorithm specific metric is designated as the number of times the Backtracking with Forward Checking algorithm is called.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth]{../results/backtracking_forward/bt_forward_performance}
+	\caption{Results of a test run on Backtracking with Forward Checking}
+\end{figure}
+
+\section{Backtracking with Constraint Propagation}
+For Backtracking with Constraint Propagation the algorithm specific metric is designated as the number of times the Backtracking with Constraint Propagation algorithm is called.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth]{../results/backtracking_mac/bt_mac_performance}
+	\caption{Results of a test run on Backtracking with Constraint Propagation}
+
+\end{figure}
+
+\section{Local Search Using a Genetic Algorithm}
+For local search using a genetic algorithm the algorithm specific metric is designated as the number of generations the algorithm goes through. 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth]{../results/genetic/genetic_performance}
+	\caption{Results of a test run on the Genetic Algorithm}
+\end{figure}
+
+\section{Comparative Graphs}
+The number of vertices written and read metrics for each algorithm are compared to each other in separate graphs to compare performance.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth]{../results/comparing_read_performance}
+	\caption{Comparing read performance}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth]{../results/comparing_write_performance}
+	\caption{Comparing write performance}
+\end{figure}
+
+\end{multicols}
+
+\end{document}
