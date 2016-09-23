@@ -1,15 +1,15 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.9.17)  23 SEP 2016 06:09
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.6.13)  23 SEP 2016 04:44
 entering extended mode
- restricted \write18 enabled.
+ \write18 enabled.
  %&-line parsing enabled.
 **Test_Run_Intro.tex
 (./Test_Run_Intro.tex
-LaTeX2e <2016/02/01>
-Babel <3.9q> and hyphenation patterns for 81 language(s) loaded.
+LaTeX2e <2011/06/27>
+Babel <3.9h> and hyphenation patterns for 78 languages loaded.
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
-Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo
-File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
+File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 )
 \c@part=\count79
 \c@section=\count80
@@ -24,22 +24,22 @@ File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 \bibindent=\dimen102
 )
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
-Package: graphicx 2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
 
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
-Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
 \KV@toks@=\toks14
 )
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
-Package: graphics 2016/01/03 v1.0q Standard LaTeX Graphics (DPC,SPQR)
+Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
 
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
-Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
 )
 (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/graphics.cfg
 File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
 )
-Package graphics Info: Driver file: pdftex.def on input line 95.
+Package graphics Info: Driver file: pdftex.def on input line 91.
 
 (/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
 File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
@@ -56,7 +56,7 @@ Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 \Gin@req@width=\dimen104
 )
 (/usr/share/texlive/texmf-dist/tex/latex/lipsum/lipsum.sty
-Package: lipsum 2014/07/27 v1.3 150 paragraphs of Lorem Ipsum dummy text
+Package: lipsum 2011/04/14 v1.2 150 paragraphs of Lorem Ipsum dummy text
 \c@lips@count=\count88
 )
 (/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
@@ -64,7 +64,7 @@ Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/t1enc.def
 File: t1enc.def 2005/09/27 v1.99g Standard LaTeX file
-LaTeX Font Info:    Redeclaring font encoding T1 on input line 48.
+LaTeX Font Info:    Redeclaring font encoding T1 on input line 43.
 ))
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
 Package: microtype 2013/05/23 v2.5a Micro-typographical refinements (RS)
@@ -115,7 +115,7 @@ Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 \Gm@dimlist=\toks16
 )
 (/usr/share/texlive/texmf-dist/tex/latex/tools/multicol.sty
-Package: multicol 2015/08/19 v1.8n multicolumn formatting (FMi)
+Package: multicol 2011/06/27 v1.7a multicolumn formatting (FMi)
 \c@tracingmulticols=\count94
 \mult@box=\box26
 \multicol@leftmargin=\dimen114
@@ -132,7 +132,6 @@ Package: multicol 2015/08/19 v1.8n multicolumn formatting (FMi)
 \multicolbaselineskip=\skip45
 \partial@page=\box27
 \last@line=\box28
-\maxbalancingoverflow=\dimen119
 \mult@rightbox=\box29
 \mult@grightbox=\box30
 \mult@gfirstbox=\box31
@@ -156,48 +155,48 @@ Package: multicol 2015/08/19 v1.8n multicolumn formatting (FMi)
 \@tempa=\box49
 \c@columnbadness=\count100
 \c@finalcolumnbadness=\count101
-\last@try=\dimen120
-\multicolovershoot=\dimen121
-\multicolundershoot=\dimen122
+\last@try=\dimen119
+\multicolovershoot=\dimen120
+\multicolundershoot=\dimen121
 \mult@nat@firstbox=\box50
 \colbreak@box=\box51
-\mc@col@check@num=\count102
+\multicol@sort@counter=\count102
 )
 (/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
-Package: caption 2016/02/21 v3.3-144 Customizing captions (AR)
+Package: caption 2013/05/02 v3.3-89 Customizing captions (AR)
 
 (/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty
-Package: caption3 2016/02/04 v1.7-139 caption3 kernel (AR)
-Package caption3 Info: TeX engine: e-TeX on input line 67.
-\captionmargin=\dimen123
-\captionmargin@=\dimen124
-\captionwidth=\dimen125
-\caption@tempdima=\dimen126
-\caption@indent=\dimen127
-\caption@parindent=\dimen128
-\caption@hangindent=\dimen129
+Package: caption3 2013/05/02 v1.6-88 caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 57.
+\captionmargin=\dimen122
+\captionmargin@=\dimen123
+\captionwidth=\dimen124
+\caption@tempdima=\dimen125
+\caption@indent=\dimen126
+\caption@parindent=\dimen127
+\caption@hangindent=\dimen128
 )
 \c@ContinuedFloat=\count103
 )
 (/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty
 Package: booktabs 2005/04/14 v1.61803 publication quality tables
-\heavyrulewidth=\dimen130
-\lightrulewidth=\dimen131
-\cmidrulewidth=\dimen132
-\belowrulesep=\dimen133
-\belowbottomsep=\dimen134
-\aboverulesep=\dimen135
-\abovetopsep=\dimen136
-\cmidrulesep=\dimen137
-\cmidrulekern=\dimen138
-\defaultaddspace=\dimen139
+\heavyrulewidth=\dimen129
+\lightrulewidth=\dimen130
+\cmidrulewidth=\dimen131
+\belowrulesep=\dimen132
+\belowbottomsep=\dimen133
+\aboverulesep=\dimen134
+\abovetopsep=\dimen135
+\cmidrulesep=\dimen136
+\cmidrulekern=\dimen137
+\defaultaddspace=\dimen138
 \@cmidla=\count104
 \@cmidlb=\count105
-\@aboverulesep=\dimen140
-\@belowrulesep=\dimen141
+\@aboverulesep=\dimen139
+\@belowrulesep=\dimen140
 \@thisruleclass=\count106
 \@lastruleclass=\count107
-\@thisrulewidth=\dimen142
+\@thisrulewidth=\dimen141
 )
 (/usr/share/texlive/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
@@ -259,7 +258,7 @@ Package: auxhook 2011/03/04 v1.3 Hooks for auxiliary files (HO)
 (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/kvoptions.sty
 Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
 )
-\@linkdim=\dimen143
+\@linkdim=\dimen142
 \Hy@linkcounter=\count109
 \Hy@pagecounter=\count110
 
@@ -285,10 +284,10 @@ Package hyperref Info: Bookmarks ON on input line 4688.
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 5041.
-\XeTeXLinkMargin=\dimen144
+\XeTeXLinkMargin=\dimen143
 \Fld@menulength=\count113
-\Field@Width=\dimen145
-\Fld@charsize=\dimen146
+\Field@Width=\dimen144
+\Fld@charsize=\dimen145
 Package hyperref Info: Hyper figures OFF on input line 6295.
 Package hyperref Info: Link nesting OFF on input line 6300.
 Package hyperref Info: Hyper index ON on input line 6303.
@@ -318,39 +317,33 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 \Hy@SectionHShift=\skip46
 )
 (/usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty
-Package: subcaption 2016/02/20 v1.1-142 Sub-captions (AR)
+Package: subcaption 2013/02/03 v1.1-62 Sub-captions (AR)
 \c@subfigure=\count119
 \c@subtable=\count120
 )
 (/usr/share/texlive/texmf-dist/tex/latex/lettrine/lettrine.sty
-File: lettrine.sty 2015/08/31 v1.9 (Daniel Flipo)
+File: lettrine.sty 2013/03/14 v1.64 (Daniel Flipo)
 \c@DefaultLines=\count121
-\c@DefaultDepth=\count122
-\DefaultFindent=\dimen147
-\DefaultNindent=\dimen148
-\DefaultSlope=\dimen149
-\DiscardVskip=\dimen150
+\DefaultFindent=\dimen146
+\DefaultNindent=\dimen147
+\DefaultSlope=\dimen148
 \L@lbox=\box54
 \L@tbox=\box55
-\c@L@lines=\count123
-\c@L@depth=\count124
-\L@Pindent=\dimen151
-\L@Findent=\dimen152
-\L@Nindent=\dimen153
-\L@lraise=\dimen154
-\L@first=\dimen155
-\L@next=\dimen156
-\L@slope=\dimen157
-\L@height=\dimen158
-\L@novskip=\dimen159
-\LettrineWidth=\dimen160
-\LettrineHeight=\dimen161
-\LettrineDepth=\dimen162
+\c@L@lines=\count122
+\L@Pindent=\dimen149
+\L@Findent=\dimen150
+\L@Nindent=\dimen151
+\L@lraise=\dimen152
+\L@first=\dimen153
+\L@next=\dimen154
+\L@slope=\dimen155
+\L@height=\dimen156
+\LettrineWidth=\dimen157
 
 Loading lettrine.cfg
 (/usr/share/texlive/texmf-dist/tex/latex/lettrine/lettrine.cfg))
 (/usr/share/texlive/texmf-dist/tex/latex/paralist/paralist.sty
-Package: paralist 2015/12/30 v2.5 Extended list environments
+Package: paralist 2013/06/09 v2.4 Extended list environments
 \pltopsep=\skip47
 \plpartopsep=\skip48
 \plitemsep=\skip49
@@ -358,62 +351,62 @@ Package: paralist 2015/12/30 v2.5 Extended list environments
 \pl@lab=\toks19
 )
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
-Package: amsmath 2016/03/03 v2.15a AMS math features
+Package: amsmath 2013/01/14 v2.14 AMS math features
 \@mathmargin=\skip51
 
 For additional information on amsmath, use the `?' option.
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
-Package: amstext 2000/06/29 v2.01 AMS text
+Package: amstext 2000/06/29 v2.01
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
-File: amsgen.sty 1999/11/30 v2.0 generic functions
+File: amsgen.sty 1999/11/30 v2.0
 \@emptytoks=\toks20
-\ex@=\dimen163
+\ex@=\dimen158
 ))
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
-Package: amsbsy 1999/11/29 v1.2d Bold Symbols
-\pmbraise@=\dimen164
+Package: amsbsy 1999/11/29 v1.2d
+\pmbraise@=\dimen159
 )
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 1999/12/14 v2.01 operator names
 )
-\inf@bad=\count125
-LaTeX Info: Redefining \frac on input line 199.
-\uproot@=\count126
-\leftroot@=\count127
-LaTeX Info: Redefining \overline on input line 297.
-\classnum@=\count128
-\DOTSCASE@=\count129
-LaTeX Info: Redefining \ldots on input line 394.
-LaTeX Info: Redefining \dots on input line 397.
-LaTeX Info: Redefining \cdots on input line 518.
+\inf@bad=\count123
+LaTeX Info: Redefining \frac on input line 210.
+\uproot@=\count124
+\leftroot@=\count125
+LaTeX Info: Redefining \overline on input line 306.
+\classnum@=\count126
+\DOTSCASE@=\count127
+LaTeX Info: Redefining \ldots on input line 378.
+LaTeX Info: Redefining \dots on input line 381.
+LaTeX Info: Redefining \cdots on input line 466.
 \Mathstrutbox@=\box56
 \strutbox@=\box57
-\big@size=\dimen165
-LaTeX Font Info:    Redeclaring font encoding OML on input line 630.
-LaTeX Font Info:    Redeclaring font encoding OMS on input line 631.
-\macc@depth=\count130
-\c@MaxMatrixCols=\count131
+\big@size=\dimen160
+LaTeX Font Info:    Redeclaring font encoding OML on input line 566.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
+\macc@depth=\count128
+\c@MaxMatrixCols=\count129
 \dotsspace@=\muskip11
-\c@parentequation=\count132
-\dspbrk@lvl=\count133
+\c@parentequation=\count130
+\dspbrk@lvl=\count131
 \tag@help=\toks21
-\row@=\count134
-\column@=\count135
-\maxfields@=\count136
+\row@=\count132
+\column@=\count133
+\maxfields@=\count134
 \andhelp@=\toks22
-\eqnshift@=\dimen166
-\alignsep@=\dimen167
-\tagshift@=\dimen168
-\tagwidth@=\dimen169
-\totwidth@=\dimen170
-\lineht@=\dimen171
+\eqnshift@=\dimen161
+\alignsep@=\dimen162
+\tagshift@=\dimen163
+\tagwidth@=\dimen164
+\totwidth@=\dimen165
+\lineht@=\dimen166
 \@envbody=\toks23
 \multlinegap=\skip52
 \multlinetaggap=\skip53
 \mathdisplay@stack=\toks24
-LaTeX Info: Redefining \[ on input line 2735.
-LaTeX Info: Redefining \] on input line 2736.
+LaTeX Info: Redefining \[ on input line 2665.
+LaTeX Info: Redefining \] on input line 2666.
 )
 (/usr/share/texlive/texmf-dist/tex/latex/abstract/abstract.sty
 Package: abstract 2009/06/08 v1.2a configurable abstracts
@@ -424,19 +417,19 @@ Package: abstract 2009/06/08 v1.2a configurable abstracts
 \absparsep=\skip58
 )
 (/usr/share/texlive/texmf-dist/tex/latex/titlesec/titlesec.sty
-Package: titlesec 2016/03/15 v2.10.1 Sectioning titles
+Package: titlesec 2011/12/15 v2.10.0 Sectioning titles
 \ttl@box=\box58
 \beforetitleunit=\skip59
 \aftertitleunit=\skip60
-\ttl@plus=\dimen172
-\ttl@minus=\dimen173
+\ttl@plus=\dimen167
+\ttl@minus=\dimen168
 \ttl@toksa=\toks25
-\titlewidth=\dimen174
-\titlewidthlast=\dimen175
-\titlewidthfirst=\dimen176
+\titlewidth=\dimen169
+\titlewidthlast=\dimen170
+\titlewidthfirst=\dimen171
 )
 (/usr/share/texlive/texmf-dist/tex/latex/titlesec/block.tss
-File: block.tss 2016/03/15
+File: block.tss 2011/12/15
 )
 (/usr/share/texlive/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
 \fancy@headwidth=\skip61
@@ -473,16 +466,16 @@ LaTeX Font Info:    ... okay on input line 81.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count137
-\scratchdimen=\dimen177
+\scratchcounter=\count135
+\scratchdimen=\dimen172
 \scratchbox=\box59
-\nofMPsegments=\count138
-\nofMParguments=\count139
+\nofMPsegments=\count136
+\nofMParguments=\count137
 \everyMPshowfont=\toks26
-\MPscratchCnt=\count140
-\MPscratchDim=\dimen178
-\MPnumerator=\count141
-\makeMPintoPDFobject=\count142
+\MPscratchCnt=\count138
+\MPscratchDim=\dimen173
+\MPnumerator=\count139
+\makeMPintoPDFobject=\count140
 \everyMPtoPDFconversion=\toks27
 ) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
@@ -560,7 +553,7 @@ Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count143
+\c@section@level=\count141
 )
 LaTeX Info: Redefining \ref on input line 81.
 LaTeX Info: Redefining \pageref on input line 81.
@@ -630,14 +623,14 @@ d on input line 132.
  <../results/min_conflicts/min_conflicts_performance.pdf> <../results/backtrack
 ing_simple/bt_simple_performance.pdf
 
-pdfTeX warning: /usr/bin/pdflatex (file ../results/backtracking_simple/bt_simpl
-e_performance.pdf): PDF inclusion: multiple pdfs with page group included in a 
-single page
+pdfTeX warning: pdflatex (file ../results/backtracking_simple/bt_simple_perform
+ance.pdf): PDF inclusion: multiple pdfs with page group included in a single pa
+ge
 > <../results/backtracking_forward/bt_forward_performance.pdf
 
-pdfTeX warning: /usr/bin/pdflatex (file ../results/backtracking_forward/bt_forw
-ard_performance.pdf): PDF inclusion: multiple pdfs with page group included in 
-a single page
+pdfTeX warning: pdflatex (file ../results/backtracking_forward/bt_forward_perfo
+rmance.pdf): PDF inclusion: multiple pdfs with page group included in a single 
+page
 >] <../results/genetic/genetic_performance.pdf, id=70, 361.35pt x 216.81pt>
 File: ../results/genetic/genetic_performance.pdf Graphic file (type pdf)
 
@@ -665,16 +658,16 @@ Package atveryend Info: Empty hook `BeforeClearDocument' on input line 161.
  [2 <../results/backtracking_mac/bt_mac_performance.pdf> <../results/genetic/ge
 netic_performance.pdf
 
-pdfTeX warning: /usr/bin/pdflatex (file ../results/genetic/genetic_performance.
-pdf): PDF inclusion: multiple pdfs with page group included in a single page
+pdfTeX warning: pdflatex (file ../results/genetic/genetic_performance.pdf): PDF
+ inclusion: multiple pdfs with page group included in a single page
 > <../results/comparing_read_performance.pdf
 
-pdfTeX warning: /usr/bin/pdflatex (file ../results/comparing_read_performance.p
-df): PDF inclusion: multiple pdfs with page group included in a single page
+pdfTeX warning: pdflatex (file ../results/comparing_read_performance.pdf): PDF 
+inclusion: multiple pdfs with page group included in a single page
 > <../results/comparing_write_performance.pdf
 
-pdfTeX warning: /usr/bin/pdflatex (file ../results/comparing_write_performance.
-pdf): PDF inclusion: multiple pdfs with page group included in a single page
+pdfTeX warning: pdflatex (file ../results/comparing_write_performance.pdf): PDF
+ inclusion: multiple pdfs with page group included in a single page
 >]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 161.
  (./Test_Run_Intro.aux)
@@ -690,13 +683,13 @@ LaTeX Font Warning: Size substitutions with differences
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 161.
  ) 
 Here is how much of TeX's memory you used:
- 10005 strings out of 493029
- 153327 string characters out of 6136234
- 387857 words of memory out of 5000000
- 13338 multiletter control sequences out of 15000+600000
+ 9913 strings out of 493304
+ 151995 string characters out of 6139871
+ 377010 words of memory out of 5000000
+ 13169 multiletter control sequences out of 15000+600000
  17440 words of font info for 66 fonts, out of 8000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 39i,12n,43p,420b,551s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 957 hyphenation exceptions out of 8191
+ 39i,12n,43p,420b,559s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf/fonts/
 type1/public/cm-super/sfbx0900.pfb></usr/share/texmf/fonts/type1/public/cm-supe
@@ -705,7 +698,7 @@ r/sfbx2488.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfcc1200.pfb></usr
 ype1/public/cm-super/sfrm1000.pfb></usr/share/texmf/fonts/type1/public/cm-super
 /sfrm1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti0900.pfb></usr/
 share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on Test_Run_Intro.pdf (2 pages, 183077 bytes).
+Output written on Test_Run_Intro.pdf (2 pages, 185386 bytes).
 PDF statistics:
  137 PDF objects out of 1000 (max. 8388607)
  108 compressed objects within 2 object streams
