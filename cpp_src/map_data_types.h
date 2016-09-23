@@ -71,6 +71,7 @@ public:
     void set_color(Color col);
     Color get_color();
     bool has_conflicting_neighbors();
+    
 
 private:
     Color color;

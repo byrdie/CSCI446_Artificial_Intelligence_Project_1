@@ -23,6 +23,7 @@
 #include "map_problem_gen.h"
 #include "backtracking.h"
 #include "gnuplot-iostream.h"
+#include "min-conflicts.h"
 #include "genetic.h"
 
 using namespace std;

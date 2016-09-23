@@ -41,6 +41,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/main.o \
 	${OBJECTDIR}/map_data_types.o \
 	${OBJECTDIR}/map_problem_gen.o \
+	${OBJECTDIR}/min-conflicts.o \
 	${OBJECTDIR}/newfile.o
 
 
@@ -97,6 +98,11 @@ ${OBJECTDIR}/map_problem_gen.o: map_problem_gen.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g `pkg-config --cflags cairo` `pkg-config --cflags cairo-fc` `pkg-config --cflags cairo-ft` `pkg-config --cflags cairo-gobject` `pkg-config --cflags cairo-pdf` `pkg-config --cflags cairo-png` `pkg-config --cflags cairo-ps` `pkg-config --cflags cairo-script` `pkg-config --cflags cairo-svg` `pkg-config --cflags cairo-tee` `pkg-config --cflags cairo-xcb` `pkg-config --cflags cairo-xcb-shm` `pkg-config --cflags cairo-xlib` `pkg-config --cflags cairo-xlib-xrender` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/map_problem_gen.o map_problem_gen.cpp
+
+${OBJECTDIR}/min-conflicts.o: min-conflicts.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g `pkg-config --cflags cairo` `pkg-config --cflags cairo-fc` `pkg-config --cflags cairo-ft` `pkg-config --cflags cairo-gobject` `pkg-config --cflags cairo-pdf` `pkg-config --cflags cairo-png` `pkg-config --cflags cairo-ps` `pkg-config --cflags cairo-script` `pkg-config --cflags cairo-svg` `pkg-config --cflags cairo-tee` `pkg-config --cflags cairo-xcb` `pkg-config --cflags cairo-xcb-shm` `pkg-config --cflags cairo-xlib` `pkg-config --cflags cairo-xlib-xrender` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/min-conflicts.o min-conflicts.cpp
 
 ${OBJECTDIR}/newfile.o: newfile.c 
 	${MKDIR} -p ${OBJECTDIR}
