@@ -165,8 +165,6 @@ void Cairo::draw_poly(Point * poly[], int N, int color) {
             cairo_set_source_rgb(cr, hf(0x75), hf(0x75), hf(0x75));
             break;
         default:
-            cout << "here" << endl;
-            cout << color << endl;
             cairo_set_source_rgb(cr, 0, 0, 0);
             
     }

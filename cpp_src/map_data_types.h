@@ -15,6 +15,7 @@ enum Color{
 }; 
 
 #define NOCOLOR 0xF0F0F0F0
+#define THREECOLOR 0xF0F0F000
 #define RED     0xF0000000
 #define GREEN   0x00F00000
 #define BLUE    0x0000F000
@@ -96,6 +97,7 @@ public:
     int num_conflicting_neighbors(int i);
     void set_all_colors(unsigned int n_colors[]);
     int num_conflicts();
+    void three_clean_map_bitwise();
 };
 
 #endif //CPP_SRC_MAP_DATA_TYPES_H

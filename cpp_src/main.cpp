@@ -150,7 +150,7 @@ void backtrack_simple_experiment(vector<vector<Map *>> dataset, vector<vector<fl
             map->clean_map();
             auto t1 = chrono::high_resolution_clock::now();
             int steps = 0;
-            backtrack(map, 4, 0, &steps, max_steps);
+            bool result = backtrack(map, 3, 0, &steps, max_steps);
             auto t2 = std::chrono::high_resolution_clock::now();
 
             char * filename = new char[100];
@@ -158,7 +158,9 @@ void backtrack_simple_experiment(vector<vector<Map *>> dataset, vector<vector<fl
             Cairo * cairo = new Cairo(filename);
             map->draw_map(cairo);
             cairo->finish();
-            
+            if (steps > max_steps){
+                result = false;
+            }
 //            etime = chrono::duration_cast<chrono::hours>(t2 - t1).count()
 
             cout << "Simple Backtracking N = " << N << ", j = " << j << endl;
@@ -171,6 +173,7 @@ void backtrack_simple_experiment(vector<vector<Map *>> dataset, vector<vector<fl
             cout << "Number of writes: " << (float) map->num_writes << endl;
             cout << "Writes/s: " << (float) map->num_writes / chrono::duration_cast<chrono::microseconds>(t2 - t1).count() * 1.0e6 << endl;
             cout << "Steps: " << steps << endl;
+            cout << "Result" << result << endl;
             cout << endl;
             reads_for_N.push_back(map->num_reads);
             writes_for_N.push_back(map->num_writes);
@@ -239,10 +242,10 @@ void backtrack_forward_experiment(vector<vector<Map *>> dataset, vector<vector<f
 
         for (int j = 0; j < dataset[i].size(); j++) {
             Map * map = dataset[i][j];
-            map->clean_map_bitwise();
+            map->three_clean_map_bitwise();
             auto t1 = chrono::high_resolution_clock::now();
             int steps = 0;
-            backtrack_forward(map, 0, &steps, max_steps);
+            bool result = backtrack_forward(map, 0, &steps, max_steps);
             auto t2 = std::chrono::high_resolution_clock::now();
 
             char * filename = new char[100];
@@ -250,7 +253,11 @@ void backtrack_forward_experiment(vector<vector<Map *>> dataset, vector<vector<f
             Cairo * cairo = new Cairo(filename);
             map->draw_map_bitwise(cairo);
             cairo->finish();
-
+            
+            if (steps > max_steps){
+                result = false;
+            }
+            
             cout << "Backtracking with Forward Checking, N = " << N << ", j = " << j << endl;
             cout << "Time Elapsed: " << (float) chrono::duration_cast<chrono::hours>(t2 - t1).count() 
                     << ":" << chrono::duration_cast<chrono::minutes>(t2 - t1).count() 
@@ -261,6 +268,7 @@ void backtrack_forward_experiment(vector<vector<Map *>> dataset, vector<vector<f
             cout << "Number of writes: " << (float) map->num_writes << endl;
             cout << "Writes/s: " << (float) map->num_writes / chrono::duration_cast<chrono::microseconds>(t2 - t1).count() * 1.0e6 << endl;
             cout << "Steps: " << steps << endl;
+            cout << "Result" << result << endl;
             cout << endl;
             reads_for_N.push_back(map->num_reads);
             writes_for_N.push_back(map->num_writes);
@@ -332,10 +340,10 @@ void backtrack_mac_experiment(vector<vector<Map *>> dataset, vector<vector<float
 
         for (int j = 0; j < dataset[i].size(); j++) {
             Map * map = dataset[i][j];
-            map->clean_map_bitwise();
+            map->three_clean_map_bitwise();
             auto t1 = chrono::high_resolution_clock::now();
             int steps = 0;
-            backtrack_mac(map, 0, &steps, max_steps);
+            bool result = backtrack_mac(map, 0, &steps, max_steps);
             auto t2 = std::chrono::high_resolution_clock::now();
 
             char * filename = new char[100];
@@ -343,6 +351,10 @@ void backtrack_mac_experiment(vector<vector<Map *>> dataset, vector<vector<float
             Cairo * cairo = new Cairo(filename);
             map->draw_map_bitwise(cairo);
             cairo->finish();
+            
+            if (steps > max_steps){
+                result = false;
+            }
 
             cout << "Backtracking with MAC, N = " << N << ", j = " << j << endl;
             cout << "Time Elapsed: " << (float) chrono::duration_cast<chrono::hours>(t2 - t1).count() 
@@ -354,6 +366,7 @@ void backtrack_mac_experiment(vector<vector<Map *>> dataset, vector<vector<float
             cout << "Number of writes: " << (float) map->num_writes << endl;
             cout << "Writes/s: " << (float) map->num_writes / chrono::duration_cast<chrono::microseconds>(t2 - t1).count() * 1.0e6 << endl;
             cout << "Steps: " << steps << endl;
+            cout << "Result" << result << endl;
             cout << endl;
             reads_for_N.push_back(map->num_reads);
             log_reads_for_N.push_back(log10(map->num_reads));

@@ -11,7 +11,7 @@ bool backtrack(Map * map, const unsigned int k, const unsigned int index, int* c
     }
     
     if( *counter > max_depth){
-        return false;
+        return true;
     }
 
     // Loop through all color combinations
@@ -40,7 +40,7 @@ bool backtrack_forward(Map * map, uint index, int* counter, int max_depth) {
         return true;
     }
     if( *counter > max_depth){
-        return false;
+        return true;
     }
     uint num_e = map->graph[index]->num_edges;
     uint old_colors[num_e];
@@ -136,7 +136,7 @@ bool backtrack_mac(Map * map, uint index, int* counter, int max_depth) {
         return true;
     }
     if( *counter > max_depth){
-        return false;
+        return true;
     }
 
     uint old_colors[map->N];
