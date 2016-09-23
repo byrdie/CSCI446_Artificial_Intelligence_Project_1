@@ -24,7 +24,7 @@ int main(int argc, char** argv) {
 
     int num_steps = 10;
     int num_exp_per_step = 20;
-    int num_vert_per_step = 6;
+    int num_vert_per_step = 2;
 
     for (int i = 0; i < num_steps; i++) {
         vector<Map *> next_row;
@@ -136,7 +136,7 @@ int main(int argc, char** argv) {
 }
 
 void backtrack_simple_experiment(vector<vector<Map *>> dataset, vector<vector<float>> &reads, vector<vector<float>> &writes, vector<vector<float>> &timings) {
-
+    int max_steps = 10000;
     for (int i = 0; i < dataset.size(); i++) {
 
         int N = dataset[i][0]->N;
@@ -149,7 +149,8 @@ void backtrack_simple_experiment(vector<vector<Map *>> dataset, vector<vector<fl
             Map * map = dataset[i][j];
             map->clean_map();
             auto t1 = chrono::high_resolution_clock::now();
-            backtrack(map, 4, 0);
+            int steps = 0;
+            backtrack(map, 4, 0, &steps, max_steps);
             auto t2 = std::chrono::high_resolution_clock::now();
 
             char * filename = new char[100];
@@ -169,6 +170,7 @@ void backtrack_simple_experiment(vector<vector<Map *>> dataset, vector<vector<fl
             cout << "Reads/s: " << (float) map->num_reads / chrono::duration_cast<chrono::microseconds>(t2 - t1).count() * 1.0e6 << endl;
             cout << "Number of writes: " << (float) map->num_writes << endl;
             cout << "Writes/s: " << (float) map->num_writes / chrono::duration_cast<chrono::microseconds>(t2 - t1).count() * 1.0e6 << endl;
+            cout << "Steps: " << steps << endl;
             cout << endl;
             reads_for_N.push_back(map->num_reads);
             writes_for_N.push_back(map->num_writes);
@@ -227,6 +229,7 @@ void backtrack_simple_experiment(vector<vector<Map *>> dataset, vector<vector<fl
 }
 
 void backtrack_forward_experiment(vector<vector<Map *>> dataset, vector<vector<float>> &reads, vector<vector<float>> &writes, vector<vector<float>> &timings) {
+    int max_steps = 10000;
     for (int i = 0; i < dataset.size(); i++) {
 
         int N = dataset[i][0]->N;
@@ -238,7 +241,8 @@ void backtrack_forward_experiment(vector<vector<Map *>> dataset, vector<vector<f
             Map * map = dataset[i][j];
             map->clean_map_bitwise();
             auto t1 = chrono::high_resolution_clock::now();
-            backtrack_forward(map, 0);
+            int steps = 0;
+            backtrack_forward(map, 0, &steps, max_steps);
             auto t2 = std::chrono::high_resolution_clock::now();
 
             char * filename = new char[100];
@@ -256,6 +260,7 @@ void backtrack_forward_experiment(vector<vector<Map *>> dataset, vector<vector<f
             cout << "Reads/s: " << (float) map->num_reads / chrono::duration_cast<chrono::microseconds>(t2 - t1).count() * 1.0e6 << endl;
             cout << "Number of writes: " << (float) map->num_writes << endl;
             cout << "Writes/s: " << (float) map->num_writes / chrono::duration_cast<chrono::microseconds>(t2 - t1).count() * 1.0e6 << endl;
+            cout << "Steps: " << steps << endl;
             cout << endl;
             reads_for_N.push_back(map->num_reads);
             writes_for_N.push_back(map->num_writes);
@@ -314,7 +319,7 @@ void backtrack_forward_experiment(vector<vector<Map *>> dataset, vector<vector<f
 }
 
 void backtrack_mac_experiment(vector<vector<Map *>> dataset, vector<vector<float>> &reads, vector<vector<float>> &writes, vector<vector<float>> &timings) {
-    
+    int max_steps = 10000;
     vector<vector<float>> log_reads;
     
     for (int i = 0; i < dataset.size(); i++) {
@@ -329,7 +334,8 @@ void backtrack_mac_experiment(vector<vector<Map *>> dataset, vector<vector<float
             Map * map = dataset[i][j];
             map->clean_map_bitwise();
             auto t1 = chrono::high_resolution_clock::now();
-            backtrack_mac(map, 0);
+            int steps = 0;
+            backtrack_mac(map, 0, &steps, max_steps);
             auto t2 = std::chrono::high_resolution_clock::now();
 
             char * filename = new char[100];
@@ -347,6 +353,7 @@ void backtrack_mac_experiment(vector<vector<Map *>> dataset, vector<vector<float
             cout << "Reads/s: " << (float) map->num_reads / chrono::duration_cast<chrono::microseconds>(t2 - t1).count() * 1.0e6 << endl;
             cout << "Number of writes: " << (float) map->num_writes << endl;
             cout << "Writes/s: " << (float) map->num_writes / chrono::duration_cast<chrono::microseconds>(t2 - t1).count() * 1.0e6 << endl;
+            cout << "Steps: " << steps << endl;
             cout << endl;
             reads_for_N.push_back(map->num_reads);
             log_reads_for_N.push_back(log10(map->num_reads));
@@ -415,7 +422,7 @@ void backtrack_mac_experiment(vector<vector<Map *>> dataset, vector<vector<float
 }
 
 void genetic_experiment(vector<vector<Map *>> dataset, vector<vector<float>> &reads, vector<vector<float>> &writes, vector<vector<float>> &timings) {
-
+    int max_generations = 1000000;
     vector<vector<float>> num_runs;
 
     for (int i = 0; i < dataset.size(); i++) {
@@ -431,7 +438,7 @@ void genetic_experiment(vector<vector<Map *>> dataset, vector<vector<float>> &re
             map->clean_map();
             const int pop_size = (int) N;
             const int mut_rate = 100;
-            GeneticAlgorithm * ga = new GeneticAlgorithm(map, pop_size, mut_rate, N, 4);
+            GeneticAlgorithm * ga = new GeneticAlgorithm(map, pop_size, mut_rate, N, 4, max_generations);
             auto t1 = chrono::high_resolution_clock::now();
             int gens = ga->run();
             auto t2 = std::chrono::high_resolution_clock::now();
