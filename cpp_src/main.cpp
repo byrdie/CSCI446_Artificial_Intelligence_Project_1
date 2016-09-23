@@ -23,7 +23,7 @@ int main(int argc, char** argv) {
     init_rand();
 
     int num_steps = 10;
-    int num_exp_per_step = 20;
+    int num_exp_per_step = 10;
     int num_vert_per_step = 6;
 
     for (int i = 0; i < num_steps; i++) {
@@ -40,22 +40,22 @@ int main(int argc, char** argv) {
     vector<vector<float>> btmac_reads;
     vector<vector<float>> btmac_writes;
     vector<vector<float>> btmac_timings;
-    backtrack_mac_experiment(dataset, btmac_reads, btmac_writes, btmac_timings);
+    backtrack_mac_experiment(dataset, btmac_reads, btmac_writes, btmac_timings, 3);
 
     vector<vector<float>> btfor_reads;
     vector<vector<float>> btfor_writes;
     vector<vector<float>> btfor_timings;
-    backtrack_forward_experiment(dataset, btfor_reads, btfor_writes, btfor_timings);
+    backtrack_forward_experiment(dataset, btfor_reads, btfor_writes, btfor_timings, 3);
 
     vector<vector<float>> btsim_reads;
     vector<vector<float>> btsim_writes;
     vector<vector<float>> btsim_timings;
-    backtrack_simple_experiment(dataset, btsim_reads, btsim_writes, btsim_timings);
+    backtrack_simple_experiment(dataset, btsim_reads, btsim_writes, btsim_timings, 3);
 
     vector<vector<float>> gen_reads;
     vector<vector<float>> gen_writes;
     vector<vector<float>> gen_timings;
-    genetic_experiment(dataset, gen_reads, gen_writes, gen_timings);
+    genetic_experiment(dataset, gen_reads, gen_writes, gen_timings, 3);
 
     Gnuplot gp;
 
@@ -135,7 +135,9 @@ int main(int argc, char** argv) {
     return 0;
 }
 
-void backtrack_simple_experiment(vector<vector<Map *>> dataset, vector<vector<float>> &reads, vector<vector<float>> &writes, vector<vector<float>> &timings) {
+void backtrack_simple_experiment(vector<vector<Map *>> dataset, vector<vector<float>> &reads, vector<vector<float>> &writes, vector<vector<float>> &timings, int k) {
+    int max_steps = 1e7;
+    vector<vector<float>> step_arr;
 
     for (int i = 0; i < dataset.size(); i++) {
 
@@ -143,13 +145,15 @@ void backtrack_simple_experiment(vector<vector<Map *>> dataset, vector<vector<fl
         vector<float> reads_for_N;
         vector<float> writes_for_N;
         vector<float> timings_for_N;
+        vector<float> step_arr_for_N;
 
 
         for (int j = 0; j < dataset[i].size(); j++) {
             Map * map = dataset[i][j];
             map->clean_map();
             auto t1 = chrono::high_resolution_clock::now();
-            backtrack(map, 4, 0);
+            int steps = 0;
+            bool result = backtrack(map, k, 0, &steps, max_steps);
             auto t2 = std::chrono::high_resolution_clock::now();
 
             char * filename = new char[100];
@@ -158,18 +162,30 @@ void backtrack_simple_experiment(vector<vector<Map *>> dataset, vector<vector<fl
             map->draw_map(cairo);
             cairo->finish();
 
+
             //            etime = chrono::duration_cast<chrono::hours>(t2 - t1).count()
 
             cout << "Simple Backtracking N = " << N << ", j = " << j << endl;
+            bool saturated = (steps >= max_steps);
+            cout << "Experiment success: " << ((!saturated and !result) ? false : true) << endl;
+            cout << "Step limit reached: " << saturated << endl;
             print_time(t1, t2);
+            cout << "Number of recursive calls: " << (float) steps << endl;
             cout << "Number of reads: " << (float) map->num_reads << endl;
             cout << "Reads/s: " << (float) map->num_reads / chrono::duration_cast<chrono::microseconds>(t2 - t1).count() * 1.0e6 << endl;
             cout << "Number of writes: " << (float) map->num_writes << endl;
             cout << "Writes/s: " << (float) map->num_writes / chrono::duration_cast<chrono::microseconds>(t2 - t1).count() * 1.0e6 << endl;
+            cout << "Steps: " << steps << endl;
+            cout << "Steps/s: " << (float) 
             cout << endl;
+
+
             reads_for_N.push_back(map->num_reads);
             writes_for_N.push_back(map->num_writes);
             timings_for_N.push_back(chrono::duration_cast<chrono::microseconds>(t2 - t1).count() / 1.0e6);
+            step_arr_for_N.push_back(steps);
+
+
 
         }
 
@@ -198,6 +214,14 @@ void backtrack_simple_experiment(vector<vector<Map *>> dataset, vector<vector<fl
         next_data_timing.push_back(*max_element(begin(timings_for_N), end(timings_for_N)));
         next_data_timing.push_back(*min_element(begin(timings_for_N), end(timings_for_N)));
         timings.push_back(next_data_timing);
+
+        vector<float> step_std_mean = standard_deviation(step_arr_for_N);
+        vector<float> next_data_step;
+        next_data_step.push_back((float) N);
+        next_data_step.push_back(step_std_mean[0]);
+        next_data_step.push_back(*max_element(begin(step_arr_for_N), end(step_arr_for_N)));
+        next_data_step.push_back(*min_element(begin(step_arr_for_N), end(step_arr_for_N)));
+        step_arr.push_back(next_data_step);
 
 
     }
@@ -216,26 +240,40 @@ void backtrack_simple_experiment(vector<vector<Map *>> dataset, vector<vector<fl
             "'-' using 1:2 lw 2 lt 2 lc 2 with lines title 'mean vertex reads',"
             "'-'  using 1:3:4 lc 2 with filledcurves notitle, "
             "'-' using 1:2 lw 2 lt 2 lc 1 with lines title 'mean vertex writes',"
-            "'-'  using 1:3:4 lc 1 with filledcurves notitle \n";
+            "'-'  using 1:3:4 lc 1 with filledcurves notitle,"
+            "'-' using 1:2 lw 2 lt 2 lc 3 with lines title 'mean recursive calls',"
+            "'-'  using 1:3:4 lc 3 with filledcurves notitle\n";
     gp.send1d(reads);
     gp.send1d(reads);
     gp.send1d(writes);
     gp.send1d(writes);
+    gp.send1d(step_arr);
+    gp.send1d(step_arr);
 }
 
-void backtrack_forward_experiment(vector<vector<Map *>> dataset, vector<vector<float>> &reads, vector<vector<float>> &writes, vector<vector<float>> &timings) {
+void backtrack_forward_experiment(vector<vector<Map *>> dataset, vector<vector<float>> &reads, vector<vector<float>> &writes, vector<vector<float>> &timings, int k) {
+    int max_steps = 1e7;
+    vector<vector<float>> step_arr;
+
     for (int i = 0; i < dataset.size(); i++) {
 
         int N = dataset[i][0]->N;
         vector<float> reads_for_N;
         vector<float> writes_for_N;
         vector<float> timings_for_N;
+        vector<float> step_arr_for_N;
 
         for (int j = 0; j < dataset[i].size(); j++) {
             Map * map = dataset[i][j];
-            map->clean_map_bitwise();
+            if(k ==4){
+                map->clean_map_bitwise();
+            } else if (k ==3) {
+                map->
+            }
+            
             auto t1 = chrono::high_resolution_clock::now();
-            backtrack_forward(map, 0);
+            int steps = 0;
+            bool result = backtrack_forward(map, 0, &steps, max_steps);
             auto t2 = std::chrono::high_resolution_clock::now();
 
             char * filename = new char[100];
@@ -245,15 +283,21 @@ void backtrack_forward_experiment(vector<vector<Map *>> dataset, vector<vector<f
             cairo->finish();
 
             cout << "Backtracking with Forward Checking, N = " << N << ", j = " << j << endl;
+            bool saturated = (steps >= max_steps);
+            cout << "Experiment success: " << ((!saturated and !result) ? false : true) << endl;
+            cout << "Step limit reached: " << saturated << endl;
             print_time(t1, t2);
+            cout << "Number of recursive calls: " << (float) steps << endl;
             cout << "Number of reads: " << (float) map->num_reads << endl;
             cout << "Reads/s: " << (float) map->num_reads / chrono::duration_cast<chrono::microseconds>(t2 - t1).count() * 1.0e6 << endl;
             cout << "Number of writes: " << (float) map->num_writes << endl;
             cout << "Writes/s: " << (float) map->num_writes / chrono::duration_cast<chrono::microseconds>(t2 - t1).count() * 1.0e6 << endl;
+            cout << "Steps: " << steps << endl;
             cout << endl;
             reads_for_N.push_back(map->num_reads);
             writes_for_N.push_back(map->num_writes);
             timings_for_N.push_back(chrono::duration_cast<chrono::microseconds>(t2 - t1).count() / 1.0e6);
+            step_arr_for_N.push_back(steps);
 
 
         }
@@ -282,6 +326,14 @@ void backtrack_forward_experiment(vector<vector<Map *>> dataset, vector<vector<f
         next_data_timing.push_back(*max_element(begin(timings_for_N), end(timings_for_N)));
         next_data_timing.push_back(*min_element(begin(timings_for_N), end(timings_for_N)));
         timings.push_back(next_data_timing);
+
+        vector<float> step_std_mean = standard_deviation(step_arr_for_N);
+        vector<float> next_data_step;
+        next_data_step.push_back((float) N);
+        next_data_step.push_back(step_std_mean[0]);
+        next_data_step.push_back(*max_element(begin(step_arr_for_N), end(step_arr_for_N)));
+        next_data_step.push_back(*min_element(begin(step_arr_for_N), end(step_arr_for_N)));
+        step_arr.push_back(next_data_step);
     }
 
     Gnuplot gp;
@@ -298,16 +350,23 @@ void backtrack_forward_experiment(vector<vector<Map *>> dataset, vector<vector<f
             "'-' using 1:2 lw 2 lt 2 lc 2 with lines title 'mean vertex reads',"
             "'-'  using 1:3:4 lc 2 with filledcurves notitle, "
             "'-' using 1:2 lw 2 lt 2 lc 1 with lines title 'mean vertex writes',"
-            "'-'  using 1:3:4 lc 1 with filledcurves notitle\n";
+            "'-'  using 1:3:4 lc 1 with filledcurves notitle,"
+            "'-' using 1:2 lw 2 lt 2 lc 3 with lines title 'mean recursive calls',"
+            "'-'  using 1:3:4 lc 3 with filledcurves notitle\n";
     gp.send1d(reads);
     gp.send1d(reads);
     gp.send1d(writes);
     gp.send1d(writes);
+    gp.send1d(step_arr);
+    gp.send1d(step_arr);
 
 
 }
 
-void backtrack_mac_experiment(vector<vector<Map *>> dataset, vector<vector<float>> &reads, vector<vector<float>> &writes, vector<vector<float>> &timings) {
+void backtrack_mac_experiment(vector<vector<Map *>> dataset, vector<vector<float>> &reads, vector<vector<float>> &writes, vector<vector<float>> &timings, int k) {
+
+    int max_steps = 1e7;
+    vector<vector<float>> step_arr;
 
     for (int i = 0; i < dataset.size(); i++) {
 
@@ -315,12 +374,14 @@ void backtrack_mac_experiment(vector<vector<Map *>> dataset, vector<vector<float
         vector<float> reads_for_N;
         vector<float> writes_for_N;
         vector<float> timings_for_N;
+        vector<float> step_arr_for_N;
 
         for (int j = 0; j < dataset[i].size(); j++) {
             Map * map = dataset[i][j];
             map->clean_map_bitwise();
             auto t1 = chrono::high_resolution_clock::now();
-            backtrack_mac(map, 0);
+            int steps = 0;
+            bool result = backtrack_mac(map, 0, &steps, max_steps);
             auto t2 = std::chrono::high_resolution_clock::now();
 
             char * filename = new char[100];
@@ -330,15 +391,21 @@ void backtrack_mac_experiment(vector<vector<Map *>> dataset, vector<vector<float
             cairo->finish();
 
             cout << "Backtracking with MAC, N = " << N << ", j = " << j << endl;
+            bool saturated = (steps >= max_steps);
+            cout << "Experiment success: " << ((!saturated and !result) ? false : true) << endl;
+            cout << "Step limit reached: " << saturated << endl;
             print_time(t1, t2);
+            cout << "Number of recursive calls: " << (float) steps << endl;
             cout << "Number of reads: " << (float) map->num_reads << endl;
             cout << "Reads/s: " << (float) map->num_reads / chrono::duration_cast<chrono::microseconds>(t2 - t1).count() * 1.0e6 << endl;
             cout << "Number of writes: " << (float) map->num_writes << endl;
             cout << "Writes/s: " << (float) map->num_writes / chrono::duration_cast<chrono::microseconds>(t2 - t1).count() * 1.0e6 << endl;
+            cout << "Steps: " << steps << endl;
             cout << endl;
             reads_for_N.push_back(map->num_reads);
             writes_for_N.push_back(map->num_writes);
             timings_for_N.push_back(chrono::duration_cast<chrono::microseconds>(t2 - t1).count() / 1.0e6);
+            step_arr_for_N.push_back(steps);
 
         }
 
@@ -365,8 +432,15 @@ void backtrack_mac_experiment(vector<vector<Map *>> dataset, vector<vector<float
         next_data_timing.push_back(timings_std_mean[0]);
         next_data_timing.push_back(*max_element(begin(timings_for_N), end(timings_for_N)));
         next_data_timing.push_back(*min_element(begin(timings_for_N), end(timings_for_N)));
-        ;
         timings.push_back(next_data_timing);
+
+        vector<float> step_std_mean = standard_deviation(step_arr_for_N);
+        vector<float> next_data_step;
+        next_data_step.push_back((float) N);
+        next_data_step.push_back(step_std_mean[0]);
+        next_data_step.push_back(*max_element(begin(step_arr_for_N), end(step_arr_for_N)));
+        next_data_step.push_back(*min_element(begin(step_arr_for_N), end(step_arr_for_N)));
+        step_arr.push_back(next_data_step);
     }
 
     Gnuplot gp;
@@ -383,15 +457,19 @@ void backtrack_mac_experiment(vector<vector<Map *>> dataset, vector<vector<float
             "'-' using 1:2 lw 2 lt 2 lc 2 with lines title 'mean vertex reads',"
             "'-'  using 1:3:4 lc 2 with filledcurves notitle, "
             "'-' using 1:2 lw 2 lt 2 lc 1 with lines title 'mean vertex writes',"
-            "'-'  using 1:3:4 lc 1 with filledcurves notitle\n";
+            "'-'  using 1:3:4 lc 1 with filledcurves notitle,"
+            "'-' using 1:2 lw 2 lt 2 lc 3 with lines title 'mean recursive calls',"
+            "'-'  using 1:3:4 lc 3 with filledcurves notitle\n";
     gp.send1d(reads);
     gp.send1d(reads);
     gp.send1d(writes);
     gp.send1d(writes);
+    gp.send1d(step_arr);
+    gp.send1d(step_arr);
 }
 
-void genetic_experiment(vector<vector<Map *>> dataset, vector<vector<float>> &reads, vector<vector<float>> &writes, vector<vector<float>> &timings) {
-
+void genetic_experiment(vector<vector<Map *>> dataset, vector<vector<float>> &reads, vector<vector<float>> &writes, vector<vector<float>> &timings, int k) {
+    int max_generations = 1e5;
     vector<vector<float>> num_runs;
 
     for (int i = 0; i < dataset.size(); i++) {
@@ -407,7 +485,7 @@ void genetic_experiment(vector<vector<Map *>> dataset, vector<vector<float>> &re
             map->clean_map();
             const int pop_size = (int) N;
             const int mut_rate = 100;
-            GeneticAlgorithm * ga = new GeneticAlgorithm(map, pop_size, mut_rate, N, 4);
+            GeneticAlgorithm * ga = new GeneticAlgorithm(map, pop_size, mut_rate, N, 4, max_generations);
             auto t1 = chrono::high_resolution_clock::now();
             int gens = ga->run();
             auto t2 = std::chrono::high_resolution_clock::now();
@@ -419,6 +497,7 @@ void genetic_experiment(vector<vector<Map *>> dataset, vector<vector<float>> &re
             cairo->finish();
 
             cout << "Genetic Algorithm, N = " << N << ", j = " << j << endl;
+            cout << "Generation limit reached: " << ((gens == 0) ? true : false) << endl;
             print_time(t1, t2);
             cout << "Number of reads: " << (float) map->num_reads << endl;
             cout << "Reads/s: " << (float) map->num_reads / chrono::duration_cast<chrono::microseconds>(t2 - t1).count() * 1.0e6 << endl;
@@ -482,8 +561,8 @@ void genetic_experiment(vector<vector<Map *>> dataset, vector<vector<float>> &re
             "'-'  using 1:3:4 lc 2 with filledcurves notitle, "
             "'-' using 1:2 lt 2 lc 1 with lines title 'mean vertex writes',"
             "'-'  using 1:3:4 lc 1 with filledcurves notitle, "
-            "'-' using 1:2 lt 2 lc 1 with lines title 'mean number of generations',"
-            "'-'  using 1:3:4 lc 1 with filledcurves notitle, \n";
+            "'-' using 1:2 lt 2 lc 3 with lines title 'mean number of generations',"
+            "'-'  using 1:3:4 lc 3 with filledcurves notitle, \n";
     gp.send1d(reads);
     gp.send1d(reads);
     gp.send1d(writes);

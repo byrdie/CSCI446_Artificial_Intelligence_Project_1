@@ -5,13 +5,14 @@
  */
 #include "genetic.h"
 
-GeneticAlgorithm::GeneticAlgorithm(Map * in_map, int in_pop_size, int in_mut_rate, int in_N, int in_num_colors) {
+GeneticAlgorithm::GeneticAlgorithm(Map * in_map, int in_pop_size, int in_mut_rate, int in_N, int in_num_colors, int max_gen) {
     map = in_map;
     pop_size = in_pop_size;
     mut_rate = in_mut_rate;
     N = in_N;
     pop = new unsigned int*[pop_size];
     num_colors = in_num_colors;
+    max_generations = max_gen;
     for (int i = 0; i < pop_size; i++) {
         pop[i] = new unsigned int[N];
     }
@@ -63,6 +64,9 @@ int GeneticAlgorithm::run() {
         }
 
         generations++;
+        if(generations > max_generations){
+            return 0;
+        }
     }
     
     return generations;

@@ -3,10 +3,14 @@
 
 using namespace std;
 
-bool backtrack(Map * map, const unsigned int k, const unsigned int index) {
-
-
+bool backtrack(Map * map, const unsigned int k, const unsigned int index, int* counter, int max_depth) {
+    *counter+=1;
+   
     if (index == map->N) {
+        return true;
+    }
+    
+    if( *counter > max_depth){
         return true;
     }
 
@@ -19,7 +23,7 @@ bool backtrack(Map * map, const unsigned int k, const unsigned int index) {
         if (map->has_conflicting_neighbors(index)) {
             continue;
         } else {
-            if (backtrack(map, k, index + 1)) {
+            if (backtrack(map, k, index + 1, counter, max_depth)) {
                 return true;
             } else {
                 continue;
@@ -30,12 +34,14 @@ bool backtrack(Map * map, const unsigned int k, const unsigned int index) {
     return false;
 }
 
-bool backtrack_forward(Map * map, uint index) {
-
+bool backtrack_forward(Map * map, uint index, int* counter, int max_depth) {
+    *counter+=1;
     if (index == map->N) {
         return true;
     }
-
+    if( *counter > max_depth){
+        return true;
+    }
     uint num_e = map->graph[index]->num_edges;
     uint old_colors[num_e];
     for (int j = 0; j < num_e; j++) {
@@ -49,7 +55,7 @@ bool backtrack_forward(Map * map, uint index) {
 
         if (forward_check(map, index, new_color)) {
             map->set_color(index, new_color);
-            if (backtrack_forward(map, index + 1)) {
+            if (backtrack_forward(map, index + 1, counter, max_depth)) {
                 return true;
             }
         }
@@ -60,7 +66,7 @@ bool backtrack_forward(Map * map, uint index) {
 
         if (forward_check(map, index, new_color)) {
             map->set_color(index, new_color);
-            if (backtrack_forward(map, index + 1)) {
+            if (backtrack_forward(map, index + 1, counter, max_depth)) {
                 return true;
             }
         }
@@ -71,7 +77,7 @@ bool backtrack_forward(Map * map, uint index) {
 
         if (forward_check(map, index, new_color)) {
             map->set_color(index, new_color);
-            if (backtrack_forward(map, index + 1)) {
+            if (backtrack_forward(map, index + 1, counter, max_depth)) {
                 return true;
             }
         }
@@ -82,7 +88,7 @@ bool backtrack_forward(Map * map, uint index) {
 
         if (forward_check(map, index, new_color)) {
             map->set_color(index, new_color);
-            if (backtrack_forward(map, index + 1)) {
+            if (backtrack_forward(map, index + 1, counter, max_depth)) {
                 return true;
             }
         }
@@ -124,11 +130,14 @@ bool undo_forward_check(Map * map, uint index, uint old_colors[]) {
 
 }
 
-bool backtrack_mac(Map * map, uint index) {
+bool backtrack_mac(Map * map, uint index, int* counter, int max_depth) {
+    *counter+=1;
     if (index == map->N) {
         return true;
     }
-
+    if( *counter > max_depth){
+        return true;
+    }
 
     uint old_colors[map->N];
     for (int j = 0; j < map->N; j++) {
@@ -150,7 +159,7 @@ bool backtrack_mac(Map * map, uint index) {
         uint new_color = RED;
         map->set_color(index, new_color);
         if (ac3(map, index, queue, q_len)) {
-            if (backtrack_mac(map, index + 1)) {
+            if (backtrack_mac(map, index + 1, counter, max_depth)) {
                 return true;
             }
         }
@@ -160,7 +169,7 @@ bool backtrack_mac(Map * map, uint index) {
         uint new_color = GREEN;
         map->set_color(index, new_color);
         if (ac3(map, index, queue, q_len)) {
-            if (backtrack_mac(map, index + 1)) {
+            if (backtrack_mac(map, index + 1, counter, max_depth)) {
                 return true;
             }
         }
@@ -170,7 +179,7 @@ bool backtrack_mac(Map * map, uint index) {
         uint new_color = BLUE;
         map->set_color(index, new_color);
         if (ac3(map, index, queue, q_len)) {
-            if (backtrack_mac(map, index + 1)) {
+            if (backtrack_mac(map, index + 1, counter, max_depth)) {
                 return true;
             }
         }
@@ -180,7 +189,7 @@ bool backtrack_mac(Map * map, uint index) {
         uint new_color = PURPLE;
         map->set_color(index, new_color);
         if (ac3(map, index, queue, q_len)) {
-            if (backtrack_mac(map, index + 1)) {
+            if (backtrack_mac(map, index + 1, counter, max_depth)) {
                 return true;
             }
         }
