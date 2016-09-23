@@ -93,7 +93,7 @@ public:
     bool has_conflicting_neighbors(int i);
     void set_color(int index ,int col);
     int get_color(int index);
-    int num_conflicting_neighbors(int i);
+    int num_conflicting_neighbors(int j);
     void set_all_colors(unsigned int n_colors[]);
     int num_conflicts();
 };

@@ -19,7 +19,7 @@ using namespace std;
 int main(int argc, char** argv) {
 
     vector<vector < Map *>> dataset;
-    
+
     init_rand();
 
     int num_steps = 10;
@@ -69,13 +69,13 @@ int main(int argc, char** argv) {
     gp << "set grid\n";
     gp << "set style fill transparent solid 0.2 noborder \n";
     gp << "plot "
-            "'-' using 1:2 lt 2 lc 3 with lines title  'Simple Backtracking',"
+            "'-' using 1:2 lw 2 lt 2 lc 3 with lines title  'Simple Backtracking',"
             "'-' using 1:3:4 lc 3 with filledcurves notitle,"
-            "'-' using 1:2 lt 2 lc 2 with lines title 'Backtracking with Forward Checking',"
+            "'-' using 1:2 lw 2 lt 2 lc 2 with lines title 'Backtracking with Forward Checking',"
             "'-' using 1:3:4 lc 2 with filledcurves notitle,"
-            "'-' using 1:2 lt 2 lc 1 with lines title 'Backtracking with MAC',"
+            "'-' using 1:2 lw 2 lt 2 lc 1 with lines title 'Backtracking with MAC',"
             "'-' using 1:3:4 lc 1 with filledcurves notitle,"
-            "'-' using 1:2 lt 2 lc 4 with lines title 'Genetic Algorithm',"
+            "'-' using 1:2 lw 2 lt 2 lc 4 with lines title 'Genetic Algorithm',"
             "'-' using 1:3:4 lc 4 with filledcurves notitle \n";
     gp.send1d(btsim_reads);
     gp.send1d(btsim_reads);
@@ -85,20 +85,20 @@ int main(int argc, char** argv) {
     gp.send1d(btmac_reads);
     gp.send1d(gen_reads);
     gp.send1d(gen_reads);
-    
+
     gp << "set output '../results/comparing_write_performance.pdf'\n";
     gp << "set title 'Number of Vertex Writes per Algorithm'\n";
     gp << "set ylabel 'Vertex Write Count'\n";
     gp << "plot "
-            "'-' using 1:2 lt 2 lc 3 with lines title  'Simple Backtracking',"
+            "'-' using 1:2 lw 2 lt 2 lc 3 with lines title  'Simple Backtracking',"
             "'-' using 1:3:4 lc 3 with filledcurves notitle,"
-            "'-' using 1:2 lt 2 lc 2 with lines title 'Backtracking with Forward Checking',"
+            "'-' using 1:2 lw 2 lt 2 lc 2 with lines title 'Backtracking with Forward Checking',"
             "'-' using 1:3:4 lc 2 with filledcurves notitle,"
-            "'-' using 1:2 lt 2 lc 1 with lines title 'Backtracking with MAC',"
+            "'-' using 1:2 lw 2 lt 2 lc 1 with lines title 'Backtracking with MAC',"
             "'-' using 1:3:4 lc 1 with filledcurves notitle,"
-            "'-' using 1:2 lt 2 lc 4 with lines title 'Genetic Algorithm',"
+            "'-' using 1:2 lw 2 lt 2 lc 4 with lines title 'Genetic Algorithm',"
             "'-' using 1:3:4 lc 4 with filledcurves notitle \n";
-    
+
     gp.send1d(btsim_writes);
     gp.send1d(btsim_writes);
     gp.send1d(btfor_writes);
@@ -107,20 +107,20 @@ int main(int argc, char** argv) {
     gp.send1d(btmac_writes);
     gp.send1d(gen_writes);
     gp.send1d(gen_writes);
-    
+
     gp << "set output '../results/comparing_time_performance.pdf'\n";
     gp << "set title 'Time Elapsed per Algorithm'\n";
     gp << "set ylabel 'Time Elapsed (s)'\n";
     gp << "plot "
-            "'-' using 1:2 lt 2 lc 3 with lines title  'Simple Backtracking',"
             "'-' using 1:3:4 lc 3 with filledcurves notitle,"
-            "'-' using 1:2 lt 2 lc 2 with lines title 'Backtracking with Forward Checking',"
+            "'-' using 1:2 lw 2 lt 2 lc 3 with lines title  'Simple Backtracking',"
+            "'-' using 1:2 lw 2 lt 2 lc 2 with lines title 'Backtracking with Forward Checking',"
             "'-' using 1:3:4 lc 2 with filledcurves notitle,"
-            "'-' using 1:2 lt 2 lc 1 with lines title 'Backtracking with MAC',"
+            "'-' using 1:2 lw 2 lt 2 lc 1 with lines title 'Backtracking with MAC',"
             "'-' using 1:3:4 lc 1 with filledcurves notitle,"
-            "'-' using 1:2 lt 2 lc 4 with lines title 'Genetic Algorithm',"
+            "'-' using 1:2 lw 2 lt 2 lc 4 with lines title 'Genetic Algorithm',"
             "'-' using 1:3:4 lc 4 with filledcurves notitle \n";
-    
+
     gp.send1d(btsim_timings);
     gp.send1d(btsim_timings);
     gp.send1d(btfor_timings);
@@ -157,14 +157,11 @@ void backtrack_simple_experiment(vector<vector<Map *>> dataset, vector<vector<fl
             Cairo * cairo = new Cairo(filename);
             map->draw_map(cairo);
             cairo->finish();
-            
-//            etime = chrono::duration_cast<chrono::hours>(t2 - t1).count()
+
+            //            etime = chrono::duration_cast<chrono::hours>(t2 - t1).count()
 
             cout << "Simple Backtracking N = " << N << ", j = " << j << endl;
-            cout << "Time Elapsed: " << (float) chrono::duration_cast<chrono::hours>(t2 - t1).count() 
-                    << ":" << chrono::duration_cast<chrono::minutes>(t2 - t1).count() 
-                    << ":" << chrono::duration_cast<chrono::seconds>(t2 - t1).count()
-                    << "." << chrono::duration_cast<chrono::milliseconds>(t2 - t1).count() << endl;
+            print_time(t1, t2);
             cout << "Number of reads: " << (float) map->num_reads << endl;
             cout << "Reads/s: " << (float) map->num_reads / chrono::duration_cast<chrono::microseconds>(t2 - t1).count() * 1.0e6 << endl;
             cout << "Number of writes: " << (float) map->num_writes << endl;
@@ -172,7 +169,7 @@ void backtrack_simple_experiment(vector<vector<Map *>> dataset, vector<vector<fl
             cout << endl;
             reads_for_N.push_back(map->num_reads);
             writes_for_N.push_back(map->num_writes);
-            timings_for_N.push_back(chrono::duration_cast<chrono::microseconds>(t2 - t1).count() * 1.0e6);
+            timings_for_N.push_back(chrono::duration_cast<chrono::microseconds>(t2 - t1).count() / 1.0e6);
 
         }
 
@@ -183,23 +180,23 @@ void backtrack_simple_experiment(vector<vector<Map *>> dataset, vector<vector<fl
         vector<float> next_data_read;
         next_data_read.push_back((float) N);
         next_data_read.push_back(read_std_mean[0]);
-        next_data_read.push_back(read_std_mean[0] + 1.96 * (read_std_mean[1] / sqrt(dataset[i].size())));
-        next_data_read.push_back(max(read_std_mean[0] - 1.96 * (read_std_mean[1] / sqrt(dataset[i].size())), 0.1));
+        next_data_read.push_back(*max_element(begin(reads_for_N), end(reads_for_N)));
+        next_data_read.push_back(*min_element(begin(reads_for_N), end(reads_for_N)));
         reads.push_back(next_data_read);
 
         vector<float> next_data_write;
         next_data_write.push_back((float) N);
         next_data_write.push_back(write_std_mean[0]);
-        next_data_write.push_back(write_std_mean[0] + 1.96 * (write_std_mean[1] / sqrt(dataset[i].size())));
-        next_data_write.push_back(max(write_std_mean[0] - 1.96 * (write_std_mean[1] / sqrt(dataset[i].size())), 0.1));
+        next_data_write.push_back(*max_element(begin(writes_for_N), end(writes_for_N)));
+        next_data_write.push_back(*min_element(begin(writes_for_N), end(writes_for_N)));
         writes.push_back(next_data_write);
 
         vector<float> timings_std_mean = standard_deviation(timings_for_N);
         vector<float> next_data_timing;
         next_data_timing.push_back((float) N);
         next_data_timing.push_back(timings_std_mean[0]);
-        next_data_timing.push_back(timings_std_mean[0] + 1.96 * (timings_std_mean[1] / sqrt(dataset[i].size())));
-        next_data_timing.push_back(max(timings_std_mean[0] - 1.96 * (timings_std_mean[1] / sqrt(dataset[i].size())),0.1));
+        next_data_timing.push_back(*max_element(begin(timings_for_N), end(timings_for_N)));
+        next_data_timing.push_back(*min_element(begin(timings_for_N), end(timings_for_N)));
         timings.push_back(next_data_timing);
 
 
@@ -216,9 +213,9 @@ void backtrack_simple_experiment(vector<vector<Map *>> dataset, vector<vector<fl
     gp << "set xlabel 'Number of vertices (N)'\n";
     gp << "set style fill transparent solid 0.2 noborder \n";
     gp << "plot "
-            "'-' using 1:2 lt 2 lc 2 with lines title 'mean vertex reads',"
+            "'-' using 1:2 lw 2 lt 2 lc 2 with lines title 'mean vertex reads',"
             "'-'  using 1:3:4 lc 2 with filledcurves notitle, "
-            "'-' using 1:2 lt 2 lc 1 with lines title 'mean vertex writes',"
+            "'-' using 1:2 lw 2 lt 2 lc 1 with lines title 'mean vertex writes',"
             "'-'  using 1:3:4 lc 1 with filledcurves notitle \n";
     gp.send1d(reads);
     gp.send1d(reads);
@@ -248,10 +245,7 @@ void backtrack_forward_experiment(vector<vector<Map *>> dataset, vector<vector<f
             cairo->finish();
 
             cout << "Backtracking with Forward Checking, N = " << N << ", j = " << j << endl;
-            cout << "Time Elapsed: " << (float) chrono::duration_cast<chrono::hours>(t2 - t1).count() 
-                    << ":" << chrono::duration_cast<chrono::minutes>(t2 - t1).count() 
-                    << ":" << chrono::duration_cast<chrono::seconds>(t2 - t1).count()
-                    << "." << chrono::duration_cast<chrono::milliseconds>(t2 - t1).count() << endl;
+            print_time(t1, t2);
             cout << "Number of reads: " << (float) map->num_reads << endl;
             cout << "Reads/s: " << (float) map->num_reads / chrono::duration_cast<chrono::microseconds>(t2 - t1).count() * 1.0e6 << endl;
             cout << "Number of writes: " << (float) map->num_writes << endl;
@@ -259,7 +253,7 @@ void backtrack_forward_experiment(vector<vector<Map *>> dataset, vector<vector<f
             cout << endl;
             reads_for_N.push_back(map->num_reads);
             writes_for_N.push_back(map->num_writes);
-            timings_for_N.push_back(chrono::duration_cast<chrono::microseconds>(t2 - t1).count() * 1.0e6);
+            timings_for_N.push_back(chrono::duration_cast<chrono::microseconds>(t2 - t1).count() / 1.0e6);
 
 
         }
@@ -270,23 +264,23 @@ void backtrack_forward_experiment(vector<vector<Map *>> dataset, vector<vector<f
         vector<float> next_data_read;
         next_data_read.push_back((float) N);
         next_data_read.push_back(read_std_mean[0]);
-        next_data_read.push_back(read_std_mean[0] + 1.96 * (read_std_mean[1] / sqrt(dataset[i].size())));
-        next_data_read.push_back(max(read_std_mean[0] - 1.96 * (read_std_mean[1] / sqrt(dataset[i].size())), 0.1));
+        next_data_read.push_back(*max_element(begin(reads_for_N), end(reads_for_N)));
+        next_data_read.push_back(*min_element(begin(reads_for_N), end(reads_for_N)));
         reads.push_back(next_data_read);
 
         vector<float> next_data_write;
         next_data_write.push_back((float) N);
         next_data_write.push_back(write_std_mean[0]);
-        next_data_write.push_back(write_std_mean[0] + 1.96 * (write_std_mean[1] / sqrt(dataset[i].size())));
-        next_data_write.push_back(max(write_std_mean[0] - 1.96 * (write_std_mean[1] / sqrt(dataset[i].size())), 0.1));
+        next_data_write.push_back(*max_element(begin(writes_for_N), end(writes_for_N)));
+        next_data_write.push_back(*min_element(begin(writes_for_N), end(writes_for_N)));
         writes.push_back(next_data_write);
 
         vector<float> timings_std_mean = standard_deviation(timings_for_N);
         vector<float> next_data_timing;
         next_data_timing.push_back((float) N);
         next_data_timing.push_back(timings_std_mean[0]);
-        next_data_timing.push_back(timings_std_mean[0] + 1.96 * (timings_std_mean[1] / sqrt(dataset[i].size())));
-        next_data_timing.push_back(max(timings_std_mean[0] - 1.96 * (timings_std_mean[1] / sqrt(dataset[i].size())),0.1));
+        next_data_timing.push_back(*max_element(begin(timings_for_N), end(timings_for_N)));
+        next_data_timing.push_back(*min_element(begin(timings_for_N), end(timings_for_N)));
         timings.push_back(next_data_timing);
     }
 
@@ -301,9 +295,9 @@ void backtrack_forward_experiment(vector<vector<Map *>> dataset, vector<vector<f
     gp << "set xlabel 'Number of vertices (N)'\n";
     gp << "set style fill transparent solid 0.2 noborder \n";
     gp << "plot "
-            "'-' using 1:2 lt 2 lc 2 with lines title 'mean vertex reads',"
+            "'-' using 1:2 lw 2 lt 2 lc 2 with lines title 'mean vertex reads',"
             "'-'  using 1:3:4 lc 2 with filledcurves notitle, "
-            "'-' using 1:2 lt 2 lc 1 with lines title 'mean vertex writes',"
+            "'-' using 1:2 lw 2 lt 2 lc 1 with lines title 'mean vertex writes',"
             "'-'  using 1:3:4 lc 1 with filledcurves notitle\n";
     gp.send1d(reads);
     gp.send1d(reads);
@@ -314,16 +308,13 @@ void backtrack_forward_experiment(vector<vector<Map *>> dataset, vector<vector<f
 }
 
 void backtrack_mac_experiment(vector<vector<Map *>> dataset, vector<vector<float>> &reads, vector<vector<float>> &writes, vector<vector<float>> &timings) {
-    
-    vector<vector<float>> log_reads;
-    
+
     for (int i = 0; i < dataset.size(); i++) {
 
         int N = dataset[i][0]->N;
         vector<float> reads_for_N;
         vector<float> writes_for_N;
         vector<float> timings_for_N;
-        vector<float> log_reads_for_N;
 
         for (int j = 0; j < dataset[i].size(); j++) {
             Map * map = dataset[i][j];
@@ -339,54 +330,43 @@ void backtrack_mac_experiment(vector<vector<Map *>> dataset, vector<vector<float
             cairo->finish();
 
             cout << "Backtracking with MAC, N = " << N << ", j = " << j << endl;
-            cout << "Time Elapsed: " << (float) chrono::duration_cast<chrono::hours>(t2 - t1).count() 
-                    << ":" << chrono::duration_cast<chrono::minutes>(t2 - t1).count() 
-                    << ":" << chrono::duration_cast<chrono::seconds>(t2 - t1).count()
-                    << "." << chrono::duration_cast<chrono::milliseconds>(t2 - t1).count() << endl;
+            print_time(t1, t2);
             cout << "Number of reads: " << (float) map->num_reads << endl;
             cout << "Reads/s: " << (float) map->num_reads / chrono::duration_cast<chrono::microseconds>(t2 - t1).count() * 1.0e6 << endl;
             cout << "Number of writes: " << (float) map->num_writes << endl;
             cout << "Writes/s: " << (float) map->num_writes / chrono::duration_cast<chrono::microseconds>(t2 - t1).count() * 1.0e6 << endl;
             cout << endl;
             reads_for_N.push_back(map->num_reads);
-            log_reads_for_N.push_back(log10(map->num_reads));
             writes_for_N.push_back(map->num_writes);
-            timings_for_N.push_back(chrono::duration_cast<chrono::microseconds>(t2 - t1).count() * 1.0e6);
+            timings_for_N.push_back(chrono::duration_cast<chrono::microseconds>(t2 - t1).count() / 1.0e6);
 
         }
 
         vector<float> read_std_mean = standard_deviation(reads_for_N);
         vector<float> write_std_mean = standard_deviation(writes_for_N);
-        vector<float> log_read_std_mean = standard_deviation(log_reads_for_N);
 
         vector<float> next_data_read;
         next_data_read.push_back((float) N);
         next_data_read.push_back(read_std_mean[0]);
-        next_data_read.push_back(read_std_mean[0] + 1.96 * (read_std_mean[1] / sqrt(dataset[i].size())));
-        next_data_read.push_back(max(read_std_mean[0] - 1.96 * (read_std_mean[1] / sqrt(dataset[i].size())), 0.1));
+        next_data_read.push_back(*max_element(begin(reads_for_N), end(reads_for_N)));
+        next_data_read.push_back(*min_element(begin(reads_for_N), end(reads_for_N)));
         reads.push_back(next_data_read);
 
         vector<float> next_data_write;
         next_data_write.push_back((float) N);
         next_data_write.push_back(write_std_mean[0]);
-        next_data_write.push_back(write_std_mean[0] + 1.96 * (write_std_mean[1] / sqrt(dataset[i].size())));
-        next_data_write.push_back(max(write_std_mean[0] - 1.96 * (write_std_mean[1] / sqrt(dataset[i].size())), 0.1));
+        next_data_write.push_back(*max_element(begin(writes_for_N), end(writes_for_N)));
+        next_data_write.push_back(*min_element(begin(writes_for_N), end(writes_for_N)));
         writes.push_back(next_data_write);
 
         vector<float> timings_std_mean = standard_deviation(timings_for_N);
         vector<float> next_data_timing;
         next_data_timing.push_back((float) N);
         next_data_timing.push_back(timings_std_mean[0]);
-        next_data_timing.push_back(timings_std_mean[0] + 1.96 * (timings_std_mean[1] / sqrt(dataset[i].size())));
-        next_data_timing.push_back(max(timings_std_mean[0] - 1.96 * (timings_std_mean[1] / sqrt(dataset[i].size())),0.1));
+        next_data_timing.push_back(*max_element(begin(timings_for_N), end(timings_for_N)));
+        next_data_timing.push_back(*min_element(begin(timings_for_N), end(timings_for_N)));
+        ;
         timings.push_back(next_data_timing);
-        
-        vector<float> next_data_logread;
-        next_data_logread.push_back((float) N);
-        next_data_logread.push_back(pow(10, log_read_std_mean[0]));
-        next_data_logread.push_back(pow(10,log_read_std_mean[0] + 1.96 * (log_read_std_mean[1] / sqrt(dataset[i].size()))));
-        next_data_logread.push_back(pow(10,log_read_std_mean[0] - 1.96 * (log_read_std_mean[1] / sqrt(dataset[i].size()))));
-        log_reads.push_back(next_data_logread);
     }
 
     Gnuplot gp;
@@ -400,18 +380,14 @@ void backtrack_mac_experiment(vector<vector<Map *>> dataset, vector<vector<float
     gp << "set xlabel 'Number of vertices (N)'\n";
     gp << "set style fill transparent solid 0.2 noborder \n";
     gp << "plot "
-            "'-' using 1:2 lt 2 lc 2 with lines title 'mean vertex reads',"
+            "'-' using 1:2 lw 2 lt 2 lc 2 with lines title 'mean vertex reads',"
             "'-'  using 1:3:4 lc 2 with filledcurves notitle, "
-            "'-' using 1:2 lt 2 lc 1 with lines title 'mean vertex writes',"
-            "'-'  using 1:3:4 lc 1 with filledcurves notitle,"
-            "'-' using 1:2 lt 2 lc 3 with lines title 'log mean vertex reads',"
-            "'-'  using 1:3:4 lc 3 with filledcurves notitle\n";
+            "'-' using 1:2 lw 2 lt 2 lc 1 with lines title 'mean vertex writes',"
+            "'-'  using 1:3:4 lc 1 with filledcurves notitle\n";
     gp.send1d(reads);
     gp.send1d(reads);
     gp.send1d(writes);
     gp.send1d(writes);
-    gp.send1d(log_reads);
-    gp.send1d(log_reads);
 }
 
 void genetic_experiment(vector<vector<Map *>> dataset, vector<vector<float>> &reads, vector<vector<float>> &writes, vector<vector<float>> &timings) {
@@ -443,10 +419,7 @@ void genetic_experiment(vector<vector<Map *>> dataset, vector<vector<float>> &re
             cairo->finish();
 
             cout << "Genetic Algorithm, N = " << N << ", j = " << j << endl;
-            cout << "Time Elapsed: " << (float) chrono::duration_cast<chrono::hours>(t2 - t1).count() 
-                    << ":" << chrono::duration_cast<chrono::minutes>(t2 - t1).count() 
-                    << ":" << chrono::duration_cast<chrono::seconds>(t2 - t1).count()
-                    << "." << chrono::duration_cast<chrono::milliseconds>(t2 - t1).count() << endl;
+            print_time(t1, t2);
             cout << "Number of reads: " << (float) map->num_reads << endl;
             cout << "Reads/s: " << (float) map->num_reads / chrono::duration_cast<chrono::microseconds>(t2 - t1).count() * 1.0e6 << endl;
             cout << "Number of writes: " << (float) map->num_writes << endl;
@@ -455,7 +428,7 @@ void genetic_experiment(vector<vector<Map *>> dataset, vector<vector<float>> &re
             reads_for_N.push_back(map->num_reads);
             writes_for_N.push_back(map->num_writes);
             num_runs_for_N.push_back(gens);
-            timings_for_N.push_back(chrono::duration_cast<chrono::microseconds>(t2 - t1).count() * 1.0e6);
+            timings_for_N.push_back(chrono::duration_cast<chrono::microseconds>(t2 - t1).count() / 1.0e6);
 
         }
 
@@ -466,30 +439,31 @@ void genetic_experiment(vector<vector<Map *>> dataset, vector<vector<float>> &re
         vector<float> next_data_read;
         next_data_read.push_back((float) N);
         next_data_read.push_back(read_std_mean[0]);
-        next_data_read.push_back(read_std_mean[0] + 1.96 * (read_std_mean[1] / sqrt(dataset[i].size())));
-        next_data_read.push_back(max(read_std_mean[0] - 1.96 * (read_std_mean[1] / sqrt(dataset[i].size())), 0.1));
+        next_data_read.push_back(*max_element(begin(reads_for_N), end(reads_for_N)));
+        next_data_read.push_back(*min_element(begin(reads_for_N), end(reads_for_N)));
         reads.push_back(next_data_read);
 
         vector<float> next_data_write;
         next_data_write.push_back((float) N);
         next_data_write.push_back(write_std_mean[0]);
-        next_data_write.push_back(write_std_mean[0] + 1.96 * (write_std_mean[1] / sqrt(dataset[i].size())));
-        next_data_write.push_back(max(write_std_mean[0] - 1.96 * (write_std_mean[1] / sqrt(dataset[i].size())), 0.1));
+        next_data_write.push_back(*max_element(begin(writes_for_N), end(writes_for_N)));
+        next_data_write.push_back(*min_element(begin(writes_for_N), end(writes_for_N)));
         writes.push_back(next_data_write);
 
         vector<float> next_data_gens;
         next_data_gens.push_back((float) N);
         next_data_gens.push_back(gens_std_mean[0]);
-        next_data_gens.push_back(gens_std_mean[0] + 1.96 * (gens_std_mean[1] / sqrt(dataset[i].size())));
-        next_data_gens.push_back(max(gens_std_mean[0] - 1.96 * (gens_std_mean[1] / sqrt(dataset[i].size())), 0.1));
+        next_data_gens.push_back(*max_element(begin(num_runs_for_N), end(num_runs_for_N)));
+        next_data_gens.push_back(*min_element(begin(num_runs_for_N), end(num_runs_for_N)));
+        ;
         num_runs.push_back(next_data_gens);
 
         vector<float> timings_std_mean = standard_deviation(timings_for_N);
         vector<float> next_data_timing;
         next_data_timing.push_back((float) N);
         next_data_timing.push_back(timings_std_mean[0]);
-        next_data_timing.push_back(timings_std_mean[0] + 1.96 * (timings_std_mean[1] / sqrt(dataset[i].size())));
-        next_data_timing.push_back(max(timings_std_mean[0] - 1.96 * (timings_std_mean[1] / sqrt(dataset[i].size())),0.1));
+        next_data_timing.push_back(*max_element(begin(timings_for_N), end(timings_for_N)));
+        next_data_timing.push_back(*min_element(begin(timings_for_N), end(timings_for_N)));
         timings.push_back(next_data_timing);
     }
 
@@ -539,5 +513,13 @@ vector<float> standard_deviation(vector<float> data) {
     return result;
 }
 
+void print_time(std::chrono::time_point<std::chrono::system_clock> t1, std::chrono::time_point<std::chrono::system_clock> t2) {
+
+    int hours = chrono::duration_cast<chrono::hours>(t2 - t1).count();
+    int minutes = chrono::duration_cast<chrono::minutes>(t2 - t1).count() - chrono::duration_cast<chrono::hours>(t2 - t1).count() * 60;
+    int seconds = chrono::duration_cast<chrono::seconds>(t2 - t1).count() - chrono::duration_cast<chrono::minutes>(t2 - t1).count()* 60;
+    int millis = chrono::duration_cast<chrono::milliseconds>(t2 - t1).count() - chrono::duration_cast<chrono::seconds>(t2 - t1).count() * 1000;
+    printf("Time Elapsed: %02d:%02d:%02d.%03d\n", hours, minutes, seconds, millis);
+}
 
 

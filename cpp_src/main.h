@@ -34,6 +34,7 @@ void backtrack_mac_experiment(vector<vector<Map *>> dataset, vector<vector<float
 void backtrack_forward_experiment(vector<vector<Map *>> dataset, vector<vector<float>> &reads, vector<vector<float>> &writes, vector<vector<float>> &timings);
 void genetic_experiment(vector<vector<Map *>> dataset, vector<vector<float>> &reads, vector<vector<float>> &writes, vector<vector<float>> &timings);
 vector<float> standard_deviation(vector<float> data);
+void print_time(std::chrono::time_point<std::chrono::system_clock> t1, std::chrono::time_point<std::chrono::system_clock> t2);
 
 
 #endif /* MAIN_H */
