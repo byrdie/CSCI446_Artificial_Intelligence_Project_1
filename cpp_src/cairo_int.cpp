@@ -113,7 +113,7 @@ void Cairo::draw_poly(Point * poly[], int N, Color color) {
             cairo_set_source_rgb(cr, 0.2, 0.2, 0.2);
             break;
         case red:
-            cairo_set_source_rgb(cr, 0x20, 0xBF, 0x55);
+            cairo_set_source_rgb(cr, 1, 0, 0);
             break;
         case blue:
             cairo_set_source_rgb(cr, 0, 0, 1);

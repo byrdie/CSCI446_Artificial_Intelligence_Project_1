@@ -17,70 +17,101 @@
 using namespace std;
 
 int main(int argc, char** argv) {
-
-    // 1474440327
+    
+   const int pop_size = 1000;
+    const int mut_rate = 30;
+    const int N = 100;
     init_rand();
 
+    Cairo * cairo = new Cairo("test.pdf");
+
+    Map * map = problem_gen(N, WIDTH);
+
+ 
+    map->clean_map();
+    
+    
+    
+    auto t1 = chrono::high_resolution_clock::now();
+    
+    printf("Steps = %d\n",min_conflicts(map, 4, 1000000) );
+    auto t2 = chrono::high_resolution_clock::now();
+    
+    printf("\n\n");
+    cout << "Number of reads: " << (float) map->num_reads << endl;
+    cout << "Reads/s: " << (float) map->num_reads / chrono::duration_cast<chrono::microseconds>(t2-t1).count() * 1e6 << endl;
+    cout << "Number of writes: " << (float) map->num_writes << endl;
+    cout << "Writes/s: " << (float) map->num_writes / chrono::duration_cast<chrono::microseconds>(t2-t1).count() * 1e6 << endl;
+    //cout << "Number of generations: " << (int) num_runs << endl;
+    
+    map->draw_map(cairo);
 
 
+    cairo->finish();  
 
-
-    vector<vector < Map *>> dataset;
-
-    int num_steps = 10;
-    int num_exp_per_step = 10;
-    int num_vert_per_step = 10;
-
-    for (int i = 0; i < num_steps; i++) {
-        vector<Map *> next_row;
-        for (int j = 0; j < num_exp_per_step; j++) {
-            int N = (i + 1) * num_vert_per_step;
-            Map * map = map = problem_gen(N, WIDTH);
-            next_row.push_back(map);
-        }
-        dataset.push_back(next_row);
-        int N = (i + 1) * 5;
-    }
-
-    vector<vector<float>> btmac_reads;
-    vector<vector<float>> btmac_writes;
-    backtrack_mac_experiment(dataset, btmac_reads, btmac_writes);
-
-    vector<vector<float>> btfor_reads;
-    vector<vector<float>> btfor_writes;
-    backtrack_forward_experiment(dataset, btfor_reads, btfor_writes);
-
-    vector<vector<float>> btsim_reads;
-    vector<vector<float>> btsim_writes;
-    backtrack_simple_experiment(dataset, btsim_reads, btsim_writes);
-
-    Gnuplot gp;
-
-    gp << "set terminal pdfcairo font 'Times,10'\n";
-    gp << "set output '../results/comparing_read_performance.pdf'\n";
-    gp << "set logscale y 10 \n";
-    gp << "set key left top \n";
-    gp << "set title 'Number of Vertex Reads per Algorithm'\n";
-    gp << "set ylabel 'Vertex Reads'\n";
-    gp << "set xlabel 'Number of vertices (N)'\n";
-    gp << "set grid\n";
-    gp << "set style fill transparent solid 0.2 noborder \n";
-    gp << "plot "
-            "'-' using 1:2 lt 2 lc 3 with lines title  'Simple Backtracking',"
-            "'-' using 1:3:4 lc 3 with filledcurves notitle,"
-            "'-' using 1:2 lt 2 lc 2 with lines title 'Backtracking with Forward Checking',"
-            "'-' using 1:3:4 lc 2 with filledcurves notitle,"
-            "'-' using 1:2 lt 2 lc 1 with lines title 'Backtracking with MAC',"
-            "'-' using 1:3:4 lc 1 with filledcurves notitle \n";
-    gp.send1d(btsim_reads);
-    gp.send1d(btsim_reads);
-    gp.send1d(btfor_reads);
-    gp.send1d(btfor_reads);
-    gp.send1d(btmac_reads);
-    gp.send1d(btmac_reads);
-
-
-
+//    // 1474440327
+//    init_rand();
+//
+//
+//
+//
+//
+//    vector<vector < Map *>> dataset;
+//
+//    int num_steps = 10;
+//    int num_exp_per_step = 10;
+//    int num_vert_per_step = 10;
+//
+//    for (int i = 0; i < num_steps; i++) {
+//        vector<Map *> next_row;
+//        for (int j = 0; j < num_exp_per_step; j++) {
+//            int N = (i + 1) * num_vert_per_step;
+//            Map * map = map = problem_gen(N, WIDTH);
+//            next_row.push_back(map);
+//        }
+//        dataset.push_back(next_row);
+//        int N = (i + 1) * 5;
+//    }
+//
+//    vector<vector<float>> btmac_reads;
+//    vector<vector<float>> btmac_writes;
+//    backtrack_mac_experiment(dataset, btmac_reads, btmac_writes);
+//
+//    vector<vector<float>> btfor_reads;
+//    vector<vector<float>> btfor_writes;
+//    backtrack_forward_experiment(dataset, btfor_reads, btfor_writes);
+//
+//    vector<vector<float>> btsim_reads;
+//    vector<vector<float>> btsim_writes;
+//    backtrack_simple_experiment(dataset, btsim_reads, btsim_writes);
+//
+//    Gnuplot gp;
+//
+//    gp << "set terminal pdfcairo font 'Times,10'\n";
+//    gp << "set output '../results/comparing_read_performance.pdf'\n";
+//    gp << "set logscale y 10 \n";
+//    gp << "set key left top \n";
+//    gp << "set title 'Number of Vertex Reads per Algorithm'\n";
+//    gp << "set ylabel 'Vertex Reads'\n";
+//    gp << "set xlabel 'Number of vertices (N)'\n";
+//    gp << "set grid\n";
+//    gp << "set style fill transparent solid 0.2 noborder \n";
+//    gp << "plot "
+//            "'-' using 1:2 lt 2 lc 3 with lines title  'Simple Backtracking',"
+//            "'-' using 1:3:4 lc 3 with filledcurves notitle,"
+//            "'-' using 1:2 lt 2 lc 2 with lines title 'Backtracking with Forward Checking',"
+//            "'-' using 1:3:4 lc 2 with filledcurves notitle,"
+//            "'-' using 1:2 lt 2 lc 1 with lines title 'Backtracking with MAC',"
+//            "'-' using 1:3:4 lc 1 with filledcurves notitle \n";
+//    gp.send1d(btsim_reads);
+//    gp.send1d(btsim_reads);
+//    gp.send1d(btfor_reads);
+//    gp.send1d(btfor_reads);
+//    gp.send1d(btmac_reads);
+//    gp.send1d(btmac_reads);
+//
+//
+//
     return 0;
 }
 

@@ -71,6 +71,7 @@ public:
     void set_color(Color col);
     Color get_color();
     bool has_conflicting_neighbors();
+    
 
 private:
     Color color;
@@ -92,6 +93,8 @@ public:
     bool has_conflicting_neighbors(int i);
     void set_color(int index ,int col);
     int get_color(int index);
+    int num_conflicting_neighbors(int j);
+    int num_conflicts();
 };
 
 #endif //CPP_SRC_MAP_DATA_TYPES_H

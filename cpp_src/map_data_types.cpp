@@ -90,6 +90,32 @@ int Map::get_color(int index) {
     return colors[index];
 }
 
+int Map::num_conflicting_neighbors(int j) {
+    graph[j]->conflicts = 0;
+    for (int i = 0; i < graph[j]->num_edges; i++) {
+        num_reads++;
+        if (colors[matrix[j][i]] == colors[j]) {
+            graph[j]->conflicts++;
+        }
+    }
+    return graph[j]->conflicts;
+}
+
+int Map :: num_conflicts(){
+    
+    int conflicts = 0;
+    for (int i = 0; i < N; i++){
+        for (int j = 0; j , j < graph[i]->num_edges; j++ ){
+            num_reads++;
+            if (colors[i] == colors[matrix[i][j]]) {
+                conflicts++;
+            }
+        }
+    }
+    return conflicts;
+}
+
+
 Point::Point(float X, float Y) {
     x = X;
     y = Y;
@@ -123,6 +149,8 @@ bool Graph_point::has_conflicting_neighbors() {
     }
     return false;
 }
+
+
 
 Graph_edge::Graph_edge(Graph_point * st_pt, Graph_point * end_pt) {
     start_point = st_pt;

@@ -23,7 +23,7 @@
 #include "map_problem_gen.h"
 #include "backtracking.h"
 #include "gnuplot-iostream.h"
-
+#include "min-conflicts.h"
 using namespace std;
 
 int main(int argc, char** argv) ;
