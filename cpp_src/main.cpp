@@ -20,7 +20,7 @@ int main(int argc, char** argv) {
 
 
 
-    init_rand();
+    init_rand(1474693859);
 
 
     run_examples();
@@ -32,7 +32,7 @@ int main(int argc, char** argv) {
 
 void run_examples() {
 
-    int N = 20;
+    int N = 6;
     int steps = 0;
     int max_steps = 1000;
     int k = 4;
@@ -59,7 +59,7 @@ void run_examples() {
         sprintf(command, "convert -density 98 ../results/min_conflicts/map_build/minconf_I%05d.pdf -quality 89 ../results/min_conflicts/map_build/minconf_I%05d.png", i, i);
         system(command);
     }
-    system("ffmpeg -r 1/0.3 -i ../results/min_conflicts/map_build/minconf_I%05d.png -c:v libx264 -r 30 -pix_fmt yuv420p ../results/min_conflicts_example.mp4");
+    system("ffmpeg -r 1/0.5 -i ../results/min_conflicts/map_build/minconf_I%05d.png -c:v libx264 -r 30 -pix_fmt yuv420p ../results/min_conflicts_example.mp4");
 
     map->clean_map();
     steps = 0;
@@ -71,7 +71,7 @@ void run_examples() {
         sprintf(command, "convert -density 98 ../results/backtracking_simple/map_build/bt_simple_I%05d.pdf -quality 89 ../results/backtracking_simple/map_build/bt_simple_I%05d.png", i, i);
         system(command);
     }
-    system("ffmpeg -r 1/0.3 -i ../results/backtracking_simple/map_build/bt_simple_I%05d.png -c:v libx264 -r 30 -pix_fmt yuv420p ../results/backtracking_simple_example.mp4");
+    system("ffmpeg -r 1/0.5 -i ../results/backtracking_simple/map_build/bt_simple_I%05d.png -c:v libx264 -r 30 -pix_fmt yuv420p ../results/backtracking_simple_example.mp4");
 
     map->clean_map_bitwise();
     steps = 0;
@@ -83,7 +83,7 @@ void run_examples() {
         sprintf(command, "convert -density 98 ../results/backtracking_forward/map_build/bt_forward_I%05d.pdf -quality 89 ../results/backtracking_forward/map_build/bt_forward_I%05d.png", i, i);
         system(command);
     }
-    system("ffmpeg -r 1/0.3 -i ../results/backtracking_forward/map_build/bt_forward_I%05d.png -c:v libx264 -r 30 -pix_fmt yuv420p ../results/backtracking_forward_example.mp4");
+    system("ffmpeg -r 1/0.5 -i ../results/backtracking_forward/map_build/bt_forward_I%05d.png -c:v libx264 -r 30 -pix_fmt yuv420p ../results/backtracking_forward_example.mp4");
 
     map->clean_map_bitwise();
     steps = 0;
@@ -95,7 +95,7 @@ void run_examples() {
         sprintf(command, "convert -density 98 ../results/backtracking_mac/map_build/bt_mac_I%05d.pdf -quality 89 ../results/backtracking_mac/map_build/bt_mac_I%05d.png", i, i);
         system(command);
     }
-    system("ffmpeg -r 1/0.3 -i ../results/backtracking_mac/map_build/bt_mac_I%05d.png -c:v libx264 -r 30 -pix_fmt yuv420p ../results/backtracking_mac_example.mp4");
+    system("ffmpeg -r 1/0.5 -i ../results/backtracking_mac/map_build/bt_mac_I%05d.png -c:v libx264 -r 30 -pix_fmt yuv420p ../results/backtracking_mac_example.mp4");
 
     map->clean_map();
     steps = 0;
@@ -111,7 +111,7 @@ void run_examples() {
         sprintf(command, "convert -density 98 ../results/genetic/map_build/genetic_I%05d.pdf -quality 89 ../results/genetic/map_build/genetic_I%05d.png", i, i);
         system(command);
     }
-    system("ffmpeg -r 1/0.3 -i ../results/genetic/map_build/genetic_I%05d.png -c:v libx264 -r 30 -pix_fmt yuv420p ../results/genetic_example.mp4");
+    system("ffmpeg -r 1/0.5 -i ../results/genetic/map_build/genetic_I%05d.png -c:v libx264 -r 30 -pix_fmt yuv420p ../results/genetic_example.mp4");
 
 }
 
