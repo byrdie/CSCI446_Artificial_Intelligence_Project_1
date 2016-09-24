@@ -5,10 +5,9 @@
  */
 #include "genetic.h"
 
-GeneticAlgorithm::GeneticAlgorithm(Map * in_map, int in_pop_size, int in_mut_rate, int in_N, int in_num_colors, int max_gen) {
+GeneticAlgorithm::GeneticAlgorithm(Map * in_map, int in_pop_size, int in_N, int in_num_colors, int max_gen) {
     map = in_map;
     pop_size = in_pop_size;
-    mut_rate = in_mut_rate;
     N = in_N;
     pop = new unsigned int*[pop_size];
     num_colors = in_num_colors;
@@ -16,6 +15,8 @@ GeneticAlgorithm::GeneticAlgorithm(Map * in_map, int in_pop_size, int in_mut_rat
     for (int i = 0; i < pop_size; i++) {
         pop[i] = new unsigned int[N];
     }
+    mut_rate = 1/float(N);
+    
 }
 
 int GeneticAlgorithm::run(int * counter, bool draw_steps) {
@@ -85,6 +86,7 @@ int GeneticAlgorithm::run(int * counter, bool draw_steps) {
                 }
             }
             h += 2;
+            
         }
 
         // PRINT MAP HERE
@@ -168,10 +170,12 @@ void GeneticAlgorithm::crossover(unsigned int* x, unsigned int* y) {
 }
 
 void GeneticAlgorithm::mutate(unsigned int* x) {
-    if ((rand() % 100) + 1 < mut_rate) {
-        x[rand() % N] = (rand() % num_colors) + 1;
+
+    for (int i = 0; i < N; i++){
+        if ((float(rand())/RAND_MAX) < mut_rate) {
+            x[i] = (rand() % num_colors) + 1;
+            map->num_writes++;
+        }
     }
 }
-
-
 

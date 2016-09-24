@@ -104,7 +104,7 @@ void run_examples() {
     int max_generations = 1000;
     const int pop_size = (int) N;
     const int mut_rate = 100;
-    GeneticAlgorithm * ga = new GeneticAlgorithm(map, pop_size, mut_rate, N, k, max_generations);
+    GeneticAlgorithm * ga = new GeneticAlgorithm(map, pop_size, N, k, max_generations);
     int gens = ga->run(&steps, true);
     for (int i = 1; i <= steps; i++) {
 
@@ -137,22 +137,22 @@ void run_experiments() {
     vector<vector<float>> mincon_reads;
     vector<vector<float>> mincon_writes;
     vector<vector<float>> mincon_timings;
-    minconflicts_experiment(dataset, mincon_reads, mincon_writes, mincon_timings, k);
+    //minconflicts_experiment(dataset, mincon_reads, mincon_writes, mincon_timings, k);
 
     vector<vector<float>> btmac_reads;
     vector<vector<float>> btmac_writes;
     vector<vector<float>> btmac_timings;
-    backtrack_mac_experiment(dataset, btmac_reads, btmac_writes, btmac_timings, k);
+    //backtrack_mac_experiment(dataset, btmac_reads, btmac_writes, btmac_timings, k);
 
     vector<vector<float>> btfor_reads;
     vector<vector<float>> btfor_writes;
     vector<vector<float>> btfor_timings;
-    backtrack_forward_experiment(dataset, btfor_reads, btfor_writes, btfor_timings, k);
+    //backtrack_forward_experiment(dataset, btfor_reads, btfor_writes, btfor_timings, k);
 
     vector<vector<float>> btsim_reads;
     vector<vector<float>> btsim_writes;
     vector<vector<float>> btsim_timings;
-    backtrack_simple_experiment(dataset, btsim_reads, btsim_writes, btsim_timings, k);
+    //backtrack_simple_experiment(dataset, btsim_reads, btsim_writes, btsim_timings, k);
 
     vector<vector<float>> gen_reads;
     vector<vector<float>> gen_writes;
@@ -713,18 +713,23 @@ void genetic_experiment(vector<vector<Map *>> dataset, vector<vector<float>> &re
         vector<float> writes_for_N;
         vector<float> num_runs_for_N;
         vector<float> timings_for_N;
-
+        int average = 0;
         for (int j = 0; j < dataset[i].size(); j++) {
+            
             Map * map = dataset[i][j];
             map->clean_map();
             int steps = 0;
             const int pop_size = (int) N;
-            const int mut_rate = 100;
-            GeneticAlgorithm * ga = new GeneticAlgorithm(map, pop_size, mut_rate, N, k, max_generations);
+            GeneticAlgorithm * ga = new GeneticAlgorithm(map, pop_size,  N, k, max_generations);
             auto t1 = chrono::high_resolution_clock::now();
             int gens = ga->run(&steps, false);
             auto t2 = std::chrono::high_resolution_clock::now();
-
+             
+            
+            average+= gens;
+            
+            
+            
             char * filename = new char[100];
             sprintf(filename, "../results/genetic/maps/genetic_N%d_k%d_I%d.pdf", N, k, j);
             Cairo * cairo = new Cairo(filename);
@@ -747,6 +752,8 @@ void genetic_experiment(vector<vector<Map *>> dataset, vector<vector<float>> &re
             timings_for_N.push_back(chrono::duration_cast<chrono::microseconds>(t2 - t1).count() / 1.0e6);
 
         }
+        
+        printf("Average Generations: %d\n", average/dataset[i].size() );
 
         vector<float> read_std_mean = standard_deviation(reads_for_N);
         vector<float> write_std_mean = standard_deviation(writes_for_N);

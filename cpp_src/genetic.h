@@ -20,14 +20,14 @@ public:
     Map * map;
     int pop_size;
    unsigned int ** pop;
-    int mut_rate;
+    float mut_rate;
     int N;
     bool solved = false;
     int generations = 0;
     int total = 0;
     int num_colors;
     int max_generations;
-    GeneticAlgorithm(Map * in_map, int in_pop_size, int in_mut_rate, int in_N, int in_num_colors, int max_gen);
+    GeneticAlgorithm(Map * in_map, int in_pop_size, int in_N, int in_num_colors, int max_gen);
     int run(int * counter, bool draw_steps);
     void init_pop();
     int calc_fitness(int indiv);
