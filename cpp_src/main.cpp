@@ -32,7 +32,7 @@ int main(int argc, char** argv) {
 
 void run_examples() {
 
-    int N = 6;
+    int N = 8;
     int steps = 0;
     int max_steps = 1000;
     int k = 4;
