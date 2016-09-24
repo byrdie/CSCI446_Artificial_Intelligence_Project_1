@@ -1,0 +1,163 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+
+\usepackage{tikz}
+\usepackage{algpseudocode}
+\usepackage{forloop}
+\newcounter{population}
+\newcounter{numcol}
+\begin{document}
+\section{Min Conflicts}
+
+
+\begin{tabular}{c c c c }
+	
+	\includegraphics[scale=.25]{../results/min_conflicts/minconf_I00001.pdf}&
+	\includegraphics[scale=.25]{../results/min_conflicts/minconf_I00002.pdf}&
+	\includegraphics[scale=.25]{../results/min_conflicts/minconf_I00003.pdf}&
+	\includegraphics[scale=.25]{../results/min_conflicts/minconf_I00004.pdf}\\
+	
+	\includegraphics[scale=.25]{../results/min_conflicts/minconf_I00005.pdf}&
+	\includegraphics[scale=.25]{../results/min_conflicts/minconf_I00006.pdf}&
+	\includegraphics[scale=.25]{../results/min_conflicts/minconf_I00007.pdf}&
+	\includegraphics[scale=.25]{../results/min_conflicts/minconf_I00008.pdf}\\
+	
+	\includegraphics[scale=.25]{../results/min_conflicts/minconf_I00009.pdf}&
+	\includegraphics[scale=.25]{../results/min_conflicts/minconf_I00010.pdf}&
+	\includegraphics[scale=.25]{../results/min_conflicts/minconf_I00011.pdf}&
+	\includegraphics[scale=.25]{../results/min_conflicts/minconf_I00012.pdf}\\
+	
+	\includegraphics[scale=.25]{../results/min_conflicts/minconf_I00013.pdf}&
+	\includegraphics[scale=.25]{../results/min_conflicts/minconf_I00014.pdf}&
+	\includegraphics[scale=.25]{../results/min_conflicts/minconf_I00015.pdf}&
+	\includegraphics[scale=.25]{../results/min_conflicts/minconf_I00016.pdf}\\
+	
+	\includegraphics[scale=.25]{../results/min_conflicts/minconf_I00017.pdf}&
+	\includegraphics[scale=.25]{../results/min_conflicts/minconf_I00018.pdf}&
+	\includegraphics[scale=.25]{../results/min_conflicts/minconf_I00019.pdf}&
+	\includegraphics[scale=.25]{../results/min_conflicts/minconf_I00020.pdf}\\
+
+\end{tabular}	
+	
+\section{Simple Backtracking}
+\begin{tabular}{c c c c }
+	\includegraphics[scale=.25]{../results/backtracking_simple/bt_simple_I00001.pdf}&
+	\includegraphics[scale=.25]{../results/backtracking_simple/bt_simple_I00002.pdf}&
+	\includegraphics[scale=.25]{../results/backtracking_simple/bt_simple_I00003.pdf}&
+	\includegraphics[scale=.25]{../results/backtracking_simple/bt_simple_I00004.pdf}
+	
+	\includegraphics[scale=.25]{../results/backtracking_simple/bt_simple_I00005.pdf}&
+	\includegraphics[scale=.25]{../results/backtracking_simple/bt_simple_I00006.pdf}&
+	\includegraphics[scale=.25]{../results/backtracking_simple/bt_simple_I00007.pdf}&
+	\includegraphics[scale=.25]{../results/backtracking_simple/bt_simple_I00008.pdf}
+	
+	\includegraphics[scale=.25]{../results/backtracking_simple/bt_simple_I00009.pdf}&
+	\includegraphics[scale=.25]{../results/backtracking_simple/bt_simple_I00010.pdf}&
+	\includegraphics[scale=.25]{../results/backtracking_simple/bt_simple_I00011.pdf}&
+	\includegraphics[scale=.25]{../results/backtracking_simple/bt_simple_I00012.pdf}
+	
+	\includegraphics[scale=.25]{../results/backtracking_simple/bt_simple_I00013.pdf}&
+	\includegraphics[scale=.25]{../results/backtracking_simple/bt_simple_I00014.pdf}&
+	\includegraphics[scale=.25]{../results/backtracking_simple/bt_simple_I00015.pdf}&
+	\includegraphics[scale=.25]{../results/backtracking_simple/bt_simple_I00016.pdf}
+	
+	\includegraphics[scale=.25]{../results/backtracking_simple/bt_simple_I00017.pdf}&
+	\includegraphics[scale=.25]{../results/backtracking_simple/bt_simple_I00018.pdf}&
+	\includegraphics[scale=.25]{../results/backtracking_simple/bt_simple_I00019.pdf}&
+	\includegraphics[scale=.25]{../results/backtracking_simple/bt_simple_I00020.pdf}
+\end{tabular}
+
+
+\section{Backtracking with Forward Checking}
+\begin{tabular}{c c c c }
+	\includegraphics[scale=.25]{../results/backtracking_forward/bt_forward_I00001.pdf}&
+	\includegraphics[scale=.25]{../results/backtracking_forward/bt_forward_I00002.pdf}&
+	\includegraphics[scale=.25]{../results/backtracking_forward/bt_forward_I00003.pdf}&
+	\includegraphics[scale=.25]{../results/backtracking_forward/bt_forward_I00004.pdf}
+	
+	\includegraphics[scale=.25]{../results/backtracking_forward/bt_forward_I00005.pdf}&
+	\includegraphics[scale=.25]{../results/backtracking_forward/bt_forward_I00006.pdf}&
+	\includegraphics[scale=.25]{../results/backtracking_forward/bt_forward_I00007.pdf}&
+	\includegraphics[scale=.25]{../results/backtracking_forward/bt_forward_I00008.pdf}
+	
+	\includegraphics[scale=.25]{../results/backtracking_forward/bt_forward_I00009.pdf}&
+	\includegraphics[scale=.25]{../results/backtracking_forward/bt_forward_I00010.pdf}&
+	\includegraphics[scale=.25]{../results/backtracking_forward/bt_forward_I00011.pdf}&
+	\includegraphics[scale=.25]{../results/backtracking_forward/bt_forward_I00012.pdf}
+	
+	\includegraphics[scale=.25]{../results/backtracking_forward/bt_forward_I00013.pdf}&
+	\includegraphics[scale=.25]{../results/backtracking_forward/bt_forward_I00014.pdf}&
+	\includegraphics[scale=.25]{../results/backtracking_forward/bt_forward_I00015.pdf}&
+	\includegraphics[scale=.25]{../results/backtracking_forward/bt_forward_I00016.pdf}
+	
+	\includegraphics[scale=.25]{../results/backtracking_forward/bt_forward_I00017.pdf}&
+	\includegraphics[scale=.25]{../results/backtracking_forward/bt_forward_I00018.pdf}&
+	\includegraphics[scale=.25]{../results/backtracking_forward/bt_forward_I00019.pdf}&
+	\includegraphics[scale=.25]{../results/backtracking_forward/bt_forward_I00020.pdf}
+\end{tabular}
+
+
+\section{Backtracking with Constraint Propagation}
+\begin{tabular}{c c c c }
+	\includegraphics[scale=.25]{../results/backtracking_mac/bt_mac_I00001.pdf}&
+	\includegraphics[scale=.25]{../results/backtracking_mac/bt_mac_I00002.pdf}&
+	\includegraphics[scale=.25]{../results/backtracking_mac/bt_mac_I00003.pdf}&
+	\includegraphics[scale=.25]{../results/backtracking_mac/bt_mac_I00004.pdf}
+	
+	\includegraphics[scale=.25]{../results/backtracking_mac/bt_mac_I00005.pdf}&
+	\includegraphics[scale=.25]{../results/backtracking_mac/bt_mac_I00006.pdf}&
+	\includegraphics[scale=.25]{../results/backtracking_mac/bt_mac_I00007.pdf}&
+	\includegraphics[scale=.25]{../results/backtracking_mac/bt_mac_I00008.pdf}
+	
+	\includegraphics[scale=.25]{../results/backtracking_mac/bt_mac_I00009.pdf}&
+	\includegraphics[scale=.25]{../results/backtracking_mac/bt_mac_I00010.pdf}&
+	\includegraphics[scale=.25]{../results/backtracking_mac/bt_mac_I00011.pdf}&
+	\includegraphics[scale=.25]{../results/backtracking_mac/bt_mac_I00012.pdf}
+	
+	\includegraphics[scale=.25]{../results/backtracking_mac/bt_mac_I00013.pdf}&
+	\includegraphics[scale=.25]{../results/backtracking_mac/bt_mac_I00014.pdf}&
+	\includegraphics[scale=.25]{../results/backtracking_mac/bt_mac_I00015.pdf}&
+	\includegraphics[scale=.25]{../results/backtracking_mac/bt_mac_I00016.pdf}
+	
+	\includegraphics[scale=.25]{../results/backtracking_mac/bt_mac_I00017.pdf}&
+	\includegraphics[scale=.25]{../results/backtracking_mac/bt_mac_I00018.pdf}&
+	\includegraphics[scale=.25]{../results/backtracking_mac/bt_mac_I00019.pdf}&
+	\includegraphics[scale=.25]{../results/backtracking_mac/bt_mac_I00020.pdf}
+\end{tabular}
+
+
+\section{Genetic}
+\begin{tabular}{c c c c }
+	\includegraphics[scale=.25]{../results/genetic/genetic_I00001.pdf}&
+	\includegraphics[scale=.25]{../results/genetic/genetic_I00002.pdf}&
+	\includegraphics[scale=.25]{../results/genetic/genetic_I00003.pdf}&
+	\includegraphics[scale=.25]{../results/genetic/genetic_I00004.pdf}
+	
+	\includegraphics[scale=.25]{../results/genetic/genetic_I00005.pdf}&
+	\includegraphics[scale=.25]{../results/genetic/genetic_I00006.pdf}&
+	\includegraphics[scale=.25]{../results/genetic/genetic_I00007.pdf}&
+	\includegraphics[scale=.25]{../results/genetic/genetic_I00008.pdf}
+	
+	\includegraphics[scale=.25]{../results/genetic/genetic_I00009.pdf}&
+	\includegraphics[scale=.25]{../results/genetic/genetic_I00010.pdf}&
+	\includegraphics[scale=.25]{../results/genetic/genetic_I00011.pdf}&
+	\includegraphics[scale=.25]{../results/genetic/genetic_I00012.pdf}
+	
+	\includegraphics[scale=.25]{../results/genetic/genetic_I00013.pdf}&
+	\includegraphics[scale=.25]{../results/genetic/genetic_I00014.pdf}&
+	\includegraphics[scale=.25]{../results/genetic/genetic_I00015.pdf}&
+	\includegraphics[scale=.25]{../results/genetic/genetic_I00016.pdf}
+	
+	\includegraphics[scale=.25]{../results/genetic/genetic_I00017.pdf}&
+	\includegraphics[scale=.25]{../results/genetic/genetic_I00018.pdf}&
+	\includegraphics[scale=.25]{../results/genetic/genetic_I00019.pdf}&
+	\includegraphics[scale=.25]{../results/genetic/genetic_I00020.pdf}
+\end{tabular}
+
+	
+	
+\end{document}
