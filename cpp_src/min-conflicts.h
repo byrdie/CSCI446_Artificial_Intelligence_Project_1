@@ -14,7 +14,7 @@
 #ifndef MIN_CONFLICTS_H
 #define MIN_CONFLICTS_H
 #include "map_data_types.h"
-int min_conflicts(Map * map, const unsigned int num_colors, unsigned long max_steps, int * steps, bool draw_steps);
+int min_conflicts(Map * map, const unsigned int num_colors, unsigned long max_steps, long int * steps, bool draw_steps);
 
 
 #endif /* MIN_CONFLICTS_H */

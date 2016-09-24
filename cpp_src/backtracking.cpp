@@ -3,7 +3,7 @@
 
 using namespace std;
 
-bool backtrack(Map * map, const unsigned int k, const unsigned int index, int* counter, int max_depth, bool draw_steps) {
+bool backtrack(Map * map, const unsigned int k, const unsigned int index, long int* counter, int max_depth, bool draw_steps) {
 
 
     if (index == map->N) {
@@ -11,7 +11,7 @@ bool backtrack(Map * map, const unsigned int k, const unsigned int index, int* c
             for (int i = 0; i < 20; i++) {
                 *counter += 1;
                 char filename[100];
-                sprintf(filename, "../results/backtracking_simple/map_build/bt_simple_I%05d.pdf", *counter);
+                sprintf(filename, "../results/backtracking_simple/map_build/bt_simple_I%05ld.pdf", *counter);
                 Cairo * cairo = new Cairo(filename);
                 map->draw_map(cairo, index, index, *counter);
                 cairo->finish();
@@ -34,7 +34,7 @@ bool backtrack(Map * map, const unsigned int k, const unsigned int index, int* c
 
         if (draw_steps) {
             char filename[100];
-            sprintf(filename, "../results/backtracking_simple/map_build/bt_simple_I%05d.pdf", *counter);
+            sprintf(filename, "../results/backtracking_simple/map_build/bt_simple_I%05ld.pdf", *counter);
             Cairo * cairo = new Cairo(filename);
             map->draw_map(cairo, index, index, *counter);
             cairo->finish();
@@ -56,12 +56,12 @@ bool backtrack(Map * map, const unsigned int k, const unsigned int index, int* c
     return false;
 }
 
-bool backtrack_forward(Map * map, uint index, int* counter, int max_depth, bool draw_steps) {
+bool backtrack_forward(Map * map, uint index, long int* counter, int max_depth, bool draw_steps) {
 
     *counter += 1;
     if (draw_steps) {
         char filename[100];
-        sprintf(filename, "../results/backtracking_forward/map_build/bt_forward_I%05d.pdf", *counter);
+        sprintf(filename, "../results/backtracking_forward/map_build/bt_forward_I%05ld.pdf", *counter);
         Cairo * cairo = new Cairo(filename);
         map->draw_map_bitwise(cairo, index, index, *counter);
         cairo->finish();
@@ -72,7 +72,7 @@ bool backtrack_forward(Map * map, uint index, int* counter, int max_depth, bool 
             for (int i = 0; i < 20; i++) {
                 *counter += 1;
                 char filename[100];
-                sprintf(filename, "../results/backtracking_forward/map_build/bt_forward_I%05d.pdf", *counter);
+                sprintf(filename, "../results/backtracking_forward/map_build/bt_forward_I%05ld.pdf", *counter);
                 Cairo * cairo = new Cairo(filename);
                 map->draw_map_bitwise(cairo, index, index, *counter);
                 cairo->finish();
@@ -148,7 +148,7 @@ bool backtrack_forward(Map * map, uint index, int* counter, int max_depth, bool 
 
 }
 
-bool forward_check(Map * map, uint index, uint color, bool draw_steps, int * counter) {
+bool forward_check(Map * map, uint index, uint color, bool draw_steps, long int * counter) {
 
     int num_e = map->graph[index]->num_edges;
 
@@ -161,7 +161,7 @@ bool forward_check(Map * map, uint index, uint color, bool draw_steps, int * cou
         if (new_color_set == 0) {
             if (draw_steps) {
                 char filename[100];
-                sprintf(filename, "../results/backtracking_forward/map_build/bt_forward_I%05d.pdf", *counter);
+                sprintf(filename, "../results/backtracking_forward/map_build/bt_forward_I%05ld.pdf", *counter);
                 Cairo * cairo = new Cairo(filename);
                 map->draw_map_bitwise(cairo, index, index, *counter);
                 cairo->finish();
@@ -172,7 +172,7 @@ bool forward_check(Map * map, uint index, uint color, bool draw_steps, int * cou
     }
     if (draw_steps) {
         char filename[100];
-        sprintf(filename, "../results/backtracking_forward/map_build/bt_forward_I%05d.pdf", *counter);
+        sprintf(filename, "../results/backtracking_forward/map_build/bt_forward_I%05ld.pdf", *counter);
         Cairo * cairo = new Cairo(filename);
         map->draw_map_bitwise(cairo, index, index, *counter);
         cairo->finish();
@@ -191,12 +191,12 @@ bool undo_forward_check(Map * map, uint index, uint old_colors[]) {
 
 }
 
-bool backtrack_mac(Map * map, uint index, int* counter, int max_depth, bool draw_steps) {
+bool backtrack_mac(Map * map, uint index, long int* counter, int max_depth, bool draw_steps) {
     *counter += 1;
 
     if (draw_steps) {
         char filename[100];
-        sprintf(filename, "../results/backtracking_mac/map_build/bt_mac_I%05d.pdf", *counter);
+        sprintf(filename, "../results/backtracking_mac/map_build/bt_mac_I%05ld.pdf", *counter);
         Cairo * cairo = new Cairo(filename);
         map->draw_map_bitwise(cairo, index, *counter, index);
         cairo->finish();
@@ -207,7 +207,7 @@ bool backtrack_mac(Map * map, uint index, int* counter, int max_depth, bool draw
             for (int i = 0; i < 20; i++) {
                 *counter += 1;
                 char filename[100];
-                sprintf(filename, "../results/backtracking_mac/map_build/bt_mac_I%05d.pdf", *counter);
+                sprintf(filename, "../results/backtracking_mac/map_build/bt_mac_I%05ld.pdf", *counter);
                 Cairo * cairo = new Cairo(filename);
                 map->draw_map_bitwise(cairo, index, *counter, index);
                 cairo->finish();
@@ -279,7 +279,7 @@ bool backtrack_mac(Map * map, uint index, int* counter, int max_depth, bool draw
     return false;
 }
 
-bool ac3(Map * map, uint index, Graph_edge * queue[], uint qlen, int * counter, bool draw_steps) {
+bool ac3(Map * map, uint index, Graph_edge * queue[], uint qlen, long int * counter, bool draw_steps) {
 
     int q_i = 0; //queue index
     while (qlen - q_i > 0) {
@@ -293,7 +293,7 @@ bool ac3(Map * map, uint index, Graph_edge * queue[], uint qlen, int * counter, 
                 *counter += 1;
                 if (draw_steps) {
                     char filename[100];
-                    sprintf(filename, "../results/backtracking_mac/map_build/bt_mac_I%05d.pdf", *counter);
+                    sprintf(filename, "../results/backtracking_mac/map_build/bt_mac_I%05ld.pdf", *counter);
                     Cairo * cairo = new Cairo(filename);
                     map->draw_map_bitwise(cairo, i, *counter, j);
                     cairo->finish();
@@ -309,7 +309,7 @@ bool ac3(Map * map, uint index, Graph_edge * queue[], uint qlen, int * counter, 
     *counter += 1;
     if (draw_steps) {
         char filename[100];
-        sprintf(filename, "../results/backtracking_mac/map_build/bt_mac_I%05d.pdf", *counter);
+        sprintf(filename, "../results/backtracking_mac/map_build/bt_mac_I%05ld.pdf", *counter);
         Cairo * cairo = new Cairo(filename);
         map->draw_map_bitwise(cairo, index, *counter, index);
         cairo->finish();
@@ -327,7 +327,7 @@ bool undo_ac3(Map * map, uint old_colors[]) {
 
 }
 
-bool revise(Map * map, int i, int j, int * counter, bool draw_steps) {
+bool revise(Map * map, int i, int j, long int * counter, bool draw_steps) {
     bool revised = false;
 
 

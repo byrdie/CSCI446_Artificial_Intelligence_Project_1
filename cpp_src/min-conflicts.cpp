@@ -6,7 +6,7 @@
 
 #include "min-conflicts.h"
 
-int min_conflicts(Map * map, const unsigned int num_colors, unsigned long int max_steps, int * counter, bool draw_steps) {
+int min_conflicts(Map * map, const unsigned int num_colors, unsigned long int max_steps, long int * counter, bool draw_steps) {
     int N = map->N;
     bool finished = false;
     int steps = 0;
@@ -74,7 +74,7 @@ int min_conflicts(Map * map, const unsigned int num_colors, unsigned long int ma
         *counter += 1;
         if (draw_steps) {
             char filename[100];
-            sprintf(filename, "../results/min_conflicts/map_build/minconf_I%05d.pdf", *counter);
+            sprintf(filename, "../results/min_conflicts/map_build/minconf_I%05ld.pdf", *counter);
             Cairo * cairo = new Cairo(filename);
             map->draw_map(cairo, i, *counter, i);
             cairo->finish();
@@ -87,7 +87,7 @@ int min_conflicts(Map * map, const unsigned int num_colors, unsigned long int ma
                     *counter += 1;
 
                     char filename[100];
-                    sprintf(filename, "../results/min_conflicts/map_build/minconf_I%05d.pdf", *counter);
+                    sprintf(filename, "../results/min_conflicts/map_build/minconf_I%05ld.pdf", *counter);
                     Cairo * cairo = new Cairo(filename);
                     map->draw_map(cairo, i, *counter, i);
                     cairo->finish();

@@ -18,15 +18,15 @@
 
 
 
-bool backtrack(Map * map, const unsigned int k, const unsigned int index, int* counter, int max_depth, bool draw_steps);
-bool backtrack_forward(Map * map, uint index, int* counter, int max_depth, bool draw_steps);
-bool forward_check(Map * map, uint index, uint color, bool draw_steps, int * counter);
+bool backtrack(Map * map, const unsigned int k, const unsigned int index, long int* counter, int max_depth, bool draw_steps);
+bool backtrack_forward(Map * map, uint index, long int* counter, int max_depth, bool draw_steps);
+bool forward_check(Map * map, uint index, uint color, bool draw_steps, long int * counter);
 bool undo_forward_check(Map * map, uint index, uint old_colors[]);
 
-bool backtrack_mac(Map * map, uint index, int* counter, int max_depth, bool draw_steps);
-bool ac3(Map * map, uint index, Graph_edge * queue[], uint qlen, int * counter, bool draw_steps);
+bool backtrack_mac(Map * map, uint index, long int* counter, int max_depth, bool draw_steps);
+bool ac3(Map * map, uint index, Graph_edge * queue[], uint qlen, long int * counter, bool draw_steps);
 bool undo_ac3(Map * map, uint old_colors[]);
-bool revise(Map * map, int x_i, int x_j, int * counter, bool draw_steps);
+bool revise(Map * map, int x_i, int x_j, long int * counter, bool draw_steps);
 
 #endif /* BACKTRACKING_H */
 

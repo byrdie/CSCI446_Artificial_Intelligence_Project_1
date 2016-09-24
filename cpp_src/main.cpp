@@ -35,7 +35,7 @@ int main(int argc, char** argv) {
 void run_examples() {
 
     int N = 40;
-    int steps = 0;
+    long int steps = 0;
     int max_steps = 1000;
     int k = 4;
     char command[500];
@@ -288,7 +288,7 @@ void backtrack_simple_experiment(vector<vector<Map *>> dataset, vector<vector<fl
             Map * map = dataset[i][j];
             map->clean_map();
             auto t1 = chrono::high_resolution_clock::now();
-            int steps = 0;
+            long int steps = 0;
             bool result = backtrack(map, k, 0, &steps, max_steps, false);
             auto t2 = std::chrono::high_resolution_clock::now();
 
@@ -410,7 +410,7 @@ void minconflicts_experiment(vector<vector<Map *>> dataset, vector<vector<float>
 
 
         for (int j = 0; j < dataset[i].size(); j++) {
-            int counter = 0;
+            long int counter = 0;
             Map * map = dataset[i][j];
             map->clean_map();
             auto t1 = chrono::high_resolution_clock::now();
@@ -539,7 +539,7 @@ void backtrack_forward_experiment(vector<vector<Map *>> dataset, vector<vector<f
                 map->three_clean_map_bitwise();
             }
             auto t1 = chrono::high_resolution_clock::now();
-            int steps = 0;
+            long int steps = 0;
             bool result = backtrack_forward(map, 0, &steps, max_steps, false);
             auto t2 = std::chrono::high_resolution_clock::now();
 
@@ -665,7 +665,7 @@ void backtrack_mac_experiment(vector<vector<Map *>> dataset, vector<vector<float
                 map->three_clean_map_bitwise();
             }
             auto t1 = chrono::high_resolution_clock::now();
-            int steps = 0;
+            long int steps = 0;
             bool result = backtrack_mac(map, 0, &steps, max_steps, false);
             auto t2 = std::chrono::high_resolution_clock::now();
 
@@ -783,7 +783,7 @@ void genetic_experiment(vector<vector<Map *>> dataset, vector<vector<float>> &re
 
             Map * map = dataset[i][j];
             map->clean_map();
-            int steps = 0;
+            long int steps = 0;
             const int pop_size = (int) N;
             GeneticAlgorithm * ga = new GeneticAlgorithm(map, pop_size, N, k, max_generations);
             auto t1 = chrono::high_resolution_clock::now();

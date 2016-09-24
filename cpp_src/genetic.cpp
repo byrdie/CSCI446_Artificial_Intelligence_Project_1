@@ -19,7 +19,7 @@ GeneticAlgorithm::GeneticAlgorithm(Map * in_map, int in_pop_size, int in_N, int 
     
 }
 
-int GeneticAlgorithm::run(int * counter, bool draw_steps) {
+int GeneticAlgorithm::run(long int * counter, bool draw_steps) {
     int gen = 0;
     init_pop();
 
@@ -53,7 +53,7 @@ int GeneticAlgorithm::run(int * counter, bool draw_steps) {
                         *counter += 1;
 
                         char filename[100];
-                        sprintf(filename, "../results/genetic/map_build/genetic_I%05d.pdf", *counter);
+                        sprintf(filename, "../results/genetic/map_build/genetic_I%05ld.pdf", *counter);
                         Cairo * cairo = new Cairo(filename);
                         map->draw_map(cairo, generations, *counter, generations);
                         cairo->finish();
@@ -72,7 +72,7 @@ int GeneticAlgorithm::run(int * counter, bool draw_steps) {
                             *counter += 1;
 
                             char filename[100];
-                            sprintf(filename, "../results/genetic/map_build/genetic_I%05d.pdf", *counter);
+                            sprintf(filename, "../results/genetic/map_build/genetic_I%05ld.pdf", *counter);
                             Cairo * cairo = new Cairo(filename);
                             map->draw_map(cairo, generations, *counter, generations);
                             cairo->finish();
@@ -103,7 +103,7 @@ int GeneticAlgorithm::run(int * counter, bool draw_steps) {
         *counter += 1;
         if (draw_steps) {
             char filename[100];
-            sprintf(filename, "../results/genetic/map_build/genetic_I%05d.pdf", *counter);
+            sprintf(filename, "../results/genetic/map_build/genetic_I%05ld.pdf", *counter);
             Cairo * cairo = new Cairo(filename);
             map->draw_map(cairo, generations, *counter, generations);
             cairo->finish();
