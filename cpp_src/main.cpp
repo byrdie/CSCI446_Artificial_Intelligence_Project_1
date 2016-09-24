@@ -518,7 +518,7 @@ void minconflicts_experiment(vector<vector<Map *>> dataset, vector<vector<float>
 }
 
 void backtrack_forward_experiment(vector<vector<Map *>> dataset, vector<vector<float>> &reads, vector<vector<float>> &writes, vector<vector<float>> &timings, int k, vector<vector<float>> &saturated) {
-    int max_steps = 2e9;
+    int max_steps = 1e10;
     vector<vector<float>> step_arr;
 
     for (int i = 0; i < dataset.size(); i++) {
@@ -644,7 +644,7 @@ void backtrack_forward_experiment(vector<vector<Map *>> dataset, vector<vector<f
 
 void backtrack_mac_experiment(vector<vector<Map *>> dataset, vector<vector<float>> &reads, vector<vector<float>> &writes, vector<vector<float>> &timings, int k, vector<vector<float>> &saturated) {
 
-    int max_steps = 2e6;
+    int max_steps = 1e10;
     vector<vector<float>> step_arr;
 
     for (int i = 0; i < dataset.size(); i++) {
@@ -766,7 +766,7 @@ void backtrack_mac_experiment(vector<vector<Map *>> dataset, vector<vector<float
 }
 
 void genetic_experiment(vector<vector<Map *>> dataset, vector<vector<float>> &reads, vector<vector<float>> &writes, vector<vector<float>> &timings, int k, vector<vector<float>> &saturated) {
-    int max_generations = 1e4;
+    int max_generations = 1e5;
     vector<vector<float>> num_runs;
 
     for (int i = 0; i < dataset.size(); i++) {
