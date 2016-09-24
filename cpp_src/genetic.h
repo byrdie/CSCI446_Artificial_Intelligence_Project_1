@@ -28,7 +28,7 @@ public:
     int num_colors;
     int max_generations;
     GeneticAlgorithm(Map * in_map, int in_pop_size, int in_N, int in_num_colors, int max_gen);
-    int run();
+    int run(int * counter, bool draw_steps);
     void init_pop();
     int calc_fitness(int indiv);
     int tournament_select();

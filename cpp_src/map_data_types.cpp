@@ -4,7 +4,6 @@
 
 #include "map_data_types.h"
 
-
 Map::Map(const unsigned int num_vert, Graph_point ** g, int ** mat, unsigned int * cols) {
     N = num_vert;
     graph = g;
@@ -15,7 +14,7 @@ Map::Map(const unsigned int num_vert, Graph_point ** g, int ** mat, unsigned int
 }
 
 void Map::clean_map() {
-    
+
     for (int i = 0; i < N; i++) {
         Graph_point * pt = graph[i];
         set_color(i, 0);
@@ -27,7 +26,7 @@ void Map::clean_map() {
 }
 
 void Map::clean_map_bitwise() {
-    
+
     for (int i = 0; i < N; i++) {
         Graph_point * pt = graph[i];
         set_color(i, NOCOLOR);
@@ -38,7 +37,7 @@ void Map::clean_map_bitwise() {
     }
 }
 
-void Map :: three_clean_map_bitwise(){
+void Map::three_clean_map_bitwise() {
     for (int i = 0; i < N; i++) {
         Graph_point * pt = graph[i];
         set_color(i, THREECOLOR);
@@ -52,7 +51,7 @@ void Map :: three_clean_map_bitwise(){
 void Map::draw_map(Cairo * cairo) {
     for (int i = 0; i < N; i++) {
         //                cout << i << endl;
-        cairo->draw_poly(graph[i]->poly, graph[i]->num_poly_vert, static_cast<Color> (colors[i]));
+        cairo->draw_poly(graph[i]->poly, graph[i]->num_poly_vert, static_cast<Color> (colors[i]), false);
         cairo->draw_point(graph[i]->pt, black);
 
 
@@ -63,10 +62,58 @@ void Map::draw_map(Cairo * cairo) {
     }
 }
 
+void Map::draw_map(Cairo * cairo, int index, int counter, int depth) {
+    for (int i = 0; i < N; i++) {
+        //                cout << i << endl;
+        if (i == index) {
+            cairo->draw_poly(graph[i]->poly, graph[i]->num_poly_vert, static_cast<Color> (colors[i]), true);
+        } else {
+            cairo->draw_poly(graph[i]->poly, graph[i]->num_poly_vert, static_cast<Color> (colors[i]), false);
+        }
+
+        cairo->draw_point(graph[i]->pt, black);
+
+
+        for (int j = 0; j < graph[i]->num_edges; j++) {
+
+            cairo->draw_line(graph[i]->edges[j], black);
+        }
+    }
+
+    char l_label[100];
+    char r_label[100];
+    sprintf(l_label, "Depth: %d", depth);
+    sprintf(r_label, "Iterations: %d", counter);
+    cairo->draw_label(l_label, r_label);
+}
+
 void Map::draw_map_bitwise(Cairo * cairo) {
     for (int i = 0; i < N; i++) {
 
-        cairo->draw_poly(graph[i]->poly, graph[i]->num_poly_vert, colors[i]);
+        cairo->draw_poly(graph[i]->poly, graph[i]->num_poly_vert, colors[i], false);
+
+    }
+    for (int i = 0; i < N; i++) {
+        cairo->draw_point(graph[i]->pt, black);
+
+
+        for (int j = 0; j < graph[i]->num_edges; j++) {
+
+            cairo->draw_line(graph[i]->edges[j], black);
+        }
+    }
+
+}
+
+void Map::draw_map_bitwise(Cairo * cairo, int index, int counter, int depth) {
+    for (int i = 0; i < N; i++) {
+
+        if (i == index) {
+            cairo->draw_poly(graph[i]->poly, graph[i]->num_poly_vert, colors[i], true);
+        } else {
+            cairo->draw_poly(graph[i]->poly, graph[i]->num_poly_vert, colors[i], false);
+        }
+
 
     }
     for (int i = 0; i < N; i++) {
@@ -91,16 +138,16 @@ bool Map::has_conflicting_neighbors(int i) {
     return false;
 }
 
-
 void Map::set_color(int index, int col) {
     colors[index] = col;
     num_writes++;
 }
-void Map :: set_all_colors(unsigned int  n_colors[]){
-    
-    memcpy(colors, n_colors, N*sizeof(unsigned int));
-    num_writes+=N;
-     
+
+void Map::set_all_colors(unsigned int n_colors[]) {
+
+    memcpy(colors, n_colors, N * sizeof (unsigned int));
+    num_writes += N;
+
 }
 
 int Map::get_color(int index) {
@@ -132,11 +179,11 @@ int Map::num_conflicting_neighbors(int j) {
 //    return conflicts;
 //}
 
-int Map :: num_conflicts(){
-    
+int Map::num_conflicts() {
+
     int conflicts = 0;
-    for (int i = 0; i < N; i++){
-        for (int j = 0; j , j < graph[i]->num_edges; j++ ){
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j, j < graph[i]->num_edges; j++) {
             num_reads++;
             if (colors[i] == colors[matrix[i][j]]) {
                 conflicts++;
@@ -193,8 +240,6 @@ bool Graph_point::has_conflicting_neighbors() {
     }
     return false;
 }
-
-
 
 Graph_edge::Graph_edge(Graph_point * st_pt, Graph_point * end_pt) {
     start_point = st_pt;
