@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.6.13)  23 SEP 2016 04:44
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.6.13)  23 SEP 2016 12:56
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -573,55 +573,102 @@ LaTeX Font Warning: Font shape `T1/cmr/bx/n' in size <24> not available
 (Font)              size <24.88> substituted on input line 84.
 
 
-<../results/min_conflicts/min_conflicts_performance.pdf, id=32, 361.35pt x 216.
+<../results/backtracking_mac/maps/bt_mac_N80_k4_I6.pdf, id=32, 1003.75pt x 1003
+.75pt>
+File: ../results/backtracking_mac/maps/bt_mac_N80_k4_I6.pdf Graphic file (type 
+pdf)
+ <use ../results/backtracking_mac/maps/bt_mac_N80_k4_I6.pdf>
+Package pdftex.def Info: ../results/backtracking_mac/maps/bt_mac_N80_k4_I6.pdf 
+used on input line 105.
+(pdftex.def)             Requested size: 224.8775pt x 224.8691pt.
+
+<../results/comparing_read_performance.pdf, id=33, 361.35pt x 216.81pt>
+File: ../results/comparing_read_performance.pdf Graphic file (type pdf)
+
+<use ../results/comparing_read_performance.pdf>
+Package pdftex.def Info: ../results/comparing_read_performance.pdf used on inpu
+t line 113.
+(pdftex.def)             Requested size: 224.8775pt x 134.92696pt.
+
+<../results/comparing_write_performance.pdf, id=34, 361.35pt x 216.81pt>
+File: ../results/comparing_write_performance.pdf Graphic file (type pdf)
+
+<use ../results/comparing_write_performance.pdf>
+Package pdftex.def Info: ../results/comparing_write_performance.pdf used on inp
+ut line 119.
+(pdftex.def)             Requested size: 224.8775pt x 134.92696pt.
+
+<../results/comparing_time_performance.pdf, id=35, 361.35pt x 216.81pt>
+File: ../results/comparing_time_performance.pdf Graphic file (type pdf)
+
+<use ../results/comparing_time_performance.pdf>
+Package pdftex.def Info: ../results/comparing_time_performance.pdf used on inpu
+t line 125.
+(pdftex.def)             Requested size: 224.8775pt x 134.92696pt.
+ [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
+
+ <../results/backtracking_mac/maps/bt_mac_N80_k4_I6.pdf> <../results/comparing_
+read_performance.pdf
+
+pdfTeX warning: pdflatex (file ../results/comparing_read_performance.pdf): PDF 
+inclusion: multiple pdfs with page group included in a single page
+> <../results/comparing_write_performance.pdf
+
+pdfTeX warning: pdflatex (file ../results/comparing_write_performance.pdf): PDF
+ inclusion: multiple pdfs with page group included in a single page
+>]
+<../results/min_conflicts/min_conflicts_performance.pdf, id=66, 361.35pt x 216.
 81pt>
 File: ../results/min_conflicts/min_conflicts_performance.pdf Graphic file (type
  pdf)
  <use ../results/min_conflicts/min_conflicts_performance.pdf>
 Package pdftex.def Info: ../results/min_conflicts/min_conflicts_performance.pdf
- used on input line 107.
+ used on input line 133.
 (pdftex.def)             Requested size: 224.8775pt x 134.92696pt.
 
-<../results/backtracking_simple/bt_simple_performance.pdf, id=33, 361.35pt x 21
+<../results/backtracking_simple/bt_simple_performance.pdf, id=67, 361.35pt x 21
 6.81pt>
 File: ../results/backtracking_simple/bt_simple_performance.pdf Graphic file (ty
 pe pdf)
  <use ../results/backtracking_simple/bt_simple_performance.pdf>
 Package pdftex.def Info: ../results/backtracking_simple/bt_simple_performance.p
-df used on input line 115.
+df used on input line 141.
 (pdftex.def)             Requested size: 224.8775pt x 134.92696pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 120--120
-|\T1/cmr/m/sc/14.4 4 Back-track-ing with For-
+Underfull \hbox (badness 10000) in paragraph at lines 146--146
+|\T1/cmr/m/sc/14.4 5 Back-track-ing with For-
  []
 
 
-<../results/backtracking_forward/bt_forward_performance.pdf, id=34, 361.35pt x 
+<../results/backtracking_forward/bt_forward_performance.pdf, id=68, 361.35pt x 
 216.81pt>
 File: ../results/backtracking_forward/bt_forward_performance.pdf Graphic file (
 type pdf)
  <use ../results/backtracking_forward/bt_forward_performance.pdf>
 Package pdftex.def Info: ../results/backtracking_forward/bt_forward_performance
-.pdf used on input line 124.
+.pdf used on input line 150.
 (pdftex.def)             Requested size: 224.8775pt x 134.92696pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 128--128
-|\T1/cmr/m/sc/14.4 5 Back-track-ing with Con-
+Underfull \hbox (badness 10000) in paragraph at lines 154--154
+|\T1/cmr/m/sc/14.4 6 Back-track-ing with Con-
  []
 
 
-<../results/backtracking_mac/bt_mac_performance.pdf, id=35, 361.35pt x 216.81pt
+<../results/backtracking_mac/bt_mac_performance.pdf, id=69, 361.35pt x 216.81pt
 >
 File: ../results/backtracking_mac/bt_mac_performance.pdf Graphic file (type pdf
 )
  <use ../results/backtracking_mac/bt_mac_performance.pdf>
 Package pdftex.def Info: ../results/backtracking_mac/bt_mac_performance.pdf use
-d on input line 132.
+d on input line 158.
 (pdftex.def)             Requested size: 224.8775pt x 134.92696pt.
- [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
+ [2 <../results/comparing_time_performance.pdf> <../results/min_conflicts/min_c
+onflicts_performance.pdf
 
- <../results/min_conflicts/min_conflicts_performance.pdf> <../results/backtrack
-ing_simple/bt_simple_performance.pdf
+pdfTeX warning: pdflatex (file ../results/min_conflicts/min_conflicts_performan
+ce.pdf): PDF inclusion: multiple pdfs with page group included in a single page
+
+> <../results/backtracking_simple/bt_simple_performance.pdf
 
 pdfTeX warning: pdflatex (file ../results/backtracking_simple/bt_simple_perform
 ance.pdf): PDF inclusion: multiple pdfs with page group included in a single pa
@@ -631,77 +678,54 @@ ge
 pdfTeX warning: pdflatex (file ../results/backtracking_forward/bt_forward_perfo
 rmance.pdf): PDF inclusion: multiple pdfs with page group included in a single 
 page
->] <../results/genetic/genetic_performance.pdf, id=70, 361.35pt x 216.81pt>
+>] <../results/genetic/genetic_performance.pdf, id=99, 361.35pt x 216.81pt>
 File: ../results/genetic/genetic_performance.pdf Graphic file (type pdf)
 
 <use ../results/genetic/genetic_performance.pdf>
 Package pdftex.def Info: ../results/genetic/genetic_performance.pdf used on inp
-ut line 141.
+ut line 167.
 (pdftex.def)             Requested size: 224.8775pt x 134.92696pt.
-
-<../results/comparing_read_performance.pdf, id=71, 361.35pt x 216.81pt>
-File: ../results/comparing_read_performance.pdf Graphic file (type pdf)
-
-<use ../results/comparing_read_performance.pdf>
-Package pdftex.def Info: ../results/comparing_read_performance.pdf used on inpu
-t line 149.
-(pdftex.def)             Requested size: 224.8775pt x 134.92696pt.
-
-<../results/comparing_write_performance.pdf, id=72, 361.35pt x 216.81pt>
-File: ../results/comparing_write_performance.pdf Graphic file (type pdf)
-
-<use ../results/comparing_write_performance.pdf>
-Package pdftex.def Info: ../results/comparing_write_performance.pdf used on inp
-ut line 155.
-(pdftex.def)             Requested size: 224.8775pt x 134.92696pt.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 161.
- [2 <../results/backtracking_mac/bt_mac_performance.pdf> <../results/genetic/ge
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 175.
+ [3 <../results/backtracking_mac/bt_mac_performance.pdf> <../results/genetic/ge
 netic_performance.pdf
 
 pdfTeX warning: pdflatex (file ../results/genetic/genetic_performance.pdf): PDF
  inclusion: multiple pdfs with page group included in a single page
-> <../results/comparing_read_performance.pdf
-
-pdfTeX warning: pdflatex (file ../results/comparing_read_performance.pdf): PDF 
-inclusion: multiple pdfs with page group included in a single page
-> <../results/comparing_write_performance.pdf
-
-pdfTeX warning: pdflatex (file ../results/comparing_write_performance.pdf): PDF
- inclusion: multiple pdfs with page group included in a single page
 >]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 161.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 175.
  (./Test_Run_Intro.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 161.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 161.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 175.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 175.
 Package rerunfilecheck Info: File `Test_Run_Intro.out' has not changed.
-(rerunfilecheck)             Checksum: 2C30D54E06B1C8232B46ABD0E9D59FCA;423.
+(rerunfilecheck)             Checksum: 5F0E7F4C399E6A6497E0D00892960559;423.
 
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.88pt have occurred.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 161.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 175.
  ) 
 Here is how much of TeX's memory you used:
- 9913 strings out of 493304
- 151995 string characters out of 6139871
- 377010 words of memory out of 5000000
- 13169 multiletter control sequences out of 15000+600000
- 17440 words of font info for 66 fonts, out of 8000000 for 9000
+ 9933 strings out of 493304
+ 152586 string characters out of 6139871
+ 374010 words of memory out of 5000000
+ 13177 multiletter control sequences out of 15000+600000
+ 17736 words of font info for 69 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 39i,12n,43p,420b,559s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,12n,43p,422b,522s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texliv
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf/fonts/
-type1/public/cm-super/sfbx0900.pfb></usr/share/texmf/fonts/type1/public/cm-supe
-r/sfbx2488.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfcc1200.pfb></usr
-/share/texmf/fonts/type1/public/cm-super/sfcc1440.pfb></usr/share/texmf/fonts/t
-ype1/public/cm-super/sfrm1000.pfb></usr/share/texmf/fonts/type1/public/cm-super
-/sfrm1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti0900.pfb></usr/
-share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on Test_Run_Intro.pdf (2 pages, 185386 bytes).
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf/fonts/type1/
+public/cm-super/sfbx0900.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx
+2488.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfcc1200.pfb></usr/share
+/texmf/fonts/type1/public/cm-super/sfcc1440.pfb></usr/share/texmf/fonts/type1/p
+ublic/cm-super/sfrm1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1
+200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti0900.pfb></usr/share/
+texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
+Output written on Test_Run_Intro.pdf (3 pages, 211635 bytes).
 PDF statistics:
- 137 PDF objects out of 1000 (max. 8388607)
- 108 compressed objects within 2 object streams
- 17 named destinations out of 1000 (max. 500000)
- 21084 words of extra memory for PDF output out of 24883 (max. 10000000)
+ 157 PDF objects out of 1000 (max. 8388607)
+ 123 compressed objects within 2 object streams
+ 20 named destinations out of 1000 (max. 500000)
+ 21094 words of extra memory for PDF output out of 24883 (max. 10000000)
 
