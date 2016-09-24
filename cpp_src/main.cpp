@@ -18,12 +18,14 @@ using namespace std;
 
 int main(int argc, char** argv) {
 
+    // Seed for examples used in videos
+    // 1474693859
+    
+    init_rand();
 
 
-    init_rand(1474693859);
-
-
-    run_examples();
+    //    run_examples();
+    run_experiments();
 
 
 
@@ -32,13 +34,13 @@ int main(int argc, char** argv) {
 
 void run_examples() {
 
-    int N = 8;
+    int N = 40;
     int steps = 0;
     int max_steps = 1000;
     int k = 4;
     char command[500];
     Map * map = map = problem_gen(N, WIDTH);
-    
+
     system("rm ../results/min_conflicts/map_build/*");
     system("rm ../results/min_conflicts_example.mp4");
     system("rm ../results/backtracking_simple/map_build/*");
@@ -49,58 +51,58 @@ void run_examples() {
     system("rm ../results/backtracking_mac_example.mp4");
     system("rm ../results/genetic/map_build/*");
     system("rm ../results/genetic_example.mp4");
-    
+
     map->clean_map();
-    
-    
+
+
     min_conflicts(map, k, max_steps, &steps, true);
     for (int i = 1; i <= steps; i++) {
 
         sprintf(command, "convert -density 98 ../results/min_conflicts/map_build/minconf_I%05d.pdf -quality 89 ../results/min_conflicts/map_build/minconf_I%05d.png", i, i);
         system(command);
     }
-    system("ffmpeg -r 1/0.5 -i ../results/min_conflicts/map_build/minconf_I%05d.png -c:v libx264 -r 30 -pix_fmt yuv420p ../results/min_conflicts_example.mp4");
+    system("ffmpeg -r 1/0.2 -i ../results/min_conflicts/map_build/minconf_I%05d.png -c:v libx264 -r 30 -pix_fmt yuv420p ../results/min_conflicts_example.mp4");
 
     map->clean_map();
     steps = 0;
 
-    
+
     backtrack(map, k, 0, &steps, max_steps, true);
     for (int i = 1; i <= steps; i++) {
 
         sprintf(command, "convert -density 98 ../results/backtracking_simple/map_build/bt_simple_I%05d.pdf -quality 89 ../results/backtracking_simple/map_build/bt_simple_I%05d.png", i, i);
         system(command);
     }
-    system("ffmpeg -r 1/0.5 -i ../results/backtracking_simple/map_build/bt_simple_I%05d.png -c:v libx264 -r 30 -pix_fmt yuv420p ../results/backtracking_simple_example.mp4");
+    system("ffmpeg -r 1/0.2 -i ../results/backtracking_simple/map_build/bt_simple_I%05d.png -c:v libx264 -r 30 -pix_fmt yuv420p ../results/backtracking_simple_example.mp4");
 
     map->clean_map_bitwise();
     steps = 0;
-    
-    
+
+
     backtrack_forward(map, 0, &steps, max_steps, true);
     for (int i = 1; i <= steps; i++) {
 
         sprintf(command, "convert -density 98 ../results/backtracking_forward/map_build/bt_forward_I%05d.pdf -quality 89 ../results/backtracking_forward/map_build/bt_forward_I%05d.png", i, i);
         system(command);
     }
-    system("ffmpeg -r 1/0.5 -i ../results/backtracking_forward/map_build/bt_forward_I%05d.png -c:v libx264 -r 30 -pix_fmt yuv420p ../results/backtracking_forward_example.mp4");
+    system("ffmpeg -r 1/0.2 -i ../results/backtracking_forward/map_build/bt_forward_I%05d.png -c:v libx264 -r 30 -pix_fmt yuv420p ../results/backtracking_forward_example.mp4");
 
     map->clean_map_bitwise();
     steps = 0;
-    
-    
+
+
     backtrack_mac(map, 0, &steps, max_steps, true);
     for (int i = 1; i <= steps; i++) {
 
         sprintf(command, "convert -density 98 ../results/backtracking_mac/map_build/bt_mac_I%05d.pdf -quality 89 ../results/backtracking_mac/map_build/bt_mac_I%05d.png", i, i);
         system(command);
     }
-    system("ffmpeg -r 1/0.5 -i ../results/backtracking_mac/map_build/bt_mac_I%05d.png -c:v libx264 -r 30 -pix_fmt yuv420p ../results/backtracking_mac_example.mp4");
+    system("ffmpeg -r 1/0.2 -i ../results/backtracking_mac/map_build/bt_mac_I%05d.png -c:v libx264 -r 30 -pix_fmt yuv420p ../results/backtracking_mac_example.mp4");
 
     map->clean_map();
     steps = 0;
-    
-    
+
+
     int max_generations = 1000;
     const int pop_size = (int) N;
     const int mut_rate = 100;
@@ -111,7 +113,7 @@ void run_examples() {
         sprintf(command, "convert -density 98 ../results/genetic/map_build/genetic_I%05d.pdf -quality 89 ../results/genetic/map_build/genetic_I%05d.png", i, i);
         system(command);
     }
-    system("ffmpeg -r 1/0.5 -i ../results/genetic/map_build/genetic_I%05d.png -c:v libx264 -r 30 -pix_fmt yuv420p ../results/genetic_example.mp4");
+    system("ffmpeg -r 1/0.2 -i ../results/genetic/map_build/genetic_I%05d.png -c:v libx264 -r 30 -pix_fmt yuv420p ../results/genetic_example.mp4");
 
 }
 
@@ -137,27 +139,32 @@ void run_experiments() {
     vector<vector<float>> mincon_reads;
     vector<vector<float>> mincon_writes;
     vector<vector<float>> mincon_timings;
-    //minconflicts_experiment(dataset, mincon_reads, mincon_writes, mincon_timings, k);
+    vector<vector<float>> mincon_saturated;
+    minconflicts_experiment(dataset, mincon_reads, mincon_writes, mincon_timings, k, mincon_saturated);
 
     vector<vector<float>> btmac_reads;
     vector<vector<float>> btmac_writes;
     vector<vector<float>> btmac_timings;
-    //backtrack_mac_experiment(dataset, btmac_reads, btmac_writes, btmac_timings, k);
+    vector<vector<float>> btmac_saturated;
+    backtrack_mac_experiment(dataset, btmac_reads, btmac_writes, btmac_timings, k, btmac_saturated);
 
     vector<vector<float>> btfor_reads;
     vector<vector<float>> btfor_writes;
     vector<vector<float>> btfor_timings;
-    //backtrack_forward_experiment(dataset, btfor_reads, btfor_writes, btfor_timings, k);
+    vector<vector<float>> btfor_saturated;
+    backtrack_forward_experiment(dataset, btfor_reads, btfor_writes, btfor_timings, k, btfor_saturated);
 
     vector<vector<float>> btsim_reads;
     vector<vector<float>> btsim_writes;
     vector<vector<float>> btsim_timings;
-    //backtrack_simple_experiment(dataset, btsim_reads, btsim_writes, btsim_timings, k);
+    vector<vector<float>> btsim_saturated;
+    backtrack_simple_experiment(dataset, btsim_reads, btsim_writes, btsim_timings, k, btsim_saturated);
 
     vector<vector<float>> gen_reads;
     vector<vector<float>> gen_writes;
     vector<vector<float>> gen_timings;
-    genetic_experiment(dataset, gen_reads, gen_writes, gen_timings, k);
+    vector<vector<float>> gen_saturated;
+    genetic_experiment(dataset, gen_reads, gen_writes, gen_timings, k, gen_saturated);
 
     Gnuplot gp;
 
@@ -243,9 +250,26 @@ void run_experiments() {
     gp.send1d(btmac_timings);
     gp.send1d(gen_timings);
     gp.send1d(gen_timings);
+    
+    gp << "set output '../results/comparing_num_saturated.pdf'\n";
+    gp << "unset logscale y \n";
+    gp << "set title 'Number of Saturated Data Points per Algorithm'\n";
+    gp << "set ylabel 'Saturation Count'\n";
+    gp << "plot "
+            "'-' using 1:2 lw 3 lt 2 lc 5 with lines title  'Minimum Conflicts',"
+            "'-' using 1:2 lw 3 lt 2 lc 3 with lines title  'Simple Backtracking',"
+            "'-' using 1:2 lw 3 lt 2 lc 2 with lines title 'Backtracking with Forward Checking',"
+            "'-' using 1:2 lw 3 lt 2 lc 1 with lines title 'Backtracking with MAC',"
+            "'-' using 1:2 lw 3 lt 2 lc 4 with lines title 'Genetic Algorithm'\n";
+
+    gp.send1d(mincon_saturated);
+    gp.send1d(btsim_saturated);
+    gp.send1d(btfor_saturated);
+    gp.send1d(btmac_saturated);
+    gp.send1d(gen_saturated);
 }
 
-void backtrack_simple_experiment(vector<vector<Map *>> dataset, vector<vector<float>> &reads, vector<vector<float>> &writes, vector<vector<float>> &timings, int k) {
+void backtrack_simple_experiment(vector<vector<Map *>> dataset, vector<vector<float>> &reads, vector<vector<float>> &writes, vector<vector<float>> &timings, int k, vector<vector<float>> &saturated) {
     int max_steps = 2e6;
     vector<vector<float>> step_arr;
 
@@ -256,6 +280,8 @@ void backtrack_simple_experiment(vector<vector<Map *>> dataset, vector<vector<fl
         vector<float> writes_for_N;
         vector<float> timings_for_N;
         vector<float> step_arr_for_N;
+        vector<float> sat_arr_for_N;
+        int num_sat = 0;
 
 
         for (int j = 0; j < dataset[i].size(); j++) {
@@ -272,13 +298,16 @@ void backtrack_simple_experiment(vector<vector<Map *>> dataset, vector<vector<fl
             map->draw_map(cairo);
             cairo->finish();
 
+            bool is_sat = (steps >= max_steps);
+            if (is_sat) {
+                num_sat = num_sat + 1;
+            }
 
             //            etime = chrono::duration_cast<chrono::hours>(t2 - t1).count()
 
             cout << "Simple Backtracking N = " << N << ", k = " << k << ", j = " << j << endl;
-            bool saturated = (steps >= max_steps);
-            cout << "Experiment success: " << ((!saturated and !result) ? false : true) << endl;
-            cout << "Step limit reached: " << saturated << endl;
+            cout << "Experiment success: " << ((!is_sat and !result) ? false : true) << endl;
+            cout << "Step limit reached: " << is_sat << endl;
             print_time(t1, t2);
             cout << "Number of recursive calls: " << (float) steps << endl;
             cout << "Number of reads: " << (float) map->num_reads << endl;
@@ -332,6 +361,10 @@ void backtrack_simple_experiment(vector<vector<Map *>> dataset, vector<vector<fl
         next_data_step.push_back(*max_element(begin(step_arr_for_N), end(step_arr_for_N)));
         next_data_step.push_back(*min_element(begin(step_arr_for_N), end(step_arr_for_N)));
         step_arr.push_back(next_data_step);
+        
+        sat_arr_for_N.push_back((float) N);
+        sat_arr_for_N.push_back((float) num_sat);
+        saturated.push_back(sat_arr_for_N);
 
 
     }
@@ -361,7 +394,7 @@ void backtrack_simple_experiment(vector<vector<Map *>> dataset, vector<vector<fl
     gp.send1d(step_arr);
 }
 
-void minconflicts_experiment(vector<vector<Map *>> dataset, vector<vector<float>> &reads, vector<vector<float>> &writes, vector<vector<float>> &timings, int k) {
+void minconflicts_experiment(vector<vector<Map *>> dataset, vector<vector<float>> &reads, vector<vector<float>> &writes, vector<vector<float>> &timings, int k, vector<vector<float>> &saturated) {
     int max_steps = 1e8;
     vector<vector<float>> step_arr;
 
@@ -372,6 +405,8 @@ void minconflicts_experiment(vector<vector<Map *>> dataset, vector<vector<float>
         vector<float> writes_for_N;
         vector<float> timings_for_N;
         vector<float> step_arr_for_N;
+        vector<float> sat_arr_for_N;
+        int num_sat = 0;
 
 
         for (int j = 0; j < dataset[i].size(); j++) {
@@ -387,6 +422,10 @@ void minconflicts_experiment(vector<vector<Map *>> dataset, vector<vector<float>
             Cairo * cairo = new Cairo(filename);
             map->draw_map(cairo);
             cairo->finish();
+
+            if (steps == 0) {
+                num_sat = num_sat + 1;
+            }
 
 
             //            etime = chrono::duration_cast<chrono::hours>(t2 - t1).count()
@@ -446,6 +485,10 @@ void minconflicts_experiment(vector<vector<Map *>> dataset, vector<vector<float>
         next_data_step.push_back(*min_element(begin(step_arr_for_N), end(step_arr_for_N)));
         step_arr.push_back(next_data_step);
 
+        sat_arr_for_N.push_back((float) N);
+        sat_arr_for_N.push_back((float) num_sat);
+        saturated.push_back(sat_arr_for_N);
+
 
     }
 
@@ -474,7 +517,7 @@ void minconflicts_experiment(vector<vector<Map *>> dataset, vector<vector<float>
     gp.send1d(step_arr);
 }
 
-void backtrack_forward_experiment(vector<vector<Map *>> dataset, vector<vector<float>> &reads, vector<vector<float>> &writes, vector<vector<float>> &timings, int k) {
+void backtrack_forward_experiment(vector<vector<Map *>> dataset, vector<vector<float>> &reads, vector<vector<float>> &writes, vector<vector<float>> &timings, int k, vector<vector<float>> &saturated) {
     int max_steps = 2e9;
     vector<vector<float>> step_arr;
 
@@ -485,6 +528,8 @@ void backtrack_forward_experiment(vector<vector<Map *>> dataset, vector<vector<f
         vector<float> writes_for_N;
         vector<float> timings_for_N;
         vector<float> step_arr_for_N;
+        vector<float> sat_arr_for_N;
+        int num_sat = 0;
 
         for (int j = 0; j < dataset[i].size(); j++) {
             Map * map = dataset[i][j];
@@ -508,10 +553,14 @@ void backtrack_forward_experiment(vector<vector<Map *>> dataset, vector<vector<f
                 result = false;
             }
 
+            bool is_sat = (steps >= max_steps);
+            if (is_sat) {
+                num_sat = num_sat + 1;
+            }
+
             cout << "Backtracking with Forward Checking, N = " << N << ", k = " << k << ", j = " << j << endl;
-            bool saturated = (steps >= max_steps);
-            cout << "Experiment success: " << ((!saturated and !result) ? false : true) << endl;
-            cout << "Step limit reached: " << saturated << endl;
+            cout << "Experiment success: " << ((!is_sat and !result) ? false : true) << endl;
+            cout << "Step limit reached: " << is_sat << endl;
             print_time(t1, t2);
             cout << "Number of reads: " << (float) map->num_reads << endl;
             cout << "Reads/s: " << (float) map->num_reads / chrono::duration_cast<chrono::microseconds>(t2 - t1).count() * 1.0e6 << endl;
@@ -560,6 +609,10 @@ void backtrack_forward_experiment(vector<vector<Map *>> dataset, vector<vector<f
         next_data_step.push_back(*max_element(begin(step_arr_for_N), end(step_arr_for_N)));
         next_data_step.push_back(*min_element(begin(step_arr_for_N), end(step_arr_for_N)));
         step_arr.push_back(next_data_step);
+        
+        sat_arr_for_N.push_back((float) N);
+        sat_arr_for_N.push_back((float) num_sat);
+        saturated.push_back(sat_arr_for_N);
     }
 
     Gnuplot gp;
@@ -589,7 +642,7 @@ void backtrack_forward_experiment(vector<vector<Map *>> dataset, vector<vector<f
 
 }
 
-void backtrack_mac_experiment(vector<vector<Map *>> dataset, vector<vector<float>> &reads, vector<vector<float>> &writes, vector<vector<float>> &timings, int k) {
+void backtrack_mac_experiment(vector<vector<Map *>> dataset, vector<vector<float>> &reads, vector<vector<float>> &writes, vector<vector<float>> &timings, int k, vector<vector<float>> &saturated) {
 
     int max_steps = 2e6;
     vector<vector<float>> step_arr;
@@ -601,6 +654,8 @@ void backtrack_mac_experiment(vector<vector<Map *>> dataset, vector<vector<float
         vector<float> writes_for_N;
         vector<float> timings_for_N;
         vector<float> step_arr_for_N;
+        vector<float> sat_arr_for_N;
+        int num_sat = 0;
 
         for (int j = 0; j < dataset[i].size(); j++) {
             Map * map = dataset[i][j];
@@ -624,10 +679,14 @@ void backtrack_mac_experiment(vector<vector<Map *>> dataset, vector<vector<float
                 result = false;
             }
 
+            bool is_sat = (steps >= max_steps);
+            if (is_sat) {
+                num_sat = num_sat + 1;
+            }
+
             cout << "Backtracking with MAC, N = " << N << ", k = " << k << ", j = " << j << endl;
-            bool saturated = (steps >= max_steps);
-            cout << "Experiment success: " << ((!saturated and !result) ? false : true) << endl;
-            cout << "Step limit reached: " << saturated << endl;
+            cout << "Experiment success: " << ((!is_sat and !result) ? false : true) << endl;
+            cout << "Step limit reached: " << is_sat << endl;
             print_time(t1, t2);
             cout << "Number of reads: " << (float) map->num_reads << endl;
             cout << "Reads/s: " << (float) map->num_reads / chrono::duration_cast<chrono::microseconds>(t2 - t1).count() * 1.0e6 << endl;
@@ -675,6 +734,10 @@ void backtrack_mac_experiment(vector<vector<Map *>> dataset, vector<vector<float
         next_data_step.push_back(*max_element(begin(step_arr_for_N), end(step_arr_for_N)));
         next_data_step.push_back(*min_element(begin(step_arr_for_N), end(step_arr_for_N)));
         step_arr.push_back(next_data_step);
+        
+        sat_arr_for_N.push_back((float) N);
+        sat_arr_for_N.push_back((float) num_sat);
+        saturated.push_back(sat_arr_for_N);
     }
 
     Gnuplot gp;
@@ -702,8 +765,8 @@ void backtrack_mac_experiment(vector<vector<Map *>> dataset, vector<vector<float
     gp.send1d(step_arr);
 }
 
-void genetic_experiment(vector<vector<Map *>> dataset, vector<vector<float>> &reads, vector<vector<float>> &writes, vector<vector<float>> &timings, int k) {
-    int max_generations = 1e6;
+void genetic_experiment(vector<vector<Map *>> dataset, vector<vector<float>> &reads, vector<vector<float>> &writes, vector<vector<float>> &timings, int k, vector<vector<float>> &saturated) {
+    int max_generations = 1e4;
     vector<vector<float>> num_runs;
 
     for (int i = 0; i < dataset.size(); i++) {
@@ -713,28 +776,31 @@ void genetic_experiment(vector<vector<Map *>> dataset, vector<vector<float>> &re
         vector<float> writes_for_N;
         vector<float> num_runs_for_N;
         vector<float> timings_for_N;
-        int average = 0;
+        vector<float> sat_arr_for_N;
+        int num_sat = 0;
+
         for (int j = 0; j < dataset[i].size(); j++) {
-            
+
             Map * map = dataset[i][j];
             map->clean_map();
             int steps = 0;
             const int pop_size = (int) N;
-            GeneticAlgorithm * ga = new GeneticAlgorithm(map, pop_size,  N, k, max_generations);
+            GeneticAlgorithm * ga = new GeneticAlgorithm(map, pop_size, N, k, max_generations);
             auto t1 = chrono::high_resolution_clock::now();
             int gens = ga->run(&steps, false);
             auto t2 = std::chrono::high_resolution_clock::now();
-             
-            
-            average+= gens;
-            
-            
-            
+
+
             char * filename = new char[100];
             sprintf(filename, "../results/genetic/maps/genetic_N%d_k%d_I%d.pdf", N, k, j);
             Cairo * cairo = new Cairo(filename);
             map->draw_map(cairo);
             cairo->finish();
+
+            bool is_sat = (gens == 0);
+            if (is_sat) {
+                num_sat = num_sat + 1;
+            }
 
             cout << "Genetic Algorithm, N = " << N << ", k = " << k << ", j = " << j << endl;
             cout << "Generation limit reached: " << ((gens == 0) ? true : false) << endl;
@@ -752,8 +818,6 @@ void genetic_experiment(vector<vector<Map *>> dataset, vector<vector<float>> &re
             timings_for_N.push_back(chrono::duration_cast<chrono::microseconds>(t2 - t1).count() / 1.0e6);
 
         }
-        
-        printf("Average Generations: %d\n", average/dataset[i].size() );
 
         vector<float> read_std_mean = standard_deviation(reads_for_N);
         vector<float> write_std_mean = standard_deviation(writes_for_N);
@@ -778,7 +842,6 @@ void genetic_experiment(vector<vector<Map *>> dataset, vector<vector<float>> &re
         next_data_gens.push_back(gens_std_mean[0]);
         next_data_gens.push_back(*max_element(begin(num_runs_for_N), end(num_runs_for_N)));
         next_data_gens.push_back(*min_element(begin(num_runs_for_N), end(num_runs_for_N)));
-        ;
         num_runs.push_back(next_data_gens);
 
         vector<float> timings_std_mean = standard_deviation(timings_for_N);
@@ -788,6 +851,10 @@ void genetic_experiment(vector<vector<Map *>> dataset, vector<vector<float>> &re
         next_data_timing.push_back(*max_element(begin(timings_for_N), end(timings_for_N)));
         next_data_timing.push_back(*min_element(begin(timings_for_N), end(timings_for_N)));
         timings.push_back(next_data_timing);
+        
+        sat_arr_for_N.push_back((float) N);
+        sat_arr_for_N.push_back((float) num_sat);
+        saturated.push_back(sat_arr_for_N);
     }
 
     Gnuplot gp;
