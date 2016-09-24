@@ -18,13 +18,109 @@ using namespace std;
 
 int main(int argc, char** argv) {
 
-    vector<vector < Map *>> dataset;
+
 
     init_rand();
 
+
+    run_examples();
+
+
+
+    return 0;
+}
+
+void run_examples() {
+
+    int N = 20;
+    int steps = 0;
+    int max_steps = 1000;
+    int k = 4;
+    char command[500];
+    Map * map = map = problem_gen(N, WIDTH);
+    
+    system("rm ../results/min_conflicts/map_build/*");
+    system("rm ../results/min_conflicts_example.mp4");
+    system("rm ../results/backtracking_simple/map_build/*");
+    system("rm ../results/backtracking_simple_example.mp4");
+    system("rm ../results/backtracking_forward/map_build/*");
+    system("rm ../results/backtracking_forward_example.mp4");
+    system("rm ../results/backtracking_mac/map_build/*");
+    system("rm ../results/backtracking_mac_example.mp4");
+    system("rm ../results/genetic/map_build/*");
+    system("rm ../results/genetic_example.mp4");
+    
+    map->clean_map();
+    
+    
+    min_conflicts(map, k, max_steps, &steps, true);
+    for (int i = 1; i <= steps; i++) {
+
+        sprintf(command, "convert -density 98 ../results/min_conflicts/map_build/minconf_I%05d.pdf -quality 89 ../results/min_conflicts/map_build/minconf_I%05d.png", i, i);
+        system(command);
+    }
+    system("ffmpeg -r 1/0.3 -i ../results/min_conflicts/map_build/minconf_I%05d.png -c:v libx264 -r 30 -pix_fmt yuv420p ../results/min_conflicts_example.mp4");
+
+    map->clean_map();
+    steps = 0;
+
+    
+    backtrack(map, k, 0, &steps, max_steps, true);
+    for (int i = 1; i <= steps; i++) {
+
+        sprintf(command, "convert -density 98 ../results/backtracking_simple/map_build/bt_simple_I%05d.pdf -quality 89 ../results/backtracking_simple/map_build/bt_simple_I%05d.png", i, i);
+        system(command);
+    }
+    system("ffmpeg -r 1/0.3 -i ../results/backtracking_simple/map_build/bt_simple_I%05d.png -c:v libx264 -r 30 -pix_fmt yuv420p ../results/backtracking_simple_example.mp4");
+
+    map->clean_map_bitwise();
+    steps = 0;
+    
+    
+    backtrack_forward(map, 0, &steps, max_steps, true);
+    for (int i = 1; i <= steps; i++) {
+
+        sprintf(command, "convert -density 98 ../results/backtracking_forward/map_build/bt_forward_I%05d.pdf -quality 89 ../results/backtracking_forward/map_build/bt_forward_I%05d.png", i, i);
+        system(command);
+    }
+    system("ffmpeg -r 1/0.3 -i ../results/backtracking_forward/map_build/bt_forward_I%05d.png -c:v libx264 -r 30 -pix_fmt yuv420p ../results/backtracking_forward_example.mp4");
+
+    map->clean_map_bitwise();
+    steps = 0;
+    
+    
+    backtrack_mac(map, 0, &steps, max_steps, true);
+    for (int i = 1; i <= steps; i++) {
+
+        sprintf(command, "convert -density 98 ../results/backtracking_mac/map_build/bt_mac_I%05d.pdf -quality 89 ../results/backtracking_mac/map_build/bt_mac_I%05d.png", i, i);
+        system(command);
+    }
+    system("ffmpeg -r 1/0.3 -i ../results/backtracking_mac/map_build/bt_mac_I%05d.png -c:v libx264 -r 30 -pix_fmt yuv420p ../results/backtracking_mac_example.mp4");
+
+    map->clean_map();
+    steps = 0;
+    
+    
+    int max_generations = 1000;
+    const int pop_size = (int) N;
+    const int mut_rate = 100;
+    GeneticAlgorithm * ga = new GeneticAlgorithm(map, pop_size, mut_rate, N, k, max_generations);
+    int gens = ga->run(&steps, true);
+    for (int i = 1; i <= steps; i++) {
+
+        sprintf(command, "convert -density 98 ../results/genetic/map_build/genetic_I%05d.pdf -quality 89 ../results/genetic/map_build/genetic_I%05d.png", i, i);
+        system(command);
+    }
+    system("ffmpeg -r 1/0.3 -i ../results/genetic/map_build/genetic_I%05d.png -c:v libx264 -r 30 -pix_fmt yuv420p ../results/genetic_example.mp4");
+
+}
+
+void run_experiments() {
+    vector<vector < Map *>> dataset;
+
     int num_steps = 10;
     int num_exp_per_step = 10;
-    int num_vert_per_step = 4;
+    int num_vert_per_step = 6;
     int k = 4;
 
     for (int i = 0; i < num_steps; i++) {
@@ -147,10 +243,6 @@ int main(int argc, char** argv) {
     gp.send1d(btmac_timings);
     gp.send1d(gen_timings);
     gp.send1d(gen_timings);
-
-
-
-    return 0;
 }
 
 void backtrack_simple_experiment(vector<vector<Map *>> dataset, vector<vector<float>> &reads, vector<vector<float>> &writes, vector<vector<float>> &timings, int k) {
@@ -171,7 +263,7 @@ void backtrack_simple_experiment(vector<vector<Map *>> dataset, vector<vector<fl
             map->clean_map();
             auto t1 = chrono::high_resolution_clock::now();
             int steps = 0;
-            bool result = backtrack(map, k, 0, &steps, max_steps);
+            bool result = backtrack(map, k, 0, &steps, max_steps, false);
             auto t2 = std::chrono::high_resolution_clock::now();
 
             char * filename = new char[100];
@@ -283,10 +375,11 @@ void minconflicts_experiment(vector<vector<Map *>> dataset, vector<vector<float>
 
 
         for (int j = 0; j < dataset[i].size(); j++) {
+            int counter = 0;
             Map * map = dataset[i][j];
             map->clean_map();
             auto t1 = chrono::high_resolution_clock::now();
-            int steps = min_conflicts(map, k, max_steps);
+            int steps = min_conflicts(map, k, max_steps, &counter, false);
             auto t2 = std::chrono::high_resolution_clock::now();
 
             char * filename = new char[100];
@@ -402,7 +495,7 @@ void backtrack_forward_experiment(vector<vector<Map *>> dataset, vector<vector<f
             }
             auto t1 = chrono::high_resolution_clock::now();
             int steps = 0;
-            bool result = backtrack_forward(map, 0, &steps, max_steps);
+            bool result = backtrack_forward(map, 0, &steps, max_steps, false);
             auto t2 = std::chrono::high_resolution_clock::now();
 
             char * filename = new char[100];
@@ -518,7 +611,7 @@ void backtrack_mac_experiment(vector<vector<Map *>> dataset, vector<vector<float
             }
             auto t1 = chrono::high_resolution_clock::now();
             int steps = 0;
-            bool result = backtrack_mac(map, 0, &steps, max_steps);
+            bool result = backtrack_mac(map, 0, &steps, max_steps, false);
             auto t2 = std::chrono::high_resolution_clock::now();
 
             char * filename = new char[100];
@@ -624,11 +717,12 @@ void genetic_experiment(vector<vector<Map *>> dataset, vector<vector<float>> &re
         for (int j = 0; j < dataset[i].size(); j++) {
             Map * map = dataset[i][j];
             map->clean_map();
+            int steps = 0;
             const int pop_size = (int) N;
             const int mut_rate = 100;
             GeneticAlgorithm * ga = new GeneticAlgorithm(map, pop_size, mut_rate, N, k, max_generations);
             auto t1 = chrono::high_resolution_clock::now();
-            int gens = ga->run();
+            int gens = ga->run(&steps, false);
             auto t2 = std::chrono::high_resolution_clock::now();
 
             char * filename = new char[100];

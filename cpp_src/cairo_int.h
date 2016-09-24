@@ -23,8 +23,8 @@
 #include "map_data_types.h"
 #include <string>
 
-#define WIDTH 1000
-#define HEIGHT 1000
+#define WIDTH 1001
+#define HEIGHT 1001
 
 class Graph_point;
 class Map;
@@ -39,8 +39,9 @@ public:
     void draw_point(Point * pt, Color color);
     void draw_line(Graph_edge * edge, Color color);
     void finish();
-    void draw_poly(Point * poly[], int N, Color color);
-    void draw_poly(Point * poly[], int N, int color);
+    void draw_poly(Point * poly[], int N, Color color, bool highlighted);
+    void draw_poly(Point * poly[], int N, int color, bool highlighted);
+    void draw_label(char * l_label, char * r_label);
     
 };
 float hf(int hex);

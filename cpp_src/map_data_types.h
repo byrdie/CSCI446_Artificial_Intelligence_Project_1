@@ -20,6 +20,17 @@ enum Color{
 #define GREEN   0x00F00000
 #define BLUE    0x0000F000
 #define PURPLE  0x000000F0
+#define RGBP    0xF0F0F0F0
+#define RGB     0xF0F0F000
+#define GBP     0x00F0F0F0
+#define RBP     0xF000F0F0
+#define RGP     0xF0F000F0
+#define RG      0xF0F00000
+#define GB      0x00F0F000
+#define BP      0x0000F0F0
+#define RB      0xF000F000
+#define GP      0x00F000F0
+#define RP      0xF00000F0
 
 #include <iostream>
 #include <cmath>
@@ -88,7 +99,9 @@ public:
     long int num_writes;
     Map(const unsigned int num_vert, Graph_point ** g, int ** mat, unsigned int * cols);
     void draw_map(Cairo * cairo);
+    void draw_map(Cairo * cairo, int index, int counter, int depth);
     void draw_map_bitwise(Cairo * cairo);
+    void draw_map_bitwise(Cairo * cairo, int index, int counter, int depth);
     void clean_map();
     void clean_map_bitwise();
     bool has_conflicting_neighbors(int i);
