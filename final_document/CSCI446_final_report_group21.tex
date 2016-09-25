@@ -268,19 +268,20 @@
 				\label{bte}
 			\end{subfigure}
 
-			\caption{A map coloring example using simple backtracking on an N=10 graph up to the first backtrack event. In panels (a) through (i), each vertex is assigned the first available color in the order (red, green, blue, pink).  Once the first pink assignment is made in panel (i), there are no possibilities remaining for the final vertex. The algorithm then backtracks and changes the node assigned in (h) to pink and tries again.}
-			\label{bt_simple_ex}
+			\caption{A map coloring example using simple backtracking on a graph with 10 vertices. From this diagram we will define a label for each vertex by the panel during which it is assigned, for example vertex (a) is colored red in the first panel, vertex (c) is colored green in the third panel, etc. Note we will define vertex (j) as the last uncolored node, since panel (j) changes the value on vertex (h).}
+			\label{simple_ex}
 		\end{figure}	
 		
+		To illustrate the process of backtracking consider the sequence of images in Figure \ref{simple_ex}.
+		This sequence follows the backtracking algorithm assigning the first acceptable color (in the order red, green, pink) to each vertex until the first backtracking event. The colors assigned to the vertices (a) through (g) seem reasonable until blue is assigned to vertex (h). Then we can see that the only acceptable color for vertex (i) is pink and even worse, vertex (j) has cannot be assigned a color without being in conflict with it's neighbors. Therefore the algorithm is forced to backtrack to vertex (h) and try pink (which also will not work).
 		
-		
-		
-		
+		The example above seeks to describe the major issue with backtracking: it can get stuck in situations where it can take an inordinate amount of time to backtrack far enough to fix the problem. In panel (j), after the backtracking operation, we can see that the algorithm did not retreat far enough, changing vertex (g) to pink still results in a conflict in vertex (j). The algorithm needs to back up to vertex (e) and change it to blue to resolve the conflict on vertex (j) and solve the graph. We will see in the following sections on forward checking and constraint propagation if we can mitigate this problem.
 		
 		To implement simple backtracking we followed the recursive algorithm outlined in Russel and Norvig Section 6.3 \cite{ai}. Russel's \textsc{Backtrack} loops through each value in the domain, and if the value is consistent with the constraints it recursively calls \textsc{Backtrack}. The function returns \texttt{true} when every variable has been assigned, and \texttt{false} if it cannot satisfy the constraints. The recursive function is advantageous, as it saves the state of the stack before each recursive call, making it trivial to restore the state of the solution after a failed recursive call to backtracking. 
 		
 		The crux of the backtracking procedure in the graph coloring problem is checking whether a coloring is consistent with constraints. From profiling our code, it was obvious that a fast constraint checking function was critical to the ability of backtracking to solve graph coloring problems up to $N=100$ vertices in a reasonable amount of time. This facilitated a change of design from an object-oriented approach, to an array-based approach.
 	\subsection{Experimental Approach}
+		\label{simple_exp_appr}
 		To evaluate backtracking's performance on the graph coloring problem, we ran the algorithm on ten graph sizes $N=(10,\;20,\;...,\;100)$ with 20 trials for each value, for a total of 200 backtracking experiments. From each experiment we recorded the number of vertex reads, vertex writes, and number of recursive calls. Time constraints on this project demanded that we set a limit on the number of calls to backtracking, therefore we also recorded if this limit was reached for each experiment. 
 		
 		We expect that the number of recursive calls and the number of vertex writes and the number of vertex reads to be correlated by some constant factor. This is because there is a maximum of two writes and $N$ reads for each recursive call. Therefore, we can use this information to verify that the algorithm is working properly.
@@ -292,7 +293,7 @@
 	
 		\begin{figure}[h!]
 			\centering
-			\includegraphics[width=0.8\textwidth]{../results_3/backtracking_simple/bt_simple_performance}
+			\includegraphics[width=0.8\textwidth]{../results_4/backtracking_simple/bt_simple_performance}
 			\caption{Logarithmic plot describing the performance of the backtracking algorithm vs. the number of vertices. The shaded regions represent the minimum and maximum values of each quantity.}
 		\end{figure}
 	
@@ -363,7 +364,7 @@
 			\;
 			\begin{subfigure}{0.18\textwidth}
 				\centering
-				\includegraphics[width=\textwidth]{images/sequences/forward_backtracking/bt_forward_I00019}
+				\includegraphics[width=\textwidth]{images/sequences/forward_backtracking/bt_forward_I00018}
 				\caption{}
 				\label{btd}
 			\end{subfigure}
@@ -375,13 +376,29 @@
 				\label{bte}
 			\end{subfigure}
 	
-			\caption{The map coloring example from Figure \ref{bt_simple_ex} using backtracking with forward checking on an N=10 graph up to the first backtrack event. In panels (a) through (g), each vertex is assigned the first available color in the order (red, green, blue, pink), and deletes that color from the possible color of its neighbors. In panel (h) blue is assigned to the node on the left side, leaving two of its neighbors with only pink in their domain. Next, in panel (h), the central vertex has its domain reduced to the empty set, prompting a backtrack to panel (j). Note that forward checking in this case did not provide any advantage over backtracking.}
+			\caption{The map coloring example from Figure \ref{simple_ex} using backtracking with forward checking. Note that the intermediate colors represent additive mixings of the four pure colors (red, green, blue, and pink), for example purple (the color of vertex (h) during panel (c)) is a combination of blue and pink, magenta is a combination of red and blue, etc.}
+			
+			\label{forward_example}
 		\end{figure}
+		
+		To visualize how backtracking with forward checking is different from simple backtracking, we will consider again the map coloring example from the preceding section. To represent the superposition of colors required by this algorithm, we have formed a color map that represents additive mixings of the four pure colors. In this scheme, the color with all colors activated is mauve [RGBP]. The example starts with the graph initialized to mauve. Then vertex (a) is set to red, deleting red from its vertices (h) and (c), forming gray [GBP]. After a similar process for vertex (b), vertex (c) is assigned green, deleting green from vertices (e) and (i) to form magenta [RBP] and from vertex (h) to form purple [RP].
+		
+		This process produces similar results to simple backtracking until vertex (g) is colored blue, it then deletes blue from vertex (j), leaving pink. Next, vertex (h) is chosen to be blue, leaving vertex (i) with pink as it's only possible color. The algorithm then selects the only choice for vertex (i) (pink), leaving vertex (j) with the null set. Since the null set is not allowed, the algorithm backtracks to vertex (g) and changes its color to pink.
+		
+		In this example, forward checking had no advantages over simple backtracking, as it discovered the inconsistency in vertex (j) in approximately the same number of steps. However, forward checking offers immense advantages for large graphs, where it can check if a color is consistent with its neighbors much sooner than simple backtracking, leading to much faster solutions.
 		
 
 	\subsection{Experimental Approach}
 	
+		Our experimental approach for this algorithm is essentially the same as the approach for simple backtracking described in Section \ref{simple_exp_appr}. We will still be measuring the number of vertex reads, vertex writes, and the number of recursive calls. However, since the forward checking algorithm must carry out more decisions for each recursive call, we expect there to be a larger amount of vertex reads and vertex writes for each recursive call. We will see in the next section if this additional overhead was worth it compared to simple backtracking.
+	
 	\subsection{Results}
+	
+		\begin{figure}[h!]
+			\centering
+			\includegraphics[width=0.8\textwidth]{../results_4/backtracking_forward/bt_forward_performance}
+			\caption{Logarithmic plot describing the performance of the backtracking algorithm vs. the number of vertices. The shaded regions represent the minimum and maximum values of each quantity.}
+		\end{figure}
 	
 \section{Backtracking with Constraint Propagation}
 
@@ -439,7 +456,21 @@
 			\;
 			\begin{subfigure}{0.18\textwidth}
 				\centering
-				\includegraphics[width=\textwidth]{images/sequences/mac_backtracking/bt_mac_I00015}
+				\includegraphics[width=\textwidth]{images/sequences/mac_backtracking/bt_mac_I00016}
+				\caption{}
+				\label{btc}
+			\end{subfigure}
+			\;
+			\begin{subfigure}{0.18\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{images/sequences/mac_backtracking/bt_mac_I00017}
+				\caption{}
+				\label{btb}
+			\end{subfigure}
+			\;
+			\begin{subfigure}{0.18\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{images/sequences/mac_backtracking/bt_mac_I00018}
 				\caption{}
 				\label{btc}
 			\end{subfigure}
