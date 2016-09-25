@@ -116,84 +116,83 @@
 
 \par The code for this project is implemented in \texttt{C++} and depends on the programs \texttt{cairo}, \texttt{gnuplot}, \texttt{ffmpeg}, and \LaTeX \space for graph output, performance output, video output, and documentation respectively.
 
-\section{Algorithm Implementation}
 
-	\subsection{Problem Generation}
-		We created a function that could produce many examples of planar graphs from a set of randomly scattered points. For an arbitrary set of points, there is no unique planar graph that can be constructed. To solve this issue, the problem statement has provided a algorithm for calculating an planar graph. 
-		\begin{quote}
-		Select some point $X$ at random and connect $X$ by a straight line
-		to the nearest point $Y$ such that $X$ is not already connected to $Y$ and line crosses no other line. Repeat the
-		previous step until no more connections are possible.
-		\end{quote}
-		For our implementation of the above algorithm, we started by creating a complete graph (where each vertex is connected to every other vertex). Each vertex was associated with a list of edges, sorted by length. 
-		We then selected a point at random and inspected the first unchecked edge $E$. If $E$ did not cross any of the accepted edges, it is added to the list of accepted edges and marked as checked. This process was repeated until every edge was marked as checked. \par
-		The most challenging part of the implementation described above was determining if two line segments intersected. An algorithm to determine if two edges (or line segments) cross has been outlined by LaMothe \cite{tricks} and described in detail here. Let's start by defining two line segments 
-		\begin{align}
-			\begin{split}
-				& A = \{ \ve{a},\; \ve{a'} \} \\
-				& B = \{\ve{b}, \;\ve{b'}\}
-			\end{split}
-		\end{align}
-		where $\ve{a}, \; \ve{a'}, \; \ve{b}, \text{ and } \ve{b'}$ are vectors from the origin to the ends of the line segments. Next, compute the direction vectors for each line segment
-		\begin{align}
-			\begin{split}
-				&\ve{\alpha} = \ve{a}' - \ve{a} \\
-				&\ve{\beta} = \ve{b}' - \ve{b} 
-			\end{split}
-		\end{align}
-		Now, the trick to solving this problem is to parameterize the line segment using the direction vector and a parameter $t_i$ in the domain $[0, \; 1]$.
-		\begin{align}
-			\begin{split}
-				& \ve{p} = \ve{a} + \ve{\alpha} t_a, \quad t_a \in [0, \; 1]\\
-				& \ve{q} = \ve{b} + \ve{\beta} t_b, \quad t_b \in [0, \; 1]
-			\end{split}
-		\end{align}
-		From here, the solution is obvious. To find the point of intersection, we set $\ve{p} = \ve{q}$ and solve for the values of $t_a$ and $t_b$. Then, if the solution is outside the domain of $t_i$, the line segments do not intersect. Thus,
-		\begin{align}
-			\Rightarrow \; &\begin{cases}
-				p_x = q_x \\
-				p_y = q_y
-			\end{cases} \\
-			\Rightarrow \; & \begin{cases}
-				a_x + \alpha_x t_a = b_x + \beta_x t_b \\
-				a_y + \alpha_y t_a = b_y + \beta_y t_b.
-			\end{cases} \label{system}	
-		\end{align}
-		Equation \ref{system} is a system of two equations and two unknowns, solving for $t_a$ and $t_b$ gives
-		\begin{align}
-			\begin{split}
-				&t_a = \frac{(-a_y + b_y)\beta_x + (a_x - b_x)\beta_y}{\alpha_y \beta_x - \alpha_x \beta_y} \\
-				&t_b = \frac{(a_y - b_y)\alpha_x + (-a_x + b_x)\alpha_y}{-\alpha_y \beta_x + \alpha_x \beta_y}.
-			\end{split} \label{final_expr}
-		\end{align}
-		Finally, we can determine whether $A$ and $B$ intersect if $0 < t_a < 1$ and $0 < t_b < 1$ evaluates to true. This method may be more inefficient than other algorithms, such as the example outlined by Cormen\cite{structs} due to the division operation in Equation \ref{final_expr}. \par 
-		Using the expression above to determine line intersections, we were able to implement a problem generator that was reasonably efficient, generating approximately $1\times10^3$ examples per second. This efficiency was important, because it made testing and debugging the GCP algorithms much faster. Example output from the problem generator is shown in Figure \ref{pgen}.
-		
-		\begin{figure}[h!]
+\section{Problem Generation}
+	We created a function that could produce many examples of planar graphs from a set of randomly scattered points. For an arbitrary set of points, there is no unique planar graph that can be constructed. To solve this issue, the problem statement has provided a algorithm for calculating an planar graph. 
+	\begin{quote}
+	Select some point $X$ at random and connect $X$ by a straight line
+	to the nearest point $Y$ such that $X$ is not already connected to $Y$ and line crosses no other line. Repeat the
+	previous step until no more connections are possible.
+	\end{quote}
+	For our implementation of the above algorithm, we started by creating a complete graph (where each vertex is connected to every other vertex). Each vertex was associated with a list of edges, sorted by length. 
+	We then selected a point at random and inspected the first unchecked edge $E$. If $E$ did not cross any of the accepted edges, it is added to the list of accepted edges and marked as checked. This process was repeated until every edge was marked as checked. \par
+	The most challenging part of the implementation described above was determining if two line segments intersected. An algorithm to determine if two edges (or line segments) cross has been outlined by LaMothe \cite{tricks} and described in detail here. Let's start by defining two line segments 
+	\begin{align}
+		\begin{split}
+			& A = \{ \ve{a},\; \ve{a'} \} \\
+			& B = \{\ve{b}, \;\ve{b'}\}
+		\end{split}
+	\end{align}
+	where $\ve{a}, \; \ve{a'}, \; \ve{b}, \text{ and } \ve{b'}$ are vectors from the origin to the ends of the line segments. Next, compute the direction vectors for each line segment
+	\begin{align}
+		\begin{split}
+			&\ve{\alpha} = \ve{a}' - \ve{a} \\
+			&\ve{\beta} = \ve{b}' - \ve{b} 
+		\end{split}
+	\end{align}
+	Now, the trick to solving this problem is to parameterize the line segment using the direction vector and a parameter $t_i$ in the domain $[0, \; 1]$.
+	\begin{align}
+		\begin{split}
+			& \ve{p} = \ve{a} + \ve{\alpha} t_a, \quad t_a \in [0, \; 1]\\
+			& \ve{q} = \ve{b} + \ve{\beta} t_b, \quad t_b \in [0, \; 1]
+		\end{split}
+	\end{align}
+	From here, the solution is obvious. To find the point of intersection, we set $\ve{p} = \ve{q}$ and solve for the values of $t_a$ and $t_b$. Then, if the solution is outside the domain of $t_i$, the line segments do not intersect. Thus,
+	\begin{align}
+		\Rightarrow \; &\begin{cases}
+			p_x = q_x \\
+			p_y = q_y
+		\end{cases} \\
+		\Rightarrow \; & \begin{cases}
+			a_x + \alpha_x t_a = b_x + \beta_x t_b \\
+			a_y + \alpha_y t_a = b_y + \beta_y t_b.
+		\end{cases} \label{system}	
+	\end{align}
+	Equation \ref{system} is a system of two equations and two unknowns, solving for $t_a$ and $t_b$ gives
+	\begin{align}
+		\begin{split}
+			&t_a = \frac{(-a_y + b_y)\beta_x + (a_x - b_x)\beta_y}{\alpha_y \beta_x - \alpha_x \beta_y} \\
+			&t_b = \frac{(a_y - b_y)\alpha_x + (-a_x + b_x)\alpha_y}{-\alpha_y \beta_x + \alpha_x \beta_y}.
+		\end{split} \label{final_expr}
+	\end{align}
+	Finally, we can determine whether $A$ and $B$ intersect if $0 < t_a < 1$ and $0 < t_b < 1$ evaluates to true. This method may be more inefficient than other algorithms, such as the example outlined by Cormen\cite{structs} due to the division operation in Equation \ref{final_expr}. \par 
+	Using the expression above to determine line intersections, we were able to implement a problem generator that was reasonably efficient, generating approximately $1\times10^3$ examples per second. This efficiency was important, because it made testing and debugging the GCP algorithms much faster. Example output from the problem generator is shown in Figure \ref{pgen}.
+	
+	\begin{figure}[h!]
+		\centering
+		\begin{subfigure}{0.45\textwidth}
 			\centering
-			\begin{subfigure}{0.45\textwidth}
-				\centering
-				\includegraphics[width=\textwidth]{images/pgen}
-				\caption{Planar graph with 100 vertices.}
-				\label{pgen}
-			\end{subfigure}
-			\qquad
-			\begin{subfigure}{0.45\textwidth}
-				\centering
-					\includegraphics[width=\textwidth]{images/pgen_poly}
-					\caption{Polygon map corresponding to (a).}
-					\label{pgen_poly}
-			\end{subfigure}
-			\caption{Visualization of the output of the problem generator. First a planar graph was created (a), and then a corresponding polygon map was found (b).}
-		\end{figure}
-		
-		We have also implemented a way to produce a map of regions that is analogous to the graphs created by the problem generator, shown in Figure \ref{pgen_poly}.  
-		Since the graph coloring problem does not uniquely define the map coloring problem, we had to invent a metric that produces appropriate graphs. To define our metric, consider that if a polygon $G_i$ corresponding to each point $P_i$ were constructed out of the midpoints $M_{i,m}$ of the associated edges $E_{i,m}$ of $P_i$, then an adjacent polygon $G_j$ would only touch at the corners, that is, our map would be full of gaps. Therefore, to fix the problem we also define the centroid $C_{i,n}$ of each triangle $T_{i,n}$ formed by the two adjacent edges $E_{i,m}$ and $E_{i,m+1}$. We then define the final polygon for $P_i$ using the points $M_{i,m}$ and $C_{i,n}$. This procedure is unnecessary in terms of the assignment, but is helpful for debugging GCP algorithms, demonstrating example output, and for aesthetic pleasure.
+			\includegraphics[width=\textwidth]{images/pgen}
+			\caption{Planar graph with 100 vertices.}
+			\label{pgen}
+		\end{subfigure}
+		\qquad
+		\begin{subfigure}{0.45\textwidth}
+			\centering
+				\includegraphics[width=\textwidth]{images/pgen_poly}
+				\caption{Polygon map corresponding to (a).}
+				\label{pgen_poly}
+		\end{subfigure}
+		\caption{Visualization of the output of the problem generator. First a planar graph was created (a), and then a corresponding polygon map was found (b).}
+	\end{figure}
+	
+	We have also implemented a way to produce a map of regions that is analogous to the graphs created by the problem generator, shown in Figure \ref{pgen_poly}.  
+	Since the graph coloring problem does not uniquely define the map coloring problem, we had to invent a metric that produces appropriate graphs. To define our metric, consider that if a polygon $G_i$ corresponding to each point $P_i$ were constructed out of the midpoints $M_{i,m}$ of the associated edges $E_{i,m}$ of $P_i$, then an adjacent polygon $G_j$ would only touch at the corners, that is, our map would be full of gaps. Therefore, to fix the problem we also define the centroid $C_{i,n}$ of each triangle $T_{i,n}$ formed by the two adjacent edges $E_{i,m}$ and $E_{i,m+1}$. We then define the final polygon for $P_i$ using the points $M_{i,m}$ and $C_{i,n}$. This procedure is unnecessary in terms of the assignment, but is helpful for debugging GCP algorithms, demonstrating example output, and for aesthetic pleasure.
 		
 	\subsection{Minimum Conflicts}
 	
 	\subsection{Simple Backtracking}
-	To implement simple backtracking we followed the recursive algorithm outlined in Russel and Norvig\cite{ai}. The function labeled \textsc{Inference}() is called \texttt{has\_conflicting\_neighbors}
+		To implement simple backtracking we followed the recursive algorithm outlined in Russel and Norvig Section 6.3 \cite{ai}. The function labeled \textsc{Inference}() is called \texttt{has\_conflicting\_neighbors()} in our implementation. From profiling the code, we could see
 	
 	\subsection{Backtracking with Forward Checking}
 	
