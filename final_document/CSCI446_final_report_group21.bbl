@@ -36,4 +36,12 @@ Solomon~W. Golomb and Leonard~D. Baumert.
 \newblock {\em J. ACM}, 12(4):516--524, October 1965.
 \newblock \url{http://doi.acm.org/10.1145/321296.321300}.
 
+\bibitem{haralick}
+Robert~M. Haralick and Gordon~L. Elliott.
+\newblock Increasing tree search efficiency for constraint satisfaction
+  problems.
+\newblock {\em Artificial Intelligence}, 14(3):263 -- 313, 1980.
+\newblock
+  \url{http://www.sciencedirect.com/science/article/pii/000437028090051X}.
+
 \end{thebibliography}

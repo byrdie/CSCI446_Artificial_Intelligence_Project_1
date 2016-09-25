@@ -345,7 +345,7 @@ void sort_points_by_num_edges(int N, Graph_point * graph[]) {
 
     std::sort(graph, graph + N,
             [](Graph_point * a, Graph_point * b) -> int {
-                return a->num_edges > b->num_edges; });
+                return a->num_edges < b->num_edges; });
 
 
 

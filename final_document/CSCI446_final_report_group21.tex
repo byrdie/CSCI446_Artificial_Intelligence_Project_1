@@ -195,46 +195,87 @@
 	\subsection{Description}
 		Backtracking is a method of solving constraint satisfaction problems through an "educated" exhaustive search. It works by building a partial solution one component at a time and then testing the solution to check if the solution still has a chance of success \cite{Golomb}. If the solution cannot possibly succeed, the algorithm \textit{backtracks} by moving back one component, modifying the component to form a new partial solution and then continuing. By checking partial solutions, backtracking can eliminate large portions of the solution-space, thus increasing the efficiency of the search.
 		
-		In the graph coloring problem, backtracking assigns colors to one vertex at a time and check to see if it has the same value as any of its neighbors. If none of the possible colors work for the current vertex, it backs up and tries a different color on a previously assigned vertex. If a color has no conflicts, backtracking continues to the next vertex in the sequence.
+		In the graph coloring problem, backtracking assigns colors to one vertex at a time and checks to see if it has the same value as any of its neighbors. If none of the possible colors work for the current vertex, it backs up and tries a different color on a previously assigned vertex. If a color has no conflicts, backtracking continues to the next vertex in the sequence.
 		
 		\begin{figure}[h!]
-			\centering
 			\begin{subfigure}{0.18\textwidth}
 				\centering
-				\includegraphics[width=\textwidth]{images/sequences/simple_backtracking/bt_simple_I00006}
+				\includegraphics[width=\textwidth]{images/sequences/simple_backtracking/bt_simple_I00001}
 				\caption{}
 				\label{bta}
 			\end{subfigure}
 			\;
 			\begin{subfigure}{0.18\textwidth}
 				\centering
-				\includegraphics[width=\textwidth]{images/sequences/simple_backtracking/bt_simple_I00007}
+				\includegraphics[width=\textwidth]{images/sequences/simple_backtracking/bt_simple_I00002}
 				\caption{}
 				\label{btb}
 			\end{subfigure}
 			\;
 			\begin{subfigure}{0.18\textwidth}
 				\centering
-				\includegraphics[width=\textwidth]{images/sequences/simple_backtracking/bt_simple_I00008}
+				\includegraphics[width=\textwidth]{images/sequences/simple_backtracking/bt_simple_I00004}
 				\caption{}
 				\label{btc}
 			\end{subfigure}
 			\;
 			\begin{subfigure}{0.18\textwidth}
 				\centering
-				\includegraphics[width=\textwidth]{images/sequences/simple_backtracking/bt_simple_I00009}
+				\includegraphics[width=\textwidth]{images/sequences/simple_backtracking/bt_simple_I00006}
 				\caption{}
 				\label{btd}
 			\end{subfigure}
 			\;
 			\begin{subfigure}{0.18\textwidth}
 				\centering
-				\includegraphics[width=\textwidth]{images/sequences/simple_backtracking/bt_simple_I00010}
+				\includegraphics[width=\textwidth]{images/sequences/simple_backtracking/bt_simple_I00007}
+				\caption{}
+				\label{bte}
+			\end{subfigure} \\
+			
+			\begin{subfigure}{0.18\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{images/sequences/simple_backtracking/bt_simple_I00009}
+				\caption{}
+				\label{bta}
+			\end{subfigure}
+			\;
+			\begin{subfigure}{0.18\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{images/sequences/simple_backtracking/bt_simple_I00012}
+				\caption{}
+				\label{btb}
+			\end{subfigure}
+			\;
+			\begin{subfigure}{0.18\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{images/sequences/simple_backtracking/bt_simple_I00015}
+				\caption{}
+				\label{btc}
+			\end{subfigure}
+			\;
+			\begin{subfigure}{0.18\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{images/sequences/simple_backtracking/bt_simple_I00019}
+				\caption{}
+				\label{btd}
+			\end{subfigure}
+			\;
+			\begin{subfigure}{0.18\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{images/sequences/simple_backtracking/bt_simple_I00024}
 				\caption{}
 				\label{bte}
 			\end{subfigure}
-			\caption{An example of a single recursive call to backtracking using $N=8$ vertices and three colors for simplicity. At the start of the call, the graph is in state (a). In state (b), a new node is selected and initialized to red. This is in conflict with the region below, so it switches to state (c), green, which conflicts with the region above. It then tries blue (state (d)), which fails due to the region to the left, causing the algorithm to backtrack two levels to try a new coloring for the region in the upper right corner, state (e). }
+
+			\caption{A map coloring example using simple backtracking on an N=10 graph up to the first backtrack event. In panels (a) through (i), each vertex is assigned the first available color in the order (red, green, blue, pink).  Once the first pink assignment is made in panel (i), there are no possibilities remaining for the final vertex. The algorithm then backtracks and changes the node assigned in (h) to pink and tries again.}
+			\label{bt_simple_ex}
 		\end{figure}	
+		
+		
+		
+		
+		
 		
 		To implement simple backtracking we followed the recursive algorithm outlined in Russel and Norvig Section 6.3 \cite{ai}. Russel's \textsc{Backtrack} loops through each value in the domain, and if the value is consistent with the constraints it recursively calls \textsc{Backtrack}. The function returns \texttt{true} when every variable has been assigned, and \texttt{false} if it cannot satisfy the constraints. The recursive function is advantageous, as it saves the state of the stack before each recursive call, making it trivial to restore the state of the solution after a failed recursive call to backtracking. 
 		
@@ -259,6 +300,83 @@
 
 	\subsection{Description}
 	
+		Backtracking with forward checking incorporates the usual simple backtracking algorithm described in the preceding section, while incorporating an ability to look into the future to see if a particular assignment would create an inconsistency. Forward checking achieves this by trying to make an inconsistency occur as fast as possible by checking if all current assignments are consistent with each other \cite{haralick}.
+		
+		To accomplish forward checking in the graph coloring problem, we need to modify our representation of the graph to allow superpositions of colors and initialize the graph such that all colors are possible for each vertex. Next, for each call to backtracking, we assign a color to the next vertex, and delete that color from the vertex's neighbors list of possible colors. If any vertex has its list of possible colors completely eliminated, the algorithm backtracks and changes a color further up the tree.\cite{ai}.
+		
+		\begin{figure}[h!]
+			\begin{subfigure}{0.18\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{images/sequences/forward_backtracking/bt_forward_I00003}
+				\caption{}
+				\label{bta}
+			\end{subfigure}
+			\;
+			\begin{subfigure}{0.18\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{images/sequences/forward_backtracking/bt_forward_I00005}
+				\caption{}
+				\label{btb}
+			\end{subfigure}
+			\;
+			\begin{subfigure}{0.18\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{images/sequences/forward_backtracking/bt_forward_I00007}
+				\caption{}
+				\label{btc}
+			\end{subfigure}
+			\;
+			\begin{subfigure}{0.18\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{images/sequences/forward_backtracking/bt_forward_I00009}
+				\caption{}
+				\label{btd}
+			\end{subfigure}
+			\;
+			\begin{subfigure}{0.18\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{images/sequences/forward_backtracking/bt_forward_I00011}
+				\caption{}
+				\label{bte}
+			\end{subfigure} \\
+			
+			\begin{subfigure}{0.18\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{images/sequences/forward_backtracking/bt_forward_I00013}
+				\caption{}
+				\label{bta}
+			\end{subfigure}
+			\;
+			\begin{subfigure}{0.18\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{images/sequences/forward_backtracking/bt_forward_I00015}
+				\caption{}
+				\label{btb}
+			\end{subfigure}
+			\;
+			\begin{subfigure}{0.18\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{images/sequences/forward_backtracking/bt_forward_I00017}
+				\caption{}
+				\label{btc}
+			\end{subfigure}
+			\;
+			\begin{subfigure}{0.18\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{images/sequences/forward_backtracking/bt_forward_I00019}
+				\caption{}
+				\label{btd}
+			\end{subfigure}
+			\;
+			\begin{subfigure}{0.18\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{images/sequences/forward_backtracking/bt_forward_I00021}
+				\caption{}
+				\label{bte}
+			\end{subfigure}
+	
+			\caption{The map coloring example from Figure \ref{bt_simple_ex} using backtracking with forward checking on an N=10 graph up to the first backtrack event. In panels (a) through (g), each vertex is assigned the first available color in the order (red, green, blue, pink), and deletes that color from the possible color of its neighbors. In panel (h) blue is assigned to the node on the left side, leaving two of its neighbors with only pink in their domain. Next, in panel (h), the central vertex has its domain reduced to the empty set, prompting a backtrack to panel (j). Note that forward checking in this case did not provide any advantage over backtracking.}
+		\end{figure}
 		
 
 	\subsection{Experimental Approach}
@@ -268,6 +386,66 @@
 \section{Backtracking with Constraint Propagation}
 
 	\subsection{Description}
+	
+		\begin{figure}[h!]
+			\begin{subfigure}{0.18\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{images/sequences/mac_backtracking/bt_mac_I00003}
+				\caption{}
+				\label{bta}
+			\end{subfigure}
+			\;
+			\begin{subfigure}{0.18\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{images/sequences/mac_backtracking/bt_mac_I00004}
+				\caption{}
+				\label{btb}
+			\end{subfigure}
+			\;
+			\begin{subfigure}{0.18\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{images/sequences/mac_backtracking/bt_mac_I00006}
+				\caption{}
+				\label{btc}
+			\end{subfigure}
+			\;
+			\begin{subfigure}{0.18\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{images/sequences/mac_backtracking/bt_mac_I00008}
+				\caption{}
+				\label{btd}
+			\end{subfigure}
+			\;
+			\begin{subfigure}{0.18\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{images/sequences/mac_backtracking/bt_mac_I00010}
+				\caption{}
+				\label{bte}
+			\end{subfigure} \\
+			
+			\begin{subfigure}{0.18\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{images/sequences/mac_backtracking/bt_mac_I00012}
+				\caption{}
+				\label{bta}
+			\end{subfigure}
+			\;
+			\begin{subfigure}{0.18\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{images/sequences/mac_backtracking/bt_mac_I00014}
+				\caption{}
+				\label{btb}
+			\end{subfigure}
+			\;
+			\begin{subfigure}{0.18\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{images/sequences/mac_backtracking/bt_mac_I00015}
+				\caption{}
+				\label{btc}
+			\end{subfigure}
+	
+			\caption{}
+		\end{figure}	
 
 	\subsection{Experimental Approach}
 	

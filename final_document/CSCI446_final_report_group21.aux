@@ -53,31 +53,83 @@
 \newlabel{sub@btd}{{d}{4}{\relax }{figure.caption.4}{}}
 \newlabel{bte}{{4e}{4}{\relax }{figure.caption.4}{}}
 \newlabel{sub@bte}{{e}{4}{\relax }{figure.caption.4}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces An example of a single recursive call to backtracking using $N=8$ vertices and three colors for simplicity. At the start of the call, the graph is in state (a). In state (b), a new node is selected and initialized to red. This is in conflict with the region below, so it switches to state (c), green, which conflicts with the region above. It then tries blue (state (d)), which fails due to the region to the left, causing the algorithm to backtrack two levels to try a new coloring for the region in the upper right corner, state (e). \relax }}{4}{figure.caption.4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Experimental Approach}{4}{subsection.4.2}}
+\newlabel{bta}{{4f}{4}{\relax }{figure.caption.4}{}}
+\newlabel{sub@bta}{{f}{4}{\relax }{figure.caption.4}{}}
+\newlabel{btb}{{4g}{4}{\relax }{figure.caption.4}{}}
+\newlabel{sub@btb}{{g}{4}{\relax }{figure.caption.4}{}}
+\newlabel{btc}{{4h}{4}{\relax }{figure.caption.4}{}}
+\newlabel{sub@btc}{{h}{4}{\relax }{figure.caption.4}{}}
+\newlabel{btd}{{4i}{4}{\relax }{figure.caption.4}{}}
+\newlabel{sub@btd}{{i}{4}{\relax }{figure.caption.4}{}}
+\newlabel{bte}{{4j}{4}{\relax }{figure.caption.4}{}}
+\newlabel{sub@bte}{{j}{4}{\relax }{figure.caption.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces A map coloring example using simple backtracking on an N=10 graph up to the first backtrack event. In panels (a) through (i), each vertex is assigned the first available color in the order (red, green, blue, pink). Once the first pink assignment is made in panel (i), there are no possibilities remaining for the final vertex. The algorithm then backtracks and changes the node assigned in (h) to pink and tries again.\relax }}{4}{figure.caption.4}}
+\newlabel{bt_simple_ex}{{4}{4}{A map coloring example using simple backtracking on an N=10 graph up to the first backtrack event. In panels (a) through (i), each vertex is assigned the first available color in the order (red, green, blue, pink). Once the first pink assignment is made in panel (i), there are no possibilities remaining for the final vertex. The algorithm then backtracks and changes the node assigned in (h) to pink and tries again.\relax }{figure.caption.4}{}}
+\citation{haralick}
+\citation{ai}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Experimental Approach}{5}{subsection.4.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Results}{5}{subsection.4.3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Logarithmic plot describing the performance of the backtracking algorithm vs. the number of vertices. The shaded regions represent the minimum and maximum values of each quantity.\relax }}{5}{figure.caption.5}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Backtracking with Forward Checking}{5}{section.5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Description}{5}{subsection.5.1}}
 \bibstyle{unsrt}
 \bibdata{sources}
 \bibcite{world}{1}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Results}{5}{subsection.4.3}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Logarithmic plot describing the performance of the backtracking algorithm vs. the number of vertices. The shaded regions represent the minimum and maximum values of each quantity.\relax }}{5}{figure.caption.5}}
+\newlabel{bta}{{6a}{6}{\relax }{figure.caption.6}{}}
+\newlabel{sub@bta}{{a}{6}{\relax }{figure.caption.6}{}}
+\newlabel{btb}{{6b}{6}{\relax }{figure.caption.6}{}}
+\newlabel{sub@btb}{{b}{6}{\relax }{figure.caption.6}{}}
+\newlabel{btc}{{6c}{6}{\relax }{figure.caption.6}{}}
+\newlabel{sub@btc}{{c}{6}{\relax }{figure.caption.6}{}}
+\newlabel{btd}{{6d}{6}{\relax }{figure.caption.6}{}}
+\newlabel{sub@btd}{{d}{6}{\relax }{figure.caption.6}{}}
+\newlabel{bte}{{6e}{6}{\relax }{figure.caption.6}{}}
+\newlabel{sub@bte}{{e}{6}{\relax }{figure.caption.6}{}}
+\newlabel{bta}{{6f}{6}{\relax }{figure.caption.6}{}}
+\newlabel{sub@bta}{{f}{6}{\relax }{figure.caption.6}{}}
+\newlabel{btb}{{6g}{6}{\relax }{figure.caption.6}{}}
+\newlabel{sub@btb}{{g}{6}{\relax }{figure.caption.6}{}}
+\newlabel{btc}{{6h}{6}{\relax }{figure.caption.6}{}}
+\newlabel{sub@btc}{{h}{6}{\relax }{figure.caption.6}{}}
+\newlabel{btd}{{6i}{6}{\relax }{figure.caption.6}{}}
+\newlabel{sub@btd}{{i}{6}{\relax }{figure.caption.6}{}}
+\newlabel{bte}{{6j}{6}{\relax }{figure.caption.6}{}}
+\newlabel{sub@bte}{{j}{6}{\relax }{figure.caption.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces The map coloring example from Figure \ref  {bt_simple_ex} using backtracking with forward checking on an N=10 graph up to the first backtrack event. In panels (a) through (g), each vertex is assigned the first available color in the order (red, green, blue, pink), and deletes that color from the possible color of its neighbors. In panel (h) blue is assigned to the node on the left side, leaving two of its neighbors with only pink in their domain. Next, in panel (h), the central vertex has its domain reduced to the empty set, prompting a backtrack to panel (j). Note that forward checking in this case did not provide any advantage over backtracking.\relax }}{6}{figure.caption.6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Experimental Approach}{6}{subsection.5.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Results}{6}{subsection.5.3}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Backtracking with Constraint Propagation}{6}{section.6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Description}{6}{subsection.6.1}}
+\newlabel{bta}{{7a}{6}{\relax }{figure.caption.7}{}}
+\newlabel{sub@bta}{{a}{6}{\relax }{figure.caption.7}{}}
+\newlabel{btb}{{7b}{6}{\relax }{figure.caption.7}{}}
+\newlabel{sub@btb}{{b}{6}{\relax }{figure.caption.7}{}}
+\newlabel{btc}{{7c}{6}{\relax }{figure.caption.7}{}}
+\newlabel{sub@btc}{{c}{6}{\relax }{figure.caption.7}{}}
+\newlabel{btd}{{7d}{6}{\relax }{figure.caption.7}{}}
+\newlabel{sub@btd}{{d}{6}{\relax }{figure.caption.7}{}}
+\newlabel{bte}{{7e}{6}{\relax }{figure.caption.7}{}}
+\newlabel{sub@bte}{{e}{6}{\relax }{figure.caption.7}{}}
+\newlabel{bta}{{7f}{6}{\relax }{figure.caption.7}{}}
+\newlabel{sub@bta}{{f}{6}{\relax }{figure.caption.7}{}}
+\newlabel{btb}{{7g}{6}{\relax }{figure.caption.7}{}}
+\newlabel{sub@btb}{{g}{6}{\relax }{figure.caption.7}{}}
+\newlabel{btc}{{7h}{6}{\relax }{figure.caption.7}{}}
+\newlabel{sub@btc}{{h}{6}{\relax }{figure.caption.7}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces \relax }}{6}{figure.caption.7}}
 \bibcite{ai}{2}
 \bibcite{four_color}{3}
 \bibcite{tricks}{4}
 \bibcite{structs}{5}
 \bibcite{Golomb}{6}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Backtracking with Forward Checking}{6}{section.5}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Description}{6}{subsection.5.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Experimental Approach}{6}{subsection.5.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Results}{6}{subsection.5.3}}
-\@writefile{toc}{\contentsline {section}{\numberline {6}Backtracking with Constraint Propagation}{6}{section.6}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Description}{6}{subsection.6.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Experimental Approach}{6}{subsection.6.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Results}{6}{subsection.6.3}}
-\@writefile{toc}{\contentsline {section}{\numberline {7}Genetic Algorithm}{6}{section.7}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Implementation}{6}{subsection.7.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Experimental Approach}{6}{subsection.7.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.3}Results}{6}{subsection.7.3}}
-\@writefile{toc}{\contentsline {section}{\numberline {8}Comparing Algorithm Performance}{6}{section.8}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.1}Experimental Approach}{6}{subsection.8.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.2}Results}{6}{subsection.8.2}}
-\@writefile{toc}{\contentsline {section}{\numberline {9}Summary}{6}{section.9}}
+\bibcite{haralick}{7}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Experimental Approach}{7}{subsection.6.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Results}{7}{subsection.6.3}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Genetic Algorithm}{7}{section.7}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Implementation}{7}{subsection.7.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Experimental Approach}{7}{subsection.7.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.3}Results}{7}{subsection.7.3}}
+\@writefile{toc}{\contentsline {section}{\numberline {8}Comparing Algorithm Performance}{7}{section.8}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.1}Experimental Approach}{7}{subsection.8.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.2}Results}{7}{subsection.8.2}}
+\@writefile{toc}{\contentsline {section}{\numberline {9}Summary}{7}{section.9}}
