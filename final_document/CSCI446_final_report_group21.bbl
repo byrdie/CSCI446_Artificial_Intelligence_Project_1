@@ -1,0 +1,33 @@
+\begin{thebibliography}{1}
+
+\bibitem{world}
+{Wikipedia, the free encyclopedia}.
+\newblock Four color theorem, 2016.
+\newblock
+  \url{https://upload.wikimedia.org/wikipedia/commons/4/4a/World_map_with_four_colours.svg}.
+
+\bibitem{ai}
+Stuart Russel and Peter Norvig.
+\newblock {\em Artificial Intelligence: A Modern Approach}.
+\newblock Pearson Education, Upper Saddle River, New Jersey 07458, 3rd edition,
+  2010.
+
+\bibitem{four_color}
+{Wikipedia, the free encyclopedia}.
+\newblock Four color theorem, 2016.
+\newblock
+  \url{https://en.wikipedia.org/wiki/Four_color_theorem#/media/File:Four_Colour_Planar_Graph.svg}.
+
+\bibitem{tricks}
+Andr\'e LaMothe.
+\newblock {\em Tricks of the 3D Game Programming Gurus}.
+\newblock Sams Publishing, 201 West 103rd Street, Indianapolis, Indiana 46290,
+  2003.
+
+\bibitem{structs}
+Thomas Cormen, Charles Leiserson, Ronald Rivest, and Clifford Stein.
+\newblock {\em Introduction to Algorithms}.
+\newblock Massachusetts Institute of Technology, Cambridge, Massachusetts, 3rd
+  edition, 2009.
+
+\end{thebibliography}

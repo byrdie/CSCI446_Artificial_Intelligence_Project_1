@@ -36,7 +36,7 @@ void Cairo::draw_point(Point * pt, Color color) {
     float y = pt->y;
 
     cairo_set_line_width(cr, 5);
-    cairo_arc(cr, x, y, 2, 0, 2 * M_PI);
+    cairo_arc(cr, x, y, 5, 0, 2 * M_PI);
 
     switch (color) {
         case red:

@@ -1,0 +1,243 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Journal Article
+% LaTeX Template
+% Version 1.3 (9/9/13)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Frits Wenneker (http://www.howtotex.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{article}
+
+%\documentclass{aastex}  % version 5.0 or prior
+%\usepackage{natbib}
+
+
+
+\usepackage{graphicx}
+\usepackage{lipsum} % Package to generate dummy text throughout this template
+%\usepackage[sc]{mathpazo} % Use the Palatino font
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\linespread{1.05} % Line spacing - Palatino needs more space between lines
+\usepackage{microtype} % Slightly tweak font spacing for aesthetics
+
+\usepackage[margin=1in,columnsep=20pt]{geometry} % Document margins
+\usepackage{multicol} % Used for the two-column layout of the document
+\usepackage[hang, small,labelfont=bf,up,textfont=it,up]{caption} % Custom captions under/above floats in tables or figures
+\usepackage{booktabs} % Horizontal rules in tables
+\usepackage{float} % Required for tables and figures in the multi-column environment - they need to be placed in specific locations with the [H] (e.g. \begin{table}[H])
+\usepackage{hyperref} % For hyperlinks in the PDF
+\usepackage{subcaption}
+
+\usepackage{lettrine} % The lettrine is the first enlarged letter at the beginning of the text
+\usepackage{paralist} % Used for the compactitem environment which makes bullet points with less space between them
+\usepackage{amsmath}
+\usepackage{abstract} % Allows abstract customization
+\renewcommand{\abstractnamefont}{\normalfont\bfseries} % Set the "Abstract" text to bold
+\renewcommand{\abstracttextfont}{\normalfont\small\itshape} % Set the abstract itself to small italic text
+
+\usepackage{titlesec} % Allows customization of titles
+%\renewcommand\thesection{\Roman{section}} % Roman numerals for the sections
+%\renewcommand\thesubsection{\Roman{subsection}} % Roman numerals for subsections
+%\renewcommand\thesubsubsection{\Alph{subsubsection}} % Roman numerals for subsections
+\titleformat{\section}[block]{\Large\scshape}{\thesection}{1em}{} % Change the look of the section titles
+\titleformat{\subsection}[block]{\large}{\thesubsection}{1em}{} % Change the look of the section titles
+\titleformat{\subsubsection}[block]{}{\thesubsubsection}{1em}{} % Change the look of the section titles
+
+\usepackage{fancyhdr} % Headers and footers
+\pagestyle{fancy} % All pages have headers and footers
+\fancyhead{} % Blank out the default header
+\fancyfoot{} % Blank out the default footer
+\fancyhead[C]{Montana State University \quad $\bullet$ \quad CSCI 466 Artificial Intelligence \quad $\bullet$ \quad Group 21} % Custom header text
+\fancyfoot[RO,LE]{\thepage} % Custom footer text
+
+\newcommand{\ve}[1]{\boldsymbol{\mathbf{#1}}}
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\title{\vspace{-15mm}\fontsize{24pt}{10pt}\selectfont\textbf{CSCI 446 Artificial Intelligence \\ Project 1 Final Report} \\[-2mm]} % Article title
+\date{\today}
+\author{
+\large
+\textsc{Roy Smart} \and \textsc{Nevin Leh} \and \textsc{Brian Marsh}\\[2mm] % Your name
+}
+
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle % Insert title
+
+\thispagestyle{fancy} % All pages have headers and footers
+
+%\begin{abstract}
+%We present a novel way of performing MOSES data inversions using a
+%\end{abstract}
+
+%----------------------------------------------------------------------------------------
+%	ARTICLE CONTENTS
+%----------------------------------------------------------------------------------------
+
+%\begin{multicols}{2} % Two-column layout throughout the main article text
+\normalsize
+\section{Introduction}
+	The \textit{Graph Coloring Problem} (GCP) is the problem of attempting to color a set of interconnected vertices, using a limited set of colors, such that no vertex has the same color as its neighbors. This problem is best visualized as the map coloring problem. As an example of the map coloring problem, consider the problem of assigning one of four colors to every country in the world, such that no two adjacent countries have the same color, as in Figure \ref{world}. 
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=0.8\textwidth]{images/world_map}
+		\caption{Map of the world satisfying the map coloring problem \cite{world}.}
+		\label{world}
+	\end{figure}
+	It can be shown that the map coloring problem reduces to the graph coloring problem\cite{ai} if we represent the countires as the vertices of the graph, and the borders between countries as the edges of the graph, shown in Figure \ref{four_col}. This configuration produces a \textit{planar} graph, a graph with no edge intersections. 	
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=0.8\textwidth]{images/four_color}
+		\caption{Diagram describing how the map coloring problem can be transformed into the graph coloring problem \cite{four_color}.}
+		\label{four_col}
+	\end{figure}
+	For this project, we are asked to solve the GCP problem for planar graphs only. Since the problems are guaranteed to be planar, we will represent our graphs using polygon maps generated by our program.
+	
+	To solve the GCP we employed five different algorithms: Minimum Conflicts, Simple Backtracking, Backtracking with Forward Checking, Backtracking with Constraint Propagation (MAC), and Local Search using a Genetic Algorithm. To evaluate these algorithms, we built a problem generating program that can produce a random set of planar graphs. Using the problem generator, we calculated a set of graphs between the sizes \{10, 20, 30,...,100\} and called the five graph coloring algorithms to solve the GCP. We measured GCP algorithm performance by measuring the number of read/write operations, the time required to find a solution, and the number of function calls for each algorithm. Using these metrics, we predict that the Minimum Conflicts algorithm will be the fastest, based off its performance on the eight-queens problem\cite{ai}.
+
+
+\par The code for this project is implemented in \texttt{C++} and depends on the programs \texttt{cairo}, \texttt{gnuplot}, \texttt{ffmpeg}, and \LaTeX \space for graph output, performance output, video output, and documentation respectively.
+
+\section{Algorithm Implementation}
+
+	\subsection{Problem Generation}
+		We created a function that could produce many examples of planar graphs from a set of randomly scattered points. For an arbitrary set of points, there is no unique planar graph that can be constructed. To solve this issue, the problem statement has provided a algorithm for calculating an planar graph. 
+		\begin{quote}
+		Select some point $X$ at random and connect $X$ by a straight line
+		to the nearest point $Y$ such that $X$ is not already connected to $Y$ and line crosses no other line. Repeat the
+		previous step until no more connections are possible.
+		\end{quote}
+		For our implementation of the above algorithm, we started by creating a complete graph (where each vertex is connected to every other vertex). Each vertex was associated with a list of edges, sorted by length. 
+		We then selected a point at random and inspected the first unchecked edge $E$. If $E$ did not cross any of the accepted edges, it is added to the list of accepted edges and marked as checked. This process was repeated until every edge was marked as checked. \par
+		The most challenging part of the implementation described above was determining if two line segments intersected. An algorithm to determine if two edges (or line segments) cross has been outlined by LaMothe \cite{tricks} and described in detail here. Let's start by defining two line segments 
+		\begin{align}
+			\begin{split}
+				& A = \{ \ve{a},\; \ve{a'} \} \\
+				& B = \{\ve{b}, \;\ve{b'}\}
+			\end{split}
+		\end{align}
+		where $\ve{a}, \; \ve{a'}, \; \ve{b}, \text{ and } \ve{b'}$ are vectors from the origin to the ends of the line segments. Next, compute the direction vectors for each line segment
+		\begin{align}
+			\begin{split}
+				&\ve{\alpha} = \ve{a}' - \ve{a} \\
+				&\ve{\beta} = \ve{b}' - \ve{b} 
+			\end{split}
+		\end{align}
+		Now, the trick to solving this problem is to parameterize the line segment using the direction vector and a parameter $t_i$ in the domain $[0, \; 1]$.
+		\begin{align}
+			\begin{split}
+				& \ve{p} = \ve{a} + \ve{\alpha} t_a, \quad t_a \in [0, \; 1]\\
+				& \ve{q} = \ve{b} + \ve{\beta} t_b, \quad t_b \in [0, \; 1]
+			\end{split}
+		\end{align}
+		From here, the solution is obvious. To find the point of intersection, we set $\ve{p} = \ve{q}$ and solve for the values of $t_a$ and $t_b$. Then, if the solution is outside the domain of $t_i$, the line segments do not intersect. Thus,
+		\begin{align}
+			\Rightarrow \; &\begin{cases}
+				p_x = q_x \\
+				p_y = q_y
+			\end{cases} \\
+			\Rightarrow \; & \begin{cases}
+				a_x + \alpha_x t_a = b_x + \beta_x t_b \\
+				a_y + \alpha_y t_a = b_y + \beta_y t_b.
+			\end{cases} \label{system}	
+		\end{align}
+		Equation \ref{system} is a system of two equations and two unknowns, solving for $t_a$ and $t_b$ gives
+		\begin{align}
+			\begin{split}
+				&t_a = \frac{(-a_y + b_y)\beta_x + (a_x - b_x)\beta_y}{\alpha_y \beta_x - \alpha_x \beta_y} \\
+				&t_b = \frac{(a_y - b_y)\alpha_x + (-a_x + b_x)\alpha_y}{-\alpha_y \beta_x + \alpha_x \beta_y}.
+			\end{split} \label{final_expr}
+		\end{align}
+		Finally, we can determine whether $A$ and $B$ intersect if $0 < t_a < 1$ and $0 < t_b < 1$ evaluates to true. This method may be more inefficient than other algorithms, such as the example outlined by Cormen\cite{structs} due to the division operation in Equation \ref{final_expr}. \par 
+		Using the expression above to determine line intersections, we were able to implement a problem generator that was reasonably efficient, generating approximately $1\times10^3$ examples per second. This efficiency was important, because it made testing and debugging the GCP algorithms much faster. Example output from the problem generator is shown in Figure \ref{pgen}.
+		
+		\begin{figure}[h!]
+			\centering
+			\begin{subfigure}{0.45\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{images/pgen}
+				\caption{Planar graph with 100 vertices.}
+				\label{pgen}
+			\end{subfigure}
+			\qquad
+			\begin{subfigure}{0.45\textwidth}
+				\centering
+					\includegraphics[width=\textwidth]{images/pgen_poly}
+					\caption{Polygon map corresponding to (a).}
+					\label{pgen_poly}
+			\end{subfigure}
+			\caption{Visualization of the output of the problem generator. First a planar graph was created (a), and then a corresponding polygon map was found (b).}
+		\end{figure}
+		
+		We have also implemented a way to produce a map of regions that is analogous to the graphs created by the problem generator, shown in Figure \ref{pgen_poly}.  
+		Since the graph coloring problem does not uniquely define the map coloring problem, we had to invent a metric that produces appropriate graphs. To define our metric, consider that if a polygon $G_i$ corresponding to each point $P_i$ were constructed out of the midpoints $M_{i,m}$ of the associated edges $E_{i,m}$ of $P_i$, then an adjacent polygon $G_j$ would only touch at the corners, that is, our map would be full of gaps. Therefore, to fix the problem we also define the centroid $C_{i,n}$ of each triangle $T_{i,n}$ formed by the two adjacent edges $E_{i,m}$ and $E_{i,m+1}$. We then define the final polygon for $P_i$ using the points $M_{i,m}$ and $C_{i,n}$. This procedure is unnecessary in terms of the assignment, but is helpful for debugging GCP algorithms, demonstrating example output, and for aesthetic pleasure.
+		
+	\subsection{Minimum Conflicts}
+	
+	\subsection{Simple Backtracking}
+	To implement simple backtracking we followed the recursive algorithm outlined in Russel and Norvig\cite{ai}. The function labeled \textsc{Inference}() is called \texttt{has\_conflicting\_neighbors}
+	
+	\subsection{Backtracking with Forward Checking}
+	
+	\subsection{Backtracking with Constraint Propagation}
+	
+	\subsection{Genetic Algorithm}
+	
+\section{Experimental Approach}
+
+	\subsection{Minimum Conflicts}
+	
+	\subsection{Simple Backtracking}
+	
+	\subsection{Backtracking with Forward Checking}
+	
+	\subsection{Backtracking with Constraint Propagation}
+	
+	\subsection{Genetic Algorithm}
+	
+	\subsection{Comparisons}
+	
+\section{Results}
+
+	\subsection{Minimum Conflicts}
+	
+	\subsection{Simple Backtracking}
+	
+	\subsection{Backtracking with Forward Checking}
+	
+	\subsection{Backtracking with Constraint Propagation}
+	
+	\subsection{Genetic Algorithm}
+	
+	\subsection{Comparisons}
+	
+\section{Summary}
+
+	
+
+
+
+
+	%\bibliographystyle{apj}
+	\bibliographystyle{unsrt}
+	
+	\bibliography{sources}
+\end{document}

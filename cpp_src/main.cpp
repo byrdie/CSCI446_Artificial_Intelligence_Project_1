@@ -20,12 +20,22 @@ int main(int argc, char** argv) {
 
     // Seed for examples used in videos
     // 1474693859
-    
+
     init_rand();
+
+    int N=100;
+    
+    Map * map = map = problem_gen(N, WIDTH);
+    Cairo * cairo = new Cairo("../final_document/images/pgen.pdf");
+    map->draw_map(cairo);
+    cairo->finish();
+    Cairo * cairo1 = new Cairo("../final_document/images/pgen_poly.pdf");
+    map->draw_map_bitwise(cairo1);
+    cairo1->finish();
 
 
     //    run_examples();
-    run_experiments();
+    //    run_experiments();
 
 
 
@@ -250,7 +260,7 @@ void run_experiments() {
     gp.send1d(btmac_timings);
     gp.send1d(gen_timings);
     gp.send1d(gen_timings);
-    
+
     gp << "set output '../results/comparing_num_saturated.pdf'\n";
     gp << "unset logscale y \n";
     gp << "set title 'Number of Saturated Data Points per Algorithm'\n";
@@ -361,7 +371,7 @@ void backtrack_simple_experiment(vector<vector<Map *>> dataset, vector<vector<fl
         next_data_step.push_back(*max_element(begin(step_arr_for_N), end(step_arr_for_N)));
         next_data_step.push_back(*min_element(begin(step_arr_for_N), end(step_arr_for_N)));
         step_arr.push_back(next_data_step);
-        
+
         sat_arr_for_N.push_back((float) N);
         sat_arr_for_N.push_back((float) num_sat);
         saturated.push_back(sat_arr_for_N);
@@ -609,7 +619,7 @@ void backtrack_forward_experiment(vector<vector<Map *>> dataset, vector<vector<f
         next_data_step.push_back(*max_element(begin(step_arr_for_N), end(step_arr_for_N)));
         next_data_step.push_back(*min_element(begin(step_arr_for_N), end(step_arr_for_N)));
         step_arr.push_back(next_data_step);
-        
+
         sat_arr_for_N.push_back((float) N);
         sat_arr_for_N.push_back((float) num_sat);
         saturated.push_back(sat_arr_for_N);
@@ -734,7 +744,7 @@ void backtrack_mac_experiment(vector<vector<Map *>> dataset, vector<vector<float
         next_data_step.push_back(*max_element(begin(step_arr_for_N), end(step_arr_for_N)));
         next_data_step.push_back(*min_element(begin(step_arr_for_N), end(step_arr_for_N)));
         step_arr.push_back(next_data_step);
-        
+
         sat_arr_for_N.push_back((float) N);
         sat_arr_for_N.push_back((float) num_sat);
         saturated.push_back(sat_arr_for_N);
@@ -851,7 +861,7 @@ void genetic_experiment(vector<vector<Map *>> dataset, vector<vector<float>> &re
         next_data_timing.push_back(*max_element(begin(timings_for_N), end(timings_for_N)));
         next_data_timing.push_back(*min_element(begin(timings_for_N), end(timings_for_N)));
         timings.push_back(next_data_timing);
-        
+
         sat_arr_for_N.push_back((float) N);
         sat_arr_for_N.push_back((float) num_sat);
         saturated.push_back(sat_arr_for_N);
