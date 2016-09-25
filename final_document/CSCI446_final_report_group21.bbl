@@ -30,4 +30,10 @@ Thomas Cormen, Charles Leiserson, Ronald Rivest, and Clifford Stein.
 \newblock Massachusetts Institute of Technology, Cambridge, Massachusetts, 3rd
   edition, 2009.
 
+\bibitem{Golomb}
+Solomon~W. Golomb and Leonard~D. Baumert.
+\newblock Backtrack programming.
+\newblock {\em J. ACM}, 12(4):516--524, October 1965.
+\newblock \url{http://doi.acm.org/10.1145/321296.321300}.
+
 \end{thebibliography}

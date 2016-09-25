@@ -25,16 +25,16 @@ int main(int argc, char** argv) {
 
     int N=100;
     
-    Map * map = map = problem_gen(N, WIDTH);
-    Cairo * cairo = new Cairo("../final_document/images/pgen.pdf");
-    map->draw_map(cairo);
-    cairo->finish();
-    Cairo * cairo1 = new Cairo("../final_document/images/pgen_poly.pdf");
-    map->draw_map_bitwise(cairo1);
-    cairo1->finish();
+//    Map * map = map = problem_gen(N, WIDTH);
+//    Cairo * cairo = new Cairo("../final_document/images/pgen.pdf");
+//    map->draw_map(cairo);
+//    cairo->finish();
+//    Cairo * cairo1 = new Cairo("../final_document/images/pgen_poly.pdf");
+//    map->draw_map_bitwise(cairo1);
+//    cairo1->finish();
 
 
-    //    run_examples();
+        run_examples();
     //    run_experiments();
 
 
@@ -44,10 +44,10 @@ int main(int argc, char** argv) {
 
 void run_examples() {
 
-    int N = 40;
+    int N = 8;
     long int steps = 0;
-    int max_steps = 1000;
-    int k = 4;
+    int max_steps = 50;
+    int k = 3;
     char command[500];
     Map * map = map = problem_gen(N, WIDTH);
 
