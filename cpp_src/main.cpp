@@ -65,19 +65,19 @@ void run_examples() {
     system("rm ../results/genetic/map_build/*");
     system("rm ../results/genetic_example.mp4");
 
-    //    map->clean_map();
-    //
-    //
-    //    min_conflicts(map, k, max_steps, &steps, true);
-    //    for (int i = 1; i <= steps; i++) {
-    //
-    //        sprintf(command, "convert -density 98 ../results/min_conflicts/map_build/minconf_I%05d.pdf -quality 89 ../results/min_conflicts/map_build/minconf_I%05d.png", i, i);
-    //        system(command);
-    //    }
-    //    system("ffmpeg -r 1/0.2 -i ../results/min_conflicts/map_build/minconf_I%05d.png -c:v libx264 -r 30 -pix_fmt yuv420p ../results/min_conflicts_example.mp4");
+        map->clean_map();
+    
+    
+        min_conflicts(map, k, max_steps, &steps, true);
+        for (int i = 1; i <= steps; i++) {
+    
+            sprintf(command, "convert -density 98 ../results/min_conflicts/map_build/minconf_I%05d.pdf -quality 89 ../results/min_conflicts/map_build/minconf_I%05d.png", i, i);
+            system(command);
+        }
+        system("ffmpeg -r 1/0.2 -i ../results/min_conflicts/map_build/minconf_I%05d.png -c:v libx264 -r 30 -pix_fmt yuv420p ../results/min_conflicts_example.mp4");
 
-    map->clean_map();
-    steps = 0;
+//    map->clean_map();
+//    steps = 0;
 //
 //    char filename[100];
 //    sprintf(filename, "../results/backtracking_simple/map_build/bt_simple_I%05ld.pdf", steps);
@@ -118,21 +118,21 @@ void run_examples() {
 //    }
 //    system("ffmpeg -r 1/0.2 -i ../results/backtracking_mac/map_build/bt_mac_I%05d.png -c:v libx264 -r 30 -pix_fmt yuv420p ../results/backtracking_mac_example.mp4");
 
-    map->clean_map();
-    steps = 0;
-
-
-        int max_generations = 1000;
-        const int pop_size = (int) N;
-        const int mut_rate = 100;
-        GeneticAlgorithm * ga = new GeneticAlgorithm(map, pop_size, N, k, max_generations);
-        int gens = ga->run(&steps, true);
-        for (int i = 1; i <= steps; i++) {
-    
-            sprintf(command, "convert -density 98 ../results/genetic/map_build/genetic_I%05d.pdf -quality 89 ../results/genetic/map_build/genetic_I%05d.png", i, i);
-            system(command);
-        }
-        system("ffmpeg -r 1/0.2 -i ../results/genetic/map_build/genetic_I%05d.png -c:v libx264 -r 30 -pix_fmt yuv420p ../results/genetic_example.mp4");
+//    map->clean_map();
+//    steps = 0;
+//
+//
+//        int max_generations = 1000;
+//        const int pop_size = (int) N;
+//        const int mut_rate = 100;
+//        GeneticAlgorithm * ga = new GeneticAlgorithm(map, pop_size, N, k, max_generations);
+//        int gens = ga->run(&steps, true);
+//        for (int i = 1; i <= steps; i++) {
+//    
+//            sprintf(command, "convert -density 98 ../results/genetic/map_build/genetic_I%05d.pdf -quality 89 ../results/genetic/map_build/genetic_I%05d.png", i, i);
+//            system(command);
+//        }
+//        system("ffmpeg -r 1/0.2 -i ../results/genetic/map_build/genetic_I%05d.png -c:v libx264 -r 30 -pix_fmt yuv420p ../results/genetic_example.mp4");
 
 }
 

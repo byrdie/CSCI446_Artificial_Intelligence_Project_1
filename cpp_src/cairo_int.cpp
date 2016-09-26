@@ -100,10 +100,10 @@ void Cairo::draw_poly(Point * poly[], int N, Color color, bool highlighted) {
     cairo_move_to(cr, poly[0]->x, poly[0]->y);
     cairo_set_line_width(cr, 2);
 
-    if (highlighted) {
-        cairo_set_line_width(cr, 8);
-        cairo_set_source_rgb(cr, 0, 0, 0);
-    }
+//    if (highlighted) {
+//        cairo_set_line_width(cr, 8);
+//        cairo_set_source_rgb(cr, 0, 0, 0);
+//    }
 
     for (i = 0; i < N - 1; i++) {
         x0 = poly[i]->x;

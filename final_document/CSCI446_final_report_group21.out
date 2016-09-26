@@ -1,23 +1,26 @@
 \BOOKMARK [1][-]{section.1}{Introduction}{}% 1
 \BOOKMARK [1][-]{section.2}{Problem Generation}{}% 2
 \BOOKMARK [1][-]{section.3}{Minimum Conflicts}{}% 3
-\BOOKMARK [1][-]{section.4}{Simple Backtracking}{}% 4
-\BOOKMARK [2][-]{subsection.4.1}{Description}{section.4}% 5
-\BOOKMARK [2][-]{subsection.4.2}{Experimental Approach}{section.4}% 6
-\BOOKMARK [2][-]{subsection.4.3}{Results}{section.4}% 7
-\BOOKMARK [1][-]{section.5}{Backtracking with Forward Checking}{}% 8
-\BOOKMARK [2][-]{subsection.5.1}{Description}{section.5}% 9
-\BOOKMARK [2][-]{subsection.5.2}{Experimental Approach}{section.5}% 10
-\BOOKMARK [2][-]{subsection.5.3}{Results}{section.5}% 11
-\BOOKMARK [1][-]{section.6}{Backtracking with Constraint Propagation}{}% 12
-\BOOKMARK [2][-]{subsection.6.1}{Description}{section.6}% 13
-\BOOKMARK [2][-]{subsection.6.2}{Experimental Approach}{section.6}% 14
-\BOOKMARK [2][-]{subsection.6.3}{Results}{section.6}% 15
-\BOOKMARK [1][-]{section.7}{Genetic Algorithm}{}% 16
-\BOOKMARK [2][-]{subsection.7.1}{Implementation}{section.7}% 17
-\BOOKMARK [2][-]{subsection.7.2}{Experimental Approach}{section.7}% 18
-\BOOKMARK [2][-]{subsection.7.3}{Results}{section.7}% 19
-\BOOKMARK [1][-]{section.8}{Comparing Algorithm Performance}{}% 20
-\BOOKMARK [2][-]{subsection.8.1}{Experimental Approach}{section.8}% 21
-\BOOKMARK [2][-]{subsection.8.2}{Results}{section.8}% 22
-\BOOKMARK [1][-]{section.9}{Summary}{}% 23
+\BOOKMARK [2][-]{subsection.3.1}{Description}{section.3}% 4
+\BOOKMARK [2][-]{subsection.3.2}{Experimental Approach}{section.3}% 5
+\BOOKMARK [2][-]{subsection.3.3}{Results}{section.3}% 6
+\BOOKMARK [1][-]{section.4}{Simple Backtracking}{}% 7
+\BOOKMARK [2][-]{subsection.4.1}{Description}{section.4}% 8
+\BOOKMARK [2][-]{subsection.4.2}{Experimental Approach}{section.4}% 9
+\BOOKMARK [2][-]{subsection.4.3}{Results}{section.4}% 10
+\BOOKMARK [1][-]{section.5}{Backtracking with Forward Checking}{}% 11
+\BOOKMARK [2][-]{subsection.5.1}{Description}{section.5}% 12
+\BOOKMARK [2][-]{subsection.5.2}{Experimental Approach}{section.5}% 13
+\BOOKMARK [2][-]{subsection.5.3}{Results}{section.5}% 14
+\BOOKMARK [1][-]{section.6}{Backtracking with Constraint Propagation}{}% 15
+\BOOKMARK [2][-]{subsection.6.1}{Description}{section.6}% 16
+\BOOKMARK [2][-]{subsection.6.2}{Experimental Approach}{section.6}% 17
+\BOOKMARK [2][-]{subsection.6.3}{Results}{section.6}% 18
+\BOOKMARK [1][-]{section.7}{Genetic Algorithm}{}% 19
+\BOOKMARK [2][-]{subsection.7.1}{Implementation}{section.7}% 20
+\BOOKMARK [2][-]{subsection.7.2}{Experimental Approach}{section.7}% 21
+\BOOKMARK [2][-]{subsection.7.3}{Results}{section.7}% 22
+\BOOKMARK [1][-]{section.8}{Comparing Algorithm Performance}{}% 23
+\BOOKMARK [2][-]{subsection.8.1}{Experimental Approach}{section.8}% 24
+\BOOKMARK [2][-]{subsection.8.2}{Results}{section.8}% 25
+\BOOKMARK [1][-]{section.9}{Summary}{}% 26

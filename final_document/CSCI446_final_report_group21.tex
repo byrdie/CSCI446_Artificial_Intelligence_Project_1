@@ -196,12 +196,61 @@
 		
 		The implementation of minimum conflicts in the graph coloring problem begins by coloring the graph at random.  Each node of the graph is given a conflict score to represent how many conflicts it has with its neighbors.  The algorithm starts by randomly selecting a node with conflicts and changing it to a color that will result in the minimal conflict score.  The affected nodes update their conflict scores and the process repeats.
 
+				
+		\begin{figure}[h!]
+			\begin{subfigure}{0.18\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{images/sequences/min/minconf_I00003}
+				\caption{}
+				\label{mina}
+			\end{subfigure}
+			\;
+			\begin{subfigure}{0.18\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{images/sequences/min/minconf_I00004}
+				\caption{}
+				\label{minb}
+			\end{subfigure}
+			\;
+			\begin{subfigure}{0.18\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{images/sequences/min/minconf_I00005}
+				\caption{}
+				\label{minc}
+			\end{subfigure}
+			\;
+			\begin{subfigure}{0.18\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{images/sequences/min/minconf_I00006}
+				\caption{}
+				\label{mind}
+			\end{subfigure}
+			\;
+			\begin{subfigure}{0.18\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{images/sequences/min/minconf_I00007}
+				\caption{}
+				\label{mine}
+			\end{subfigure} 
+
+			\caption{A map coloring example using minimum conflicts on a graph with 10 vertices.}
+			\label{min_ex}
+		\end{figure}
+
 		Figure 4 provides an example of minimum conflicts to better describe the steps it takes.  The first image is a randomly colored graph in which N = 8.  The algorithm randomly selects a node with conflicts, the blue node in the upper right corner, and considers all of the possible colors it could be changed to.  The color with the lowest conflict score, pink, is selected and the node is changed to this color.  In the following series of pictures, the process repeats until the graph shown in the final picture is produced, which has no conflicts and is thus a solution.
 		
 		While this sequence of pictures shows an efficient solution to the graph coloring problem, the majority of the work done by this algorithm takes place behind the scenes.  Before the color of each node is selected, it must be compared to the colors of each of the neighboring nodes.  For a node with 5 neighbors, using a set of five colors, the minimum conflicts algorithm requires 25 reads for this single step.  This facet of the algorithm causes the mean number of reads to greatly exceed those of both writes and steps.
 
-		Our implementation of the minimum conflicts algorithm is based upon a \texttt{for} loop that ends upon a maximum number of steps being reached, unless a solution is found first.  The function returns \texttt{true} if it ends prematurely from the check \texttt{if (map->num_conflicts() == 0)} is satisfied, which indicates a solution.  Otherwise, the function returns \texttt{false} if the maximum number of steps is reached and the \texttt{for} loop is completed, indicating that a solution was not found.
+		Our implementation of the minimum conflicts algorithm is based upon a \texttt{for} loop that ends upon a maximum number of steps being reached, unless a solution is found first.  The function returns \texttt{true} if it ends prematurely from the check \texttt{if (map->num\_conflicts() == 0)} is satisfied, which indicates a solution.  Otherwise, the function returns \texttt{false} if the maximum number of steps is reached and the \texttt{for} loop is completed, indicating that a solution was not found.
 	\subsection{Experimental Approach}
+	
+	\subsection{Results}
+	
+			\begin{figure}[h!]
+				\centering
+				\includegraphics[width=0.6\textwidth]{../results_5/min_conflicts/min_conflicts_performance}
+				\caption{Logarithmic plot describing the performance of the min-conflicts algorithm vs. the number of vertices. The shaded regions represent the minimum and maximum values of each quantity.}
+			\end{figure}	
 
 \section{Simple Backtracking}
 	\subsection{Description}
@@ -304,7 +353,7 @@
 		
 		\begin{figure}[h!]
 			\centering
-			\includegraphics[width=0.8\textwidth]{../results_5/backtracking_simple/bt_simple_performance}
+			\includegraphics[width=0.6\textwidth]{../results_5/backtracking_simple/bt_simple_performance}
 			\caption{Logarithmic plot describing the performance of the backtracking algorithm vs. the number of vertices. The shaded regions represent the minimum and maximum values of each quantity.}
 		\end{figure}
 	
@@ -404,7 +453,7 @@
 	
 		\begin{figure}[h!]
 			\centering
-			\includegraphics[width=0.8\textwidth]{../results_5/backtracking_forward/bt_forward_performance}
+			\includegraphics[width=0.6\textwidth]{../results_5/backtracking_forward/bt_forward_performance}
 			\caption{Logarithmic plot describing the performance of the backtracking algorithm vs. the number of vertices. The shaded regions represent the minimum and maximum values of each quantity.}
 		\end{figure}
 	
@@ -501,7 +550,7 @@
 	
 		\begin{figure}[h!]
 			\centering
-			\includegraphics[width=0.8\textwidth]{../results_5/backtracking_mac/bt_mac_performance}
+			\includegraphics[width=0.6\textwidth]{../results_5/backtracking_mac/bt_mac_performance}
 			\caption{Logarithmic plot describing the performance of the backtracking with constraint propagation algorithm vs. the number of vertices. The shaded regions represent the minimum and maximum values of each quantity.}
 		\end{figure}
 	
@@ -587,7 +636,7 @@
 	\subsection{Results}
 	\begin{figure}[h!]
 		\centering
-		\includegraphics[width=0.80\textwidth]{../results_5/genetic/genetic_performance}
+		\includegraphics[width=0.6\textwidth]{../results_5/genetic/genetic_performance}
 		\caption{Logarithmic plot describing the performance of the genetic algorithm vs. the number of vertices. The shaded regions represent the minimum and maximum values of each quantity.}
 		\label{genetic_Performance}
 	\end{figure}
@@ -642,7 +691,7 @@
 	
 		Almost as fast as min-conflicts, was backtracking with MAC. In terms of reads, min-conflicts and backtracking with MAC seem to growing nearly at the same rate, only diverging at the last point. It would be interesting to see if min-conflicts could retain its lead for larger values of $N$. In terms of vertex writes, it seems that backtracking with MAC cannot compete with min-conflicts, growing at a much faster rate to finish two orders of magnitude slower than min-conflicts at $N=100$. But, just like the other backtracking algorithms, backtracking with MAC is initially faster than min-conflicts in terms of elapsed time. Backtracking with MAC has more overhead than the other two backtracking algorithms, so it only starts to gain an advantage in terms of elapsed time after $N=40$. It holds onto this lead until $N=100$, where it is finally beat by min-conflicts.
 		
-		The genetic algorithm had much more overhead in terms of reads and writes for low values of $N$ under all three metrics. Fortunately, this overhead payed off for larger values of $N$, as the genetic algorithm grew slower than most of the other algorithms, finishing int with simple backtracking at $N=100$. 
+		The genetic algorithm had much more overhead in terms of reads and writes for low values of $N$ under all three metrics. Fortunately, this overhead payed off for larger values of $N$, as the genetic algorithm grew slower than most of the other algorithms, finishing in the same amount of reads and writes as simple backtracking at $N=100$. In terms of elapsed time, the genetic algorithm did even better, finishing in the middle of the pack behind min-conflicts and backtracking with MAC. From the trends in all three plots, it seems reasonable to think that the genetic algorithm would eventually become more efficient than all of the backtracking algorithms as $N$ increased beyond 100. It is harder to determine if the genetic algorithm would ever be faster than minimum conflicts. From the read/write plots, it would seem that the time-complexity of the genetic algorithm is growing faster than the time-complexity of min-conflicts. However, from the elapsed-time plot, it seems that the time complexity of the genetic algorithm is growing slower than min-conflicts, so obviously more research would be required.
 	
 \section{Summary}
 
