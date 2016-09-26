@@ -237,7 +237,7 @@
 			\label{min_ex}
 		\end{figure}
 
-		Figure 4 provides an example of minimum conflicts to better describe the steps it takes.  The first image is a randomly colored graph in which N = 8.  The algorithm randomly selects a node with conflicts, the blue node in the upper right corner, and considers all of the possible colors it could be changed to.  The color with the lowest conflict score, pink, is selected and the node is changed to this color.  In the following series of pictures, the process repeats until the graph shown in the final picture is produced, which has no conflicts and is thus a solution.
+		Figure \ref{min_ex} provides an example of minimum conflicts to better describe the steps it takes.  The first image is a randomly colored graph in which N = 8.  The algorithm randomly selects a node with conflicts, the blue node in the upper right corner, and considers all of the possible colors it could be changed to.  The color with the lowest conflict score, pink, is selected and the node is changed to this color.  In the following series of pictures, the process repeats until the graph shown in the final picture is produced, which has no conflicts and is thus a solution.
 		
 		While this sequence of pictures shows an efficient solution to the graph coloring problem, the majority of the work done by this algorithm takes place behind the scenes.  Before the color of each node is selected, it must be compared to the colors of each of the neighboring nodes.  For a node with 5 neighbors, using a set of five colors, the minimum conflicts algorithm requires 25 reads for this single step.  This facet of the algorithm causes the mean number of reads to greatly exceed those of both writes and steps.
 
