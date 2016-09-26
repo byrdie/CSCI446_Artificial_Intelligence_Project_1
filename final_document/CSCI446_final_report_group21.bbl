@@ -44,6 +44,13 @@ Robert~M. Haralick and Gordon~L. Elliott.
 \newblock
   \url{http://www.sciencedirect.com/science/article/pii/000437028090051X}.
 
+\bibitem{mackworth}
+Alan~K. Mackworth.
+\newblock Consistency in networks of relations.
+\newblock {\em Artificial Intelligence}, 8(1):99 -- 118, 1977.
+\newblock
+  \url{http://www.sciencedirect.com/science/article/pii/0004370277900078}.
+
 \bibitem{genetic}
 Prof.~S.V. Chande and Dr.~M. Sinha.
 \newblock Genetic algorithm: A versatile optimization tool.
