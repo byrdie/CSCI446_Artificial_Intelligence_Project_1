@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
 \bibitem{world}
 {Wikipedia, the free encyclopedia}.
@@ -17,6 +17,11 @@ Stuart Russel and Peter Norvig.
 \newblock Four color theorem, 2016.
 \newblock
   \url{https://en.wikipedia.org/wiki/Four_color_theorem#/media/File:Four_Colour_Planar_Graph.svg}.
+
+\bibitem{MINTON}
+Minimizing conflicts: a heuristic repair method for constraint satisfaction and
+  scheduling problems.
+\newblock {\em Artificial Intelligence}, 58(1):161 -- 205, 1992.
 
 \bibitem{tricks}
 Andr\'e LaMothe.

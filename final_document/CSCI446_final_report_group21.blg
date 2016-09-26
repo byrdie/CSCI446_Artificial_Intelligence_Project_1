@@ -1,46 +1,52 @@
-This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
+This is BibTeX, Version 0.99d (TeX Live 2015/Debian)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: CSCI446_final_report_group21.aux
 The style file: unsrt.bst
 Database file #1: sources.bib
-You've used 9 entries,
+"{" immediately follows a field part---line 105 of file sources.bib
+ : note = \url
+ :            {http://www.sciencedirect.com/science/article/pii/000437029290007K},
+I'm skipping whatever remains of this entry
+Warning--empty author in MINTON
+You've used 10 entries,
             1791 wiz_defined-function locations,
-            504 strings with 4989 characters,
-and the built_in function-call counts, 1687 in all, are:
-= -- 151
-> -- 62
+            510 strings with 5115 characters,
+and the built_in function-call counts, 1899 in all, are:
+= -- 171
+> -- 63
 < -- 0
-+ -- 25
++ -- 26
 - -- 16
-* -- 92
-:= -- 275
-add.period$ -- 30
-call.type$ -- 9
-change.case$ -- 8
+* -- 113
+:= -- 302
+add.period$ -- 32
+call.type$ -- 10
+change.case$ -- 9
 chr.to.int$ -- 0
-cite$ -- 9
-duplicate$ -- 75
-empty$ -- 183
+cite$ -- 11
+duplicate$ -- 84
+empty$ -- 209
 format.name$ -- 16
-if$ -- 381
+if$ -- 430
 int.to.chr$ -- 0
-int.to.str$ -- 9
-missing$ -- 10
-newline$ -- 51
+int.to.str$ -- 10
+missing$ -- 11
+newline$ -- 55
 num.names$ -- 9
-pop$ -- 33
+pop$ -- 35
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 28
+skip$ -- 31
 stack$ -- 0
-substring$ -- 76
-swap$ -- 9
+substring$ -- 103
+swap$ -- 10
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 0
-while$ -- 13
-width$ -- 10
-write$ -- 106
+warning$ -- 1
+while$ -- 14
+width$ -- 12
+write$ -- 115
+(There was 1 error message)

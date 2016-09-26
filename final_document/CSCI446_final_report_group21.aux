@@ -21,7 +21,7 @@
 \citation{ai}
 \citation{four_color}
 \citation{four_color}
-\citation{ai}
+\citation{MINTON}
 \@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}}
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Map of the world satisfying the map coloring problem \cite  {world}.\relax }}{1}{figure.caption.1}}
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
@@ -29,10 +29,10 @@
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Diagram describing how the map coloring problem can be transformed into the graph coloring problem \cite  {four_color}.\relax }}{1}{figure.caption.2}}
 \newlabel{four_col}{{2}{1}{Diagram describing how the map coloring problem can be transformed into the graph coloring problem \cite {four_color}.\relax }{figure.caption.2}{}}
 \citation{tricks}
-\citation{structs}
 \@writefile{toc}{\contentsline {section}{\numberline {2}Problem Generation}{2}{section.2}}
 \newlabel{system}{{5}{2}{Problem Generation}{equation.2.5}{}}
-\newlabel{final_expr}{{6}{2}{Problem Generation}{equation.2.6}{}}
+\citation{structs}
+\newlabel{final_expr}{{6}{3}{Problem Generation}{equation.2.6}{}}
 \newlabel{pgen}{{3a}{3}{Planar graph with 100 vertices.\relax }{figure.caption.3}{}}
 \newlabel{sub@pgen}{{a}{3}{Planar graph with 100 vertices.\relax }{figure.caption.3}{}}
 \newlabel{pgen_poly}{{3b}{3}{Polygon map corresponding to (a).\relax }{figure.caption.3}{}}
@@ -40,7 +40,7 @@
 \@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Visualization of the output of the problem generator. First a planar graph was created (a), and then a corresponding polygon map was found (b).\relax }}{3}{figure.caption.3}}
 \@writefile{toc}{\contentsline {section}{\numberline {3}Minimum Conflicts}{3}{section.3}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Description}{3}{subsection.3.1}}
-\citation{Golomb}
+\citation{ai}
 \newlabel{mina}{{4a}{4}{\relax }{figure.caption.4}{}}
 \newlabel{sub@mina}{{a}{4}{\relax }{figure.caption.4}{}}
 \newlabel{minb}{{4b}{4}{\relax }{figure.caption.4}{}}
@@ -54,110 +54,114 @@
 \@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces A map coloring example using minimum conflicts on a graph with 10 vertices.\relax }}{4}{figure.caption.4}}
 \newlabel{min_ex}{{4}{4}{A map coloring example using minimum conflicts on a graph with 10 vertices.\relax }{figure.caption.4}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Experimental Approach}{4}{subsection.3.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Results}{4}{subsection.3.3}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Logarithmic plot describing the performance of the min-conflicts algorithm vs. the number of vertices. The shaded regions represent the minimum and maximum values of each quantity.\relax }}{4}{figure.caption.5}}
-\citation{ai}
+\citation{MINTON}
+\citation{Golomb}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Results}{5}{subsection.3.3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Logarithmic plot describing the performance of the min-conflicts algorithm vs. the number of vertices. The shaded regions represent the minimum and maximum values of each quantity.\relax }}{5}{figure.caption.5}}
+\newlabel{minconf}{{5}{5}{Logarithmic plot describing the performance of the min-conflicts algorithm vs. the number of vertices. The shaded regions represent the minimum and maximum values of each quantity.\relax }{figure.caption.5}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {4}Simple Backtracking}{5}{section.4}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Description}{5}{subsection.4.1}}
 \newlabel{simpe_desc}{{4.1}{5}{Description}{subsection.4.1}{}}
-\newlabel{bta}{{6a}{5}{\relax }{figure.caption.6}{}}
-\newlabel{sub@bta}{{a}{5}{\relax }{figure.caption.6}{}}
-\newlabel{btb}{{6b}{5}{\relax }{figure.caption.6}{}}
-\newlabel{sub@btb}{{b}{5}{\relax }{figure.caption.6}{}}
-\newlabel{btc}{{6c}{5}{\relax }{figure.caption.6}{}}
-\newlabel{sub@btc}{{c}{5}{\relax }{figure.caption.6}{}}
-\newlabel{btd}{{6d}{5}{\relax }{figure.caption.6}{}}
-\newlabel{sub@btd}{{d}{5}{\relax }{figure.caption.6}{}}
-\newlabel{bte}{{6e}{5}{\relax }{figure.caption.6}{}}
-\newlabel{sub@bte}{{e}{5}{\relax }{figure.caption.6}{}}
-\newlabel{bt1}{{6f}{5}{\relax }{figure.caption.6}{}}
-\newlabel{sub@bt1}{{f}{5}{\relax }{figure.caption.6}{}}
-\newlabel{bt2}{{6g}{5}{\relax }{figure.caption.6}{}}
-\newlabel{sub@bt2}{{g}{5}{\relax }{figure.caption.6}{}}
-\newlabel{bt3}{{6h}{5}{\relax }{figure.caption.6}{}}
-\newlabel{sub@bt3}{{h}{5}{\relax }{figure.caption.6}{}}
-\newlabel{bt4}{{6i}{5}{\relax }{figure.caption.6}{}}
-\newlabel{sub@bt4}{{i}{5}{\relax }{figure.caption.6}{}}
-\newlabel{bt5}{{6j}{5}{\relax }{figure.caption.6}{}}
-\newlabel{sub@bt5}{{j}{5}{\relax }{figure.caption.6}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces A map coloring example using simple backtracking on a graph with 10 vertices. From this diagram we will define a label for each vertex by the panel during which it is assigned, for example vertex (a) is colored red in panel \ref  {bta}, vertex (c) is colored green in the panel \ref  {btc}, etc. Note we will define vertex (j) as the last uncolored node, since panel \ref  {bt5} changes the value on vertex (h).\relax }}{5}{figure.caption.6}}
-\newlabel{simple_ex}{{6}{5}{A map coloring example using simple backtracking on a graph with 10 vertices. From this diagram we will define a label for each vertex by the panel during which it is assigned, for example vertex (a) is colored red in panel \ref {bta}, vertex (c) is colored green in the panel \ref {btc}, etc. Note we will define vertex (j) as the last uncolored node, since panel \ref {bt5} changes the value on vertex (h).\relax }{figure.caption.6}{}}
-\citation{haralick}
+\citation{ai}
+\newlabel{bta}{{6a}{6}{\relax }{figure.caption.6}{}}
+\newlabel{sub@bta}{{a}{6}{\relax }{figure.caption.6}{}}
+\newlabel{btb}{{6b}{6}{\relax }{figure.caption.6}{}}
+\newlabel{sub@btb}{{b}{6}{\relax }{figure.caption.6}{}}
+\newlabel{btc}{{6c}{6}{\relax }{figure.caption.6}{}}
+\newlabel{sub@btc}{{c}{6}{\relax }{figure.caption.6}{}}
+\newlabel{btd}{{6d}{6}{\relax }{figure.caption.6}{}}
+\newlabel{sub@btd}{{d}{6}{\relax }{figure.caption.6}{}}
+\newlabel{bte}{{6e}{6}{\relax }{figure.caption.6}{}}
+\newlabel{sub@bte}{{e}{6}{\relax }{figure.caption.6}{}}
+\newlabel{bt1}{{6f}{6}{\relax }{figure.caption.6}{}}
+\newlabel{sub@bt1}{{f}{6}{\relax }{figure.caption.6}{}}
+\newlabel{bt2}{{6g}{6}{\relax }{figure.caption.6}{}}
+\newlabel{sub@bt2}{{g}{6}{\relax }{figure.caption.6}{}}
+\newlabel{bt3}{{6h}{6}{\relax }{figure.caption.6}{}}
+\newlabel{sub@bt3}{{h}{6}{\relax }{figure.caption.6}{}}
+\newlabel{bt4}{{6i}{6}{\relax }{figure.caption.6}{}}
+\newlabel{sub@bt4}{{i}{6}{\relax }{figure.caption.6}{}}
+\newlabel{bt5}{{6j}{6}{\relax }{figure.caption.6}{}}
+\newlabel{sub@bt5}{{j}{6}{\relax }{figure.caption.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces A map coloring example using simple backtracking on a graph with 10 vertices. From this diagram we will define a label for each vertex by the panel during which it is assigned, for example vertex (a) is colored red in panel \ref  {bta}, vertex (c) is colored green in the panel \ref  {btc}, etc. Note we will define vertex (j) as the last uncolored node, since panel \ref  {bt5} changes the value on vertex (h).\relax }}{6}{figure.caption.6}}
+\newlabel{simple_ex}{{6}{6}{A map coloring example using simple backtracking on a graph with 10 vertices. From this diagram we will define a label for each vertex by the panel during which it is assigned, for example vertex (a) is colored red in panel \ref {bta}, vertex (c) is colored green in the panel \ref {btc}, etc. Note we will define vertex (j) as the last uncolored node, since panel \ref {bt5} changes the value on vertex (h).\relax }{figure.caption.6}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Experimental Approach}{6}{subsection.4.2}}
 \newlabel{simple_exp_appr}{{4.2}{6}{Experimental Approach}{subsection.4.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Results}{6}{subsection.4.3}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Logarithmic plot describing the performance of the backtracking algorithm vs. the number of vertices. The shaded regions represent the minimum and maximum values of each quantity.\relax }}{6}{figure.caption.7}}
-\newlabel{simple_results}{{7}{6}{Logarithmic plot describing the performance of the backtracking algorithm vs. the number of vertices. The shaded regions represent the minimum and maximum values of each quantity.\relax }{figure.caption.7}{}}
+\citation{haralick}
 \citation{ai}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Results}{7}{subsection.4.3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Logarithmic plot describing the performance of the backtracking algorithm vs. the number of vertices. The shaded regions represent the minimum and maximum values of each quantity.\relax }}{7}{figure.caption.7}}
+\newlabel{simple_results}{{7}{7}{Logarithmic plot describing the performance of the backtracking algorithm vs. the number of vertices. The shaded regions represent the minimum and maximum values of each quantity.\relax }{figure.caption.7}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {5}Backtracking with Forward Checking}{7}{section.5}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Description}{7}{subsection.5.1}}
-\newlabel{high_f1}{{8f}{7}{\relax }{figure.caption.8}{}}
-\newlabel{sub@high_f1}{{f}{7}{\relax }{figure.caption.8}{}}
-\newlabel{high_f2}{{8g}{7}{\relax }{figure.caption.8}{}}
-\newlabel{sub@high_f2}{{g}{7}{\relax }{figure.caption.8}{}}
-\newlabel{high_f3}{{8h}{7}{\relax }{figure.caption.8}{}}
-\newlabel{sub@high_f3}{{h}{7}{\relax }{figure.caption.8}{}}
-\newlabel{high_f4}{{8i}{7}{\relax }{figure.caption.8}{}}
-\newlabel{sub@high_f4}{{i}{7}{\relax }{figure.caption.8}{}}
-\newlabel{high_f5}{{8j}{7}{\relax }{figure.caption.8}{}}
-\newlabel{sub@high_f5}{{j}{7}{\relax }{figure.caption.8}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces The map coloring example from Figure \ref  {simple_ex} using backtracking with forward checking. Note that the intermediate colors represent additive mixings of the four pure colors (red, green, blue, and pink), for example purple (the color of vertex (h) during panel (c)) is a combination of blue and pink, magenta is a combination of red and blue, etc.\relax }}{7}{figure.caption.8}}
-\newlabel{forward_example}{{8}{7}{The map coloring example from Figure \ref {simple_ex} using backtracking with forward checking. Note that the intermediate colors represent additive mixings of the four pure colors (red, green, blue, and pink), for example purple (the color of vertex (h) during panel (c)) is a combination of blue and pink, magenta is a combination of red and blue, etc.\relax }{figure.caption.8}{}}
-\citation{ai}
+\newlabel{high_f1}{{8f}{8}{\relax }{figure.caption.8}{}}
+\newlabel{sub@high_f1}{{f}{8}{\relax }{figure.caption.8}{}}
+\newlabel{high_f2}{{8g}{8}{\relax }{figure.caption.8}{}}
+\newlabel{sub@high_f2}{{g}{8}{\relax }{figure.caption.8}{}}
+\newlabel{high_f3}{{8h}{8}{\relax }{figure.caption.8}{}}
+\newlabel{sub@high_f3}{{h}{8}{\relax }{figure.caption.8}{}}
+\newlabel{high_f4}{{8i}{8}{\relax }{figure.caption.8}{}}
+\newlabel{sub@high_f4}{{i}{8}{\relax }{figure.caption.8}{}}
+\newlabel{high_f5}{{8j}{8}{\relax }{figure.caption.8}{}}
+\newlabel{sub@high_f5}{{j}{8}{\relax }{figure.caption.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces The map coloring example from Figure \ref  {simple_ex} using backtracking with forward checking. Note that the intermediate colors represent additive mixings of the four pure colors (red, green, blue, and pink), for example purple (the color of vertex (h) during panel (c)) is a combination of blue and pink, magenta is a combination of red and blue, etc.\relax }}{8}{figure.caption.8}}
+\newlabel{forward_example}{{8}{8}{The map coloring example from Figure \ref {simple_ex} using backtracking with forward checking. Note that the intermediate colors represent additive mixings of the four pure colors (red, green, blue, and pink), for example purple (the color of vertex (h) during panel (c)) is a combination of blue and pink, magenta is a combination of red and blue, etc.\relax }{figure.caption.8}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Experimental Approach}{8}{subsection.5.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Results}{8}{subsection.5.3}}
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Logarithmic plot describing the performance of the backtracking algorithm vs. the number of vertices. The shaded regions represent the minimum and maximum values of each quantity.\relax }}{8}{figure.caption.9}}
-\newlabel{forward_results}{{9}{8}{Logarithmic plot describing the performance of the backtracking algorithm vs. the number of vertices. The shaded regions represent the minimum and maximum values of each quantity.\relax }{figure.caption.9}{}}
-\citation{mackworth}
 \citation{ai}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Logarithmic plot describing the performance of the backtracking algorithm vs. the number of vertices. The shaded regions represent the minimum and maximum values of each quantity.\relax }}{9}{figure.caption.9}}
+\newlabel{forward_results}{{9}{9}{Logarithmic plot describing the performance of the backtracking algorithm vs. the number of vertices. The shaded regions represent the minimum and maximum values of each quantity.\relax }{figure.caption.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Results}{9}{subsection.5.3}}
 \@writefile{toc}{\contentsline {section}{\numberline {6}Backtracking with Constraint Propagation}{9}{section.6}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Description}{9}{subsection.6.1}}
-\newlabel{high_c1}{{10f}{9}{\relax }{figure.caption.10}{}}
-\newlabel{sub@high_c1}{{f}{9}{\relax }{figure.caption.10}{}}
-\newlabel{high_c2}{{10g}{9}{\relax }{figure.caption.10}{}}
-\newlabel{sub@high_c2}{{g}{9}{\relax }{figure.caption.10}{}}
-\newlabel{high_c3}{{10h}{9}{\relax }{figure.caption.10}{}}
-\newlabel{sub@high_c3}{{h}{9}{\relax }{figure.caption.10}{}}
-\newlabel{high_c4}{{10i}{9}{\relax }{figure.caption.10}{}}
-\newlabel{sub@high_c4}{{i}{9}{\relax }{figure.caption.10}{}}
-\newlabel{high_c5}{{10j}{9}{\relax }{figure.caption.10}{}}
-\newlabel{sub@high_c5}{{j}{9}{\relax }{figure.caption.10}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces The map coloring example from Figure \ref  {simple_ex} using backtracking with constraint propagation.\relax }}{9}{figure.caption.10}}
-\newlabel{mac_example}{{10}{9}{The map coloring example from Figure \ref {simple_ex} using backtracking with constraint propagation.\relax }{figure.caption.10}{}}
-\citation{genetic}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Experimental Approach}{10}{subsection.6.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Results}{10}{subsection.6.3}}
-\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Logarithmic plot describing the performance of the backtracking with constraint propagation algorithm vs. the number of vertices. The shaded regions represent the minimum and maximum values of each quantity.\relax }}{10}{figure.caption.11}}
-\newlabel{mac_results}{{11}{10}{Logarithmic plot describing the performance of the backtracking with constraint propagation algorithm vs. the number of vertices. The shaded regions represent the minimum and maximum values of each quantity.\relax }{figure.caption.11}{}}
+\citation{mackworth}
 \citation{ai}
+\newlabel{high_c1}{{10f}{10}{\relax }{figure.caption.10}{}}
+\newlabel{sub@high_c1}{{f}{10}{\relax }{figure.caption.10}{}}
+\newlabel{high_c2}{{10g}{10}{\relax }{figure.caption.10}{}}
+\newlabel{sub@high_c2}{{g}{10}{\relax }{figure.caption.10}{}}
+\newlabel{high_c3}{{10h}{10}{\relax }{figure.caption.10}{}}
+\newlabel{sub@high_c3}{{h}{10}{\relax }{figure.caption.10}{}}
+\newlabel{high_c4}{{10i}{10}{\relax }{figure.caption.10}{}}
+\newlabel{sub@high_c4}{{i}{10}{\relax }{figure.caption.10}{}}
+\newlabel{high_c5}{{10j}{10}{\relax }{figure.caption.10}{}}
+\newlabel{sub@high_c5}{{j}{10}{\relax }{figure.caption.10}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces The map coloring example from Figure \ref  {simple_ex} using backtracking with constraint propagation.\relax }}{10}{figure.caption.10}}
+\newlabel{mac_example}{{10}{10}{The map coloring example from Figure \ref {simple_ex} using backtracking with constraint propagation.\relax }{figure.caption.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Experimental Approach}{10}{subsection.6.2}}
+\citation{genetic}
+\citation{ai}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Logarithmic plot describing the performance of the backtracking with constraint propagation algorithm vs. the number of vertices. The shaded regions represent the minimum and maximum values of each quantity.\relax }}{11}{figure.caption.11}}
+\newlabel{mac_results}{{11}{11}{Logarithmic plot describing the performance of the backtracking with constraint propagation algorithm vs. the number of vertices. The shaded regions represent the minimum and maximum values of each quantity.\relax }{figure.caption.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Results}{11}{subsection.6.3}}
 \@writefile{toc}{\contentsline {section}{\numberline {7}Genetic Algorithm}{11}{section.7}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Implementation}{11}{subsection.7.1}}
-\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Simple example of crossover where (a) and (b) are the parents and (c) and (d) are the offspring.\relax }}{11}{figure.caption.12}}
-\newlabel{cross_example}{{12}{11}{Simple example of crossover where (a) and (b) are the parents and (c) and (d) are the offspring.\relax }{figure.caption.12}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Flow graph of our genetic algorithm.\relax }}{12}{figure.caption.13}}
-\newlabel{genetic_flow}{{13}{12}{Flow graph of our genetic algorithm.\relax }{figure.caption.13}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Simple example of crossover where (a) and (b) are the parents and (c) and (d) are the offspring.\relax }}{12}{figure.caption.12}}
+\newlabel{cross_example}{{12}{12}{Simple example of crossover where (a) and (b) are the parents and (c) and (d) are the offspring.\relax }{figure.caption.12}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Experimental Approach}{12}{subsection.7.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.3}Results}{12}{subsection.7.3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Flow graph of our genetic algorithm.\relax }}{13}{figure.caption.13}}
+\newlabel{genetic_flow}{{13}{13}{Flow graph of our genetic algorithm.\relax }{figure.caption.13}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.3}Results}{13}{subsection.7.3}}
 \@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Logarithmic plot describing the performance of the genetic algorithm vs. the number of vertices. The shaded regions represent the minimum and maximum values of each quantity.\relax }}{13}{figure.caption.14}}
 \newlabel{genetic_Performance}{{14}{13}{Logarithmic plot describing the performance of the genetic algorithm vs. the number of vertices. The shaded regions represent the minimum and maximum values of each quantity.\relax }{figure.caption.14}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {8}Comparing Algorithm Performance}{13}{section.8}}
-\newlabel{comparisons}{{8}{13}{Comparing Algorithm Performance}{section.8}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.1}Experimental Approach}{13}{subsection.8.1}}
+\@writefile{toc}{\contentsline {section}{\numberline {8}Comparing Algorithm Performance}{14}{section.8}}
+\newlabel{comparisons}{{8}{14}{Comparing Algorithm Performance}{section.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.1}Experimental Approach}{14}{subsection.8.1}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {8.2}Results}{14}{subsection.8.2}}
-\newlabel{comp_limit}{{15d}{14}{Number of trials that reached the computation limit.\relax }{figure.caption.15}{}}
-\newlabel{sub@comp_limit}{{d}{14}{Number of trials that reached the computation limit.\relax }{figure.caption.15}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Logarithmic plots comparing the performance of the five different GCP algorithms against four different measurements. Shaded regions represent the maximum and minimum values.\relax }}{14}{figure.caption.15}}
-\newlabel{results}{{15}{14}{Logarithmic plots comparing the performance of the five different GCP algorithms against four different measurements. Shaded regions represent the maximum and minimum values.\relax }{figure.caption.15}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {9}Summary}{15}{section.9}}
-\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces Example of a fully colored, 100 vertex graph produced by backtracking with constraint propagation.\relax }}{15}{figure.caption.16}}
+\newlabel{comp_limit}{{15d}{15}{Number of trials that reached the computation limit.\relax }{figure.caption.15}{}}
+\newlabel{sub@comp_limit}{{d}{15}{Number of trials that reached the computation limit.\relax }{figure.caption.15}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Logarithmic plots comparing the performance of the five different GCP algorithms against four different measurements. Shaded regions represent the maximum and minimum values.\relax }}{15}{figure.caption.15}}
+\newlabel{results}{{15}{15}{Logarithmic plots comparing the performance of the five different GCP algorithms against four different measurements. Shaded regions represent the maximum and minimum values.\relax }{figure.caption.15}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {9}Summary}{16}{section.9}}
+\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces Example of a fully colored, 100 vertex graph produced by backtracking with constraint propagation.\relax }}{16}{figure.caption.16}}
 \bibstyle{unsrt}
 \bibdata{sources}
 \bibcite{world}{1}
 \bibcite{ai}{2}
 \bibcite{four_color}{3}
-\bibcite{tricks}{4}
-\bibcite{structs}{5}
-\bibcite{Golomb}{6}
-\bibcite{haralick}{7}
-\bibcite{mackworth}{8}
-\bibcite{genetic}{9}
+\bibcite{MINTON}{4}
+\bibcite{tricks}{5}
+\bibcite{structs}{6}
+\bibcite{Golomb}{7}
+\bibcite{haralick}{8}
+\bibcite{mackworth}{9}
+\bibcite{genetic}{10}
