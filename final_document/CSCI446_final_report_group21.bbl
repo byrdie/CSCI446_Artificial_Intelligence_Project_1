@@ -1,0 +1,52 @@
+\begin{thebibliography}{1}
+
+\bibitem{world}
+{Wikipedia, the free encyclopedia}.
+\newblock Four color theorem, 2016.
+\newblock
+  \url{https://upload.wikimedia.org/wikipedia/commons/4/4a/World_map_with_four_colours.svg}.
+
+\bibitem{ai}
+Stuart Russel and Peter Norvig.
+\newblock {\em Artificial Intelligence: A Modern Approach}.
+\newblock Pearson Education, Upper Saddle River, New Jersey 07458, 3rd edition,
+  2010.
+
+\bibitem{four_color}
+{Wikipedia, the free encyclopedia}.
+\newblock Four color theorem, 2016.
+\newblock
+  \url{https://en.wikipedia.org/wiki/Four_color_theorem#/media/File:Four_Colour_Planar_Graph.svg}.
+
+\bibitem{tricks}
+Andr\'e LaMothe.
+\newblock {\em Tricks of the 3D Game Programming Gurus}.
+\newblock Sams Publishing, 201 West 103rd Street, Indianapolis, Indiana 46290,
+  2003.
+
+\bibitem{structs}
+Thomas Cormen, Charles Leiserson, Ronald Rivest, and Clifford Stein.
+\newblock {\em Introduction to Algorithms}.
+\newblock Massachusetts Institute of Technology, Cambridge, Massachusetts, 3rd
+  edition, 2009.
+
+\bibitem{Golomb}
+Solomon~W. Golomb and Leonard~D. Baumert.
+\newblock Backtrack programming.
+\newblock {\em J. ACM}, 12(4):516--524, October 1965.
+\newblock \url{http://doi.acm.org/10.1145/321296.321300}.
+
+\bibitem{haralick}
+Robert~M. Haralick and Gordon~L. Elliott.
+\newblock Increasing tree search efficiency for constraint satisfaction
+  problems.
+\newblock {\em Artificial Intelligence}, 14(3):263 -- 313, 1980.
+\newblock
+  \url{http://www.sciencedirect.com/science/article/pii/000437028090051X}.
+
+\bibitem{genetic}
+Prof.~S.V. Chande and Dr.~M. Sinha.
+\newblock Genetic algorithm: A versatile optimization tool.
+\newblock {\em BVICAM's International Journal of Information Technology}, 2008.
+
+\end{thebibliography}

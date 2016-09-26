@@ -189,44 +189,362 @@
 	We have also implemented a way to produce a map of regions that is analogous to the graphs created by the problem generator, shown in Figure \ref{pgen_poly}.  
 	Since the graph coloring problem does not uniquely define the map coloring problem, we had to invent a metric that produces appropriate graphs. To define our metric, consider that if a polygon $G_i$ corresponding to each point $P_i$ were constructed out of the midpoints $M_{i,m}$ of the associated edges $E_{i,m}$ of $P_i$, then an adjacent polygon $G_j$ would only touch at the corners, that is, our map would be full of gaps. Therefore, to fix the problem we also define the centroid $C_{i,n}$ of each triangle $T_{i,n}$ formed by the two adjacent edges $E_{i,m}$ and $E_{i,m+1}$. We then define the final polygon for $P_i$ using the points $M_{i,m}$ and $C_{i,n}$. This procedure is unnecessary in terms of the assignment, but is helpful for debugging GCP algorithms, demonstrating example output, and for aesthetic pleasure.
 		
-	\subsection{Minimum Conflicts}
+\section{Minimum Conflicts}
 	
-	\subsection{Simple Backtracking}
-		To implement simple backtracking we followed the recursive algorithm outlined in Russel and Norvig Section 6.3 \cite{ai}. The function labeled \textsc{Inference}() is called \texttt{has\_conflicting\_neighbors()} in our implementation. From profiling the code, we could see
-	
-	\subsection{Backtracking with Forward Checking}
-	
-	\subsection{Backtracking with Constraint Propagation}
-	
-	\subsection{Genetic Algorithm}
-	
-\section{Experimental Approach}
+\section{Simple Backtracking}
+	\subsection{Description}
+		Backtracking is a method of solving constraint satisfaction problems through an "educated" exhaustive search. It works by building a partial solution one component at a time and then testing the solution to check if the solution still has a chance of success \cite{Golomb}. If the solution cannot possibly succeed, the algorithm \textit{backtracks} by moving back one component, modifying the component to form a new partial solution and then continuing. By checking partial solutions, backtracking can eliminate large portions of the solution-space, thus increasing the efficiency of the search.
+		
+		In the graph coloring problem, backtracking assigns colors to one vertex at a time and checks to see if it has the same value as any of its neighbors. If none of the possible colors work for the current vertex, it backs up and tries a different color on a previously assigned vertex. If a color has no conflicts, backtracking continues to the next vertex in the sequence.
+		
+		\begin{figure}[h!]
+			\begin{subfigure}{0.18\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{images/sequences/simple_backtracking/bt_simple_I00001}
+				\caption{}
+				\label{bta}
+			\end{subfigure}
+			\;
+			\begin{subfigure}{0.18\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{images/sequences/simple_backtracking/bt_simple_I00002}
+				\caption{}
+				\label{btb}
+			\end{subfigure}
+			\;
+			\begin{subfigure}{0.18\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{images/sequences/simple_backtracking/bt_simple_I00004}
+				\caption{}
+				\label{btc}
+			\end{subfigure}
+			\;
+			\begin{subfigure}{0.18\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{images/sequences/simple_backtracking/bt_simple_I00006}
+				\caption{}
+				\label{btd}
+			\end{subfigure}
+			\;
+			\begin{subfigure}{0.18\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{images/sequences/simple_backtracking/bt_simple_I00007}
+				\caption{}
+				\label{bte}
+			\end{subfigure} \\
+			
+			\begin{subfigure}{0.18\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{images/sequences/simple_backtracking/bt_simple_I00009}
+				\caption{}
+				\label{bta}
+			\end{subfigure}
+			\;
+			\begin{subfigure}{0.18\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{images/sequences/simple_backtracking/bt_simple_I00012}
+				\caption{}
+				\label{btb}
+			\end{subfigure}
+			\;
+			\begin{subfigure}{0.18\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{images/sequences/simple_backtracking/bt_simple_I00015}
+				\caption{}
+				\label{btc}
+			\end{subfigure}
+			\;
+			\begin{subfigure}{0.18\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{images/sequences/simple_backtracking/bt_simple_I00019}
+				\caption{}
+				\label{btd}
+			\end{subfigure}
+			\;
+			\begin{subfigure}{0.18\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{images/sequences/simple_backtracking/bt_simple_I00024}
+				\caption{}
+				\label{bte}
+			\end{subfigure}
 
-	\subsection{Minimum Conflicts}
+			\caption{A map coloring example using simple backtracking on an N=10 graph up to the first backtrack event. In panels (a) through (i), each vertex is assigned the first available color in the order (red, green, blue, pink).  Once the first pink assignment is made in panel (i), there are no possibilities remaining for the final vertex. The algorithm then backtracks and changes the node assigned in (h) to pink and tries again.}
+			\label{bt_simple_ex}
+		\end{figure}	
+		
+		
+		
+		
+		
+		
+		To implement simple backtracking we followed the recursive algorithm outlined in Russel and Norvig Section 6.3 \cite{ai}. Russel's \textsc{Backtrack} loops through each value in the domain, and if the value is consistent with the constraints it recursively calls \textsc{Backtrack}. The function returns \texttt{true} when every variable has been assigned, and \texttt{false} if it cannot satisfy the constraints. The recursive function is advantageous, as it saves the state of the stack before each recursive call, making it trivial to restore the state of the solution after a failed recursive call to backtracking. 
+		
+		The crux of the backtracking procedure in the graph coloring problem is checking whether a coloring is consistent with constraints. From profiling our code, it was obvious that a fast constraint checking function was critical to the ability of backtracking to solve graph coloring problems up to $N=100$ vertices in a reasonable amount of time. This facilitated a change of design from an object-oriented approach, to an array-based approach.
+	\subsection{Experimental Approach}
+		To evaluate backtracking's performance on the graph coloring problem, we ran the algorithm on ten graph sizes $N=(10,\;20,\;...,\;100)$ with 20 trials for each value, for a total of 200 backtracking experiments. From each experiment we recorded the number of vertex reads, vertex writes, and number of recursive calls. Time constraints on this project demanded that we set a limit on the number of calls to backtracking, therefore we also recorded if this limit was reached for each experiment. 
+		
+		We expect that the number of recursive calls and the number of vertex writes and the number of vertex reads to be correlated by some constant factor. This is because there is a maximum of two writes and $N$ reads for each recursive call. Therefore, we can use this information to verify that the algorithm is working properly.
+		
 	
-	\subsection{Simple Backtracking}
+	\subsection{Results}
+		
+		\begin{figure}[h!]
+			\centering
+%			\includegraphics[width=0.8\textwidth]{../results_3/backtracking_simple/bt_simple_performance}
+			\caption{Logarithmic plot describing the performance of the backtracking algorithm vs. the number of vertices. The shaded regions represent the minimum and maximum values of each quantity.}
+		\end{figure}
 	
-	\subsection{Backtracking with Forward Checking}
-	
-	\subsection{Backtracking with Constraint Propagation}
-	
-	\subsection{Genetic Algorithm}
-	
-	\subsection{Comparisons}
-	
-\section{Results}
+\section{Backtracking with Forward Checking}
 
-	\subsection{Minimum Conflicts}
+	\subsection{Description}
 	
-	\subsection{Simple Backtracking}
+		Backtracking with forward checking incorporates the usual simple backtracking algorithm described in the preceding section, while incorporating an ability to look into the future to see if a particular assignment would create an inconsistency. Forward checking achieves this by trying to make an inconsistency occur as fast as possible by checking if all current assignments are consistent with each other \cite{haralick}.
+		
+		To accomplish forward checking in the graph coloring problem, we need to modify our representation of the graph to allow superpositions of colors and initialize the graph such that all colors are possible for each vertex. Next, for each call to backtracking, we assign a color to the next vertex, and delete that color from the vertex's neighbors list of possible colors. If any vertex has its list of possible colors completely eliminated, the algorithm backtracks and changes a color further up the tree.\cite{ai}.
+		
+		\begin{figure}[h!]
+			\begin{subfigure}{0.18\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{images/sequences/forward_backtracking/bt_forward_I00003}
+				\caption{}
+				\label{bta}
+			\end{subfigure}
+			\;
+			\begin{subfigure}{0.18\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{images/sequences/forward_backtracking/bt_forward_I00005}
+				\caption{}
+				\label{btb}
+			\end{subfigure}
+			\;
+			\begin{subfigure}{0.18\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{images/sequences/forward_backtracking/bt_forward_I00007}
+				\caption{}
+				\label{btc}
+			\end{subfigure}
+			\;
+			\begin{subfigure}{0.18\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{images/sequences/forward_backtracking/bt_forward_I00009}
+				\caption{}
+				\label{btd}
+			\end{subfigure}
+			\;
+			\begin{subfigure}{0.18\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{images/sequences/forward_backtracking/bt_forward_I00011}
+				\caption{}
+				\label{bte}
+			\end{subfigure} \\
+			
+			\begin{subfigure}{0.18\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{images/sequences/forward_backtracking/bt_forward_I00013}
+				\caption{}
+				\label{bta}
+			\end{subfigure}
+			\;
+			\begin{subfigure}{0.18\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{images/sequences/forward_backtracking/bt_forward_I00015}
+				\caption{}
+				\label{btb}
+			\end{subfigure}
+			\;
+			\begin{subfigure}{0.18\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{images/sequences/forward_backtracking/bt_forward_I00017}
+				\caption{}
+				\label{btc}
+			\end{subfigure}
+			\;
+			\begin{subfigure}{0.18\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{images/sequences/forward_backtracking/bt_forward_I00019}
+				\caption{}
+				\label{btd}
+			\end{subfigure}
+			\;
+			\begin{subfigure}{0.18\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{images/sequences/forward_backtracking/bt_forward_I00021}
+				\caption{}
+				\label{bte}
+			\end{subfigure}
 	
-	\subsection{Backtracking with Forward Checking}
+			\caption{The map coloring example from Figure \ref{bt_simple_ex} using backtracking with forward checking on an N=10 graph up to the first backtrack event. In panels (a) through (g), each vertex is assigned the first available color in the order (red, green, blue, pink), and deletes that color from the possible color of its neighbors. In panel (h) blue is assigned to the node on the left side, leaving two of its neighbors with only pink in their domain. Next, in panel (h), the central vertex has its domain reduced to the empty set, prompting a backtrack to panel (j). Note that forward checking in this case did not provide any advantage over backtracking.}
+		\end{figure}
+		
+
+	\subsection{Experimental Approach}
 	
-	\subsection{Backtracking with Constraint Propagation}
+	\subsection{Results}
 	
-	\subsection{Genetic Algorithm}
+\section{Backtracking with Constraint Propagation}
+
+	\subsection{Description}
 	
-	\subsection{Comparisons}
+		\begin{figure}[h!]
+			\begin{subfigure}{0.18\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{images/sequences/mac_backtracking/bt_mac_I00003}
+				\caption{}
+				\label{bta}
+			\end{subfigure}
+			\;
+			\begin{subfigure}{0.18\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{images/sequences/mac_backtracking/bt_mac_I00004}
+				\caption{}
+				\label{btb}
+			\end{subfigure}
+			\;
+			\begin{subfigure}{0.18\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{images/sequences/mac_backtracking/bt_mac_I00006}
+				\caption{}
+				\label{btc}
+			\end{subfigure}
+			\;
+			\begin{subfigure}{0.18\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{images/sequences/mac_backtracking/bt_mac_I00008}
+				\caption{}
+				\label{btd}
+			\end{subfigure}
+			\;
+			\begin{subfigure}{0.18\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{images/sequences/mac_backtracking/bt_mac_I00010}
+				\caption{}
+				\label{bte}
+			\end{subfigure} \\
+			
+			\begin{subfigure}{0.18\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{images/sequences/mac_backtracking/bt_mac_I00012}
+				\caption{}
+				\label{bta}
+			\end{subfigure}
+			\;
+			\begin{subfigure}{0.18\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{images/sequences/mac_backtracking/bt_mac_I00014}
+				\caption{}
+				\label{btb}
+			\end{subfigure}
+			\;
+			\begin{subfigure}{0.18\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{images/sequences/mac_backtracking/bt_mac_I00015}
+				\caption{}
+				\label{btc}
+			\end{subfigure}
+	
+			\caption{}
+		\end{figure}	
+
+	\subsection{Experimental Approach}
+	
+	\subsection{Results}
+	
+\section{Genetic Algorithm}
+
+	\subsection{Implementation}
+	Local search using a genetic algorithm involves a process similar to evolution to produce an individual that maximizes a fitness function. Since genetic algorithms are an abstraction of biological evolution, they involve some of the classic mechanisms seen in the natural world such as crossover, mutation, and survival of the fittest\cite{genetic}.
+	
+	The genetic algorithm begins with a population of randomly generated individuals. A selection process chooses which individuals to use for reproduction, which are weighted by their score generated the fitness function. The individuals are recombined by cross-over and the resulting individuals may be mutated depending on a small probability.
+	
+	To apply the genetic algorithm to the GCP we started with the genetic algorithm described in Russel and Norvig Section 4.1\cite{ai} and implemented each feature in accordance with the GCP. Our initial population consisted of $N$ randomly colored graphs. It was hard to determine what population size was the best, but it was clear that the optimal population size was related to the size of each graph and that larger graphs needed larger populations in general. $N$ was a natural number to try and it seemed to work fairly well.
+	
+	
+	
+	To select individuals for crossover we used tournament selection where two individuals were randomly selected and the one with the best fitness score  proceeded to crossover. Naturally, two tournaments were needed to get the two individuals required for crossover. In this scheme an individual could be chosen zero, one, or multiple times to participate in tournaments.
+	
+	The fitness function used to calculate the fitness score was essentially a penalty function because only the total number of conflicts in each individual was used to calculate the fitness score. Since this score reflected how many neighboring vertices shared colors, a large score was considered less fit and a score of zero indicated that a solution was found. 
+	
+	The crossover algorithm consisted of random single point crossover. To achieve this we chose a random point in each graph and swapped colors up to that point. The crossover example in Figure \ref{cross_example} looks like multi-point crossover because the vertices of the graph are unordered when crossover is performed.
+	
+	
+	
+	
+	
+	
+	\begin{figure}[h!]
+		\centering
+		\begin{subfigure}{0.18\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{images/sequences/genetic/genetic_I00001}
+			\caption{}
+			
+		\end{subfigure}
+		\;
+		\begin{subfigure}{0.18\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{images/sequences/genetic/genetic_I00002}
+			\caption{}
+			
+		\end{subfigure}
+		\;
+		\\
+		\begin{subfigure}{0.18\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{images/sequences/genetic/genetic_I00003}
+			\caption{}
+			
+		\end{subfigure}
+		\;		
+		\begin{subfigure}{0.18\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{images/sequences/genetic/genetic_I00004}
+			\caption{}
+			
+		\end{subfigure}
+		
+		\caption{Simple example of crossover where (a) and (b) are the parents and (c) and (d) are the offspring.}
+		\label{cross_example}
+	\end{figure}
+	
+	After crossover we immediately mutated each individual which consisted of selecting each vertex and randomly changing it depending on a mutation rate defined as $1/N$. This mutation rate was chosen because it seemed to minimize the number of iterations to find a solution. This number proved to be very specific and any deviation would negatively affect the performance of the algorithm considerable. 
+	
+	Once we had the new individuals we inserted them into the new population. We used pure insertion meaning that each generation was composed entirely of new individuals produced by crossover. This was later understood to be a poor choice, but it did work for this application. 
+	
+	This process of selection, crossover, mutation, and reinsertion was repeated until an individual with zero conflicts was found or a predefined limit on the number of generations allowed was reached. In Figure \ref{genetic_flow} a flow graph showing the general flow of our genetic algorithm. It can be seen that the population is initialized outside of the main loop. 
+	
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=0.45\textwidth]{images/genetic_flo}
+		\caption{Flow graph of our genetic algorithm.}
+		\label{genetic_flow}
+	\end{figure}
+	
+	\subsection{Experimental Approach}
+	To gauge the performance of the algorithm we will run the algorithm on graph sizes $N = (10, 20, ..., 100)$ with 20 runs of each different graph size. The metrics that will be used are number of generations, number of writes, and number of reads.
+	
+	The most obvious metric to use was number of generations because it tells you how many steps it took to find a solution. It was used to see how performance changed as $N$ increased and to compare the relative difficulty of graphs of the same size. Another added benefit of this metric was that it was used to find the optimal population size and mutation rate. The drawback of this metric was that it did not take into account the increased computation needed for larger graphs.
+	
+	One way we accounted for the increased computation time needed for larger graphs was to count the number of times we check the color of a graph vertice. This scaled with the size of the graph for two reasons. One was that each time we checked the fitness of a graph we had to read each nodes color and, as the graph got bigger, more nodes had to be read. The other reason is that, since our population is of size $N$, we have to check more graphs as the population size grows. We called this metric \texttt{num\_reads}
+	
+	The other way we accounted for the increased computation time needed for larger graphs was to count the number of times we change the color of a graph vertice. This metric scaled with the size of the graph for the same reasons as number of reads.
+	
+	\subsection{Results}
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=0.80\textwidth]{../results_5/genetic/genetic_performance}
+		\caption{Logarithmic plot describing the performance of the genetic algorithm vs. the number of vertices. The shaded regions represent the minimum and maximum values of each quantity.}
+		\label{genetic_Performance}
+	\end{figure}
+	
+	Figure \ref{genetic_Performance} shows our metrics on a logarithmic plot. There are several points of interest on this graph. The first is how the number of generations increase as $N$ increases. We can deduce from the slope of the lines that this algorithm runs in exponential time, thought it is still much faster than a brute force approach. We can further deduce that the number of generations increases at $\mathcal{O} (e^{Na})$ where $a$ represents the slope of the line in a logarithmic plot. By deduction we can see that  $a<1$.
+	
+	The other points of interest are the number of reads and writes. It can be seen that the slope of the line is a little more steep than the number of generations. This is as expected because the population size increases as $N$ increases and therefore causes the number of reads and writes to grow. Even with these setbacks read and write still managed to run in approximately  $\mathcal{O} (e^{Nb})$ where $b$ represents the slope of the line in a logarithmic plot. By deduction we can see that the slope is greater than that of the number of generations and therefore $a<b$. Additionally we can see that the slope is less than one so we can further constrict b to $a<b<1$. 
+\section{Comparing Algorithm Performance}
+	
+	\subsection{Experimental Approach}
+	
+	\subsection{Results}
+	
 	
 \section{Summary}
 

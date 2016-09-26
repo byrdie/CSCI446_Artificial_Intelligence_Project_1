@@ -56,7 +56,7 @@ bool backtrack(Map * map, const unsigned int k, const unsigned int index, long i
     return false;
 }
 
-bool backtrack_forward(Map * map, uint index, long int* counter, int max_depth, bool draw_steps) {
+bool backtrack_forward(Map * map, uint index, long int* counter, int max_depth, bool draw_steps) { 
 
     *counter += 1;
     if (draw_steps) {
