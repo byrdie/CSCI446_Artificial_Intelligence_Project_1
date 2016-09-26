@@ -190,7 +190,19 @@
 	Since the graph coloring problem does not uniquely define the map coloring problem, we had to invent a metric that produces appropriate graphs. To define our metric, consider that if a polygon $G_i$ corresponding to each point $P_i$ were constructed out of the midpoints $M_{i,m}$ of the associated edges $E_{i,m}$ of $P_i$, then an adjacent polygon $G_j$ would only touch at the corners, that is, our map would be full of gaps. Therefore, to fix the problem we also define the centroid $C_{i,n}$ of each triangle $T_{i,n}$ formed by the two adjacent edges $E_{i,m}$ and $E_{i,m+1}$. We then define the final polygon for $P_i$ using the points $M_{i,m}$ and $C_{i,n}$. This procedure is unnecessary in terms of the assignment, but is helpful for debugging GCP algorithms, demonstrating example output, and for aesthetic pleasure.
 		
 \section{Minimum Conflicts}
-	
+	\subsection{Description}
+		
+		Minimum conflicts uses a relatively simple algorithm to solve constraint satisfaction problems.  A step towards solving the problem is made based upon how many conflicts a node has with its neighbors.  As it runs, the algorithm updates the number of conflicts until none remain for any of the nodes, meaning the problem is solved, or a time limit is reached, in which no solution is found.
+		
+		The implementation of minimum conflicts in the graph coloring problem begins by coloring the graph at random.  Each node of the graph is given a conflict score to represent how many conflicts it has with its neighbors.  The algorithm starts by randomly selecting a node with conflicts and changing it to a color that will result in the minimal conflict score.  The affected nodes update their conflict scores and the process repeats.
+
+		Figure 4 provides an example of minimum conflicts to better describe the steps it takes.  The first image is a randomly colored graph in which N = 8.  The algorithm randomly selects a node with conflicts, the blue node in the upper right corner, and considers all of the possible colors it could be changed to.  The color with the lowest conflict score, pink, is selected and the node is changed to this color.  In the following series of pictures, the process repeats until the graph shown in the final picture is produced, which has no conflicts and is thus a solution.
+		
+		While this sequence of pictures shows an efficient solution to the graph coloring problem, the majority of the work done by this algorithm takes place behind the scenes.  Before the color of each node is selected, it must be compared to the colors of each of the neighboring nodes.  For a node with 5 neighbors, using a set of five colors, the minimum conflicts algorithm requires 25 reads for this single step.  This facet of the algorithm causes the mean number of reads to greatly exceed those of both writes and steps.
+
+		Our implementation of the minimum conflicts algorithm is based upon a \texttt{for} loop that ends upon a maximum number of steps being reached, unless a solution is found first.  The function returns \texttt{true} if it ends prematurely from the check \texttt{if (map->num_conflicts() == 0)} is satisfied, which indicates a solution.  Otherwise, the function returns \texttt{false} if the maximum number of steps is reached and the \texttt{for} loop is completed, indicating that a solution was not found.
+	\subsection{Experimental Approach}
+
 \section{Simple Backtracking}
 	\subsection{Description}
 		\label{simpe_desc}
