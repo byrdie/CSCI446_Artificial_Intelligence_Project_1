@@ -294,7 +294,7 @@
 	
 		\begin{figure}[h!]
 			\centering
-			\includegraphics[width=0.8\textwidth]{../results_4/backtracking_simple/bt_simple_performance}
+			\includegraphics[width=0.8\textwidth]{../results_5/backtracking_simple/bt_simple_performance}
 			\caption{Logarithmic plot describing the performance of the backtracking algorithm vs. the number of vertices. The shaded regions represent the minimum and maximum values of each quantity.}
 		\end{figure}
 	
@@ -394,7 +394,7 @@
 	
 		\begin{figure}[h!]
 			\centering
-			\includegraphics[width=0.8\textwidth]{../results_4/backtracking_forward/bt_forward_performance}
+			\includegraphics[width=0.8\textwidth]{../results_5/backtracking_forward/bt_forward_performance}
 			\caption{Logarithmic plot describing the performance of the backtracking algorithm vs. the number of vertices. The shaded regions represent the minimum and maximum values of each quantity.}
 		\end{figure}
 	
@@ -491,7 +491,7 @@
 	
 		\begin{figure}[h!]
 			\centering
-			\includegraphics[width=0.8\textwidth]{../results_4/backtracking_mac/bt_mac_performance}
+			\includegraphics[width=0.8\textwidth]{../results_5/backtracking_mac/bt_mac_performance}
 			\caption{Logarithmic plot describing the performance of the backtracking with constraint propagation algorithm vs. the number of vertices. The shaded regions represent the minimum and maximum values of each quantity.}
 		\end{figure}
 	
@@ -508,7 +508,35 @@
 	
 	\subsection{Experimental Approach}
 	
+	As described in the preceding sections, the number of vertex reads and number of vertex writes were our main metrics for comparing algorithm performance. Under these metrics, all calculations performed by each algorithm were assumed to take the same amount of time between subsequent reads and writes. This assumption is obviously untrue, but tests on our algorithm showed 
+	
 	\subsection{Results}
+	
+		\begin{figure}
+			\centering
+			\begin{subfigure}{0.49\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{../results_5/comparing_read_performance}
+				\caption{Average number of vertex reads for each algorithm.}
+			\end{subfigure}
+			\;
+			\begin{subfigure}{0.49\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{../results_5/comparing_write_performance}
+				\caption{Average number of vertex writes for each algorithm.}
+			\end{subfigure} 
+			\\
+			\begin{subfigure}{0.49\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{../results_5/comparing_time_performance}
+			\end{subfigure}
+			\;
+			\begin{subfigure}{0.49\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{../results_5/comparing_num_saturated}
+			\end{subfigure}
+			\caption{Logarithmic plots comparing the performance of the five different GCP algorithms against four different measurements. Shaded regions represent the maximum and minimum values.}
+		\end{figure}
 	
 	
 \section{Summary}
