@@ -105,7 +105,7 @@
 	It can be shown that the map coloring problem reduces to the graph coloring problem\cite{ai} if we represent the countires as the vertices of the graph, and the borders between countries as the edges of the graph, shown in Figure \ref{four_col}. This configuration produces a \textit{planar} graph, a graph with no edge intersections. 	
 	\begin{figure}[h!]
 		\centering
-		\includegraphics[width=0.8\textwidth]{images/four_color}
+		\includegraphics[width=0.6\textwidth]{images/four_color}
 		\caption{Diagram describing how the map coloring problem can be transformed into the graph coloring problem \cite{four_color}.}
 		\label{four_col}
 	\end{figure}
@@ -323,7 +323,7 @@
 				\label{bt4}
 			\end{subfigure}
 			\;
-			\begin{subfigure}{0.18\textwidth}
+/			\begin{subfigure}{0.18\textwidth}
 				\centering
 				\includegraphics[width=\textwidth]{images/sequences/simple_backtracking/bt_simple_I00024}
 				\caption{}
@@ -335,9 +335,9 @@
 		\end{figure}	
 		
 		To illustrate the process of backtracking consider the sequence of images in Figure \ref{simple_ex}.
-		This sequence follows the backtracking algorithm assigning the first acceptable color (in the order red, green, pink) to each vertex until the first backtracking event in panel \ref{bt5}. The colors assigned to the vertices (a) through (g) seem reasonable until blue is assigned to vertex (h) in panel \ref{bt3}. Then in panel \ref{bt4} we can see that the only acceptable color for vertex (i) is pink and even worse, vertex (j) has cannot be assigned a color without being in conflict with its neighbors. Therefore, in panel \ref{bt5} the algorithm is forced to backtrack to vertex (h) and try pink (which we will see ).
+		This sequence follows the backtracking algorithm assigning the first acceptable color (in the order red, green, pink) to each vertex until the first backtracking event in panel \ref{bt5}. The colors assigned to the vertices (a) through (g) seem reasonable until blue is assigned to vertex (h) in panel \ref{bt3}. Then in panel \ref{bt4} we can see that the only acceptable color for vertex (i) is pink and even worse, vertex (j) cannot be assigned a color without being in conflict with its neighbors. Therefore, in panel \ref{bt5} the algorithm is forced to backtrack to vertex (h) and try pink.
 		
-		The example above seeks to describe the major issue with backtracking: it can get stuck in situations where it can take an inordinate amount of time to backtrack far enough to fix the problem. In panel (j), after the backtracking operation, we can see that the algorithm did not retreat far enough, changing vertex (g) to pink still results in a conflict in vertex (j). The algorithm needs to back up to vertex (e) and change it to blue to resolve the conflict on vertex (j) and solve the graph. We will see in the following sections on forward checking and constraint propagation if we can mitigate this problem.
+		The example above seeks to describe the major issue with backtracking: it can get stuck in situations where it can take an inordinate amount of time to backtrack far enough to fix the problem. In panel \ref{bt5}, after the backtracking operation, we can see that the algorithm did not retreat far enough, changing vertex (g) to pink still results in a conflict in vertex (j). The algorithm needs to back up to vertex (e) and change it to blue to resolve the conflict on vertex (j) and solve the graph. We will see in the following sections on forward checking and constraint propagation if we can mitigate this problem.
 		
 		To implement simple backtracking we followed the recursive algorithm outlined in Russel and Norvig Section 6.3 \cite{ai}. Russel's \textsc{Backtrack} loops through each value in the domain, and if the value is consistent with the constraints it recursively calls \textsc{Backtrack}. The function returns \texttt{true} when every variable has been assigned, and \texttt{false} if it cannot satisfy the constraints. The recursive function is advantageous, as it saves the state of the stack before each recursive call, making it trivial to restore the state of the solution after a failed recursive call to backtracking. 
 		
@@ -349,13 +349,18 @@
 		We expect that the number of recursive calls and the number of vertex writes and the number of vertex reads to be correlated by some constant factor. This is because there is a maximum of two writes and $N$ reads for each recursive call. Therefore, we can use this information to verify that the algorithm is working properly.
 		
 	
-	\subsection{Results}
+	\subsection{Results}	
 		
 		\begin{figure}[h!]
 			\centering
 			\includegraphics[width=0.6\textwidth]{../results_5/backtracking_simple/bt_simple_performance}
 			\caption{Logarithmic plot describing the performance of the backtracking algorithm vs. the number of vertices. The shaded regions represent the minimum and maximum values of each quantity.}
+			\label{simple_results}
 		\end{figure}
+		
+		The results from the measurements described in the preceding section are displayed in Figure \ref{simple_results}. We can see from the figure that the algorithm performed approximately an order of magnitude more reads, and two orders of magnitude more writes than recursive calls at the point $N=10$. As $N$ goes to 100, we can see that the reads and writes grow at the same rate as the number of recursive calls, suggesting a constant relationship between recursive calls and read/write operations.
+		
+		From the plot, we can also see that the behavior of the simple backtracking is decidedly exponential. This is consistent with the graph coloring problem, as the number of possible colorings increase as $k^N$, where $k$ is the number of allowed colors. 
 	
 \section{Backtracking with Forward Checking}
 
@@ -447,7 +452,7 @@
 
 	\subsection{Experimental Approach}
 	
-		Our experimental approach for this algorithm is essentially the same as the approach for simple backtracking described in Section \ref{simple_exp_appr}. We will still be measuring the number of vertex reads, vertex writes, and the number of recursive calls. However, since the forward checking algorithm must carry out more decisions for each recursive call, we expect there to be a larger amount of vertex reads and vertex writes for each recursive call. We will see in Section \ref{comparisons} if this additional overhead was worth it compared to simple backtracking. As with simple backtracking there is also a limit on how long each experiment can run, but this ends up not being important, as 
+		Our experimental approach for this algorithm is essentially the same as the approach for simple backtracking described in Section \ref{simple_exp_appr}. We will still be measuring the number of vertex reads, vertex writes, and the number of recursive calls. However, since the forward checking algorithm must carry out more decisions for each recursive call, we expect there to be a larger amount of vertex reads and vertex writes for each recursive call. We will see in Section \ref{comparisons} if this additional overhead was worth it compared to simple backtracking. As with simple backtracking there is also a limit on how long each experiment can run, but this ends up not being important, as the arc consistency performed by forward checking usually ensures that a solution is found quickly.
 	
 	\subsection{Results}
 	
@@ -455,7 +460,13 @@
 			\centering
 			\includegraphics[width=0.6\textwidth]{../results_5/backtracking_forward/bt_forward_performance}
 			\caption{Logarithmic plot describing the performance of the backtracking algorithm vs. the number of vertices. The shaded regions represent the minimum and maximum values of each quantity.}
+			\label{forward_results}
 		\end{figure}
+		
+		The plot in Figure \ref{forward_results} describes the relationship between the number of recursive calls required be backtracking with forward checking, and the number of reads/writes vs. $N$. At the point $N=10$, the graph looks very similar to simple backtracking. However as $N$ increases towards 100, we can see that the number of reads/writes is always at least a full order of magnitude over the number of recursive calls. This behavior indicates that the number of reads/writes is growing faster than the number of recursive calls with increasing $N$. This makes sense, as the forward check operation should consume more operations as $N$ increases.
+		
+		As with simple backtracking, backtracking with forward checking has exponential time-complexity as a function of $N$. This can be seen by noting that the graph appears moderately linear on the logarithmic plot, which implies exponential growth.
+		
 	
 \section{Backtracking with Constraint Propagation}
 
@@ -552,7 +563,12 @@
 			\centering
 			\includegraphics[width=0.6\textwidth]{../results_5/backtracking_mac/bt_mac_performance}
 			\caption{Logarithmic plot describing the performance of the backtracking with constraint propagation algorithm vs. the number of vertices. The shaded regions represent the minimum and maximum values of each quantity.}
+			\label{mac_results}
 		\end{figure}
+		
+		Compared to simple backtracking, backtracking with constraint propagation, displayed in Figure \ref{mac_results}, has a tremendous amount of read/write overhead per recursive call. At $N=10$, there were at least an order of magnitude more reads than recursive calls, but by $N=100$, there were almost two orders of magnitude more reads than recursive calls. This behavior indicates that the overhead of backtracking with constraint propagation is even larger than that of forward checking. This is to be expected, because AC-3 could potential visit every vertex in the graph for each recursive call.
+		
+		As with all the algorithms in this document, backtracking with constraint propagation behaves exponentially with increasing $N$. From this plot however, we can see that it certainly seems like backtracking with constraint propagation has a smaller slope on the logarithmic plot than the other two backtracking algorithms.
 	
 \section{Genetic Algorithm}
 
@@ -649,9 +665,9 @@
 	
 	\subsection{Experimental Approach}
 	
-	As described in the preceding sections, the number of vertex reads and number of vertex writes were our main metrics for comparing algorithm performance. Under these metrics, all calculations performed by each algorithm were assumed to take the same amount of time between subsequent reads and writes. This assumption is obviously untrue, but tests on our algorithm showed that this assumption was certainly reasonable because the rates (reads/s or writes/s) for each algorithm differed by only a constant factor. This constant factor could be large, but will be dwarfed by the tyranny of the exponential nature of the graph coloring problem.
+	As described in the preceding sections, the number of vertex reads and number of vertex writes were our main metrics for comparing algorithm performance. Under these metrics, all calculations performed by each algorithm were assumed to be constant between subsequent reads and writes. This assumption is obviously untrue, but tests on our algorithm showed that this assumption was certainly reasonable because the rates (reads/s or writes/s) for each algorithm differed by only a constant factor for all $N$. This constant factor was large for some algorithms but was always dwarfed by the exponential time-complexity of the graph coloring problem.
 	
-	Even though we are confident that the vertex reads and writes is an accurate metric, to provide a counter-example we also measured the time required by each algorithm to find a solution. This metric is generally considered to be tenuous, as many things can affect a program's execution time, such as the hardware its being run on, what other programs are being run at the same time, etc. We have noted these issues and have made every effort to make this test more accurate. These efforts include running all of the algorithms on the same machine to negate hardware differences, running only one algorithm at a time to eliminate the possibility of a memory bottleneck, and making sure that no other programs are running on the machine at that time. Another contentious facet of execution time metrics, is that one algorithm may simply be more optimized than another, and comparing a poor implementation of min-conflicts against a good implementation of backtracking, for example, would not be a very accurate test. This issue is much harder to mitigate and will not be described in detail here.
+	Though we are confident that measuring vertex reads and writes is an accurate metric of algorithm performance, to provide a counter-example we also measured the time required by each algorithm to find a solution to the GCP. Measuring algorithm performance using execution time is generally considered to be tenuous, as many things can affect a program's runtime, such as the hardware its being executed on, what other programs are being run at the same time, etc. We have noted these issues and have made every effort to make this test more accurate. These efforts include running all of the algorithms on the same machine to negate hardware differences, running only one algorithm at a time to eliminate the possibility of a memory bottleneck, and ensuring that no other programs are running on the machine during our tests. Another contentious facet of execution time metrics, is that one algorithm may simply be more optimized than another, and comparing a poor implementation of min-conflicts against a good implementation of backtracking, for example, would not be a very accurate test. This issue is much harder to mitigate and its effects will be ignored for this analysis.
 	\subsection{Results}
 	
 		\begin{figure}[h!]
@@ -677,23 +693,39 @@
 			\begin{subfigure}{0.49\textwidth}
 				\centering
 				\includegraphics[width=\textwidth]{../results_5/comparing_num_saturated}
-				\caption{Total number of experiments that reached the computation limit.}
+				\caption{Number of trials that reached the computation limit.}
+				\label{comp_limit}
 			\end{subfigure}
 			\caption{Logarithmic plots comparing the performance of the five different GCP algorithms against four different measurements. Shaded regions represent the maximum and minimum values.}
 			\label{results}
 		\end{figure}
 		
-		In general, the minimum conflicts was the fastest algorithm for large $N$, but it was by no means the clear winner as we expected. In terms of reads, min-conflicts was just as fast as backtracking with MAC up until $N=100$, where it gained a marginal lead, ending up in first place at an average of about 100 million reads per solution. In terms of writes, it was obvious that minimum conflicts was growing out the slowest out of any algorithm from the start, completing an $N=100$ graph in over two orders of magnitude fewer writes than the second place algorithm, backtracking with MAC. Surprisingly, min-conflicts was not the fastest algorithm in terms of elapsed time until $N=100$. We are not sure how to explain this phenomenon, but it is an indication that measuring vertex reads and writes may not be the appropriate measurement to be making.
+		In general, the minimum conflicts was the fastest algorithm for large $N$, but it was by no means the clear winner as we expected. In terms of reads, min-conflicts was just as fast as backtracking with MAC up until $N=100$, where it gained a marginal lead, ending up in first place at an average of between 10 and 100 million reads per solution. In terms of writes, it was obvious that minimum conflicts was growing out the slowest out of any algorithm from the start, completing an $N=100$ graph in over two orders of magnitude fewer writes than the second place algorithm, backtracking with MAC. Surprisingly, min-conflicts was not the fastest algorithm in terms of elapsed time until $N=100$. We are not sure how to explain this phenomenon, but it is an indication that measuring vertex reads and writes may not be the most appropriate measurement.
 		
-		Simple backtracking started off being just as fast as the other two variations of backtrack and min-conflicts, but grew at a rate faster than any of the other algorithms, finishing in the same place as the genetic algorithm. However, the average number of reads and writes is misleading in this case. Notice how the maximum and minimum values of simple backtracking span the range of almost every other algorithm combined in all three graphs in Figure \ref{results}. This indicates that simple backtracking is sometimes just as fast as the min-conflicts and backtracking with MAC, but it can also be much slower, at least five orders of magnitude slower in terms of reads at $N=100$. Furthermore, we also note that simple backtracking hit the computation limit in 2 out of 20 runs at $N=100$. This implies that the actual mean would be higher if this limit had not been reached. Interestingly enough, simple backtracking is the fastest out of any algorithm for the $N=10$ case in terms of elapsed time, indicating that it requires the least overhead of any algorithm, at least in the beginning.
+		Simple backtracking began by being just as fast as the other two variations of backtrack and min-conflicts, but grew at a rate faster than any of the other algorithms, finishing in the same place as the genetic algorithm. However, the average number of reads and writes is misleading in this case. Notice how the maximum and minimum values of simple backtracking span the range of almost every other algorithm combined in all three graphs in Figure \ref{results}. This indicates that simple backtracking is sometimes just as fast as the min-conflicts and backtracking with MAC, but it can also be much slower, at least five orders of magnitude slower in terms of reads at $N=100$. Furthermore, we also note from Figure \ref{comp_limit} that simple backtracking hit the computation limit in 2 out of 20 runs at $N=100$. This implies that the actual average value of reads, writes, and elapsed time would be larger if this limit had not been reached. Interestingly enough, simple backtracking is the fastest out of any algorithm for the $N=10$ case in terms of elapsed time, indicating that it requires the least overhead of any algorithm.
 		
-		Backtracking with forward checking was a huge improvement on simple backtracking, finishing an order of magnitude faster in reads, writes and elapsed time at $N=100$. However, forward checking was also slower than backtracking with MAC by more than two orders of magnitude. Forward checking was the fastest algorithm in terms of elapsed time between $N=20$ and $N=30$. This region where the additional overhead from constraint propagation is unnecessary, but the raw speed from simple backtracking is not enough to solve the problems quickly.
+		Backtracking with forward checking was a huge improvement on simple backtracking, finishing an order of magnitude faster in reads, writes and elapsed time at $N=100$. However, forward checking was also slower than the two fastest algorithms, finishing more than two orders of magnitude behind backtracking with MAC at $N=100$. Forward checking was the fastest algorithm in terms of elapsed time between $N=20$ and $N=30$. This region is where the additional overhead from constraint propagation is unnecessary, but the raw speed from simple backtracking is not enough to solve the problems quickly.
 	
 		Almost as fast as min-conflicts, was backtracking with MAC. In terms of reads, min-conflicts and backtracking with MAC seem to growing nearly at the same rate, only diverging at the last point. It would be interesting to see if min-conflicts could retain its lead for larger values of $N$. In terms of vertex writes, it seems that backtracking with MAC cannot compete with min-conflicts, growing at a much faster rate to finish two orders of magnitude slower than min-conflicts at $N=100$. But, just like the other backtracking algorithms, backtracking with MAC is initially faster than min-conflicts in terms of elapsed time. Backtracking with MAC has more overhead than the other two backtracking algorithms, so it only starts to gain an advantage in terms of elapsed time after $N=40$. It holds onto this lead until $N=100$, where it is finally beat by min-conflicts.
 		
 		The genetic algorithm had much more overhead in terms of reads and writes for low values of $N$ under all three metrics. Fortunately, this overhead payed off for larger values of $N$, as the genetic algorithm grew slower than most of the other algorithms, finishing in the same amount of reads and writes as simple backtracking at $N=100$. In terms of elapsed time, the genetic algorithm did even better, finishing in the middle of the pack behind min-conflicts and backtracking with MAC. From the trends in all three plots, it seems reasonable to think that the genetic algorithm would eventually become more efficient than all of the backtracking algorithms as $N$ increased beyond 100. It is harder to determine if the genetic algorithm would ever be faster than minimum conflicts. From the read/write plots, it would seem that the time-complexity of the genetic algorithm is growing faster than the time-complexity of min-conflicts. However, from the elapsed-time plot, it seems that the time complexity of the genetic algorithm is growing slower than min-conflicts, so obviously more research would be required.
 	
 \section{Summary}
+
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=0.4\textwidth]{images/colored_example}
+		\caption{Example of a fully colored, 100 vertex graph produced by backtracking with constraint propagation.}
+	\end{figure}
+	
+	In this paper, we have studied the performance of minimum conflicts, simple backtracking, backtracking with forward checking, backtracking with constraint propagation, and a genetic algorithm on the graph coloring problem. To determine performance, we developed an implementation of each algorithm in \texttt{C++}. Each algorithm was run many times on graphs with varying number of vertices to explore the time-complexity of each algorithm. 
+	
+	
+	In general, all of the algorithms were very successful at solving this problem, every algorithm could reliably find solutions for most problems in a reasonable amount of time. However, some algorithms were undeniably more efficient at solving the graph coloring problem, namely min-conflicts and backtracking with constraint propagation. These algorithms were much faster than simple backtracking and backtracking with forward checking, completing solutions to the GCP in over an order of magnitude fewer steps.
+	
+	Of special note is the genetic algorithm. This algorithm had the most overhead of any of algorithms we tested. However, the leading-order time complexity of the genetic algorithm was comparable to that of backtracking with MAC and min-conflicts. Therefore, it may be that the genetic algorithm would eventually be more efficient than backtracking with MAC and min-conflicts if the number of vertices was large enough. More research will be needed to answer this question.
+	
+	We would also like to mention that the variation in performance of the five algorithms was very large. The results above exhibit a large dependence on the graph coloring problem being solved, and a different dataset may produce vastly different results. However, in our experience each of the five algorithms usually have the same performance relative to one another, e.g. we have never seen a dataset where min-conflicts was slower than the rest of the algorithms.
 
 	
 
