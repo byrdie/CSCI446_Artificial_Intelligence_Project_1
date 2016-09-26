@@ -35,11 +35,64 @@ int GeneticAlgorithm::run(long int * counter, bool draw_steps) {
                 copy[h][j] = pop[indiv_x][j];
                 copy[h + 1][j] = pop[indiv_y][j];
             }
-
+            
+            if (i == 0){
+             for(int j = 0; j < N; j++ ){
+                copy[h][j] = 2;
+            }
+             map->set_all_colors(copy[h]);   
+                
+             *counter += 1;
+             if (draw_steps){
+                 
+              char filename[100];
+              sprintf(filename, "../results/genetic/map_build/genetic_I%05ld.pdf", *counter);
+              Cairo * cairo = new Cairo(filename);
+              map->draw_map(cairo, generations, *counter, generations);
+              cairo->finish();
+             }
+             for(int j = 0; j < N; j++ ){
+                copy[h+1][j] = 3;
+            }
+              map->set_all_colors(copy[h+1]);   
+             *counter += 1;
+             if (draw_steps){
+              char filename[100];
+              sprintf(filename, "../results/genetic/map_build/genetic_I%05ld.pdf", *counter);
+              Cairo * cairo = new Cairo(filename);
+              map->draw_map(cairo, generations, *counter, generations);
+              cairo->finish();
+             }
+            }
             crossover(copy[h], copy[h + 1]);
             //apply mutations to new individuals
+            if (i == 0){
+             map->set_all_colors(copy[h]);   
+                
+             *counter += 1;
+             if (draw_steps){
+              char filename[100];
+              sprintf(filename, "../results/genetic/map_build/genetic_I%05ld.pdf", *counter);
+              Cairo * cairo = new Cairo(filename);
+              map->draw_map(cairo, generations, *counter, generations);
+              cairo->finish();
+             }
+              map->set_all_colors(copy[h+1]);   
+             *counter += 1;
+             if(draw_steps){
+              char filename[100];
+              sprintf(filename, "../results/genetic/map_build/genetic_I%05ld.pdf", *counter);
+              Cairo * cairo = new Cairo(filename);
+              map->draw_map(cairo, generations, *counter, generations);
+              cairo->finish();
+             }
+            }
+            
+            
             mutate(copy[h]);
             mutate(copy[h + 1]);
+            
+            
 
 
 
@@ -48,17 +101,17 @@ int GeneticAlgorithm::run(long int * counter, bool draw_steps) {
 
             if (map->num_conflicts() == 0) {
                 i = pop_size / 2;
-                if (draw_steps) {
-                    for (int m = 0; m < 20; m++) {
-                        *counter += 1;
-
-                        char filename[100];
-                        sprintf(filename, "../results/genetic/map_build/genetic_I%05ld.pdf", *counter);
-                        Cairo * cairo = new Cairo(filename);
-                        map->draw_map(cairo, generations, *counter, generations);
-                        cairo->finish();
-                    }
-                }
+//                if (draw_steps) {
+//                    for (int m = 0; m < 20; m++) {
+//                        *counter += 1;
+//
+//                        char filename[100];
+//                        sprintf(filename, "../results/genetic/map_build/genetic_I%05ld.pdf", *counter);
+//                        Cairo * cairo = new Cairo(filename);
+//                        map->draw_map(cairo, generations, *counter, generations);
+//                        cairo->finish();
+//                    }
+//                }
 
 
 
@@ -67,17 +120,17 @@ int GeneticAlgorithm::run(long int * counter, bool draw_steps) {
                 map->set_all_colors(copy[h + 1]);
 
                 if (map->num_conflicts() == 0) {
-                    if (draw_steps) {
-                        for (int m = 0; m < 20; m++) {
-                            *counter += 1;
-
-                            char filename[100];
-                            sprintf(filename, "../results/genetic/map_build/genetic_I%05ld.pdf", *counter);
-                            Cairo * cairo = new Cairo(filename);
-                            map->draw_map(cairo, generations, *counter, generations);
-                            cairo->finish();
-                        }
-                    }
+//                    if (draw_steps) {
+//                        for (int m = 0; m < 20; m++) {
+//                            *counter += 1;
+//
+//                            char filename[100];
+//                            sprintf(filename, "../results/genetic/map_build/genetic_I%05ld.pdf", *counter);
+//                            Cairo * cairo = new Cairo(filename);
+//                            map->draw_map(cairo, generations, *counter, generations);
+//                            cairo->finish();
+//                        }
+//                    }
 
 
 
@@ -99,15 +152,15 @@ int GeneticAlgorithm::run(long int * counter, bool draw_steps) {
                 herc_index = j;
             }
         }
-        map->set_all_colors(copy[herc_index]);
-        *counter += 1;
-        if (draw_steps) {
-            char filename[100];
-            sprintf(filename, "../results/genetic/map_build/genetic_I%05ld.pdf", *counter);
-            Cairo * cairo = new Cairo(filename);
-            map->draw_map(cairo, generations, *counter, generations);
-            cairo->finish();
-        }
+//        map->set_all_colors(copy[herc_index]);
+//        *counter += 1;
+//        if (draw_steps) {
+//            char filename[100];
+//            sprintf(filename, "../results/genetic/map_build/genetic_I%05ld.pdf", *counter);
+//            Cairo * cairo = new Cairo(filename);
+//            map->draw_map(cairo, generations, *counter, generations);
+//            cairo->finish();
+//        }
 
         //copy copy into pop
         for (int l = 0; l < pop_size; l++) {

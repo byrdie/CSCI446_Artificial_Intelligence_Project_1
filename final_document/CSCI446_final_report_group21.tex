@@ -289,9 +289,7 @@
 		
 	
 	\subsection{Results}
-	
 		
-	
 		\begin{figure}[h!]
 			\centering
 			\includegraphics[width=0.8\textwidth]{../results_5/backtracking_simple/bt_simple_performance}
@@ -498,18 +496,101 @@
 \section{Genetic Algorithm}
 
 	\subsection{Implementation}
-
+	Local search using a genetic algorithm involves a process similar to evolution to produce an individual that maximizes a fitness function. Since genetic algorithms are an abstraction of biological evolution, they involve some of the classic mechanisms seen in the natural world such as crossover, mutation, and survival of the fittest\cite{genetic}.
+	
+	The genetic algorithm begins with a population of randomly generated individuals. A selection process chooses which individuals to use for reproduction, which are weighted by their score generated the fitness function. The individuals are recombined by cross-over and the resulting individuals may be mutated depending on a small probability.
+	
+	To apply the genetic algorithm to the GCP we started with the genetic algorithm described in Russel and Norvig Section 4.1\cite{ai} and implemented each feature in accordance with the GCP. Our initial population consisted of $N$ randomly colored graphs. It was hard to determine what population size was the best, but it was clear that the optimal population size was related to the size of each graph and that larger graphs needed larger populations in general. $N$ was a natural number to try and it seemed to work fairly well.
+	
+	
+	
+	To select individuals for crossover we used tournament selection where two individuals were randomly selected and the one with the best fitness score  proceeded to crossover. Naturally, two tournaments were needed to get the two individuals required for crossover. In this scheme an individual could be chosen zero, one, or multiple times to participate in tournaments.
+	
+	The fitness function used to calculate the fitness score was essentially a penalty function because only the total number of conflicts in each individual was used to calculate the fitness score. Since this score reflected how many neighboring vertices shared colors, a large score was considered less fit and a score of zero indicated that a solution was found. 
+	
+	The crossover algorithm consisted of random single point crossover. To achieve this we chose a random point in each graph and swapped colors up to that point. The crossover example in Figure \ref{cross_example} looks like multi-point crossover because the vertices of the graph are unordered when crossover is performed.
+	
+	
+	
+	
+	
+	
+	\begin{figure}[h!]
+		\centering
+		\begin{subfigure}{0.18\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{images/sequences/genetic/genetic_I00001}
+			\caption{}
+			
+		\end{subfigure}
+		\;
+		\begin{subfigure}{0.18\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{images/sequences/genetic/genetic_I00002}
+			\caption{}
+			
+		\end{subfigure}
+		\;
+		\\
+		\begin{subfigure}{0.18\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{images/sequences/genetic/genetic_I00003}
+			\caption{}
+			
+		\end{subfigure}
+		\;		
+		\begin{subfigure}{0.18\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{images/sequences/genetic/genetic_I00004}
+			\caption{}
+			
+		\end{subfigure}
+		
+		\caption{Simple example of crossover where (a) and (b) are the parents and (c) and (d) are the offspring.}
+		\label{cross_example}
+	\end{figure}
+	
+	After crossover we immediately mutated each individual which consisted of selecting each vertex and randomly changing it depending on a mutation rate defined as $1/N$. This mutation rate was chosen because it seemed to minimize the number of iterations to find a solution. This number proved to be very specific and any deviation would negatively affect the performance of the algorithm considerable. 
+	
+	Once we had the new individuals we inserted them into the new population. We used pure insertion meaning that each generation was composed entirely of new individuals produced by crossover. This was later understood to be a poor choice, but it did work for this application. 
+	
+	This process of selection, crossover, mutation, and reinsertion was repeated until an individual with zero conflicts was found or a predefined limit on the number of generations allowed was reached. In Figure \ref{genetic_flow} a flow graph showing the general flow of our genetic algorithm. It can be seen that the population is initialized outside of the main loop. 
+	
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=0.3\textwidth]{images/genetic_flo}
+		\caption{Flow graph of our genetic algorithm.}
+		\label{genetic_flow}
+	\end{figure}
+	
 	\subsection{Experimental Approach}
+	To gauge the performance of the algorithm we will run the algorithm on graph sizes $N = (10, 20, ..., 100)$ with 20 runs of each different graph size. The metrics that will be used are number of generations, number of writes, and number of reads.
+	
+	The most obvious metric to use was number of generations because it tells you how many steps it took to find a solution. It was used to see how performance changed as $N$ increased and to compare the relative difficulty of graphs of the same size. Another added benefit of this metric was that it was used to find the optimal population size and mutation rate. The drawback of this metric was that it did not take into account the increased computation needed for larger graphs.
+	
+	One way we accounted for the increased computation time needed for larger graphs was to count the number of times we check the color of a graph vertice. This scaled with the size of the graph for two reasons. One was that each time we checked the fitness of a graph we had to read each nodes color and, as the graph got bigger, more nodes had to be read. The other reason is that, since our population is of size $N$, we have to check more graphs as the population size grows. We called this metric \texttt{num\_reads}
+	
+	The other way we accounted for the increased computation time needed for larger graphs was to count the number of times we change the color of a graph vertice. This metric scaled with the size of the graph for the same reasons as number of reads.
 	
 	\subsection{Results}
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=0.80\textwidth]{../results_5/genetic/genetic_performance}
+		\caption{Logarithmic plot describing the performance of the genetic algorithm vs. the number of vertices. The shaded regions represent the minimum and maximum values of each quantity.}
+		\label{genetic_Performance}
+	\end{figure}
 	
+	Figure \ref{genetic_Performance} shows our metrics on a logarithmic plot. There are several points of interest on this graph. The first is how the number of generations increase as $N$ increases. We can deduce from the slope of the lines that this algorithm runs in exponential time, thought it is still much faster than a brute force approach. We can further deduce that the number of generations increases at $\mathcal{O} (e^{Na})$ where $a$ represents the slope of the line in a logarithmic plot. By deduction we can see that  $a<1$.
+	
+	The other points of interest are the number of reads and writes. It can be seen that the slope of the line is a little more steep than the number of generations. This is as expected because the population size increases as $N$ increases and therefore causes the number of reads and writes to grow. Even with these setbacks read and write still managed to run in approximately  $\mathcal{O} (e^{Nb})$ where $b$ represents the slope of the line in a logarithmic plot. By deduction we can see that the slope is greater than that of the number of generations and therefore $a<b$. Additionally we can see that the slope is less than one so we can further constrict b to $a<b<1$. 
 \section{Comparing Algorithm Performance}
 	\label{comparisons}
 	
 	\subsection{Experimental Approach}
 	
-	As described in the preceding sections, the number of vertex reads and number of vertex writes were our main metrics for comparing algorithm performance. Under these metrics, all calculations performed by each algorithm were assumed to take the same amount of time between subsequent reads and writes. This assumption is obviously untrue, but tests on our algorithm showed 
+	As described in the preceding sections, the number of vertex reads and number of vertex writes were our main metrics for comparing algorithm performance. Under these metrics, all calculations performed by each algorithm were assumed to take the same amount of time between subsequent reads and writes. This assumption is obviously untrue, but tests on our algorithm showed that this assumption was certainly reasonable because the rates (reads/s or writes/s) for each algorithm differed by only a constant factor. This constant factor could be large, but will be dwarfed by the tyranny of the exponential nature of the graph coloring problem.
 	
+	Even though we are confident that the vertex reads and writes is an accurate metric, to provide a counter-example we also measured the time required by each algorithm to find a solution. This metric is generally considered to be tenuous, as many things can affect a program's execution time, such as the hardware its being run on, what other programs are being run at the same time, etc. We have noted these issues and have made every effort to make this test more accurate. These efforts include running all of the algorithms on the same machine to negate hardware differences, running only one algorithm at a time to eliminate the possibility of a memory bottleneck, and making sure that no other programs are running on the machine at that time. Another contentious facet of execution time metrics, is that one algorithm may simply be more optimized than another, and comparing a poor implementation of min-conflicts against a good implementation of backtracking, for example, would not be a very accurate test. This issue is much harder to mitigate and will not be described in detail here.
 	\subsection{Results}
 	
 		\begin{figure}
@@ -529,14 +610,21 @@
 			\begin{subfigure}{0.49\textwidth}
 				\centering
 				\includegraphics[width=\textwidth]{../results_5/comparing_time_performance}
+				\caption{Average amount of time elapsed for each algorithm.}
 			\end{subfigure}
 			\;
 			\begin{subfigure}{0.49\textwidth}
 				\centering
 				\includegraphics[width=\textwidth]{../results_5/comparing_num_saturated}
+				\caption{Total number of experiments that reached the computation limit.}
 			\end{subfigure}
 			\caption{Logarithmic plots comparing the performance of the five different GCP algorithms against four different measurements. Shaded regions represent the maximum and minimum values.}
+			\label{results}
 		\end{figure}
+		
+		In general, the minimum conflicts was the fastest algorithm for large $N$, but it was by no means the clear winner as we expected. In terms of reads, min-conflicts was just as fast as backtracking with MAC up until $N=100$, where it gained a marginal lead, ending up in first place at an average of about 100 million reads at $N=100$. In terms of writes, it was obvious that minimum conflicts was growing out the slowest out of any algorithm from the start, completing an $N=100$ graph in over two orders of magnitude fewer writes than the second place algorithm, backtracking with MAC. Surprisingly, min-conflicts was not the fastest algorithm in terms of elapsed time until $N=100$. We are not sure how to explain this phenomenon, but it is an indication that measuring vertex reads and writes may not be the appropriate measurement to be making.
+		
+		Simple backtracking started off being just as fast as the other two variations of backtrack and min-conflicts, but grew at a rate faster than any of the other algorithms, finishing in the same place as the genetic algorithm. However, the average number of reads and writes is misleading in this case. Notice how the maximum and minimum values of simple backtracking span the range of almost every other algorithm combined in all three graphs in Figure \ref{results}. This indicates that simple backtracking is sometimes just as fast as the min-conflicts and backtracking with MAC, but it can also be much slower, at least five orders of magnitude slower in terms of reads at $N=100$. Interestingly enough, simple backtracking is the fastest out of any algorithm for the $N=10$ case in terms of elapsed time, but it then goes on to be the slowest by two orders of magnitude by $N=100$.
 	
 	
 \section{Summary}

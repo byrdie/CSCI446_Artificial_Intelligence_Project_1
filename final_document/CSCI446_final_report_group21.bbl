@@ -51,4 +51,9 @@ Alan~K. Mackworth.
 \newblock
   \url{http://www.sciencedirect.com/science/article/pii/0004370277900078}.
 
+\bibitem{genetic}
+Prof.~S.V. Chande and Dr.~M. Sinha.
+\newblock Genetic algorithm: A versatile optimization tool.
+\newblock {\em BVICAM's International Journal of Information Technology}, 2008.
+
 \end{thebibliography}

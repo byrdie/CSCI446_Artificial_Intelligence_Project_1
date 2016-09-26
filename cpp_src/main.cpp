@@ -24,7 +24,7 @@ int main(int argc, char** argv) {
     // seed for final paper
     // 1474790157
 
-    init_rand();
+    init_rand(1474790157);
 
     int N = 100;
 
@@ -78,61 +78,61 @@ void run_examples() {
 
     map->clean_map();
     steps = 0;
-
-    char filename[100];
-    sprintf(filename, "../results/backtracking_simple/map_build/bt_simple_I%05ld.pdf", steps);
-    Cairo * cairo = new Cairo(filename);
-    map->draw_map(cairo);
-    cairo->finish();
-
-
-    backtrack(map, k, 0, &steps, max_steps, true);
-    for (int i = 1; i <= steps; i++) {
-
-        sprintf(command, "convert -density 98 ../results/backtracking_simple/map_build/bt_simple_I%05d.pdf -quality 89 ../results/backtracking_simple/map_build/bt_simple_I%05d.png", i, i);
-        system(command);
-    }
-    system("ffmpeg -r 1/0.2 -i ../results/backtracking_simple/map_build/bt_simple_I%05d.png -c:v libx264 -r 30 -pix_fmt yuv420p ../results/backtracking_simple_example.mp4");
-
-    map->clean_map_bitwise();
-    steps = 0;
-
-
-    backtrack_forward(map, 0, &steps, max_steps, true);
-    for (int i = 1; i <= steps; i++) {
-
-        sprintf(command, "convert -density 98 ../results/backtracking_forward/map_build/bt_forward_I%05d.pdf -quality 89 ../results/backtracking_forward/map_build/bt_forward_I%05d.png", i, i);
-        system(command);
-    }
-    system("ffmpeg -r 1/0.2 -i ../results/backtracking_forward/map_build/bt_forward_I%05d.png -c:v libx264 -r 30 -pix_fmt yuv420p ../results/backtracking_forward_example.mp4");
-
-    map->clean_map_bitwise();
-    steps = 0;
-
-
-    backtrack_mac(map, 0, &steps, max_steps, true);
-    for (int i = 1; i <= steps; i++) {
-
-        sprintf(command, "convert -density 98 ../results/backtracking_mac/map_build/bt_mac_I%05d.pdf -quality 89 ../results/backtracking_mac/map_build/bt_mac_I%05d.png", i, i);
-        system(command);
-    }
-    system("ffmpeg -r 1/0.2 -i ../results/backtracking_mac/map_build/bt_mac_I%05d.png -c:v libx264 -r 30 -pix_fmt yuv420p ../results/backtracking_mac_example.mp4");
+//
+//    char filename[100];
+//    sprintf(filename, "../results/backtracking_simple/map_build/bt_simple_I%05ld.pdf", steps);
+//    Cairo * cairo = new Cairo(filename);
+//    map->draw_map(cairo);
+//    cairo->finish();
+//
+//
+//    backtrack(map, k, 0, &steps, max_steps, true);
+//    for (int i = 1; i <= steps; i++) {
+//
+//        sprintf(command, "convert -density 98 ../results/backtracking_simple/map_build/bt_simple_I%05d.pdf -quality 89 ../results/backtracking_simple/map_build/bt_simple_I%05d.png", i, i);
+//        system(command);
+//    }
+//    system("ffmpeg -r 1/0.2 -i ../results/backtracking_simple/map_build/bt_simple_I%05d.png -c:v libx264 -r 30 -pix_fmt yuv420p ../results/backtracking_simple_example.mp4");
+//
+//    map->clean_map_bitwise();
+//    steps = 0;
+//
+//
+//    backtrack_forward(map, 0, &steps, max_steps, true);
+//    for (int i = 1; i <= steps; i++) {
+//
+//        sprintf(command, "convert -density 98 ../results/backtracking_forward/map_build/bt_forward_I%05d.pdf -quality 89 ../results/backtracking_forward/map_build/bt_forward_I%05d.png", i, i);
+//        system(command);
+//    }
+//    system("ffmpeg -r 1/0.2 -i ../results/backtracking_forward/map_build/bt_forward_I%05d.png -c:v libx264 -r 30 -pix_fmt yuv420p ../results/backtracking_forward_example.mp4");
+//
+//    map->clean_map_bitwise();
+//    steps = 0;
+//
+//
+//    backtrack_mac(map, 0, &steps, max_steps, true);
+//    for (int i = 1; i <= steps; i++) {
+//
+//        sprintf(command, "convert -density 98 ../results/backtracking_mac/map_build/bt_mac_I%05d.pdf -quality 89 ../results/backtracking_mac/map_build/bt_mac_I%05d.png", i, i);
+//        system(command);
+//    }
+//    system("ffmpeg -r 1/0.2 -i ../results/backtracking_mac/map_build/bt_mac_I%05d.png -c:v libx264 -r 30 -pix_fmt yuv420p ../results/backtracking_mac_example.mp4");
 
     map->clean_map();
     steps = 0;
 
 
-    //    int max_generations = 1000;
-    //    const int pop_size = (int) N;
-    //    const int mut_rate = 100;
-    //    GeneticAlgorithm * ga = new GeneticAlgorithm(map, pop_size, N, k, max_generations);
-    //    int gens = ga->run(&steps, true);
-    //    for (int i = 1; i <= steps; i++) {
-    //
-    //        sprintf(command, "convert -density 98 ../results/genetic/map_build/genetic_I%05d.pdf -quality 89 ../results/genetic/map_build/genetic_I%05d.png", i, i);
-    //        system(command);
-    //    }
-    //    system("ffmpeg -r 1/0.2 -i ../results/genetic/map_build/genetic_I%05d.png -c:v libx264 -r 30 -pix_fmt yuv420p ../results/genetic_example.mp4");
+        int max_generations = 1000;
+        const int pop_size = (int) N;
+        const int mut_rate = 100;
+        GeneticAlgorithm * ga = new GeneticAlgorithm(map, pop_size, N, k, max_generations);
+        int gens = ga->run(&steps, true);
+        for (int i = 1; i <= steps; i++) {
+    
+            sprintf(command, "convert -density 98 ../results/genetic/map_build/genetic_I%05d.pdf -quality 89 ../results/genetic/map_build/genetic_I%05d.png", i, i);
+            system(command);
+        }
+        system("ffmpeg -r 1/0.2 -i ../results/genetic/map_build/genetic_I%05d.png -c:v libx264 -r 30 -pix_fmt yuv420p ../results/genetic_example.mp4");
 
 }
 
