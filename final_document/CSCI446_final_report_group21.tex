@@ -242,18 +242,18 @@
 		\end{figure}
 
 
-		Figure \ref{min_ex} provides an example of minimum conflicts to better describe the steps it takes.  The first image is a randomly colored graph in which $N = 8$. An easy to see example is the transition from \ref{mind} to \ref{mine}.  The algorithm randomly selects a node with conflicts, the blue node at the top of the panel, and considers all of the possible colors it could be changed to. This node has a conflict because it borders another blue node.   The color with the lowest conflict score, green, is selected and the node is changed to this color. Green was selected because the node already bordered a red, pink, and red region. The result is a correctly colored graph. If there were more conflicts, the process would repeat until the graph did not have any more conflicts.  
+		Figure \ref{min_ex} provides an example of minimum conflicts to better describe the steps it takes.  The first image is a randomly colored graph in which $N = 10$. An easy to see example is the transition from \ref{mind} to \ref{mine}.  The algorithm randomly selects a node with conflicts, the blue node at the top of the panel, and considers all of the possible colors it could be changed to. This node has a conflict because it borders another blue node.   The color with the lowest conflict score, green, is selected and the node is changed to this color. Green was selected because the node already bordered a red, pink, and red region. The result is a correctly colored graph. If there were more conflicts, the process would repeat until the graph did not have any more conflicts.  
 		
 		Although this sequence of pictures shows an efficient solution to the graph coloring problem, the majority of the work done by this algorithm takes place behind the scenes.  Before the color of each node is selected, it must be compared to the colors of each of the neighboring nodes.  For a node with 5 neighbors, using a set of five colors, the minimum conflicts algorithm requires 25 reads for this single step.  This facet of the algorithm causes the mean number of reads to greatly exceed those of both writes and steps.
 
 		Our implementation of the minimum conflicts algorithm is based upon Figure 6.8 in Russel and Norvig \cite{ai} which outlines the structure of a minimum conflicts algorithm. The result was  a \texttt{for} loop that ends upon a maximum number of steps being reached, unless a solution is found first.  The function returns \texttt{true} if it ends prematurely from the check \texttt{if (map->num\_conflicts() == 0)} is satisfied, which indicates a solution.  Otherwise, the function returns \texttt{false} if the maximum number of steps is reached and the \texttt{for} loop is completed, indicating that a solution was not found. At each iteration of the loop a conflicting node is chosen at random and is minimized.
 		
-		One important feature of our implementation was that, if every color caused the same number of conflicts, a random color was chosen for that vertex rather than keeping its original color. This kept the program from getting deadlocked in a situation where one vertex was depending on a second vertex that relies on a third vertex. If the third vertex is chosen but remains the same color it can keep the second vertex from changing color and, therefore, the first vertex is stuck. 
+		One important feature of our implementation was that, if every color caused the same number of conflicts, a random color was chosen for that vertex rather than keeping its original color. This kept the program from getting deadlocked in a situation where one vertex was depending on a second vertex that relies on a third vertex. If the third vertex is chosen but remains the same color it can keep the second vertex from changing color and, therefore the first vertex is stuck. 
 		
 		
 
 	\subsection{Experimental Approach}
-	To gauge the performance of the algorithm we will run the algorithm on graph sizes $N = (10, 20, ..., 100)$ with 20 runs of each different graph size. From each run we saved the number of vertex reads, vertex writes, steps taken by the program. The number of steps was defined as the number of times a vertex was chosen to be minimized. This metric was useful for measuring backtracking against itself while the vertex reads and writes were good for comparing its performance to the other algorithms.
+	To gauge the performance of the algorithm we will run the algorithm on graph sizes $N = (10, 20, ..., 100)$ with 20 runs of each different graph size. From each run we saved the number of vertex reads, vertex writes, and steps taken by the program. The number of steps was defined as the number of times a vertex was chosen to be minimized. This metric was useful for measuring backtracking against itself while the vertex reads and writes were good for comparing its performance to the other algorithms.
 	
 	
 	\subsection{Results}
@@ -342,7 +342,7 @@
 				\label{bt4}
 			\end{subfigure}
 			\;
-/			\begin{subfigure}{0.18\textwidth}
+			\begin{subfigure}{0.18\textwidth}
 				\centering
 				\includegraphics[width=\textwidth]{images/sequences/simple_backtracking/bt_simple_I00024}
 				\caption{}
