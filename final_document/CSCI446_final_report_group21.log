@@ -1,15 +1,15 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.6.13)  26 SEP 2016 01:13
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.9.17)  26 SEP 2016 13:37
 entering extended mode
- \write18 enabled.
+ restricted \write18 enabled.
  %&-line parsing enabled.
 **CSCI446_final_report_group21.tex
 (./CSCI446_final_report_group21.tex
-LaTeX2e <2011/06/27>
-Babel <3.9h> and hyphenation patterns for 78 languages loaded.
+LaTeX2e <2016/02/01>
+Babel <3.9q> and hyphenation patterns for 81 language(s) loaded.
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
-Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo
-File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 )
 \c@part=\count79
 \c@section=\count80
@@ -24,22 +24,22 @@ File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 \bibindent=\dimen102
 )
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
-Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+Package: graphicx 2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
 
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
-Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
 \KV@toks@=\toks14
 )
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
-Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+Package: graphics 2016/01/03 v1.0q Standard LaTeX Graphics (DPC,SPQR)
 
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
-Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
 )
 (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/graphics.cfg
 File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
 )
-Package graphics Info: Driver file: pdftex.def on input line 91.
+Package graphics Info: Driver file: pdftex.def on input line 95.
 
 (/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
 File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
@@ -56,7 +56,7 @@ Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 \Gin@req@width=\dimen104
 )
 (/usr/share/texlive/texmf-dist/tex/latex/lipsum/lipsum.sty
-Package: lipsum 2011/04/14 v1.2 150 paragraphs of Lorem Ipsum dummy text
+Package: lipsum 2014/07/27 v1.3 150 paragraphs of Lorem Ipsum dummy text
 \c@lips@count=\count88
 )
 (/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
@@ -64,7 +64,7 @@ Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/t1enc.def
 File: t1enc.def 2005/09/27 v1.99g Standard LaTeX file
-LaTeX Font Info:    Redeclaring font encoding T1 on input line 43.
+LaTeX Font Info:    Redeclaring font encoding T1 on input line 48.
 ))
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
 Package: microtype 2013/05/23 v2.5a Micro-typographical refinements (RS)
@@ -115,7 +115,7 @@ Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 \Gm@dimlist=\toks16
 )
 (/usr/share/texlive/texmf-dist/tex/latex/tools/multicol.sty
-Package: multicol 2011/06/27 v1.7a multicolumn formatting (FMi)
+Package: multicol 2015/08/19 v1.8n multicolumn formatting (FMi)
 \c@tracingmulticols=\count94
 \mult@box=\box26
 \multicol@leftmargin=\dimen114
@@ -132,6 +132,7 @@ Package: multicol 2011/06/27 v1.7a multicolumn formatting (FMi)
 \multicolbaselineskip=\skip45
 \partial@page=\box27
 \last@line=\box28
+\maxbalancingoverflow=\dimen119
 \mult@rightbox=\box29
 \mult@grightbox=\box30
 \mult@gfirstbox=\box31
@@ -155,48 +156,48 @@ Package: multicol 2011/06/27 v1.7a multicolumn formatting (FMi)
 \@tempa=\box49
 \c@columnbadness=\count100
 \c@finalcolumnbadness=\count101
-\last@try=\dimen119
-\multicolovershoot=\dimen120
-\multicolundershoot=\dimen121
+\last@try=\dimen120
+\multicolovershoot=\dimen121
+\multicolundershoot=\dimen122
 \mult@nat@firstbox=\box50
 \colbreak@box=\box51
-\multicol@sort@counter=\count102
+\mc@col@check@num=\count102
 )
 (/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
-Package: caption 2013/05/02 v3.3-89 Customizing captions (AR)
+Package: caption 2016/02/21 v3.3-144 Customizing captions (AR)
 
 (/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty
-Package: caption3 2013/05/02 v1.6-88 caption3 kernel (AR)
-Package caption3 Info: TeX engine: e-TeX on input line 57.
-\captionmargin=\dimen122
-\captionmargin@=\dimen123
-\captionwidth=\dimen124
-\caption@tempdima=\dimen125
-\caption@indent=\dimen126
-\caption@parindent=\dimen127
-\caption@hangindent=\dimen128
+Package: caption3 2016/02/04 v1.7-139 caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 67.
+\captionmargin=\dimen123
+\captionmargin@=\dimen124
+\captionwidth=\dimen125
+\caption@tempdima=\dimen126
+\caption@indent=\dimen127
+\caption@parindent=\dimen128
+\caption@hangindent=\dimen129
 )
 \c@ContinuedFloat=\count103
 )
 (/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty
 Package: booktabs 2005/04/14 v1.61803 publication quality tables
-\heavyrulewidth=\dimen129
-\lightrulewidth=\dimen130
-\cmidrulewidth=\dimen131
-\belowrulesep=\dimen132
-\belowbottomsep=\dimen133
-\aboverulesep=\dimen134
-\abovetopsep=\dimen135
-\cmidrulesep=\dimen136
-\cmidrulekern=\dimen137
-\defaultaddspace=\dimen138
+\heavyrulewidth=\dimen130
+\lightrulewidth=\dimen131
+\cmidrulewidth=\dimen132
+\belowrulesep=\dimen133
+\belowbottomsep=\dimen134
+\aboverulesep=\dimen135
+\abovetopsep=\dimen136
+\cmidrulesep=\dimen137
+\cmidrulekern=\dimen138
+\defaultaddspace=\dimen139
 \@cmidla=\count104
 \@cmidlb=\count105
-\@aboverulesep=\dimen139
-\@belowrulesep=\dimen140
+\@aboverulesep=\dimen140
+\@belowrulesep=\dimen141
 \@thisruleclass=\count106
 \@lastruleclass=\count107
-\@thisrulewidth=\dimen141
+\@thisrulewidth=\dimen142
 )
 (/usr/share/texlive/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
@@ -258,7 +259,7 @@ Package: auxhook 2011/03/04 v1.3 Hooks for auxiliary files (HO)
 (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/kvoptions.sty
 Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
 )
-\@linkdim=\dimen142
+\@linkdim=\dimen143
 \Hy@linkcounter=\count109
 \Hy@pagecounter=\count110
 
@@ -284,10 +285,10 @@ Package hyperref Info: Bookmarks ON on input line 4688.
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 5041.
-\XeTeXLinkMargin=\dimen143
+\XeTeXLinkMargin=\dimen144
 \Fld@menulength=\count113
-\Field@Width=\dimen144
-\Fld@charsize=\dimen145
+\Field@Width=\dimen145
+\Fld@charsize=\dimen146
 Package hyperref Info: Hyper figures OFF on input line 6295.
 Package hyperref Info: Link nesting OFF on input line 6300.
 Package hyperref Info: Hyper index ON on input line 6303.
@@ -317,33 +318,39 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 \Hy@SectionHShift=\skip46
 )
 (/usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty
-Package: subcaption 2013/02/03 v1.1-62 Sub-captions (AR)
+Package: subcaption 2016/02/20 v1.1-142 Sub-captions (AR)
 \c@subfigure=\count119
 \c@subtable=\count120
 )
 (/usr/share/texlive/texmf-dist/tex/latex/lettrine/lettrine.sty
-File: lettrine.sty 2013/03/14 v1.64 (Daniel Flipo)
+File: lettrine.sty 2015/08/31 v1.9 (Daniel Flipo)
 \c@DefaultLines=\count121
-\DefaultFindent=\dimen146
-\DefaultNindent=\dimen147
-\DefaultSlope=\dimen148
+\c@DefaultDepth=\count122
+\DefaultFindent=\dimen147
+\DefaultNindent=\dimen148
+\DefaultSlope=\dimen149
+\DiscardVskip=\dimen150
 \L@lbox=\box54
 \L@tbox=\box55
-\c@L@lines=\count122
-\L@Pindent=\dimen149
-\L@Findent=\dimen150
-\L@Nindent=\dimen151
-\L@lraise=\dimen152
-\L@first=\dimen153
-\L@next=\dimen154
-\L@slope=\dimen155
-\L@height=\dimen156
-\LettrineWidth=\dimen157
+\c@L@lines=\count123
+\c@L@depth=\count124
+\L@Pindent=\dimen151
+\L@Findent=\dimen152
+\L@Nindent=\dimen153
+\L@lraise=\dimen154
+\L@first=\dimen155
+\L@next=\dimen156
+\L@slope=\dimen157
+\L@height=\dimen158
+\L@novskip=\dimen159
+\LettrineWidth=\dimen160
+\LettrineHeight=\dimen161
+\LettrineDepth=\dimen162
 
 Loading lettrine.cfg
 (/usr/share/texlive/texmf-dist/tex/latex/lettrine/lettrine.cfg))
 (/usr/share/texlive/texmf-dist/tex/latex/paralist/paralist.sty
-Package: paralist 2013/06/09 v2.4 Extended list environments
+Package: paralist 2015/12/30 v2.5 Extended list environments
 \pltopsep=\skip47
 \plpartopsep=\skip48
 \plitemsep=\skip49
@@ -351,62 +358,62 @@ Package: paralist 2013/06/09 v2.4 Extended list environments
 \pl@lab=\toks19
 )
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
-Package: amsmath 2013/01/14 v2.14 AMS math features
+Package: amsmath 2016/03/03 v2.15a AMS math features
 \@mathmargin=\skip51
 
 For additional information on amsmath, use the `?' option.
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
-Package: amstext 2000/06/29 v2.01
+Package: amstext 2000/06/29 v2.01 AMS text
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
-File: amsgen.sty 1999/11/30 v2.0
+File: amsgen.sty 1999/11/30 v2.0 generic functions
 \@emptytoks=\toks20
-\ex@=\dimen158
+\ex@=\dimen163
 ))
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
-Package: amsbsy 1999/11/29 v1.2d
-\pmbraise@=\dimen159
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen164
 )
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 1999/12/14 v2.01 operator names
 )
-\inf@bad=\count123
-LaTeX Info: Redefining \frac on input line 210.
-\uproot@=\count124
-\leftroot@=\count125
-LaTeX Info: Redefining \overline on input line 306.
-\classnum@=\count126
-\DOTSCASE@=\count127
-LaTeX Info: Redefining \ldots on input line 378.
-LaTeX Info: Redefining \dots on input line 381.
-LaTeX Info: Redefining \cdots on input line 466.
+\inf@bad=\count125
+LaTeX Info: Redefining \frac on input line 199.
+\uproot@=\count126
+\leftroot@=\count127
+LaTeX Info: Redefining \overline on input line 297.
+\classnum@=\count128
+\DOTSCASE@=\count129
+LaTeX Info: Redefining \ldots on input line 394.
+LaTeX Info: Redefining \dots on input line 397.
+LaTeX Info: Redefining \cdots on input line 518.
 \Mathstrutbox@=\box56
 \strutbox@=\box57
-\big@size=\dimen160
-LaTeX Font Info:    Redeclaring font encoding OML on input line 566.
-LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
-\macc@depth=\count128
-\c@MaxMatrixCols=\count129
+\big@size=\dimen165
+LaTeX Font Info:    Redeclaring font encoding OML on input line 630.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 631.
+\macc@depth=\count130
+\c@MaxMatrixCols=\count131
 \dotsspace@=\muskip11
-\c@parentequation=\count130
-\dspbrk@lvl=\count131
+\c@parentequation=\count132
+\dspbrk@lvl=\count133
 \tag@help=\toks21
-\row@=\count132
-\column@=\count133
-\maxfields@=\count134
+\row@=\count134
+\column@=\count135
+\maxfields@=\count136
 \andhelp@=\toks22
-\eqnshift@=\dimen161
-\alignsep@=\dimen162
-\tagshift@=\dimen163
-\tagwidth@=\dimen164
-\totwidth@=\dimen165
-\lineht@=\dimen166
+\eqnshift@=\dimen166
+\alignsep@=\dimen167
+\tagshift@=\dimen168
+\tagwidth@=\dimen169
+\totwidth@=\dimen170
+\lineht@=\dimen171
 \@envbody=\toks23
 \multlinegap=\skip52
 \multlinetaggap=\skip53
 \mathdisplay@stack=\toks24
-LaTeX Info: Redefining \[ on input line 2665.
-LaTeX Info: Redefining \] on input line 2666.
+LaTeX Info: Redefining \[ on input line 2735.
+LaTeX Info: Redefining \] on input line 2736.
 )
 (/usr/share/texlive/texmf-dist/tex/latex/abstract/abstract.sty
 Package: abstract 2009/06/08 v1.2a configurable abstracts
@@ -417,19 +424,19 @@ Package: abstract 2009/06/08 v1.2a configurable abstracts
 \absparsep=\skip58
 )
 (/usr/share/texlive/texmf-dist/tex/latex/titlesec/titlesec.sty
-Package: titlesec 2011/12/15 v2.10.0 Sectioning titles
+Package: titlesec 2016/03/15 v2.10.1 Sectioning titles
 \ttl@box=\box58
 \beforetitleunit=\skip59
 \aftertitleunit=\skip60
-\ttl@plus=\dimen167
-\ttl@minus=\dimen168
+\ttl@plus=\dimen172
+\ttl@minus=\dimen173
 \ttl@toksa=\toks25
-\titlewidth=\dimen169
-\titlewidthlast=\dimen170
-\titlewidthfirst=\dimen171
+\titlewidth=\dimen174
+\titlewidthlast=\dimen175
+\titlewidthfirst=\dimen176
 )
 (/usr/share/texlive/texmf-dist/tex/latex/titlesec/block.tss
-File: block.tss 2011/12/15
+File: block.tss 2016/03/15
 )
 (/usr/share/texlive/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
 \fancy@headwidth=\skip61
@@ -466,16 +473,16 @@ LaTeX Font Info:    ... okay on input line 81.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count135
-\scratchdimen=\dimen172
+\scratchcounter=\count137
+\scratchdimen=\dimen177
 \scratchbox=\box59
-\nofMPsegments=\count136
-\nofMParguments=\count137
+\nofMPsegments=\count138
+\nofMParguments=\count139
 \everyMPshowfont=\toks26
-\MPscratchCnt=\count138
-\MPscratchDim=\dimen173
-\MPnumerator=\count139
-\makeMPintoPDFobject=\count140
+\MPscratchCnt=\count140
+\MPscratchDim=\dimen178
+\MPnumerator=\count141
+\makeMPintoPDFobject=\count142
 \everyMPtoPDFconversion=\toks27
 ) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
@@ -553,7 +560,7 @@ Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count141
+\c@section@level=\count143
 )
 LaTeX Info: Redefining \ref on input line 81.
 LaTeX Info: Redefining \pageref on input line 81.
@@ -576,96 +583,96 @@ LaTeX Font Warning: Font shape `T1/cmr/bx/n' in size <24> not available
 File: images/world_map.pdf Graphic file (type pdf)
 
 <use images/world_map.pdf>
-Package pdftex.def Info: images/world_map.pdf used on input line 101.
+Package pdftex.def Info: images/world_map.pdf used on input line 105.
 (pdftex.def)             Requested size: 375.80544pt x 165.91528pt.
 
 <images/four_color.pdf, id=114, 321.2pt x 100.375pt>
 File: images/four_color.pdf Graphic file (type pdf)
 
 <use images/four_color.pdf>
-Package pdftex.def Info: images/four_color.pdf used on input line 108.
+Package pdftex.def Info: images/four_color.pdf used on input line 112.
 (pdftex.def)             Requested size: 375.80544pt x 117.44286pt.
- [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
- <./images/world_map.pdf> <./images/four_color.pdf
 
-pdfTeX warning: pdflatex (file ./images/four_color.pdf): PDF inclusion: multipl
-e pdfs with page group included in a single page
->]
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 117.
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
- (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
-File: t1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 121.
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
+File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 Package microtype Info: Loading generic settings for font family
 (microtype)             `cmtt' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
- [2]
-<images/pgen.pdf, id=165, 1004.75375pt x 1004.75375pt>
+ [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
+
+ <./images/world_map.pdf>] [2 <./images/four_color.pdf>] <images/pgen.pdf, id=1
+68, 1004.75375pt x 1004.75375pt>
 File: images/pgen.pdf Graphic file (type pdf)
- <use images/pgen.pdf>
-Package pdftex.def Info: images/pgen.pdf used on input line 175.
+
+<use images/pgen.pdf>
+Package pdftex.def Info: images/pgen.pdf used on input line 179.
 (pdftex.def)             Requested size: 211.38832pt x 211.3878pt.
 
-<images/pgen_poly.pdf, id=166, 1004.75375pt x 1004.75375pt>
+<images/pgen_poly.pdf, id=169, 1004.75375pt x 1004.75375pt>
 File: images/pgen_poly.pdf Graphic file (type pdf)
 
 <use images/pgen_poly.pdf>
-Package pdftex.def Info: images/pgen_poly.pdf used on input line 182.
+Package pdftex.def Info: images/pgen_poly.pdf used on input line 186.
 (pdftex.def)             Requested size: 211.38832pt x 211.3878pt.
  [3 <./images/pgen.pdf> <./images/pgen_poly.pdf
 
-pdfTeX warning: pdflatex (file ./images/pgen_poly.pdf): PDF inclusion: multiple
- pdfs with page group included in a single page
+pdfTeX warning: /usr/bin/pdflatex (file ./images/pgen_poly.pdf): PDF inclusion:
+ multiple pdfs with page group included in a single page
 >]
-<images/sequences/min/minconf_I00003.pdf, id=179, 1004.75375pt x 1004.75375pt>
+<images/sequences/min/minconf_I00003.pdf, id=182, 1004.75375pt x 1004.75375pt>
 File: images/sequences/min/minconf_I00003.pdf Graphic file (type pdf)
 
 <use images/sequences/min/minconf_I00003.pdf>
 Package pdftex.def Info: images/sequences/min/minconf_I00003.pdf used on input 
-line 203.
+line 207.
 (pdftex.def)             Requested size: 84.55246pt x 84.55205pt.
 
-<images/sequences/min/minconf_I00004.pdf, id=180, 1004.75375pt x 1004.75375pt>
+<images/sequences/min/minconf_I00004.pdf, id=183, 1004.75375pt x 1004.75375pt>
 File: images/sequences/min/minconf_I00004.pdf Graphic file (type pdf)
 
 <use images/sequences/min/minconf_I00004.pdf>
 Package pdftex.def Info: images/sequences/min/minconf_I00004.pdf used on input 
-line 210.
+line 214.
 (pdftex.def)             Requested size: 84.55246pt x 84.55205pt.
 
-<images/sequences/min/minconf_I00005.pdf, id=181, 1004.75375pt x 1004.75375pt>
+<images/sequences/min/minconf_I00005.pdf, id=184, 1004.75375pt x 1004.75375pt>
 File: images/sequences/min/minconf_I00005.pdf Graphic file (type pdf)
 
 <use images/sequences/min/minconf_I00005.pdf>
 Package pdftex.def Info: images/sequences/min/minconf_I00005.pdf used on input 
-line 217.
+line 221.
 (pdftex.def)             Requested size: 84.55246pt x 84.55205pt.
 
-<images/sequences/min/minconf_I00006.pdf, id=182, 1004.75375pt x 1004.75375pt>
+<images/sequences/min/minconf_I00006.pdf, id=185, 1004.75375pt x 1004.75375pt>
 File: images/sequences/min/minconf_I00006.pdf Graphic file (type pdf)
 
 <use images/sequences/min/minconf_I00006.pdf>
 Package pdftex.def Info: images/sequences/min/minconf_I00006.pdf used on input 
-line 224.
+line 228.
 (pdftex.def)             Requested size: 84.55246pt x 84.55205pt.
 
-<images/sequences/min/minconf_I00007.pdf, id=183, 1004.75375pt x 1004.75375pt>
+<images/sequences/min/minconf_I00007.pdf, id=186, 1004.75375pt x 1004.75375pt>
 File: images/sequences/min/minconf_I00007.pdf Graphic file (type pdf)
 
 <use images/sequences/min/minconf_I00007.pdf>
 Package pdftex.def Info: images/sequences/min/minconf_I00007.pdf used on input 
-line 231.
+line 235.
 (pdftex.def)             Requested size: 84.55246pt x 84.55205pt.
 
-<../results_5/min_conflicts/min_conflicts_performance.pdf, id=185, 361.35pt x 2
+<../results_5/min_conflicts/min_conflicts_performance.pdf, id=191, 361.35pt x 2
 16.81pt>
 File: ../results_5/min_conflicts/min_conflicts_performance.pdf Graphic file (ty
 pe pdf)
  <use ../results_5/min_conflicts/min_conflicts_performance.pdf>
 Package pdftex.def Info: ../results_5/min_conflicts/min_conflicts_performance.p
-df used on input line 251.
+df used on input line 259.
 (pdftex.def)             Requested size: 281.85587pt x 169.11441pt.
 
 
@@ -674,621 +681,651 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 [4 <./images/sequences/min/minconf_I00003.pdf> <./images/sequences/min/minconf_
 I00004.pdf
 
-pdfTeX warning: pdflatex (file ./images/sequences/min/minconf_I00004.pdf): PDF 
-inclusion: multiple pdfs with page group included in a single page
+pdfTeX warning: /usr/bin/pdflatex (file ./images/sequences/min/minconf_I00004.p
+df): PDF inclusion: multiple pdfs with page group included in a single page
 > <./images/sequences/min/minconf_I00005.pdf
 
-pdfTeX warning: pdflatex (file ./images/sequences/min/minconf_I00005.pdf): PDF 
-inclusion: multiple pdfs with page group included in a single page
+pdfTeX warning: /usr/bin/pdflatex (file ./images/sequences/min/minconf_I00005.p
+df): PDF inclusion: multiple pdfs with page group included in a single page
 > <./images/sequences/min/minconf_I00006.pdf
 
-pdfTeX warning: pdflatex (file ./images/sequences/min/minconf_I00006.pdf): PDF 
-inclusion: multiple pdfs with page group included in a single page
+pdfTeX warning: /usr/bin/pdflatex (file ./images/sequences/min/minconf_I00006.p
+df): PDF inclusion: multiple pdfs with page group included in a single page
 > <./images/sequences/min/minconf_I00007.pdf
 
-pdfTeX warning: pdflatex (file ./images/sequences/min/minconf_I00007.pdf): PDF 
-inclusion: multiple pdfs with page group included in a single page
+pdfTeX warning: /usr/bin/pdflatex (file ./images/sequences/min/minconf_I00007.p
+df): PDF inclusion: multiple pdfs with page group included in a single page
 >]
-<images/sequences/simple_backtracking/bt_simple_I00001.pdf, id=230, 1004.75375p
+<images/sequences/simple_backtracking/bt_simple_I00001.pdf, id=238, 1004.75375p
 t x 1004.75375pt>
 File: images/sequences/simple_backtracking/bt_simple_I00001.pdf Graphic file (t
 ype pdf)
 
 <use images/sequences/simple_backtracking/bt_simple_I00001.pdf>
 Package pdftex.def Info: images/sequences/simple_backtracking/bt_simple_I00001.
-pdf used on input line 265.
+pdf used on input line 280.
 (pdftex.def)             Requested size: 84.55246pt x 84.55205pt.
 
-<images/sequences/simple_backtracking/bt_simple_I00002.pdf, id=231, 1004.75375p
+<images/sequences/simple_backtracking/bt_simple_I00002.pdf, id=239, 1004.75375p
 t x 1004.75375pt>
 File: images/sequences/simple_backtracking/bt_simple_I00002.pdf Graphic file (t
 ype pdf)
 
 <use images/sequences/simple_backtracking/bt_simple_I00002.pdf>
 Package pdftex.def Info: images/sequences/simple_backtracking/bt_simple_I00002.
-pdf used on input line 272.
+pdf used on input line 287.
 (pdftex.def)             Requested size: 84.55246pt x 84.55205pt.
 
-<images/sequences/simple_backtracking/bt_simple_I00004.pdf, id=232, 1004.75375p
+<images/sequences/simple_backtracking/bt_simple_I00004.pdf, id=240, 1004.75375p
 t x 1004.75375pt>
 File: images/sequences/simple_backtracking/bt_simple_I00004.pdf Graphic file (t
 ype pdf)
 
 <use images/sequences/simple_backtracking/bt_simple_I00004.pdf>
 Package pdftex.def Info: images/sequences/simple_backtracking/bt_simple_I00004.
-pdf used on input line 279.
+pdf used on input line 294.
 (pdftex.def)             Requested size: 84.55246pt x 84.55205pt.
 
-<images/sequences/simple_backtracking/bt_simple_I00006.pdf, id=233, 1004.75375p
+<images/sequences/simple_backtracking/bt_simple_I00006.pdf, id=241, 1004.75375p
 t x 1004.75375pt>
 File: images/sequences/simple_backtracking/bt_simple_I00006.pdf Graphic file (t
 ype pdf)
 
 <use images/sequences/simple_backtracking/bt_simple_I00006.pdf>
 Package pdftex.def Info: images/sequences/simple_backtracking/bt_simple_I00006.
-pdf used on input line 286.
+pdf used on input line 301.
 (pdftex.def)             Requested size: 84.55246pt x 84.55205pt.
 
-<images/sequences/simple_backtracking/bt_simple_I00007.pdf, id=234, 1004.75375p
+<images/sequences/simple_backtracking/bt_simple_I00007.pdf, id=242, 1004.75375p
 t x 1004.75375pt>
 File: images/sequences/simple_backtracking/bt_simple_I00007.pdf Graphic file (t
 ype pdf)
 
 <use images/sequences/simple_backtracking/bt_simple_I00007.pdf>
 Package pdftex.def Info: images/sequences/simple_backtracking/bt_simple_I00007.
-pdf used on input line 293.
+pdf used on input line 308.
 (pdftex.def)             Requested size: 84.55246pt x 84.55205pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 263--297
+Underfull \hbox (badness 10000) in paragraph at lines 278--312
 
  []
 
 
-<images/sequences/simple_backtracking/bt_simple_I00009.pdf, id=235, 1004.75375p
+<images/sequences/simple_backtracking/bt_simple_I00009.pdf, id=243, 1004.75375p
 t x 1004.75375pt>
 File: images/sequences/simple_backtracking/bt_simple_I00009.pdf Graphic file (t
 ype pdf)
 
 <use images/sequences/simple_backtracking/bt_simple_I00009.pdf>
 Package pdftex.def Info: images/sequences/simple_backtracking/bt_simple_I00009.
-pdf used on input line 300.
+pdf used on input line 315.
 (pdftex.def)             Requested size: 84.55246pt x 84.55205pt.
 
-<images/sequences/simple_backtracking/bt_simple_I00012.pdf, id=236, 1004.75375p
+<images/sequences/simple_backtracking/bt_simple_I00012.pdf, id=244, 1004.75375p
 t x 1004.75375pt>
 File: images/sequences/simple_backtracking/bt_simple_I00012.pdf Graphic file (t
 ype pdf)
 
 <use images/sequences/simple_backtracking/bt_simple_I00012.pdf>
 Package pdftex.def Info: images/sequences/simple_backtracking/bt_simple_I00012.
-pdf used on input line 307.
+pdf used on input line 322.
 (pdftex.def)             Requested size: 84.55246pt x 84.55205pt.
 
-<images/sequences/simple_backtracking/bt_simple_I00015.pdf, id=237, 1004.75375p
+<images/sequences/simple_backtracking/bt_simple_I00015.pdf, id=245, 1004.75375p
 t x 1004.75375pt>
 File: images/sequences/simple_backtracking/bt_simple_I00015.pdf Graphic file (t
 ype pdf)
 
 <use images/sequences/simple_backtracking/bt_simple_I00015.pdf>
 Package pdftex.def Info: images/sequences/simple_backtracking/bt_simple_I00015.
-pdf used on input line 314.
+pdf used on input line 329.
 (pdftex.def)             Requested size: 84.55246pt x 84.55205pt.
 
-<images/sequences/simple_backtracking/bt_simple_I00019.pdf, id=238, 1004.75375p
+<images/sequences/simple_backtracking/bt_simple_I00019.pdf, id=246, 1004.75375p
 t x 1004.75375pt>
 File: images/sequences/simple_backtracking/bt_simple_I00019.pdf Graphic file (t
 ype pdf)
 
 <use images/sequences/simple_backtracking/bt_simple_I00019.pdf>
 Package pdftex.def Info: images/sequences/simple_backtracking/bt_simple_I00019.
-pdf used on input line 321.
+pdf used on input line 336.
 (pdftex.def)             Requested size: 84.55246pt x 84.55205pt.
 
-<images/sequences/simple_backtracking/bt_simple_I00024.pdf, id=239, 1004.75375p
+<images/sequences/simple_backtracking/bt_simple_I00024.pdf, id=247, 1004.75375p
 t x 1004.75375pt>
 File: images/sequences/simple_backtracking/bt_simple_I00024.pdf Graphic file (t
 ype pdf)
 
 <use images/sequences/simple_backtracking/bt_simple_I00024.pdf>
 Package pdftex.def Info: images/sequences/simple_backtracking/bt_simple_I00024.
-pdf used on input line 328.
+pdf used on input line 343.
 (pdftex.def)             Requested size: 84.55246pt x 84.55205pt.
- [5 <../results_5/min_conflicts/min_conflicts_performance.pdf> <./images/sequen
-ces/simple_backtracking/bt_simple_I00001.pdf
 
-pdfTeX warning: pdflatex (file ./images/sequences/simple_backtracking/bt_simple
-_I00001.pdf): PDF inclusion: multiple pdfs with page group included in a single
- page
-> <./images/sequences/simple_backtracking/bt_simple_I00002.pdf
 
-pdfTeX warning: pdflatex (file ./images/sequences/simple_backtracking/bt_simple
-_I00002.pdf): PDF inclusion: multiple pdfs with page group included in a single
- page
-> <./images/sequences/simple_backtracking/bt_simple_I00004.pdf
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-pdfTeX warning: pdflatex (file ./images/sequences/simple_backtracking/bt_simple
-_I00004.pdf): PDF inclusion: multiple pdfs with page group included in a single
- page
-> <./images/sequences/simple_backtracking/bt_simple_I00006.pdf
-
-pdfTeX warning: pdflatex (file ./images/sequences/simple_backtracking/bt_simple
-_I00006.pdf): PDF inclusion: multiple pdfs with page group included in a single
- page
-> <./images/sequences/simple_backtracking/bt_simple_I00007.pdf
-
-pdfTeX warning: pdflatex (file ./images/sequences/simple_backtracking/bt_simple
-_I00007.pdf): PDF inclusion: multiple pdfs with page group included in a single
- page
-> <./images/sequences/simple_backtracking/bt_simple_I00009.pdf
-
-pdfTeX warning: pdflatex (file ./images/sequences/simple_backtracking/bt_simple
-_I00009.pdf): PDF inclusion: multiple pdfs with page group included in a single
- page
-> <./images/sequences/simple_backtracking/bt_simple_I00012.pdf
-
-pdfTeX warning: pdflatex (file ./images/sequences/simple_backtracking/bt_simple
-_I00012.pdf): PDF inclusion: multiple pdfs with page group included in a single
- page
-> <./images/sequences/simple_backtracking/bt_simple_I00015.pdf
-
-pdfTeX warning: pdflatex (file ./images/sequences/simple_backtracking/bt_simple
-_I00015.pdf): PDF inclusion: multiple pdfs with page group included in a single
- page
-> <./images/sequences/simple_backtracking/bt_simple_I00019.pdf
-
-pdfTeX warning: pdflatex (file ./images/sequences/simple_backtracking/bt_simple
-_I00019.pdf): PDF inclusion: multiple pdfs with page group included in a single
- page
-> <./images/sequences/simple_backtracking/bt_simple_I00024.pdf
-
-pdfTeX warning: pdflatex (file ./images/sequences/simple_backtracking/bt_simple
-_I00024.pdf): PDF inclusion: multiple pdfs with page group included in a single
- page
->]
-<../results_5/backtracking_simple/bt_simple_performance.pdf, id=336, 361.35pt x
+[5 <../results_5/min_conflicts/min_conflicts_performance.pdf>]
+<../results_5/backtracking_simple/bt_simple_performance.pdf, id=275, 361.35pt x
  216.81pt>
 File: ../results_5/backtracking_simple/bt_simple_performance.pdf Graphic file (
 type pdf)
  <use ../results_5/backtracking_simple/bt_simple_performance.pdf>
 Package pdftex.def Info: ../results_5/backtracking_simple/bt_simple_performance
-.pdf used on input line 356.
+.pdf used on input line 371.
 (pdftex.def)             Requested size: 281.85587pt x 169.11441pt.
 
-[6 <../results_5/backtracking_simple/bt_simple_performance.pdf>]
-<images/sequences/forward_backtracking/bt_forward_I00003.pdf, id=352, 1004.7537
+[6 <./images/sequences/simple_backtracking/bt_simple_I00001.pdf> <./images/sequ
+ences/simple_backtracking/bt_simple_I00002.pdf
+
+pdfTeX warning: /usr/bin/pdflatex (file ./images/sequences/simple_backtracking/
+bt_simple_I00002.pdf): PDF inclusion: multiple pdfs with page group included in
+ a single page
+> <./images/sequences/simple_backtracking/bt_simple_I00004.pdf
+
+pdfTeX warning: /usr/bin/pdflatex (file ./images/sequences/simple_backtracking/
+bt_simple_I00004.pdf): PDF inclusion: multiple pdfs with page group included in
+ a single page
+> <./images/sequences/simple_backtracking/bt_simple_I00006.pdf
+
+pdfTeX warning: /usr/bin/pdflatex (file ./images/sequences/simple_backtracking/
+bt_simple_I00006.pdf): PDF inclusion: multiple pdfs with page group included in
+ a single page
+> <./images/sequences/simple_backtracking/bt_simple_I00007.pdf
+
+pdfTeX warning: /usr/bin/pdflatex (file ./images/sequences/simple_backtracking/
+bt_simple_I00007.pdf): PDF inclusion: multiple pdfs with page group included in
+ a single page
+> <./images/sequences/simple_backtracking/bt_simple_I00009.pdf
+
+pdfTeX warning: /usr/bin/pdflatex (file ./images/sequences/simple_backtracking/
+bt_simple_I00009.pdf): PDF inclusion: multiple pdfs with page group included in
+ a single page
+> <./images/sequences/simple_backtracking/bt_simple_I00012.pdf
+
+pdfTeX warning: /usr/bin/pdflatex (file ./images/sequences/simple_backtracking/
+bt_simple_I00012.pdf): PDF inclusion: multiple pdfs with page group included in
+ a single page
+> <./images/sequences/simple_backtracking/bt_simple_I00015.pdf
+
+pdfTeX warning: /usr/bin/pdflatex (file ./images/sequences/simple_backtracking/
+bt_simple_I00015.pdf): PDF inclusion: multiple pdfs with page group included in
+ a single page
+> <./images/sequences/simple_backtracking/bt_simple_I00019.pdf
+
+pdfTeX warning: /usr/bin/pdflatex (file ./images/sequences/simple_backtracking/
+bt_simple_I00019.pdf): PDF inclusion: multiple pdfs with page group included in
+ a single page
+> <./images/sequences/simple_backtracking/bt_simple_I00024.pdf
+
+pdfTeX warning: /usr/bin/pdflatex (file ./images/sequences/simple_backtracking/
+bt_simple_I00024.pdf): PDF inclusion: multiple pdfs with page group included in
+ a single page
+>]
+<images/sequences/forward_backtracking/bt_forward_I00003.pdf, id=355, 1004.7537
 5pt x 1004.75375pt>
 File: images/sequences/forward_backtracking/bt_forward_I00003.pdf Graphic file 
 (type pdf)
 
 <use images/sequences/forward_backtracking/bt_forward_I00003.pdf>
 Package pdftex.def Info: images/sequences/forward_backtracking/bt_forward_I0000
-3.pdf used on input line 371.
+3.pdf used on input line 386.
 (pdftex.def)             Requested size: 84.55246pt x 84.55205pt.
 
-<images/sequences/forward_backtracking/bt_forward_I00005.pdf, id=353, 1004.7537
+<images/sequences/forward_backtracking/bt_forward_I00005.pdf, id=356, 1004.7537
 5pt x 1004.75375pt>
 File: images/sequences/forward_backtracking/bt_forward_I00005.pdf Graphic file 
 (type pdf)
 
 <use images/sequences/forward_backtracking/bt_forward_I00005.pdf>
 Package pdftex.def Info: images/sequences/forward_backtracking/bt_forward_I0000
-5.pdf used on input line 377.
+5.pdf used on input line 392.
 (pdftex.def)             Requested size: 84.55246pt x 84.55205pt.
 
-<images/sequences/forward_backtracking/bt_forward_I00007.pdf, id=354, 1004.7537
+<images/sequences/forward_backtracking/bt_forward_I00007.pdf, id=357, 1004.7537
 5pt x 1004.75375pt>
 File: images/sequences/forward_backtracking/bt_forward_I00007.pdf Graphic file 
 (type pdf)
 
 <use images/sequences/forward_backtracking/bt_forward_I00007.pdf>
 Package pdftex.def Info: images/sequences/forward_backtracking/bt_forward_I0000
-7.pdf used on input line 383.
+7.pdf used on input line 398.
 (pdftex.def)             Requested size: 84.55246pt x 84.55205pt.
 
-<images/sequences/forward_backtracking/bt_forward_I00009.pdf, id=355, 1004.7537
+<images/sequences/forward_backtracking/bt_forward_I00009.pdf, id=358, 1004.7537
 5pt x 1004.75375pt>
 File: images/sequences/forward_backtracking/bt_forward_I00009.pdf Graphic file 
 (type pdf)
 
 <use images/sequences/forward_backtracking/bt_forward_I00009.pdf>
 Package pdftex.def Info: images/sequences/forward_backtracking/bt_forward_I0000
-9.pdf used on input line 389.
+9.pdf used on input line 404.
 (pdftex.def)             Requested size: 84.55246pt x 84.55205pt.
 
-<images/sequences/forward_backtracking/bt_forward_I00011.pdf, id=356, 1004.7537
+<images/sequences/forward_backtracking/bt_forward_I00011.pdf, id=359, 1004.7537
 5pt x 1004.75375pt>
 File: images/sequences/forward_backtracking/bt_forward_I00011.pdf Graphic file 
 (type pdf)
 
 <use images/sequences/forward_backtracking/bt_forward_I00011.pdf>
 Package pdftex.def Info: images/sequences/forward_backtracking/bt_forward_I0001
-1.pdf used on input line 395.
+1.pdf used on input line 410.
 (pdftex.def)             Requested size: 84.55246pt x 84.55205pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 369--398
+Underfull \hbox (badness 10000) in paragraph at lines 384--413
 
  []
 
 
-<images/sequences/forward_backtracking/bt_forward_I00013.pdf, id=357, 1004.7537
+<images/sequences/forward_backtracking/bt_forward_I00013.pdf, id=360, 1004.7537
 5pt x 1004.75375pt>
 File: images/sequences/forward_backtracking/bt_forward_I00013.pdf Graphic file 
 (type pdf)
 
 <use images/sequences/forward_backtracking/bt_forward_I00013.pdf>
 Package pdftex.def Info: images/sequences/forward_backtracking/bt_forward_I0001
-3.pdf used on input line 401.
+3.pdf used on input line 416.
 (pdftex.def)             Requested size: 84.55246pt x 84.55205pt.
 
-<images/sequences/forward_backtracking/bt_forward_I00015.pdf, id=358, 1004.7537
+<images/sequences/forward_backtracking/bt_forward_I00015.pdf, id=361, 1004.7537
 5pt x 1004.75375pt>
 File: images/sequences/forward_backtracking/bt_forward_I00015.pdf Graphic file 
 (type pdf)
 
 <use images/sequences/forward_backtracking/bt_forward_I00015.pdf>
 Package pdftex.def Info: images/sequences/forward_backtracking/bt_forward_I0001
-5.pdf used on input line 408.
+5.pdf used on input line 423.
 (pdftex.def)             Requested size: 84.55246pt x 84.55205pt.
 
-<images/sequences/forward_backtracking/bt_forward_I00017.pdf, id=359, 1004.7537
+<images/sequences/forward_backtracking/bt_forward_I00017.pdf, id=362, 1004.7537
 5pt x 1004.75375pt>
 File: images/sequences/forward_backtracking/bt_forward_I00017.pdf Graphic file 
 (type pdf)
 
 <use images/sequences/forward_backtracking/bt_forward_I00017.pdf>
 Package pdftex.def Info: images/sequences/forward_backtracking/bt_forward_I0001
-7.pdf used on input line 415.
+7.pdf used on input line 430.
 (pdftex.def)             Requested size: 84.55246pt x 84.55205pt.
 
-<images/sequences/forward_backtracking/bt_forward_I00018.pdf, id=360, 1004.7537
+<images/sequences/forward_backtracking/bt_forward_I00018.pdf, id=363, 1004.7537
 5pt x 1004.75375pt>
 File: images/sequences/forward_backtracking/bt_forward_I00018.pdf Graphic file 
 (type pdf)
 
 <use images/sequences/forward_backtracking/bt_forward_I00018.pdf>
 Package pdftex.def Info: images/sequences/forward_backtracking/bt_forward_I0001
-8.pdf used on input line 422.
+8.pdf used on input line 437.
 (pdftex.def)             Requested size: 84.55246pt x 84.55205pt.
 
-<images/sequences/forward_backtracking/bt_forward_I00021.pdf, id=361, 1004.7537
+<images/sequences/forward_backtracking/bt_forward_I00021.pdf, id=364, 1004.7537
 5pt x 1004.75375pt>
 File: images/sequences/forward_backtracking/bt_forward_I00021.pdf Graphic file 
 (type pdf)
 
 <use images/sequences/forward_backtracking/bt_forward_I00021.pdf>
 Package pdftex.def Info: images/sequences/forward_backtracking/bt_forward_I0002
-1.pdf used on input line 429.
+1.pdf used on input line 444.
 (pdftex.def)             Requested size: 84.55246pt x 84.55205pt.
- [7 <./images/sequences/forward_backtracking/bt_forward_I00003.pdf> <./images/s
-equences/forward_backtracking/bt_forward_I00005.pdf
 
-pdfTeX warning: pdflatex (file ./images/sequences/forward_backtracking/bt_forwa
-rd_I00005.pdf): PDF inclusion: multiple pdfs with page group included in a sing
-le page
-> <./images/sequences/forward_backtracking/bt_forward_I00007.pdf
 
-pdfTeX warning: pdflatex (file ./images/sequences/forward_backtracking/bt_forwa
-rd_I00007.pdf): PDF inclusion: multiple pdfs with page group included in a sing
-le page
-> <./images/sequences/forward_backtracking/bt_forward_I00009.pdf
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-pdfTeX warning: pdflatex (file ./images/sequences/forward_backtracking/bt_forwa
-rd_I00009.pdf): PDF inclusion: multiple pdfs with page group included in a sing
-le page
-> <./images/sequences/forward_backtracking/bt_forward_I00011.pdf
-
-pdfTeX warning: pdflatex (file ./images/sequences/forward_backtracking/bt_forwa
-rd_I00011.pdf): PDF inclusion: multiple pdfs with page group included in a sing
-le page
-> <./images/sequences/forward_backtracking/bt_forward_I00013.pdf
-
-pdfTeX warning: pdflatex (file ./images/sequences/forward_backtracking/bt_forwa
-rd_I00013.pdf): PDF inclusion: multiple pdfs with page group included in a sing
-le page
-> <./images/sequences/forward_backtracking/bt_forward_I00015.pdf
-
-pdfTeX warning: pdflatex (file ./images/sequences/forward_backtracking/bt_forwa
-rd_I00015.pdf): PDF inclusion: multiple pdfs with page group included in a sing
-le page
-> <./images/sequences/forward_backtracking/bt_forward_I00017.pdf
-
-pdfTeX warning: pdflatex (file ./images/sequences/forward_backtracking/bt_forwa
-rd_I00017.pdf): PDF inclusion: multiple pdfs with page group included in a sing
-le page
-> <./images/sequences/forward_backtracking/bt_forward_I00018.pdf
-
-pdfTeX warning: pdflatex (file ./images/sequences/forward_backtracking/bt_forwa
-rd_I00018.pdf): PDF inclusion: multiple pdfs with page group included in a sing
-le page
-> <./images/sequences/forward_backtracking/bt_forward_I00021.pdf
-
-pdfTeX warning: pdflatex (file ./images/sequences/forward_backtracking/bt_forwa
-rd_I00021.pdf): PDF inclusion: multiple pdfs with page group included in a sing
-le page
->]
-<../results_5/backtracking_forward/bt_forward_performance.pdf, id=389, 361.35pt
+[7 <../results_5/backtracking_simple/bt_simple_performance.pdf>]
+<../results_5/backtracking_forward/bt_forward_performance.pdf, id=388, 361.35pt
  x 216.81pt>
 File: ../results_5/backtracking_forward/bt_forward_performance.pdf Graphic file
  (type pdf)
 
 <use ../results_5/backtracking_forward/bt_forward_performance.pdf>
 Package pdftex.def Info: ../results_5/backtracking_forward/bt_forward_performan
-ce.pdf used on input line 456.
+ce.pdf used on input line 471.
 (pdftex.def)             Requested size: 281.85587pt x 169.11441pt.
 
-<images/sequences/mac_backtracking/bt_mac_I00003.pdf, id=391, 1004.75375pt x 10
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+<images/sequences/mac_backtracking/bt_mac_I00003.pdf, id=390, 1004.75375pt x 10
 04.75375pt>
 File: images/sequences/mac_backtracking/bt_mac_I00003.pdf Graphic file (type pd
 f)
  <use images/sequences/mac_backtracking/bt_mac_I00003.pdf>
 Package pdftex.def Info: images/sequences/mac_backtracking/bt_mac_I00003.pdf us
-ed on input line 469.
+ed on input line 484.
 (pdftex.def)             Requested size: 84.55246pt x 84.55205pt.
 
-<images/sequences/mac_backtracking/bt_mac_I00004.pdf, id=392, 1004.75375pt x 10
+<images/sequences/mac_backtracking/bt_mac_I00004.pdf, id=391, 1004.75375pt x 10
 04.75375pt>
 File: images/sequences/mac_backtracking/bt_mac_I00004.pdf Graphic file (type pd
 f)
  <use images/sequences/mac_backtracking/bt_mac_I00004.pdf>
 Package pdftex.def Info: images/sequences/mac_backtracking/bt_mac_I00004.pdf us
-ed on input line 475.
+ed on input line 490.
 (pdftex.def)             Requested size: 84.55246pt x 84.55205pt.
 
-<images/sequences/mac_backtracking/bt_mac_I00006.pdf, id=393, 1004.75375pt x 10
+<images/sequences/mac_backtracking/bt_mac_I00006.pdf, id=392, 1004.75375pt x 10
 04.75375pt>
 File: images/sequences/mac_backtracking/bt_mac_I00006.pdf Graphic file (type pd
 f)
  <use images/sequences/mac_backtracking/bt_mac_I00006.pdf>
 Package pdftex.def Info: images/sequences/mac_backtracking/bt_mac_I00006.pdf us
-ed on input line 481.
+ed on input line 496.
 (pdftex.def)             Requested size: 84.55246pt x 84.55205pt.
 
-<images/sequences/mac_backtracking/bt_mac_I00008.pdf, id=394, 1004.75375pt x 10
+<images/sequences/mac_backtracking/bt_mac_I00008.pdf, id=393, 1004.75375pt x 10
 04.75375pt>
 File: images/sequences/mac_backtracking/bt_mac_I00008.pdf Graphic file (type pd
 f)
  <use images/sequences/mac_backtracking/bt_mac_I00008.pdf>
 Package pdftex.def Info: images/sequences/mac_backtracking/bt_mac_I00008.pdf us
-ed on input line 487.
+ed on input line 502.
 (pdftex.def)             Requested size: 84.55246pt x 84.55205pt.
 
-<images/sequences/mac_backtracking/bt_mac_I00010.pdf, id=395, 1004.75375pt x 10
+<images/sequences/mac_backtracking/bt_mac_I00010.pdf, id=394, 1004.75375pt x 10
 04.75375pt>
 File: images/sequences/mac_backtracking/bt_mac_I00010.pdf Graphic file (type pd
 f)
  <use images/sequences/mac_backtracking/bt_mac_I00010.pdf>
 Package pdftex.def Info: images/sequences/mac_backtracking/bt_mac_I00010.pdf us
-ed on input line 493.
+ed on input line 508.
 (pdftex.def)             Requested size: 84.55246pt x 84.55205pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 467--496
+Underfull \hbox (badness 10000) in paragraph at lines 482--511
 
  []
 
 
-<images/sequences/mac_backtracking/bt_mac_I00012.pdf, id=396, 1004.75375pt x 10
+<images/sequences/mac_backtracking/bt_mac_I00012.pdf, id=395, 1004.75375pt x 10
 04.75375pt>
 File: images/sequences/mac_backtracking/bt_mac_I00012.pdf Graphic file (type pd
 f)
  <use images/sequences/mac_backtracking/bt_mac_I00012.pdf>
 Package pdftex.def Info: images/sequences/mac_backtracking/bt_mac_I00012.pdf us
-ed on input line 499.
+ed on input line 514.
 (pdftex.def)             Requested size: 84.55246pt x 84.55205pt.
 
-<images/sequences/mac_backtracking/bt_mac_I00014.pdf, id=397, 1004.75375pt x 10
+<images/sequences/mac_backtracking/bt_mac_I00014.pdf, id=396, 1004.75375pt x 10
 04.75375pt>
 File: images/sequences/mac_backtracking/bt_mac_I00014.pdf Graphic file (type pd
 f)
  <use images/sequences/mac_backtracking/bt_mac_I00014.pdf>
 Package pdftex.def Info: images/sequences/mac_backtracking/bt_mac_I00014.pdf us
-ed on input line 506.
+ed on input line 521.
 (pdftex.def)             Requested size: 84.55246pt x 84.55205pt.
 
-<images/sequences/mac_backtracking/bt_mac_I00016.pdf, id=398, 1004.75375pt x 10
+<images/sequences/mac_backtracking/bt_mac_I00016.pdf, id=397, 1004.75375pt x 10
 04.75375pt>
 File: images/sequences/mac_backtracking/bt_mac_I00016.pdf Graphic file (type pd
 f)
  <use images/sequences/mac_backtracking/bt_mac_I00016.pdf>
 Package pdftex.def Info: images/sequences/mac_backtracking/bt_mac_I00016.pdf us
-ed on input line 513.
+ed on input line 528.
 (pdftex.def)             Requested size: 84.55246pt x 84.55205pt.
 
-<images/sequences/mac_backtracking/bt_mac_I00017.pdf, id=399, 1004.75375pt x 10
+<images/sequences/mac_backtracking/bt_mac_I00017.pdf, id=398, 1004.75375pt x 10
 04.75375pt>
 File: images/sequences/mac_backtracking/bt_mac_I00017.pdf Graphic file (type pd
 f)
  <use images/sequences/mac_backtracking/bt_mac_I00017.pdf>
 Package pdftex.def Info: images/sequences/mac_backtracking/bt_mac_I00017.pdf us
-ed on input line 520.
+ed on input line 535.
 (pdftex.def)             Requested size: 84.55246pt x 84.55205pt.
 
-<images/sequences/mac_backtracking/bt_mac_I00018.pdf, id=400, 1004.75375pt x 10
+<images/sequences/mac_backtracking/bt_mac_I00018.pdf, id=399, 1004.75375pt x 10
 04.75375pt>
 File: images/sequences/mac_backtracking/bt_mac_I00018.pdf Graphic file (type pd
 f)
  <use images/sequences/mac_backtracking/bt_mac_I00018.pdf>
 Package pdftex.def Info: images/sequences/mac_backtracking/bt_mac_I00018.pdf us
-ed on input line 527.
+ed on input line 542.
 (pdftex.def)             Requested size: 84.55246pt x 84.55205pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[8 <../results_5/backtracking_forward/bt_forward_performance.pdf>] [9 <./images
-/sequences/mac_backtracking/bt_mac_I00003.pdf> <./images/sequences/mac_backtrac
-king/bt_mac_I00004.pdf
+[8 <./images/sequences/forward_backtracking/bt_forward_I00003.pdf> <./images/se
+quences/forward_backtracking/bt_forward_I00005.pdf
 
-pdfTeX warning: pdflatex (file ./images/sequences/mac_backtracking/bt_mac_I0000
-4.pdf): PDF inclusion: multiple pdfs with page group included in a single page
+pdfTeX warning: /usr/bin/pdflatex (file ./images/sequences/forward_backtracking
+/bt_forward_I00005.pdf): PDF inclusion: multiple pdfs with page group included 
+in a single page
+> <./images/sequences/forward_backtracking/bt_forward_I00007.pdf
+
+pdfTeX warning: /usr/bin/pdflatex (file ./images/sequences/forward_backtracking
+/bt_forward_I00007.pdf): PDF inclusion: multiple pdfs with page group included 
+in a single page
+> <./images/sequences/forward_backtracking/bt_forward_I00009.pdf
+
+pdfTeX warning: /usr/bin/pdflatex (file ./images/sequences/forward_backtracking
+/bt_forward_I00009.pdf): PDF inclusion: multiple pdfs with page group included 
+in a single page
+> <./images/sequences/forward_backtracking/bt_forward_I00011.pdf
+
+pdfTeX warning: /usr/bin/pdflatex (file ./images/sequences/forward_backtracking
+/bt_forward_I00011.pdf): PDF inclusion: multiple pdfs with page group included 
+in a single page
+> <./images/sequences/forward_backtracking/bt_forward_I00013.pdf
+
+pdfTeX warning: /usr/bin/pdflatex (file ./images/sequences/forward_backtracking
+/bt_forward_I00013.pdf): PDF inclusion: multiple pdfs with page group included 
+in a single page
+> <./images/sequences/forward_backtracking/bt_forward_I00015.pdf
+
+pdfTeX warning: /usr/bin/pdflatex (file ./images/sequences/forward_backtracking
+/bt_forward_I00015.pdf): PDF inclusion: multiple pdfs with page group included 
+in a single page
+> <./images/sequences/forward_backtracking/bt_forward_I00017.pdf
+
+pdfTeX warning: /usr/bin/pdflatex (file ./images/sequences/forward_backtracking
+/bt_forward_I00017.pdf): PDF inclusion: multiple pdfs with page group included 
+in a single page
+> <./images/sequences/forward_backtracking/bt_forward_I00018.pdf
+
+pdfTeX warning: /usr/bin/pdflatex (file ./images/sequences/forward_backtracking
+/bt_forward_I00018.pdf): PDF inclusion: multiple pdfs with page group included 
+in a single page
+> <./images/sequences/forward_backtracking/bt_forward_I00021.pdf
+
+pdfTeX warning: /usr/bin/pdflatex (file ./images/sequences/forward_backtracking
+/bt_forward_I00021.pdf): PDF inclusion: multiple pdfs with page group included 
+in a single page
+>] [9 <../results_5/backtracking_forward/bt_forward_performance.pdf> <./images/
+sequences/mac_backtracking/bt_mac_I00003.pdf
+
+pdfTeX warning: /usr/bin/pdflatex (file ./images/sequences/mac_backtracking/bt_
+mac_I00003.pdf): PDF inclusion: multiple pdfs with page group included in a sin
+gle page
+> <./images/sequences/mac_backtracking/bt_mac_I00004.pdf
+
+pdfTeX warning: /usr/bin/pdflatex (file ./images/sequences/mac_backtracking/bt_
+mac_I00004.pdf): PDF inclusion: multiple pdfs with page group included in a sin
+gle page
 > <./images/sequences/mac_backtracking/bt_mac_I00006.pdf
 
-pdfTeX warning: pdflatex (file ./images/sequences/mac_backtracking/bt_mac_I0000
-6.pdf): PDF inclusion: multiple pdfs with page group included in a single page
+pdfTeX warning: /usr/bin/pdflatex (file ./images/sequences/mac_backtracking/bt_
+mac_I00006.pdf): PDF inclusion: multiple pdfs with page group included in a sin
+gle page
 > <./images/sequences/mac_backtracking/bt_mac_I00008.pdf
 
-pdfTeX warning: pdflatex (file ./images/sequences/mac_backtracking/bt_mac_I0000
-8.pdf): PDF inclusion: multiple pdfs with page group included in a single page
+pdfTeX warning: /usr/bin/pdflatex (file ./images/sequences/mac_backtracking/bt_
+mac_I00008.pdf): PDF inclusion: multiple pdfs with page group included in a sin
+gle page
 > <./images/sequences/mac_backtracking/bt_mac_I00010.pdf
 
-pdfTeX warning: pdflatex (file ./images/sequences/mac_backtracking/bt_mac_I0001
-0.pdf): PDF inclusion: multiple pdfs with page group included in a single page
+pdfTeX warning: /usr/bin/pdflatex (file ./images/sequences/mac_backtracking/bt_
+mac_I00010.pdf): PDF inclusion: multiple pdfs with page group included in a sin
+gle page
 > <./images/sequences/mac_backtracking/bt_mac_I00012.pdf
 
-pdfTeX warning: pdflatex (file ./images/sequences/mac_backtracking/bt_mac_I0001
-2.pdf): PDF inclusion: multiple pdfs with page group included in a single page
+pdfTeX warning: /usr/bin/pdflatex (file ./images/sequences/mac_backtracking/bt_
+mac_I00012.pdf): PDF inclusion: multiple pdfs with page group included in a sin
+gle page
 > <./images/sequences/mac_backtracking/bt_mac_I00014.pdf
 
-pdfTeX warning: pdflatex (file ./images/sequences/mac_backtracking/bt_mac_I0001
-4.pdf): PDF inclusion: multiple pdfs with page group included in a single page
+pdfTeX warning: /usr/bin/pdflatex (file ./images/sequences/mac_backtracking/bt_
+mac_I00014.pdf): PDF inclusion: multiple pdfs with page group included in a sin
+gle page
 > <./images/sequences/mac_backtracking/bt_mac_I00016.pdf
 
-pdfTeX warning: pdflatex (file ./images/sequences/mac_backtracking/bt_mac_I0001
-6.pdf): PDF inclusion: multiple pdfs with page group included in a single page
+pdfTeX warning: /usr/bin/pdflatex (file ./images/sequences/mac_backtracking/bt_
+mac_I00016.pdf): PDF inclusion: multiple pdfs with page group included in a sin
+gle page
 > <./images/sequences/mac_backtracking/bt_mac_I00017.pdf
 
-pdfTeX warning: pdflatex (file ./images/sequences/mac_backtracking/bt_mac_I0001
-7.pdf): PDF inclusion: multiple pdfs with page group included in a single page
+pdfTeX warning: /usr/bin/pdflatex (file ./images/sequences/mac_backtracking/bt_
+mac_I00017.pdf): PDF inclusion: multiple pdfs with page group included in a sin
+gle page
 > <./images/sequences/mac_backtracking/bt_mac_I00018.pdf
 
-pdfTeX warning: pdflatex (file ./images/sequences/mac_backtracking/bt_mac_I0001
-8.pdf): PDF inclusion: multiple pdfs with page group included in a single page
+pdfTeX warning: /usr/bin/pdflatex (file ./images/sequences/mac_backtracking/bt_
+mac_I00018.pdf): PDF inclusion: multiple pdfs with page group included in a sin
+gle page
 >]
-<../results_5/backtracking_mac/bt_mac_performance.pdf, id=446, 361.35pt x 216.8
+<../results_5/backtracking_mac/bt_mac_performance.pdf, id=454, 361.35pt x 216.8
 1pt>
 File: ../results_5/backtracking_mac/bt_mac_performance.pdf Graphic file (type p
 df)
  <use ../results_5/backtracking_mac/bt_mac_performance.pdf>
 Package pdftex.def Info: ../results_5/backtracking_mac/bt_mac_performance.pdf u
-sed on input line 553.
+sed on input line 568.
 (pdftex.def)             Requested size: 281.85587pt x 169.11441pt.
-
-<images/sequences/genetic/genetic_I00001.pdf, id=450, 1004.75375pt x 1004.75375
+ [10 <../results_5/backtracking_mac/bt_mac_performance.pdf>]
+<images/sequences/genetic/genetic_I00001.pdf, id=472, 1004.75375pt x 1004.75375
 pt>
 File: images/sequences/genetic/genetic_I00001.pdf Graphic file (type pdf)
  <use images/sequences/genetic/genetic_I00001.pdf>
 Package pdftex.def Info: images/sequences/genetic/genetic_I00001.pdf used on in
-put line 583.
+put line 598.
 (pdftex.def)             Requested size: 84.55246pt x 84.55205pt.
 
-<images/sequences/genetic/genetic_I00002.pdf, id=451, 1004.75375pt x 1004.75375
+<images/sequences/genetic/genetic_I00002.pdf, id=473, 1004.75375pt x 1004.75375
 pt>
 File: images/sequences/genetic/genetic_I00002.pdf Graphic file (type pdf)
  <use images/sequences/genetic/genetic_I00002.pdf>
 Package pdftex.def Info: images/sequences/genetic/genetic_I00002.pdf used on in
-put line 590.
+put line 605.
 (pdftex.def)             Requested size: 84.55246pt x 84.55205pt.
 
-<images/sequences/genetic/genetic_I00003.pdf, id=452, 1004.75375pt x 1004.75375
+<images/sequences/genetic/genetic_I00003.pdf, id=474, 1004.75375pt x 1004.75375
 pt>
 File: images/sequences/genetic/genetic_I00003.pdf Graphic file (type pdf)
  <use images/sequences/genetic/genetic_I00003.pdf>
 Package pdftex.def Info: images/sequences/genetic/genetic_I00003.pdf used on in
-put line 598.
+put line 613.
 (pdftex.def)             Requested size: 84.55246pt x 84.55205pt.
 
-<images/sequences/genetic/genetic_I00004.pdf, id=453, 1004.75375pt x 1004.75375
+<images/sequences/genetic/genetic_I00004.pdf, id=475, 1004.75375pt x 1004.75375
 pt>
 File: images/sequences/genetic/genetic_I00004.pdf Graphic file (type pdf)
  <use images/sequences/genetic/genetic_I00004.pdf>
 Package pdftex.def Info: images/sequences/genetic/genetic_I00004.pdf used on in
-put line 605.
+put line 620.
 (pdftex.def)             Requested size: 84.55246pt x 84.55205pt.
- [10 <../results_5/backtracking_mac/bt_mac_performance.pdf>]
 Package epstopdf Info: Source file: <images/genetic_flo.eps>
-(epstopdf)                    date: 2016-09-25 21:57:46
+(epstopdf)                    date: 2016-09-26 11:39:48
 (epstopdf)                    size: 51341 bytes
 (epstopdf)             Output file: <images/genetic_flo-eps-converted-to.pdf>
-(epstopdf)                    date: 2016-09-25 21:57:46
+(epstopdf)                    date: 2016-09-26 11:39:48
 (epstopdf)                    size: 21917 bytes
-(epstopdf)             Command: <epstopdf --outfile=images/genetic_flo-eps-conv
-erted-to.pdf images/genetic_flo.eps>
-(epstopdf)             \includegraphics on input line 622.
+(epstopdf)             Command: <repstopdf --outfile=images/genetic_flo-eps-con
+verted-to.pdf images/genetic_flo.eps>
+(epstopdf)             \includegraphics on input line 637.
 Package epstopdf Info: Output file is already uptodate.
 
-<images/genetic_flo-eps-converted-to.pdf, id=467, 530.98375pt x 627.34375pt>
+<images/genetic_flo-eps-converted-to.pdf, id=477, 530.98375pt x 627.34375pt>
 File: images/genetic_flo-eps-converted-to.pdf Graphic file (type pdf)
 
 <use images/genetic_flo-eps-converted-to.pdf>
 Package pdftex.def Info: images/genetic_flo-eps-converted-to.pdf used on input 
-line 622.
+line 637.
 (pdftex.def)             Requested size: 140.92793pt x 166.50375pt.
- [11 <./images/sequences/genetic/genetic_I00001.pdf> <./images/sequences/geneti
-c/genetic_I00002.pdf
 
-pdfTeX warning: pdflatex (file ./images/sequences/genetic/genetic_I00002.pdf): 
-PDF inclusion: multiple pdfs with page group included in a single page
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[11 <./images/sequences/genetic/genetic_I00001.pdf> <./images/sequences/genetic
+/genetic_I00002.pdf
+
+pdfTeX warning: /usr/bin/pdflatex (file ./images/sequences/genetic/genetic_I000
+02.pdf): PDF inclusion: multiple pdfs with page group included in a single page
+
 > <./images/sequences/genetic/genetic_I00003.pdf
 
-pdfTeX warning: pdflatex (file ./images/sequences/genetic/genetic_I00003.pdf): 
-PDF inclusion: multiple pdfs with page group included in a single page
+pdfTeX warning: /usr/bin/pdflatex (file ./images/sequences/genetic/genetic_I000
+03.pdf): PDF inclusion: multiple pdfs with page group included in a single page
+
 > <./images/sequences/genetic/genetic_I00004.pdf
 
-pdfTeX warning: pdflatex (file ./images/sequences/genetic/genetic_I00004.pdf): 
-PDF inclusion: multiple pdfs with page group included in a single page
-> <./images/genetic_flo-eps-converted-to.pdf>]
-<../results_5/genetic/genetic_performance.pdf, id=506, 361.35pt x 216.81pt>
+pdfTeX warning: /usr/bin/pdflatex (file ./images/sequences/genetic/genetic_I000
+04.pdf): PDF inclusion: multiple pdfs with page group included in a single page
+
+>] <../results_5/genetic/genetic_performance.pdf, id=513, 361.35pt x 216.81pt>
 File: ../results_5/genetic/genetic_performance.pdf Graphic file (type pdf)
 
 <use ../results_5/genetic/genetic_performance.pdf>
 Package pdftex.def Info: ../results_5/genetic/genetic_performance.pdf used on i
-nput line 639.
+nput line 654.
 (pdftex.def)             Requested size: 281.85587pt x 169.11441pt.
- [12 <../results_5/genetic/genetic_performance.pdf>]
-<../results_5/comparing_read_performance.pdf, id=519, 361.35pt x 216.81pt>
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[12 <./images/genetic_flo-eps-converted-to.pdf>]
+<../results_5/comparing_read_performance.pdf, id=522, 361.35pt x 216.81pt>
 File: ../results_5/comparing_read_performance.pdf Graphic file (type pdf)
 
 <use ../results_5/comparing_read_performance.pdf>
 Package pdftex.def Info: ../results_5/comparing_read_performance.pdf used on in
-put line 661.
+put line 676.
 (pdftex.def)             Requested size: 230.18253pt x 138.1095pt.
 
-<../results_5/comparing_write_performance.pdf, id=520, 361.35pt x 216.81pt>
+<../results_5/comparing_write_performance.pdf, id=523, 361.35pt x 216.81pt>
 File: ../results_5/comparing_write_performance.pdf Graphic file (type pdf)
 
 <use ../results_5/comparing_write_performance.pdf>
 Package pdftex.def Info: ../results_5/comparing_write_performance.pdf used on i
-nput line 667.
+nput line 682.
 (pdftex.def)             Requested size: 230.18253pt x 138.1095pt.
 
-<../results_5/comparing_time_performance.pdf, id=521, 361.35pt x 216.81pt>
+<../results_5/comparing_time_performance.pdf, id=524, 361.35pt x 216.81pt>
 File: ../results_5/comparing_time_performance.pdf Graphic file (type pdf)
 
 <use ../results_5/comparing_time_performance.pdf>
 Package pdftex.def Info: ../results_5/comparing_time_performance.pdf used on in
-put line 673.
+put line 688.
 (pdftex.def)             Requested size: 230.18253pt x 138.1095pt.
 
-<../results_5/comparing_num_saturated.pdf, id=522, 361.35pt x 216.81pt>
+<../results_5/comparing_num_saturated.pdf, id=525, 361.35pt x 216.81pt>
 File: ../results_5/comparing_num_saturated.pdf Graphic file (type pdf)
 
 <use ../results_5/comparing_num_saturated.pdf>
 Package pdftex.def Info: ../results_5/comparing_num_saturated.pdf used on input
- line 679.
+ line 694.
 (pdftex.def)             Requested size: 230.18253pt x 138.1095pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[13] (./CSCI446_final_report_group21.bbl [14 <../results_5/comparing_read_perfo
-rmance.pdf> <../results_5/comparing_write_performance.pdf
+[13 <../results_5/genetic/genetic_performance.pdf>] [14 <../results_5/comparing
+_read_performance.pdf> <../results_5/comparing_write_performance.pdf
 
-pdfTeX warning: pdflatex (file ../results_5/comparing_write_performance.pdf): P
-DF inclusion: multiple pdfs with page group included in a single page
+pdfTeX warning: /usr/bin/pdflatex (file ../results_5/comparing_write_performanc
+e.pdf): PDF inclusion: multiple pdfs with page group included in a single page
 > <../results_5/comparing_time_performance.pdf
 
-pdfTeX warning: pdflatex (file ../results_5/comparing_time_performance.pdf): PD
-F inclusion: multiple pdfs with page group included in a single page
+pdfTeX warning: /usr/bin/pdflatex (file ../results_5/comparing_time_performance
+.pdf): PDF inclusion: multiple pdfs with page group included in a single page
 > <../results_5/comparing_num_saturated.pdf
 
-pdfTeX warning: pdflatex (file ../results_5/comparing_num_saturated.pdf): PDF i
-nclusion: multiple pdfs with page group included in a single page
->])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 707.
+pdfTeX warning: /usr/bin/pdflatex (file ../results_5/comparing_num_saturated.pd
+f): PDF inclusion: multiple pdfs with page group included in a single page
+>] (./CSCI446_final_report_group21.bbl)
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 722.
  [15]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 707.
- (./CSCI446_final_report_group21.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 707.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 707.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 722.
+
+(./CSCI446_final_report_group21.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 722.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 722.
 Package rerunfilecheck Info: File `CSCI446_final_report_group21.out' has not ch
 anged.
 (rerunfilecheck)             Checksum: BB1ACC74CD42B2EF1052CBEE04A25140;1586.
@@ -1297,16 +1334,16 @@ anged.
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.88pt have occurred.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 707.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 722.
  ) 
 Here is how much of TeX's memory you used:
- 10497 strings out of 493304
- 167404 string characters out of 6139871
- 384266 words of memory out of 5000000
- 13505 multiletter control sequences out of 15000+600000
- 27114 words of font info for 134 fonts, out of 8000000 for 9000
- 957 hyphenation exceptions out of 8191
- 36i,19n,43p,1329b,484s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 10599 strings out of 493029
+ 168855 string characters out of 6136234
+ 398353 words of memory out of 5000000
+ 13678 multiletter control sequences out of 15000+600000
+ 28067 words of font info for 137 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 36i,19n,43p,1329b,488s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmbsy7.pfb></usr/share/texlive
 /texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf
@@ -1318,19 +1355,19 @@ ublic/amsfonts/cm/cmmib10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
 ts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
 sy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pf
 b></usr/share/texmf/fonts/type1/public/cm-super/sfbx0900.pfb></usr/share/texmf/
-fonts/type1/public/cm-super/sfbx2488.pfb></usr/share/texmf/fonts/type1/public/c
-m-super/sfcc1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfcc1200.pfb
-></usr/share/texmf/fonts/type1/public/cm-super/sfcc1440.pfb></usr/share/texmf/f
-onts/type1/public/cm-super/sfrm0700.pfb></usr/share/texmf/fonts/type1/public/cm
--super/sfrm1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb>
-</usr/share/texmf/fonts/type1/public/cm-super/sfti0900.pfb></usr/share/texmf/fo
-nts/type1/public/cm-super/sfti1000.pfb></usr/share/texmf/fonts/type1/public/cm-
-super/sftt1000.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.
-pfb>
-Output written on CSCI446_final_report_group21.pdf (15 pages, 1041411 bytes).
+fonts/type1/public/cm-super/sfbx1000.pfb></usr/share/texmf/fonts/type1/public/c
+m-super/sfbx2488.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfcc1000.pfb
+></usr/share/texmf/fonts/type1/public/cm-super/sfcc1200.pfb></usr/share/texmf/f
+onts/type1/public/cm-super/sfcc1440.pfb></usr/share/texmf/fonts/type1/public/cm
+-super/sfrm0700.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb>
+</usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf/fo
+nts/type1/public/cm-super/sfti0900.pfb></usr/share/texmf/fonts/type1/public/cm-
+super/sfti1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1000.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
+Output written on CSCI446_final_report_group21.pdf (15 pages, 1056899 bytes).
 PDF statistics:
- 654 PDF objects out of 1000 (max. 8388607)
- 502 compressed objects within 6 object streams
- 72 named destinations out of 1000 (max. 500000)
- 28634 words of extra memory for PDF output out of 29859 (max. 10000000)
+ 668 PDF objects out of 1000 (max. 8388607)
+ 515 compressed objects within 6 object streams
+ 73 named destinations out of 1000 (max. 500000)
+ 29146 words of extra memory for PDF output out of 29859 (max. 10000000)
 
